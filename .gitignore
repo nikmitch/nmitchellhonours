@@ -11,6 +11,9 @@
 *.cb
 *.cb2
 
+# Simulation simulation data
+*.dat
+
 ## Intermediate documents:
 *.dvi
 *-converted-to.*
@@ -218,3 +221,7 @@ TSWLatexianTemp*
 
 # expex forward references with \gathertags
 *-tags.tex
+
+#directories to ignore
+/Simulation_data/
+Simulation_data/
