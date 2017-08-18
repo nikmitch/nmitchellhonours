@@ -2,7 +2,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{braket}
-%\usepackage{todonotes}
+\usepackage{todonotes}
 \usepackage{listings}
 \usepackage{graphicx}
 \usepackage{float}
@@ -43,7 +43,6 @@ states using [ETH, entropy of entanglement, whatever I actually end up doing].
 \end{abstract}
 \newpage
 \section{Experimental advantages of working with bosons on optical lattices}
-\\\\
 Bosons on optical lattices are an excellent arena in which to explore various model Hamiltonians [for condensed matter systems, or is it broader than that?
 want something linking this to solids, or my later line about impurities lacks context], due to the 
 fine degree of experimental control attainable in generating these systems.
@@ -56,7 +55,6 @@ to be small. %reference this at some point from the book I meant to get from Dav
 
 Optical lattices are highly uniform, so when dealing with BECs on optical lattices this problem of impurities does not arise.
 %should mention the aspect of control compared to solids (can't put all electrons on a single atom)
-\\\\
 
 
 
@@ -262,29 +260,39 @@ state. The properties of the state that the system relaxed to were not given by 
 is extended to include all of the integrals of motion. They further showed that their generalized equilibrium state carries more memory of the initial conditions than the usual thermodynamic one.
 
 
-\section{Preliminary results}
-The computational work for this project has been performed exclusively with Python 3. Initially, only situations in which one particle is placed on a given site were considered. 
-It has been found that the expectation value of the number operator for the site that the particle is initially placed on tends to a particular value (although oscillations 
-around this do not disappear when the simulation is run much longer). This value does not change based on the relative values of $J$ and $J'$. However, the relative values 
-of $J$ and $J'$ do influence how long it takes for this behaviour to set in. A characteristic time was defined to quantify this difference. This was done by iterating backwards 
-through the timesteps until a time at which the absolute difference between the mean of the oscillations in
-expectation value and the expectation value at that particular time exceeds a chosen value. \todo{get rid of this stuff, or include a diagram}
-
-\begin{figure}[H]
- \includegraphics[width=8cm]{scale_factors_and_characteristic_times}
- \centering
-\end{figure}
-
-It was found that a weaker inter-chain coupling corresponded with delayed onset of long-term behaviour.
+\section{Results}
 
 
 
 
-\section{Revival}
+
+\section{Revival}\todo{should this section come within results or background?}
 In a subset of the integrable systems considered, we observed regular instances in which the system would return to the state in which it was initially prepared. The dividing line between
 systems for which we see revival and those in which we don't is whether the eigenvalues of the system are mutually rational\todo{Is this a legitimate term? Should I describe them in 
-some other way?}. To demonstrate this, consider the initial state of the system $
+some other way?}. To demonstrate this, consider the initial state of the system $\ket{\psi(0)}$, which evolves in time according to
+\begin{equation}
+ \ket{\psi(t)}=e^{i\hat{H}t}\ket{\psi(0)},
+\end{equation}
+\todo{mention something about absorbing the hbar into the timescale}
+noting that we can use the completeness relation for the energy eigenstates to expand the initial state in the energy basis,
 
+\begin{align}
+ \ket{\psi(t)} =&       e^{i\hat{H}t}\sum_j\ket{E_j}\braket{E_j|\psi(0)} \\
+               =&\sum_je^{i\hat{H}t}\ket{E_j}\braket{E_j|\psi(0)} \\
+                =&\sum_je^{iE_{j}t}\ket{E_j}\braket{E_j|\psi(0)} \\
+\end{align}
+
+From here it can be seen that the only time dependence is in the complex exponential, and that if we can find some time $t_r$ such that $E_{j}t_r=2\pi k_{j}$, where $k_j\in \mathbf{Z}$ for all $j$, 
+we will recover the initial state i.e. $\ket{\psi(t_r)}=\ket{\psi(0)}$.\\
+
+\subsection{Exact and regular revival}
+We observe an exact and regular revival in precisely the cases in which the eigenvalues are mutually rational, i.e. they are either all rational, or are all rational when divided by the same irrational number. 
+For example, the set of hypothetical eigenvalues ${0,\sqrt{2},2\sqrt{2},\frac{3\sqrt{2}}{10}}$ is mutually rational, whereas ${0,\sqrt{2},\sqrt{3}}$ is not. In the case of mutually rational eigenvalues, we can write
+${E_j}=\frac{p_j}{q_j},p_j,q_j \in \mathbf{Z}$. The revival time is then given by $t_r=2\pi Q_{LCM}$, where $Q_{LCM}$ is the lowest common multiple of ${q_j}$. 
+
+We are yet to find any systems with nonzero interparticle interaction that have mutually rational eigenvalues.
+In one dimension, the only systems that we have found that meet the criterion of mutually irrational eigenvalues are those with fewer than 4 lattice sites. In two
+dimensions, \todo{do a comprehensive batch of simulations to determine what is and isn't ok in 2D}.
 \bibliographystyle{plain}
 \bibliography{honours}
 
