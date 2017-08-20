@@ -230,9 +230,9 @@ the system in the wavefunction representation.
 \begin{equation}
 \hat{H}=(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j} + J'\hat{a}^\dagger_{i,b}\hat{a}_{i+1,b})+c.c.
 \end{equation}
-where the $i$ index denotes which chain is being referred to, the $j$ index denotes how far along the chain a site is, and inter-chain hopping is allowed between the $b^{th}$ 
-sites of each chain. The value of $J'$ will be increased incrementally from zero to $J$, in doing so taking the system from quasi-1D to fully 2-dimensional. We will look at how
-this change impacts the revival behaviour of the expectation value of the annihilation operator.
+where the $i$ index denotes which chain is being referred to, the $j$ index denotes how far along the chain a site is, and inter-chain hopping is allowed between the $b^{th}$ \todo{update this now that I'm
+not doing single link stuff} sites of each chain. The value of $J'$ will be increased incrementally from zero to $J$, in doing so taking the system from quasi-1D to 
+fully 2-dimensional. We will look at how this change impacts the revival behaviour of the expectation value of the annihilation operator.\todo{no, we won't}
 
 
 \section{Integrable systems}
@@ -287,12 +287,61 @@ we will recover the initial state i.e. $\ket{\psi(t_r)}=\ket{\psi(0)}$.\\
 
 \subsection{Exact and regular revival}
 We observe an exact and regular revival in precisely the cases in which the eigenvalues are mutually rational, i.e. they are either all rational, or are all rational when divided by the same irrational number. 
-For example, the set of hypothetical eigenvalues ${0,\sqrt{2},2\sqrt{2},\frac{3\sqrt{2}}{10}}$ is mutually rational, whereas ${0,\sqrt{2},\sqrt{3}}$ is not. In the case of mutually rational eigenvalues, we can write
+For example, the set of hypothetical eigenvalues $\{0,\sqrt{2},2\sqrt{2},\frac{3\sqrt{2}}{10}\}$ is mutually rational, whereas $\{0,\sqrt{2},\sqrt{3}\}$ is not. In the case of mutually rational eigenvalues, we can write
 ${E_j}=\frac{p_j}{q_j},p_j,q_j \in \mathbf{Z}$. The revival time is then given by $t_r=2\pi Q_{LCM}$, where $Q_{LCM}$ is the lowest common multiple of ${q_j}$. 
-
+\\\\
 We are yet to find any systems with nonzero interparticle interaction that have mutually rational eigenvalues.
 In one dimension, the only systems that we have found that meet the criterion of mutually irrational eigenvalues are those with fewer than 4 lattice sites. In two
 dimensions, \todo{do a comprehensive batch of simulations to determine what is and isn't ok in 2D}.
+
+To see this exact revival, consider the following system: A one dimensional lattice with three sites, a single boson and a hopping constant of $J=0.4$. So the Hamiltonian is
+
+\begin{equation}
+\hat{H}= \[ \begin{bmatrix}
+ 0 & -0.4 & 0 \\
+ -0.4 & 0 & -0.4\\
+ 0 & -0.4 & 0
+ \end{bmatrix}
+\]
+\end{equation}.
+Diagonalising this matrix yields the eigenvalues $\{-\frac{2\sqrt{2}}{5},0,\frac{2\sqrt{2}}{5}\}$. These are mutually rational (If we divide them all by $\sqrt{2}$ they are all rational). Ignoring 
+the $\sqrt{2}$ factor for a moment, our formula for the revival time gives $t_r=10\pi$, or taking into account the square root of two factor $t_r=10\sqrt{2}\pi\approx44.43$. We can see from the 
+graph of the simulation below that this matches up with a return to the initial state.
+
+\begin{figure}[H]
+ \includegraphics[width=8cm]{showing_revival_3by1}
+ \centering
+\end{figure}
+
+The reason that there appear to be several revivals that our method ``misses'' is that states with different phases in the coefficients of the eigenvectors can also produce $<n_1>=1$, whereas the revival time that is 
+calculated in our method corresponds to exact revival of the initial wavefunction.
+
+\subsection{Mutually irrational eigenvalues}
+The range of systems for which the spectrum \todo{is it inaccurate to describle the spectrum (as opposed to the eigenvalues) as mutually irrational?} is mutually rational is a small one. 
+All systems which have nonzero interparticle interactions have mutually irrational eigenvalues. One of the most interesting results so far is that even in the one dimensional single particle case,
+if there are more than three lattice sites, the spectrum will be irrational. We can demonstrate this by considering a single chain of five sites, with one boson and $J=-1$. The Hamiltonian for this 
+system \todo{do I need to include this?} is 
+
+\begin{equation}
+\hat{H}= \[ \begin{bmatrix}
+ 0 & -1 & 0 & 0 & 0\\
+ -1 & 0 & -1 & 0 & 0\\
+ 0 & -1 & 0 & -1 & 0\\
+ 0 & 0 & -1 & 0 & -1\\
+ 0 & 0 & 0 & -1 & 0
+ \end{bmatrix}
+\]
+\end{equation}.
+\todo{need mathematica for the rest of this section?}
+
+
+\section{The Poincar\'e Recurrence Theorem}
+\todo{do I need to prove this?}
+
+\section{Arbitrarily close but arbitrarily long}
+
+
+
 \bibliographystyle{plain}
 \bibliography{honours}
 

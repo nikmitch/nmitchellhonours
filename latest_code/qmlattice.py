@@ -24,11 +24,11 @@ import matplotlib as mpl
 import qmlattice_utils as qm
 
 # == PHYSICAL PARAMETERS =======================================================
-nx = 2
+nx = 3
 ny = 1
-P  = 10
+P  = 1
 
-J  = -1
+J  = -0.4
 JP = 0
 U  =  0
 
