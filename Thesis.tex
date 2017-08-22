@@ -5,14 +5,15 @@
 \usepackage{todonotes}
 \usepackage{listings}
 \usepackage{graphicx}
-\usepackage{float}
-
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+%\usepackage{float}
+\usepackage[capposition=top, font=small]{floatrow}
 \usepackage{hyperref}
-\hypersetup{
-    colorlinks=true,
-    linkcolor=blue,
-    filecolor=magenta,      
-    urlcolor=blue,}
+%\hypersetup{
+%    colorlinks=true,
+%   linkcolor=blue,
+%    filecolor=magenta,      
+%    urlcolor=blue,}
  
 \urlstyle{same}
 
@@ -39,26 +40,22 @@ states using [ETH, entropy of entanglement, whatever I actually end up doing].
 
 
 
-
 \end{abstract}
 \newpage
 \section{Experimental advantages of working with bosons on optical lattices}
 Bosons on optical lattices are an excellent arena in which to explore various model Hamiltonians [for condensed matter systems, or is it broader than that?
 want something linking this to solids, or my later line about impurities lacks context], due to the 
 fine degree of experimental control attainable in generating these systems.
-The lattice potential's shape, depth and spacing can be easily varied in optical lattices of BECs\cite{Morsch2006}. 
-The strength of the interparticle interactions can also be easily varied. 
+The shape, depth and spacing of the potential can be easily varied in optical lattices of BECs\cite{Morsch2006}. 
+The strength of the interparticle interaction can also be easily varied. 
 Moreover, there are always impurities present in the solids we find in nature,
 which can have significant impacts on the properties of the solid which cannot necessarily be accounted for by a perturbative approach which assumes these effects 
-to be small. %reference this at some point from the book I meant to get from David
-
-
-Optical lattices are highly uniform, so when dealing with BECs on optical lattices this problem of impurities does not arise.
-%should mention the aspect of control compared to solids (can't put all electrons on a single atom)
+to be small. \todo{reference this at some point from the book I meant to get from David}Optical lattices are highly uniform, so when dealing with BECs on optical lattices this problem of impurities does not arise.
+\todo{should mention the aspect of control compared to solids (can't put all electrons on a single atom)}
 
 
 
-\section{First quantised representation of bosons on optical lattices}
+\section{First quantised representation}
 There are a number of different contributions to the Hamiltonian for bosons on optical lattices, and these contributions can be seen to have analogues in condensed matter systems.
 The individual bosons will have kinetic energy, and the potential created by the lattice also contributes to how the system evolves in time, so it must feature in the Hamiltonian.
 The bosons may be interacting (we will assume this only occurs if they occupy the same lattice sites), and there may also be an external potential \todo{should I include this external
@@ -70,7 +67,7 @@ from site to site. From this reasoning, we can construct a first quantised Hamil
 
 Similar Hamiltonians are frequently used to describe systems of electrons on atomic lattices.
 \\\\
-%\todo{I'd like to have a diagram of the bosons on the optical lattice here}
+
 
 \section{Many-particle wavefunctions and identical particles \cite{Negele1988, Inkson1984, Altland2010}}\todo{Should spread these references throughout the following sections?}
 The Hamiltonian in the previous section would act on a bosonic many-particle wavefunction. A system of identical bosons must be symmetric under particle exchange, and this has 
@@ -86,33 +83,32 @@ or in Dirac bra-ket notation, the two-body states would be represented as
  \ket{\lambda_1,\lambda_2}=\frac{1}{\sqrt{2}}\big(\ket{\lambda_1}\otimes \ket{\lambda_2}+\ket{\lambda_2}\otimes\ket{\lambda_1}\big)
 \end{equation}
 
-The number of permutations that one must account for grows extremely quickly as particle number increases. A properly symmetrised and normalised N-body state can be
+The number of permutations that one must account for grows extremely quickly as particle number increases. A properly symmetrised and normalised $N$-body state can be
 represented as 
 \begin{equation}
- \ket{\lambda_1,\lambda_2,...,\lambda_N}=\frac{1}{\sqrt{N!\prod_{\lambda=0}^{\infty}{(n_{\lambda})}}}\sum_{\mathcal{P}}\lambda_{\mathcal{P}1}\otimes\lambda_{\mathcal{P}2}\otimes...\otimes\lambda_{\mathcal{P}N}
+ \ket{\lambda_1,\lambda_2,...,\lambda_N}=\frac{1}{\sqrt{N!\prod_{\lambda=0}^{\infty}{n_{\lambda}}}}\sum_{\mathcal{P}}\lambda_{\mathcal{P}1}\otimes\lambda_{\mathcal{P}2}\otimes...\otimes\lambda_{\mathcal{P}N}
 \end{equation}
 where $n_{\lambda}$ is the number of particles in state $\lambda$, and the summation runs over all $N!$ permutations of the set of quantum numbers $\{ \lambda_1,\dots,\lambda_N\}$.
 \\\\
 This formalism has a number of shortcomings. The most important of these for this project is that it is extremely cumbersome for practical computation because of the large number of entities that need to be 
-represented. To avoid this, we shall adopt the ``second quantisation'' formalism, which is much better suited to dealing concisely with large numbers of indistinguishable particles.
+represented. To avoid this, we shall adopt the second quantised formalism, which is much better suited to dealing concisely with large numbers of indistinguishable particles.
 
-\section{Second Quantisation and the Occupation Number Representation}
+\section{Second Quantisation}
 \subsection{The Occupation Number Representation}
 The formalism that we have hitherto discussed explicitly represents a significant amount of redundant information, in the sense that it deals separately with the scenarios ``particle 1 in state $\lambda_1$ and 
 particle 2 in state $\lambda_2$'' and ``particle 2 in state $\lambda_1$ and particle 1 in state $\lambda_2$''. Taking into account the indistinguishability of the particles, it is clear that these two scenarios
-are precisely identical. A more efficient approach consists of describing the number of particles in a particular state $\lambda_i$, i.e. using the occupation number representation. When doing this, a general 
+are identical. A more efficient approach consists of describing the number of particles in a particular state $\lambda_i$ i.e. using the occupation number representation. When doing this, a general 
 state can be written as a linear superposition
 \begin{equation}
- \ket{\Psi}=\sum_{n_1,n_2,...}c_{n1,n2,...}\ket{n_1,n_2,...}
+ \ket{\Psi}=\sum_{n_1,n_2,...}c_{n_1,n_2,...}\ket{n_1,n_2,...}
 \end{equation}
 
 In the scenario which this project will be working with, the occupation numbers refer to the number of bosons on a particular site of the lattice.
-Having established this, we can define creation and annihilation operators that add and subtract particles from eigenstates, that is
+Having established this, we can define creation and annihilation operators that create and annihilate particles from number eigenstates, that is
 
 \begin{equation}
  \hat{a}_{j}^{\dagger}\ket{n_1,n_2,\dots,n_{j},\dots}=\sqrt{n_j+1}\ket{n_1,n_2,\dots,n_{j}+1,\dots}
 \end{equation}
-
 and 
 
 \begin{equation}
@@ -124,31 +120,31 @@ These operators have very important commutation relations
  [\hat{a}_{j}^{\dagger},\hat{a}_{k}^{\dagger}]=0, \ \ \ \ \ [\hat{a}_{j},\hat{a}_{k}]=0,\ \ \ \ [\hat{a}_{j},\hat{a}_{k}^{\dagger}]=\delta_{jk}.
  \end{align*}
 \end{equation}
-
-We can also define the number operator $\hat{n}_j=\hat{a}_{j}^{\dagger}\hat{a}_j$ with the property that
+We can also define the number operator $\hat{n}_j=\hat{a}_{j}^{\dagger}\hat{a}_j$ that has the property that
 \begin{equation}
  \hat{n}_{j}\ket{n_1,n_2,\dots,n_{j},\dots}=n_{j}\ket{n_1,n_2,\dots,n_{j},\dots}
 \end{equation}
 
-The occupation number eigenstates form the basis of the N-particle Hilbert space that we are working in (the Fock space $\mathcal{F}^N$), and it 
+The occupation number eigenstates form the basis of the $N$-particle Hilbert space that we are working in (the Fock space $\mathcal{F}^N$), and it 
 is useful to observe that any occupation number eigenstate can be created from the empty (or ``vacuum'') state $\ket{0}$ by repeated action of 
 creation operators
 \begin{equation}
  \ket{n_1,n_2,\dots}=\prod_i\frac{1}{\sqrt{n_i!}}(\hat{a}_i^{\dagger})^{n_i}\ket{0}
 \end{equation}
-The Fock space can be built up from N single-particle Hilbert spaces $\mathcal{H}$.
+The $N$-particle Hilbert space is built up from $N$ single-particle Hilbert spaces $\mathcal{H}$.
 \begin{equation}
  \mathcal{H}^N=\mathcal{H}\otimes \mathcal{H} \otimes \dots\otimes \mathcal{H}
 \end{equation}
 
-The Fock space $\mathcal{F}^N$ is a subspace of $\mathcal{H}^N$ subject to certain symmetry constraints.
+The Fock space $\mathcal{F}^N$ is a subspace of $\mathcal{H}^N$ subject to certain symmetry constraints.\todo{is this true? Needs to account for different values of N?}
 
-Now that we have established the space and states that we are operating within, we now need to rewrite the Hamiltonian in such a form that it can operate on number eigenstates (i.e. we 
-``second quantise'' it).
+Now that we have established the space and states that we are operating within, we now need to rewrite the Hamiltonian in such a form that it can operate on number eigenstates i.e. we 
+``second quantise'' it.
 
 \subsection{Second Quantisation of the Hamiltonian}
 We can second quantise the Hamiltonian initially used to describe our system through the use of boson field operators $\hat{\psi}^{\dagger}(x)$ and $\hat{\psi}(x)$, which create and destroy 
-particles at particular spatial locations (we will define these more explicitly later). The first two terms can be transformed to %\todo{is transformed the correct term?}
+particles at particular spatial locations (we will define these more explicitly later). The first two terms in (1)\todo{how to reference this equation in a way that will autoupdate?},the kinetic 
+and potential energy contributions, can be transformed to \todo{is transformed the correct term?}
 \begin{equation}
  \int  \hat{\psi}^{\dagger}(x) \bigg(  \sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{j}V_{lattice}(R_{j})  \bigg)    \hat{\psi}(x)dx
 \end{equation}
@@ -157,11 +153,11 @@ In a weak lattice, Bloch's theorem (in 1D) tells us that the eigenstates of a pa
 \begin{equation}
  \phi_q(x)=e^{iqx}u_{q}(x)
 \end{equation}
-where $q$ is the quasi-momentum and $u_q(x)$ is periodic with the same period as the lattice,$d$. We will be considering scenarios in which the strength of the lattice potential
+where $q$ is the quasi-momentum and $u_q(x)$ is periodic with the same period as the lattice, $d$. We will be considering scenarios in which the strength of the lattice potential
 is such that the bosons are not completely localised, but such that the overlap between the wavefunctions of particles on particular lattice sites have effectively zero overlap 
 with non-nearest neighbours. Under these conditions, the wavefunctions can be described by the localised Wannier functions
 \begin{equation}
-\psi(R;r)=\frac{1}{d}\int dq e^{iRq}\phi_q(x)
+\psi(R;r)=\frac{1}{d}\int dq\, e^{iRq}\phi_q(x)
 \end{equation}
 which are superpositions of Bloch functions. We can use this to rewrite the field operators as 
 \begin{equation}
@@ -169,7 +165,7 @@ which are superpositions of Bloch functions. We can use this to rewrite the fiel
 \end{equation}
 With this in mind, we can write
 \begin{equation}
- \int  \sum_j\hat{a}_j^{\dagger}\psi^{*}(R_j-x) \bigg(  \sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{j}V_{lattice}(R_{j})  \bigg)  \sum_l  \hat{a}_l\psi(R_l-x)dx=\sum_{j,l} J_{j,l}\hat{a}_{j}^{\dagger}\hat{a}_l
+ \int  \sum_j\hat{a}_j^{\dagger}\psi^{*}(R_j-x) \bigg(  \sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{i}V_{lattice}(R_{i})  \bigg)  \sum_l  \hat{a}_l\psi(R_l-x)dx=\sum_{j,l} J_{j,l}\hat{a}_{j}^{\dagger}\hat{a}_l
 \end{equation}
 Where
 \begin{equation}
@@ -210,42 +206,77 @@ The Hamiltonian for a weakly interacting BEC in an 1-dimensional optical lattice
 \end{equation}
 The $\epsilon_i$'s refer to on-site energies at each lattice site (influenced by the harmonic trap), and the middle term gives an interaction energy when there is more than one particle 
 on a particular site.
+\todo{Should I have a diagram here or elsewhere where I actually draw in the laser beam and the wavefunction overlap?}
 \\\\
-This project will look at scenarios where there is no external harmonic potential which produces different on-site energies for different sites, and will also 
-assume that interactions between bosons are negliglible. Under these conditions, the Hamiltonian in one dimension reduces to
+This project will look at scenarios where there is no external harmonic potential which produces different on-site energies for different sites.  
+Under these conditions, the Hamiltonian in one dimension reduces to
 
 \begin{equation}
 \begin{align*}
-\hat{H}=&J\sum_{i}\hat{a}^\dagger_{i}\hat{a}_{i+1}+c.c.\ .
+\hat{H}=&J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+c.c.\ ) +\frac{U}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i}.
 \end{align*}
 \end{equation}
 
 The atoms in the lattice are still subject to the lattice potential. We can see this from the definition of $J$ as the ``hopping integral'' in terms of the Hamiltonian of
 the system in the wavefunction representation.
 \\\\
- The main aim of this project is to analyse the predicted behaviour of this system as it transitions from 1 to 2 dimensions. This transition will be implemented by initially 
- creating two one-dimensonal chains which are each described by the above Hamiltonian, and then introducing coupling between a site on the first chain and a site on the second
- chain, which would allow for inter-chain hopping. The Hamiltonian used to describe this system is
+This project aims to explore the dynamics of both this one dimensional system and the two dimensional version where we couple multiple chains of lattice sites together. The 
+system Hamiltonian in two dimensions is
  
 \begin{equation}
-\hat{H}=(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j} + J'\hat{a}^\dagger_{i,b}\hat{a}_{i+1,b})+c.c.
+\hat{H}=(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j} + J'\hat{a}^\dagger_{i,j}\hat{a}_{i+1,j})+c.c. +\frac{U}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i},
 \end{equation}
-where the $i$ index denotes which chain is being referred to, the $j$ index denotes how far along the chain a site is, and inter-chain hopping is allowed between the $b^{th}$ \todo{update this now that I'm
-not doing single link stuff} sites of each chain. The value of $J'$ will be increased incrementally from zero to $J$, in doing so taking the system from quasi-1D to 
-fully 2-dimensional. We will look at how this change impacts the revival behaviour of the expectation value of the annihilation operator.\todo{no, we won't}
+where the $i$ index denotes which chain is being referred to and the $j$ index denotes how far along the chain a site is. $J'$ is another hopping parameter; it characterises the 
+overlap between adjacent Wannier states \todo{factcheck: should this be Bloch states? or neither?}on different chains.
+\todo{get the captioning sorted out}
+\begin{figure}[H]
+ \caption[short]{test}
+ \includegraphics[width=8cm]{lattice_pic}
+ \centering
+ \caption*{The blue circles here represent lattice sites and the crosses individual bosons. Hopping between any two sites on the same chain is characterised by $J$, whereas hopping 
+ between chains is characterised by $J'$. A three by three lattice is shown here, but the system can be extended to any arbitrary size.}
+ \end{figure}
+
+ 
+We will be interested in the time evolution of each of these systems as it relates to their thermal behaviour.
+
+
+\section{Thermalisation}
+ \subsection{Overview}
+ 
+To say that a system thermalises means that it relaxes to states where the values of macroscopic quantities are stationary, universal with respect to 
+widely differing initial conditions, and predictable using statistical mechanics\cite{Rigol2008}. We observe thermalisation in a wide variety of classical systems, are there 
+are strong theoretical reasons for anticipating thermalisation here. However, many of these reasons don't apply when considering quantum systems. The question of 
+which, if any, quantum systems exhibit thermalisation and how the thermal states can be characterised is of considerable theoretical and experimental interest. 
+
+ \subsection{Classical systems}
+To see why thermalisation is common and even expected in many classical systems, we need to understand the property of ergodicity and the impact of chaotic dynamics on it. 
+If you start an isolated system in a particular configuration corresponding to a particular point in phase space, it can move through that phase space along the constant-energy
+manifold. A system is ergodic if the long-term time average of any single phase space trajectory is equivalent to an ensemble average. \todo{get Kinoshita's definition of ergodicity} 
+\todo{Do I need to elaborate on this further?}Classical systems \todo{often? usually? sometimes?} exhibit chaotic dynamics, which are strongly nonlinear and allow the system to quickly 
+and essentially uniformly explore the constant-energy manifold irrespective of the initial conditions. This promotes ergodicity, which is implicit in the fundamental assumption of 
+statistical mechanics - all accessible microstates are equiprobable. \todo{Need to explicitly link ergodicity and thermalisation, otherwise this is just free-floating and its
+relevance is not obvious}
+
+ \subsection{Quantum systems}
+
 
 
 \section{Integrable systems}
+\todo{see square brackets} [Flesh this section out quite a bit, start with some generic stuff for classical systems, then should I try to do the Jordan-Wigner mapping from Rigol+Olshanii 2007
+to prove my 1D U=0 system is integrable? Maybe fall back on ``All 1D systems with conserved energy are integrable'' for U!=0, referencing the handout Danny gave me. I don't really know where 
+to go for 2D at this point.]
 An integrable system is one for which the number of independent constraints is equal to the number of degrees of freedom. Since the system we are dealing with
-is closed, it is subject to the constraints of constant energy and particle number. For a single atom in 1 dimension, its degrees of freedom are its 1D position and momentum.
+is closed, it is subject to the constraints of constant energy and particle number\todo{I don't think I can use particle number}. For a single atom in 1 dimension, its degrees of freedom are its 1D position and momentum.
 So we expect this system to be completely integrable. Once more particles are added, or the system is extended to two dimensions, then if we do not introduce a commensurate number
 of new constraints, integrability will be broken.
 
 
 \section{Experimental studies}
+\todo{should expand what I currently have have, Kinoshita and Rigol2007 could definitely be a couple of paragraphs each. Possibly include diagrams.}
 \subsection{A Quantum Newton's Cradle\cite{Kinoshita2006}}
-
-This study investigated the thermalisation of an out-of-equilibrium 1D Bose gases, which are nearly-integrable systems. The authors prepared
+\todo{should the citation of Kinoshita be in the main body of the paragraph instead of the title? If so, where?}
+This study investigated the thermalisation of an out-of-equilibrium 1D Bose gases, which are nearly-integrable systems. Kinoshita et al. prepared
 of out-of-equilibrium arrays of trapped one-dimensional (1D) Bose gases, each containing from $40$ to $250$ $^{87}$Rb atoms, and found them to not noticeably equilibrate,
 even after thousands of collisions. 
 
@@ -260,33 +291,37 @@ state. The properties of the state that the system relaxed to were not given by 
 is extended to include all of the integrals of motion. They further showed that their generalized equilibrium state carries more memory of the initial conditions than the usual thermodynamic one.
 
 
+\todo{section on ETH seems advisable}
+\todo{need to introduce Greiner's entanglement entropy stuff somewhere, probably around here}
+
+
+
 \section{Results}
 
 
-
-
-
 \section{Revival}\todo{should this section come within results or background?}
-In a subset of the integrable systems considered, we observed regular instances in which the system would return to the state in which it was initially prepared. The dividing line between
-systems for which we see revival and those in which we don't is whether the eigenvalues of the system are mutually rational\todo{Is this a legitimate term? Should I describe them in 
-some other way?}. To demonstrate this, consider the initial state of the system $\ket{\psi(0)}$, which evolves in time according to
+In a subset of the integrable systems considered, we observed regular instances in which the system would return to the state in which it was initially prepared (it ``revives''). 
+To see why we might expect to see revival in some cases, consider the initial state of the system $\ket{\psi(0)}$, which evolves in time according to
 \begin{equation}
- \ket{\psi(t)}=e^{i\hat{H}t}\ket{\psi(0)},
+ \ket{\psi(t)}=e^{i\hat{H}t}\ket{\psi(0)}.
 \end{equation}
 \todo{mention something about absorbing the hbar into the timescale}
-noting that we can use the completeness relation for the energy eigenstates to expand the initial state in the energy basis,
+Now noting that we can use the completeness relation for the energy eigenstates to expand the initial state in the energy basis,
 
 \begin{align}
  \ket{\psi(t)} =&       e^{i\hat{H}t}\sum_j\ket{E_j}\braket{E_j|\psi(0)} \\
                =&\sum_je^{i\hat{H}t}\ket{E_j}\braket{E_j|\psi(0)} \\
                 =&\sum_je^{iE_{j}t}\ket{E_j}\braket{E_j|\psi(0)} \\
+                =&\sum_j c_{j}e^{iE_{j}t}\ket{E_j}
 \end{align}
 
 From here it can be seen that the only time dependence is in the complex exponential, and that if we can find some time $t_r$ such that $E_{j}t_r=2\pi k_{j}$, where $k_j\in \mathbf{Z}$ for all $j$, 
-we will recover the initial state i.e. $\ket{\psi(t_r)}=\ket{\psi(0)}$.\\
+we will recover the initial state i.e. $\ket{\psi(t_r)}=\ket{\psi(0)}$. The next section describes the conditions necessary for this revival time's existence.\\
 
 \subsection{Exact and regular revival}
-We observe an exact and regular revival in precisely the cases in which the eigenvalues are mutually rational, i.e. they are either all rational, or are all rational when divided by the same irrational number. 
+
+We observe an exact and regular revival in precisely the cases in which the eigenvalues are mutually rational, i.e. they are either all rational, or are all rational when 
+divided by the same irrational number.
 For example, the set of hypothetical eigenvalues $\{0,\sqrt{2},2\sqrt{2},\frac{3\sqrt{2}}{10}\}$ is mutually rational, whereas $\{0,\sqrt{2},\sqrt{3}\}$ is not. In the case of mutually rational eigenvalues, we can write
 ${E_j}=\frac{p_j}{q_j},p_j,q_j \in \mathbf{Z}$. The revival time is then given by $t_r=2\pi Q_{LCM}$, where $Q_{LCM}$ is the lowest common multiple of ${q_j}$. 
 \\\\
