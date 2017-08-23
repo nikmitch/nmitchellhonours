@@ -18,8 +18,8 @@
 \urlstyle{same}
 
 %opening
-\title{Honours Research Project progress report}
-\author{Nik Mitchell}
+\title{Thermalisation of Two-Dimensional Ultracold Bose Gases on Optical Lattices}
+\author{Nikolas M. Mitchell}
 
 
 \begin{document}
@@ -149,7 +149,7 @@ and potential energy contributions, can be transformed to \todo{is transformed t
  \int  \hat{\psi}^{\dagger}(x) \bigg(  \sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{j}V_{lattice}(R_{j})  \bigg)    \hat{\psi}(x)dx
 \end{equation}
 
-In a weak lattice, Bloch's theorem (in 1D) tells us that the eigenstates of a particle in a periodic potential has the form
+In a weak lattice, Bloch's theorem (in 1D) tells us that the eigenstates of a particle in a periodic potential have the form
 \begin{equation}
  \phi_q(x)=e^{iqx}u_{q}(x)
 \end{equation}
@@ -256,20 +256,26 @@ manifold. A system is ergodic if the long-term time average of any single phase 
 \todo{Do I need to elaborate on this further?}Classical systems \todo{often? usually? sometimes?} exhibit chaotic dynamics, which are strongly nonlinear and allow the system to quickly 
 and essentially uniformly explore the constant-energy manifold irrespective of the initial conditions. This promotes ergodicity, which is implicit in the fundamental assumption of 
 statistical mechanics - all accessible microstates are equiprobable. \todo{Need to explicitly link ergodicity and thermalisation, otherwise this is just free-floating and its
-relevance is not obvious}
+relevance is not obvious. What is this link?} This is what leads us to expect our classical systems to thermalise.
 
  \subsection{Quantum systems}
-
+Quantum systems do not \todo{usually?} exhibit dynamic chaos \todo{see square brackets} [Rigol's line is ``dynamical chaos itself cannot occur in an isolated quantum system, in which the time 
+evolution is linear and the spectrum is discrete'' How does that argument work?], so it is not obvious how one would justify applying the assumption of ergodicity in these systems. Because of 
+this, it is unclear if or when we should expect quantum systems to thermalise, or what statistical ensemble we could use to characterise the relaxed states. 
 
 
 \section{Integrable systems}
+There are a number of classical isolated systems that do not display thermalisation. The main difference between these systems and those which approach thermal equilibrium is the extent to which
+they are constrained relative to the number of degrees of freedom that they posess. This notion is formalised in the property of integrability. A system is said to be integrable if it has \todo{half? according to 
+handout this seems to be the case} as 
+many independent integrals of its motion (which are conserved) as it has degrees of freedom. An integral of motion for a Hamiltonian is a smooth function $I$ defined on an open subset of the 
+phase space such that $\dot{I}=0$ on solutions.\todo{reference handout Danny gave me, I can't see anywhere where its from} Integrability is a useful property, though it is quite rare. In general, we can find exact solutions 
+for the equations of motion for a system if it is integrable, otherwise we cannot. 
+
+
 \todo{see square brackets} [Flesh this section out quite a bit, start with some generic stuff for classical systems, then should I try to do the Jordan-Wigner mapping from Rigol+Olshanii 2007
-to prove my 1D U=0 system is integrable? Maybe fall back on ``All 1D systems with conserved energy are integrable'' for U!=0, referencing the handout Danny gave me. I don't really know where 
+to prove my 1D U=0 system is integrable? Maybe fall back on ``All 1D systems with conserved energy are integrable'' for U!=0, referencing page 6 of the handout Danny gave me. I don't really know where 
 to go for 2D at this point.]
-An integrable system is one for which the number of independent constraints is equal to the number of degrees of freedom. Since the system we are dealing with
-is closed, it is subject to the constraints of constant energy and particle number\todo{I don't think I can use particle number}. For a single atom in 1 dimension, its degrees of freedom are its 1D position and momentum.
-So we expect this system to be completely integrable. Once more particles are added, or the system is extended to two dimensions, then if we do not introduce a commensurate number
-of new constraints, integrability will be broken.
 
 
 \section{Experimental studies}
@@ -367,8 +373,18 @@ system \todo{do I need to include this?} is
  \end{bmatrix}
 \]
 \end{equation}.
-\todo{need mathematica for the rest of this section?}
 
+the eigenvalues of this system are $\{-\sqrt{3},\-1,0,1,\sqrt{3}\}$. These are clearly not mutually rational, so we cannot find an exact revival time for this system, despite the fact that it is 
+fully integrable. Running a simulation of this system where we start the boson off on the first site, we find that the probability of finding the boson on the first site never quite reaches 1 again.
+
+
+\begin{figure}[H]
+ \includegraphics[width=8cm]{5_by_1_T1e4_U0}
+ \centering
+\end{figure}
+
+Judging the figure above by eye, it may appear that we have exact revival, but this is not actually the case. 
+\todo{insert graph with times calculated for different epsilon values}
 
 \section{The Poincar\'e Recurrence Theorem}
 \todo{do I need to prove this?}
