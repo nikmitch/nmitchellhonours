@@ -26,11 +26,11 @@ import qmlattice_utils as qm
 # == PHYSICAL PARAMETERS =======================================================
 nx = 15
 ny = nx
-P  = 1
+P  = 2
 
 J  = -1
-JP = 0
-U  =  0
+JP = -1
+U  =  0.2
 
 LATTICE_TYPE = "full"    # Options are: "full", "random_one", "manual"
 
@@ -49,8 +49,8 @@ MANUAL_LINKS = [((0,0), (1,0)),
 np.set_printoptions(linewidth=250)
 
 TMIN = 0
-TMAX = int(4e2)
-TN   = int(1e4)
+TMAX = int(1e2)
+TN   = int(1e3)
 
 BLOCK_LENGTH = 3000
 
