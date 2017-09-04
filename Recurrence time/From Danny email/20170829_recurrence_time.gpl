@@ -1,0 +1,45 @@
+reset
+
+# Fitting-----------------------------------------------------------------------
+# Fitting function
+f(x)= a*x**b
+
+# Initial guesses for the parameters a and b
+a = 1
+b = -1
+
+# Doing the fit to the data in the file
+fit f(x) "recurrence_times.dat" using 1:2 via a ,b
+
+# Result of fit (copied from the fit.log)
+# Final set of parameters        Asymptotic Standard Error
+# =======================        =========================
+# a           = 1.9998           +/- 0.4965       (24.83%)
+# b           = -0.552102        +/- 0.01202      (2.177%)
+
+
+# Plotting ---------------------------------------------------------------------
+# set output "recurrence_times.eps";
+# set terminal postscript landscape enhanced monochrome blacktext "HelveticaBold,20";
+
+set output "recurrence_times.pdf";
+set terminal pdf monochrome enhanced font "Arial,14" linewidth 2 rounded dashed;
+
+
+set logscale xy
+set mxtics 11
+set mytics 11
+set format x "%L"
+set format y "%L"
+
+set xlabel "log_{10}({/Symbol e})" offset 0
+set ylabel "log_{10}(t  )" offset 0
+set label 1 "{/HelveticaBold *}" at graph -0.08, graph 0.56  # Not the nicest solution, but a solution
+set label 2 "t \\~ 10^{-0.5521} " at graph 0.82, graph 0.80
+
+plot "recurrence_times.dat" using 1:2 with points pointtype 7 pointsize 0.5 title "Numerical simulation", \
+     f(x) with lines linetype 3 title "Linear fit"
+
+set output
+set terminal x11
+reset

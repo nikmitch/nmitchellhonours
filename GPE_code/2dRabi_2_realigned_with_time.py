@@ -57,7 +57,7 @@ def hMatFull(hop):
   hFull+=hFull.getH()
   return hFull
 
-nx=30
+nx=3
 ny=nx
 N=nx*ny
 hop=np.zeros((3,N),dtype=np.complex128)
@@ -142,7 +142,9 @@ first_site_probs=np.asarray(first_site_probs)[0]
 #print(first_site_probsU0_5)
 
 plt.plot(times,first_site_probs)  
-  
+plt.title("GPE code for 3by3")
+plt.xlabel("time")
+plt.ylabel("<n1>")  
 #  fig = plt.figure(figsize=(3.375,3.375))
 #  imET=pow(abs(np.array(psiET).reshape(-1)),2).reshape(nx,ny)
 #  plt.imshow(imET,vmin=0.0,vmax=1.0)
