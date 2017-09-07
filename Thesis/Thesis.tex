@@ -339,7 +339,7 @@ With respect to the systems that we are dealing with, it has been shown that a o
 \todo{see square brackets} [Maybe fall back on ``All 1D systems with conserved energy are integrable'' for U!=0, referencing page 6 of the handout Danny gave me. I don't really know where 
 to go for 2D at this point.]
 
-
+\newpage
 \section{Experimental studies}
 \subsection{A quantum Newton's cradle}
 Kinoshita et. al. investigated \cite{Kinoshita2006} the thermalisation of an out-of-equilibrium 1D Bose gas, which is a  nearly-integrable system. They started with
@@ -447,7 +447,7 @@ and incorporating the $\hbar^{-1}$ into the time scale,
 From here it can be seen that the only time dependence appears in the complex exponentials, each of which is $2\pi$-periodic. If we can find some common time $t_r$ such 
 that $E_{j} t_{r}=2 \pi k_{j}$, where $k_{j} \in \mathbb{Z} $ for all $j$, we will recover the initial state exactly, i.e., $\ket{\psi(t_{r})}=\ket{\psi(0)}$. 
 The next section describes the conditions necessary for the existence of the revival time.\\
-
+\newpage
 \subsection{Exact revival}
 
 We observe an exact and regular revival in precisely the cases in which the eigenvalues are mutually rational, i.e. they are either all rational, or are all rational when 
@@ -469,9 +469,10 @@ hard coded numbers soon}. The Hamiltonian for this system is
  0 & -J & 0
  \end{bmatrix}.
 \end{equation}
-Diagonalising this matrix yields the eigenvalues $\{-\frac{2\sqrt{2}}{5}J,0,\frac{2\sqrt{2}}{5}J\}$. These are mutually rational (if we divide them all by $\sqrt{2}J$ they are all rational). Ignoring 
-the $\sqrt{2}$ factor for a moment, our formula for the revival time gives $t_r=10\pi$, or taking into account the square root of two factor $t_r=10\sqrt{2}\pi\approx44.43$. We can see from the 
-graph of the simulation below that this matches up with a return to the initial state.
+Diagonalising this matrix yields the eigenvalues $\{-\sqrt{2}J,0,\sqrt{2}J\}$. These are mutually rational (if we divide them all by $\sqrt{2}J$ they are all rational). 
+If we rescale the energies by $\sqrt{2}J$ by absorbing that factor into the time scale, then we get eigenvalues $\{-1,0,1\}$.
+We can see from the graph of the simulation below that this matches up with a return to the initial state at times that are multiples of $2\pi$.
+%\todo{use data from '3by1_revival_data' folder to get this to plot properly once you ask Danny how to put fractions in axis titles}
 
 \begin{figure}[H]
  \begin{center}
@@ -485,22 +486,22 @@ calculated in our method corresponds to exact revival of the initial wavefunctio
 \subsection{Approximate revival}
 The range of systems for which the spectrum \todo{is it inaccurate to describle the spectrum (as opposed to the eigenvalues) as mutually irrational?} is mutually rational is a small one. 
 All systems which have nonzero interparticle interactions have mutually irrational eigenvalues. One of the most interesting results so far is that even in the one dimensional single particle case,
-if there are more than three lattice sites, the spectrum will be irrational. We can demonstrate this by considering a single chain of five sites, with one boson and $J=1$. The Hamiltonian for this 
+if there are more than three lattice sites, the spectrum will be irrational. We can demonstrate this by considering a single chain of five sites with one boson. The Hamiltonian for this 
 system is \\\\
 \begin{equation}
 \hat{H}= \begin{bmatrix}
- 0 & -1 & 0 & 0 & 0\\
- -1 & 0 & -1 & 0 & 0\\
- 0 & -1 & 0 & -1 & 0\\
- 0 & 0 & -1 & 0 & -1\\
- 0 & 0 & 0 & -1 & 0
+ 0 & -J & 0 & 0 & 0\\
+ -J & 0 & -J & 0 & 0\\
+ 0 & -J & 0 & -J & 0\\
+ 0 & 0 & -J & 0 & -J\\
+ 0 & 0 & 0 & -J & 0
  \end{bmatrix}.
 \end{equation}
 \\\\
-The eigenvalues of this system are $\{-\sqrt{3},\-1,0,1,\sqrt{3}\}$. These are clearly not mutually rational, so we cannot find an exact revival time for this system, despite the fact that it is 
+The eigenvalues of this system are $\{-\sqrt{3}J,-J,0,J,\sqrt{3}J\}$. These are clearly not mutually rational, so we cannot find an exact revival time for this system, despite the fact that it is 
 fully integrable. Running a simulation of this system where we start the boson off on the first site, we find that the probability of finding the boson on the first site never quite reaches $1$ again.
 
-
+\todo{run this again with the xaxis labelled 't/J'}
 \begin{figure}[H]
  \includegraphics[width=1.0\textwidth]{5_by_1_T1e4_U0}
  \centering
@@ -513,19 +514,37 @@ we get the graph below. Note that $t^*$ denotes the time at which the system got
  \includegraphics[width=1.0\textwidth]{recurrence_times}
  \centering
 \end{figure}
-\todo{I need to get rid of the thing that say ``linear fit'', right?}
 While we see that the system does appear to get arbitrarily close to revival, but it can take arbitrarily long to do so. This result can be explained in terms of the Poincar\'e recurrence theorem.
+\newpage
 \section{The Poincar\'e Recurrence Theorem}
 
 In 1890, Henri Poincar\'e proved the following theorem for classical mechanics: "Any phase-space configuration $(q,p)$ of a system enclosed in a finite volume will be repeated as accurately as one wishes
 after a finite(be it possibly very long) interval of time'. This theorem was extended to quantum systems in 1956 by P. Bocchieri and A. Loinger\cite{Bocchieri1957}, where it takes a slightly different
 form:"Let us consider a system with discrete energy eigenvalues $E_n$; if $\psi(t_0)$ is its state vector in the Schr{\"o}dinger picture at the time $t_0$ and $\epsilon$ is any positive number, at 
-least one time T will exist such that the norm $||\psi(T)-\psi(t_0)||$ of the vector $\psi(T)-\psi(t_{0})$ is smaller than $\epsilon$."
+least one time T will exist such that the norm $||\ket{\psi(T)}-\ket{\psi(t_0)}||$ of the vector $\ket{\psi(T)}-\ket{\psi(t_{0})}$ is smaller than $\epsilon$."
 
+\subsection{Proof}
+The proof presented by Bocchieri and Loinger shows the theorem to be true for an infinite-dimensional system. In this dissertation, we investigate only finite-dimensional systems, and a simpler version of 
+the proof can be constructed. Let $D$ be the dimensionality of the system (an expression for calculating $D$ will be derived later \todo{See square brackets}[Should I do this later? Or make a section earlier? Where should it go?]).
+We will first show that there exists a time $T$ at which $||\ket{\psi(T)}-\ket{\psi(t_0)}||^2<\epsilon'$ for any $\epsilon'>0$ and then extend this to $||\ket{\psi(T)}-\ket{\psi(t_0)}||<\epsilon$. Note that in
+the following we will introduce the notation $\tau=T-t_0$ and $\alpha^2=||\ket{\psi(T)}-\ket{\psi(t_0)}||^2$.
 
-\todo{go through proof of this, ask for help if/when needed.}
+\begin{align*}
+ \alpha^2=&\left(\bra {\psi(T)}-\bra {\psi(t_0)}\right)\left(\ket{\psi(T)}-\ket{\psi(t_0)}\right) \\
+ = \ &2-\braket{\psi(T)|\psi(t_0)}-\braket{\psi(t_0)|\psi(T)} \\
+ = \ &2-\left(\sum_{n=1}^{D}c_n^* e^{iE_{n}T}\bra{E_n}\right)\left(\sum_{j=1}^{D}c_je^{-iE_{j}t_{0}}\bra{E_j}\right)-\left(\sum_{j=1}^{D}c_j^*e^{iE_{j}t_{0}}\ket{E_j}\right)\left(\sum_{n=1}^{D}c_n e^{-iE_{n}T}\ket{E_n}\right) \\
+ = \ &2-\left(\sum_{n=1}^D |c_n|^2 e^{iE_{n}(T-t_0)}+\sum_{n=1}^D |c_n|^2 e^{-iE_{n}(T-t_0)}\right) \ \ \ \text{since} \braket{E_j|E_n}=\delta_{ij} \\
+ = \ &2\left(\sum_{n=1}^D |c_n|^2\left(1-cos\left(E_{n}\tau\right) \right) \right) \ \ \text{because}  \ \sum_{n=1}^D |c_n|^2=1 \\
+ \leq\ &2\left(\sum_{n=1}^D\left(1-cos\left(E_{n}\tau\right) \right) \right)
+\end{align}
+\todo{is that last inequality valid?}
+It is sufficient to show that there exists a value of $\tau$ such that $\sum_{n=1}^D\left(1-cos\left(E_{n}\tau\right) \right)<\hat{\epsilon}$. \todo{I've gotten myself into some messy 
+notation here with 3 different defined epsilons.} This is actually the case according to a standard result of the theory of the almost-periodic functions.\todo{need reference! The one from Bocchieri is in German.}
+\\\\
+From here I can show that if $||\ket{\psi(T)}-\ket{\psi(t_0)}||^2<\epsilon'$ then $||\ket{\psi(T)}-\ket{\psi(t_0)}||<\sqrt{\epsilon'}$ and define $\epsilon=\sqrt{\epsilon'}$. I also have to define $\epsilon'=2\hat{\epsilon}$.
+However, I'd rather not write this out before making the notation cleaner.
 
-
+\newpage
 \bibliographystyle{plain}
 \bibliography{honours}
 

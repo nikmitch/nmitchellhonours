@@ -99,7 +99,7 @@ psi[0][0]=1.0
 t=0
 
 T=1.0e3
-nStep=int(1e4)
+nStep=int(1e6)
 dt=T/float(nStep)
 
 psiSP=psi.copy()
@@ -128,8 +128,6 @@ for ind in range(nStep+1):
 
   current_probs=np.diagflat(np.abs(psiSP))*np.abs(psiSP)
   renormfactor=np.sum(current_probs)
-  psiSP=1/renormfactor*psiSP
-#  print(renormfactor)
   current_first_site=current_probs[0]
   current_first_site=np.asarray(current_first_site)[0][0]
   first_site_probs[0,ind]=current_first_site
@@ -142,7 +140,7 @@ first_site_probs=np.asarray(first_site_probs)[0]
 #print(first_site_probsU0_5)
 
 plt.plot(times,first_site_probs)  
-plt.title("GPE code for 3by3")
+plt.title("3rd order GPE code for 3by3")
 plt.xlabel("time")
 plt.ylabel("<n1>")  
 #  fig = plt.figure(figsize=(3.375,3.375))

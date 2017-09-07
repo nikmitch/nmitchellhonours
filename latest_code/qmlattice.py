@@ -24,9 +24,9 @@ import matplotlib as mpl
 import qmlattice_utils as qm
 
 # == PHYSICAL PARAMETERS =======================================================
-nx = 15
+nx = 3
 ny = nx
-P  = 2
+P  = 5
 
 J  = -1
 JP = -1
@@ -49,8 +49,8 @@ MANUAL_LINKS = [((0,0), (1,0)),
 np.set_printoptions(linewidth=250)
 
 TMIN = 0
-TMAX = int(1e2)
-TN   = int(1e3)
+TMAX = int(1e3)
+TN   = int(1e5)
 
 BLOCK_LENGTH = 3000
 
