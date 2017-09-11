@@ -42,7 +42,7 @@ states using [ETH, entropy of entanglement, whatever I actually end up doing].
 
 \end{abstract}
 \newpage
-\section{Experimental advantages of working with bosons on optical lattices}
+\section{Experiments with optical lattices}
  
 \begin{figure}[H]
  \begin{center}
@@ -88,37 +88,39 @@ The bosons may be interacting (we will assume this only occurs if they occupy th
 from site to site. From this reasoning, we can construct a first quantised Hamiltonian for a 1D system of interacting bosons on an optical lattice, in the presence of an external potential $V_{\text{ext}}$
 \begin{equation}
   \label{eq:HamiltonianCoordinateRepresentation}
- \hat{H}=\sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{i}V_{\text{lattice}}(R_{i})+V_{\text{ext}}(x)+\frac{U}{2}\sum_{i,j}\delta(x_{i}-x_{j}).
+ \hat{h}=\sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{i}V_{\text{lattice}}(R_{i})+V_{\text{ext}}(x)+\frac{U}{2}\sum_{i,j}\delta(x_{i}-x_{j}).
 \end{equation}
-
-Similar Hamiltonians are frequently used to describe systems of electrons on atomic lattices.
+Similar Hamiltonians are frequently used to describe systems of electrons on atomic lattices. To promote conciseness, we introduce the abbreviations 
+\begin{equation}
+ \hat{h}_1=\sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{i}V_{\text{lattice}}(R_{i}), \ \hat{h}_{\text{ext}} =V_{\text{ext}}(x) 
+\end{equation}
+and $\hat{h}_{\text{int}}=\frac{U}{2}\sum_{i,j}\delta(x_{i}-x_{j})$, so that $\hat{h}=\hat{h}_1+\hat{h}_{\text{ext}}+\hat{h}_{\text{int}}$.
 \\\\
 
-
-\section{Many-particle wavefunctions and identical particles}
-The Hamiltonian in the previous section would act on a bosonic many-particle wavefunction. A single particle wavefunction $\psi{\vec{r}}$ is 
+\section{Effect of indistinguishability}
+The Hamiltonian in the previous section would act on a bosonic many-particle wavefunction. A single particle wavefunction $\psi(\vec{r})$ is 
 defined within a Hilbert space $\mathcal{H}$, which is the space of complex, square integrable functions. It must satisfy $\int d^3\vec{r}|\psi(\vec{r})|^2<\infty$.
 A wavefunction that represents the state of $N$ indistinguishable particles, $\psi(\vec{r}_{1},\vec{r}_{2},\dots,\vec{r}_{N})$ is defined within $\mathcal{H}^N$, where
 $\mathcal{H}^N$ is constructed as the tensor product $N$ single-particle Hilbert spaces:
 \begin{equation}
  \mathcal{H}^N=\mathcal{H}\otimes \mathcal{H} \otimes \dots\otimes \mathcal{H}.
 \end{equation}
-
 The wavefunctions in this space are also subject to normalisation constraints, i.e.,
 
 \begin{equation*}
- \int d^3\vec{r_1} d^3\vec{r_2}\dots d^3\vec{r_N} |\psi(\vec{r}_{1},\vec{r}_{2},\dots,\vec{r}_{N})|^2<\infty.
+ \int d^3\vec{r}_1 d^3\vec{r}_2\dots d^3\vec{r}_N |\psi(\vec{r}_{1},\vec{r}_{2},\dots,\vec{r}_{N})|^2<\infty.
 \end{equation*}
 
 Whilst all functions satisfying the above constraints can be legitimately defined mathematically, only a small subset are found to occur in nature - those which are either 
 entirely symmetric or antisymmetric under particle exchange. The set of indistinguishable particles which are entirely symmetric under particle exchange are defined as bosons.
-This project will not investigate scenarios involving the particles that display exchange antisymmetry (fermions), so we will be working within the space $S_N\mathcal{H}^N$ . We can formally
+This project will not investigate scenarios involving the particles that display exchange antisymmetry (fermions), so we will be working within the space $S_N\mathcal{H}^N$. Here
+$S_N$ projects onto the subspace of square-integrable functions that are unchanged by permuting the order of the variables. \todo{How's this as an explanation of SN?}We can formally
 express the requirement of exhange symmetry for bosonic systems as \cite{Negele1988}
 
 \begin{equation*}
- \psi({\vec{r}_{\mathcal{P}1},\vec{r}_{\mathcal{P}2},\dots,\vec{r}_{\mathcal{P}N}})= \psi(\vec{r}_{1},\vec{r}_{2},\dots,\vec{r}_{N}),
+ \psi({\vec{r}_{\mathcal{P}_1},\vec{r}_{\mathcal{P}_2},\dots,\vec{r}_{\mathcal{P}_N}})= \psi(\vec{r}_{1},\vec{r}_{2},\dots,\vec{r}_{N}),
 \end{equation*}
-where $\{\mathcal{P}1,\mathcal{P}2,\dots,\mathcal{P}N  \}$ represents any permutation, $\mathcal{P}$, of the set $\{1,2,\dots,N\}$.
+where $\{\mathcal{P}_1,\mathcal{P}_2,\dots,\mathcal{P}_N  \}$ represents any permutation, $\mathcal{P}$, of the set $\{1,2,\dots,N\}$.
 
 Let us first consider the case of two indistinguishable bosons. We have not yet determined the eigenstates 
 of our Hamiltonian, but if we suppose we have the set of normalised single-particle wavefunctions $\{\ket{\lambda}\}$, and we have one boson in state $\ket{\lambda_1}$ and another
@@ -129,14 +131,14 @@ in state $\ket{\lambda_2}$, then we can write the two-particle wavefunction as
 \end{equation}
 or in Dirac bra-ket notation, the two-body states would be represented as
 \begin{equation}
- \ket{\lambda_1,\lambda_2}=\frac{1}{\sqrt{2}}\big(\ket{\lambda_1}\otimes \ket{\lambda_2}+\ket{\lambda_2}\otimes\ket{\lambda_1}\big)
+ \ket{\lambda_1,\lambda_2}=\frac{1}{\sqrt{2}}\big(\ket{\lambda_1}\otimes \ket{\lambda_2}+\ket{\lambda_2}\otimes\ket{\lambda_1}\big).
 \end{equation}
 
 The number of permutations that one must account for grows extremely quickly as particle number increases. A properly symmetrised and normalised $N$-body state can be
 represented as \cite{Altland2010}
 \begin{equation}
  \ket{\lambda_1,\lambda_2,\dots,\lambda_N}=\frac{1}{\sqrt{N!\prod_{\lambda=0}^{\infty}{n_{\lambda}}}}
- \sum_{\mathcal{P}}\ket{\lambda_{\mathcal{P}1}}\otimes \ket{\lambda_{\mathcal{P}2}}\otimes\dots\otimes\ket{\lambda_{\mathcal{P}N}}
+ \sum_{\mathcal{P}}\ket{\lambda_{\mathcal{P}_1}}\otimes \ket{\lambda_{\mathcal{P}_2}}\otimes\dots\otimes\ket{\lambda_{\mathcal{P}_N}},
 \end{equation}
 where $n_{\lambda}$ is the number of particles in state $\lambda$, and the summation runs over all $N!$ permutations $\mathcal{P}$ of the set of quantum numbers $\{ \lambda_1,\dots,\lambda_N\}$.
 \\\\
@@ -172,18 +174,18 @@ These operators have very important commutation relations
 \end{equation}
 We can also define the number operator $\hat{n}_j=\hat{a}_{j}^{\dagger}\hat{a}_j$ that has the property that
 \begin{equation}
- \hat{n}_{j}\ket{n_1,n_2,\dots,n_{j},\dots}=n_{j}\ket{n_1,n_2,\dots,n_{j},\dots}
+ \hat{n}_{j}\ket{n_1,n_2,\dots,n_{j},\dots}=n_{j}\ket{n_1,n_2,\dots,n_{j},\dots}.
 \end{equation}
 
 The occupation number eigenstates form the basis of the $N$-particle Hilbert space that we are working in (the Fock space $\mathcal{F}^N$), and it 
 is useful to observe that any occupation number eigenstate can be created from the empty (or ``vacuum'') state $\ket{0}$ by repeated action of 
 creation operators \cite{Altland2010}
 \begin{equation}
- \ket{n_1,n_2,\dots}=\prod_i\frac{1}{\sqrt{n_i!}}(\hat{a}_i^{\dagger})^{n_i}\ket{0}
+ \ket{n_1,n_2,\dots}=\prod_i\frac{1}{\sqrt{n_i!}}(\hat{a}_i^{\dagger})^{n_i}\ket{0}.
 \end{equation}
 
 It may seem that the state space $S_N\mathcal{H}^N$ that we have constructed is not robust enough to accomodate these operators. Indeed, the creation and
-annihilation operators take us from the $N$-particle Hilbert space to the $N+1$- and $N-1$-particle Hilbert spaces, respectively. In order to
+annihilation operators take us from the $N$-particle Hilbert space to the $(N+1)$- and $(N-1)$-particle Hilbert spaces, respectively. In order to
 account for these differences in particle number, we must really be working within the symmetric Fock states $\mathcal{F}_S(\mathcal{H})$, defined by the direct sum \cite{Blank1999}
 \begin{equation}
  \mathcal{F}_S(\mathcal{H})=\oplus_{N=0}^\infty S_N\mathcal{H}^N.
@@ -197,10 +199,10 @@ Having established the space and states that we are operating with, we now need 
 
 \subsection{Second Quantisation of the Hamiltonian}
 We can second quantise the Hamiltonian initially used to describe our system through the boson field operators, $\hat{\psi}^{\dagger}(x)$ and $\hat{\psi}(x)$, which create and destroy 
-particles at particular spatial locations (we will define these more explicitly later). The first two terms in equation \eqref{eq:HamiltonianCoordinateRepresentation} are single-particle
+particles at particular spatial locations (we will define these more explicitly later). The two terms in $\hat{h}_1$ are single-particle
 operators for the kinetic and potential energy contributions, and can be transformed to
 \begin{equation}
- \int  \hat{\psi}^{\dagger}(x) \bigg(  \sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{j}V_{\text{lattice}}(R_{j})  \bigg)    \hat{\psi}(x)dx.
+ \hat{H}_1=\int  \hat{\psi}^{\dagger}(x) \hat{h}_1   \hat{\psi}(x)dx.
 \end{equation}
 
 Bloch's theorem (in 1D) \cite{Bloch1929,Kittel1987} tells us that the eigenstates of a particle in a periodic potential have the form
@@ -216,34 +218,35 @@ with non-nearest neighbours. Under these conditions, the wavefunctions can be co
 which are superpositions of Bloch functions \cite{Kittel1987,Wannier1937}. This is a useful desciption because the Wannier functions are both orthonormal and, more importantly, complete.
 We can use this to rewrite the field operators as 
 \begin{equation}
+\label{field_operators_wannier}
  \hat{\psi}=\sum_j \hat{a}_{j}(t)\psi(R_j-x).
 \end{equation}
 With this in mind, we can write
 \begin{equation}
- \int  \sum_j\hat{a}_j^{\dagger}\psi^{*}(R_j-x) \bigg(  \sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{i}V_{\text{lattice}}(R_{i}) 
- \bigg)  \sum_l  \hat{a}_l\psi(R_l-x)dx=\sum_{j,l} J_{j,l}\hat{a}_{j}^{\dagger}\hat{a}_l.
+ \int  \sum_j\hat{a}_j^{\dagger}\psi^{*}(R_j-x) \hat{h}_1  \sum_l  \hat{a}_l\psi(R_l-x)dx=\sum_{j,l} J_{j,l}\hat{a}_{j}^{\dagger}\hat{a}_l.
 \end{equation}
 Here
 \begin{equation}
- J_{j,l}=\int  \psi^{*}(R_j-x) \bigg(  \sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{i}V_{\text{lattice}}(R_{i}))  \bigg)  \psi(R_l-x)dx
+ J_{j,l}=\int  \psi^{*}(R_j-x) \hat{h}_1  \psi(R_l-x)dx
 \end{equation}
 characterises the strength of the hopping between sites $j$ and $l$, which (intuitively) depends on the combination of the lattice depth and the kinetic energy. We take this hopping strength to be negligible
-for sites which are not nearest-neighbours because the localised wavefunctions have exponentially decaying tails, so the overlap is expected to be small. Of the permitted hopping interactions, we assume that each has identical strength. This assumption allows us to write
+for sites which are not nearest-neighbours because the localised wavefunctions have exponentially decaying tails, so the overlap is expected to be small. Of the permitted hopping interactions, we assume 
+that each has identical strength. This assumption allows us to write
 \begin{equation}
- \int  \hat{\psi}^{\dagger}(x) \bigg(  \sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{j}V_{\text{lattice}}(R_{j})  \bigg)    \hat{\psi}(x)dx=J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.),
+ \hat{H}_1=\int  \hat{\psi}^{\dagger}(x) \bigg(  \sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{j}V_{\text{lattice}}(R_{j})  \bigg)    \hat{\psi}(x)dx=J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.),
 \end{equation}
 where $h.c.$ denotes the hermitian conjugate.
 We can go through a similar process for the contributions of the external potential and on-site interactions between bosons. The external potential gives an on-site energy that can vary
 at different locations in the lattice
 
 \begin{equation}
- \int  \hat{\psi}^{\dagger}(x) V_{\text{ext}}(x)  \hat{\psi}(x)dx = \sum_i \epsilon_i \hat{a}_i^{\dagger}\hat{a}_i.
+ \hat{H}_{\text{ext}}=\int  \hat{\psi}^{\dagger}(x) V_{\text{ext}}(x)  \hat{\psi}(x)dx = \sum_i \epsilon_i \hat{a}_i^{\dagger}\hat{a}_i.
 \end{equation}
 
 The term for on-site interaction between bosons is a two-particle operator, thus second quantisation requires integration between two sets of boson field operators \todo{bad math here?? Revisit and check}
 
 \begin{equation}
- \int  \hat{\psi}^{\dagger}(x)\hat{\psi}^{\dagger}(x) \frac{U}{2}\sum_{i,j}\delta(x_{i}-x_{j})  \hat{\psi}(x) \hat{\psi}(x) dx = \frac{U}{2}\sum_i \hat{a}_i^{\dagger}\hat{a}_i^{\dagger}\hat{a}_i\hat{a}_i
+\hat{H}_{\text{int}} \int  \hat{\psi}^{\dagger}(x)\hat{\psi}^{\dagger}(x) \frac{U}{2}\sum_{i,j}\delta(x_{i}-x_{j})  \hat{\psi}(x) \hat{\psi}(x) dx = \frac{U}{2}\sum_i \hat{a}_i^{\dagger}\hat{a}_i^{\dagger}\hat{a}_i\hat{a}_i
 \end{equation}
 
 
@@ -255,7 +258,7 @@ Putting these terms together, we arrive at the Bose-Hubbard model described in t
 \newpage
 \section{The Bose-Hubbard model}
 
-The Hamiltonian for a weakly interacting BEC in an 1-dimensional optical lattice and subject to harmonic trapping potential is given by
+The Hamiltonian for a weakly interacting BEC in an 1-dimensional optical lattice and subject to harmonic trapping potential is given by the sum of $\hat{H}_1$, $\hat{H}_{\text{ext}}$ and $\hat{H}_{\text{int}}$:
 
 \begin{equation}
  \hat{H}_{1D}=J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.)+\frac{U}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i}+\sum_{i}{\epsilon_i}\hat{a}^\dagger_{j}\hat{a}_{j}.
@@ -428,8 +431,49 @@ and note that this entropy changes. How does that relate the thermalisation? Wha
 operators?
 
 \newpage
+\section{System size and analyticity}
+\todo{I'm not really sure where to put this section}
+Whilst the main focus of this project is on smaller lattices with few particles, it is of interest to investigate larger system sizes (necessarily by more approximate methods) to see how much
+of the behaviour of the small systems is preserved in the larger ones.
+\subsection{Small systems}
+We can decompose any time evolved state $\ket{\psi(t)}$ of our system in terms of its state at $t=0$, $\ket{\psi(t)}$, and the energy eigenvectors $\ket{E_n}$ (see section \ref{revival}
+for details):
+\begin{equation}
+  \ket{\psi(t)}=\sum_je^{iE_{j}t}\ket{E_j}\braket{E_j|\psi(0)}.
+\end{equation}
+Calculating $\ket{\psi(t)}$ from the above formula requires that we diagonalise the Hamiltonian and find its energy eigenvectors and eigenvalues. This is easy for small systems, in particular
+those that have only a single particle on them. This method has the significant advantage of being ''analytic``, at least up to the precision of the values stored for the state ket and spectrum.
+\todo{does ''spectrum`` cover eigenvalues and eigenvectors both?} All instances of $\ket{\psi(t)}$ are calculated from the initial state $\ket{\psi(0)}$, so the value \todo{is value the right word 
+since psi(t) is a vector?}we calculate for $\ket{\psi(t)}$ is independent of the timestep between each instance of $\ket{\psi(t)}$ that we calculate. This has the further advantage that we need 
+not concern ourselves with drifting of the norm\todo{clunky sentence}. However, as the number of lattice sites and particles in the system increases, the time required to apply this method increases
+dramatically. This is because the dimensionality $\mathcal{D}$ of the system grows according to
+\begin{equation}
+ \mathcal{D}=\frac{\left(N+P-1\right)!}{P!\left(N-1\right)}, \label{time_evolution}
+\end{equation}
+Where $N$ is the number of lattice sites and $P$ is the number of particles on the lattice. Unsurprisingly, this is the same as the number of possible pure number states (since these form
+an orthonormal basis), and so the formula deduced is just the formula for the number of ways to arrange $P$ objects into $N$ containers that is familiar from elementary statistical mechanics.
+The Hamiltonian is a $\mathcal{D}\times\mathcal{D}$ square matrix, and diagonalising it and then evolving the system according to equation \ref{time_evolution} quickly becomes impractical 
+for systems with large numbers of particles and lattice sites. For these systems, a different approach to time evolution is required. We have chosen to use a Gross-Pitaevskii equation to reduce
+the dimensionality of the system. Doing this forces us to take an iterative approach to time evolution rather than an analytic one. A Runge-Kutta-Feldberg algorithm was written for this purpose.
+
+\subsection{The Gross-Pitaevskii Equation (GPE)}
+The GPE is a classical mean-field equation for describing Bose-Einstein condensates (BECs) in the zero-temperature limit. In the smaller systems that we consider with the analytic method, it is rare
+for us to have more than two particles on a lattice, and hence the concept of ''macroscopic occupation of the ground state`` that is integral to Bose-Einstein condensation has little meaning here.
+The validity of some of the assumptions that we make in this method will rely on there being a large number of particles. \todo{keep going here with masters thesis info, what's another good source?}
+When second quantising our Hamiltonian earlier, in equation \label{field_operators_wannier} we decomposed the field operators into linear combinations of single-particle Wannier position states. 
+However, it is possible to decompose the field operators into any complete single-particle basis. If we chose the single particle energy basis $\{\phi_i\}$, then we get
+\begin{equation}
+ \hat{\Psi}(\vec{r})=\sum_{i=0}^\infty \hat{a}_i\phi_{i}(\vec{r}) = \hat{a}_0\phi_{0}(\vec{r}) + \sum_{i=1}^\infty \hat{a}_i\phi_{i}(\vec{r}).
+\end{equation}
+Since the GPE is a tool for investigating near-zero temperature BECs (very low energy systems), we now assume that the occupancy of energy modes other than the ground modes is negligible, i.e.,
+\begin{equation}
+ \hat{\Psi}(\vec{r})=\hat{a}_0\phi_{0}(\vec{r}).
+\end{equation}
+
+
+\newpage
 \section{Results}
-\section{Revival}
+\section{Revival \label{revival}}
 In a subset of the integrable systems considered, we observed regular instances in which the system would return to the state in which it was initially prepared (it ``revives''). 
 To see why we might expect to see revival in some cases, consider the initial state of the system $\ket{\psi(0)}$, which evolves in time according to
 \begin{equation}
@@ -441,7 +485,7 @@ and incorporating the $\hbar^{-1}$ into the time scale,
  \ket{\psi(t)} =&       e^{i\hat{H}t}\sum_j\ket{E_j}\braket{E_j|\psi(0)}  \nonumber \\
                =&\sum_je^{i\hat{H}t}\ket{E_j}\braket{E_j|\psi(0)} \nonumber \\
                 =&\sum_je^{iE_{j}t}\ket{E_j}\braket{E_j|\psi(0)}  \nonumber \\
-                =&\sum_j c_{j}e^{iE_{j}t}\ket{E_j}
+                =&\sum_j c_{j}e^{iE_{j}t}\ket{E_j} 
 \end{align}
 
 From here it can be seen that the only time dependence appears in the complex exponentials, each of which is $2\pi$-periodic. If we can find some common time $t_r$ such 
@@ -459,8 +503,7 @@ We are yet to find any systems with nonzero interparticle interaction that have 
 In one dimension, the only systems that we have found that meet the criterion of mutually irrational eigenvalues are those with fewer than 4 lattice sites. In two
 dimensions, \todo{do a comprehensive batch of simulations to determine what is and isn't ok in 2D}.
 
-To demonstrate this exact revival, consider a one dimensional lattice with three sites with a single boson and hopping constant $J$ \todo{will go through this section with full generality, not
-hard coded numbers soon}. The Hamiltonian for this system is
+To demonstrate this exact revival, consider a one dimensional lattice with three sites with a single boson and hopping constant $J$. The Hamiltonian for this system is
 
 \begin{equation}
 \hat{H}= \begin{bmatrix}
@@ -481,7 +524,7 @@ We can see from the graph of the simulation below that this matches up with a re
 \end{figure}
 
 The reason that there appear to be several revivals that our method ``misses'' is that states with different phases in the coefficients of the eigenvectors can also produce $\langle n_1 \rangle =1$, whereas the revival time that is 
-calculated in our method corresponds to exact revival of the initial wavefunction.
+calculated in our method corresponds to exact revival of the initial wavefunction and not $\langle n_1 \rangle ~ |\psi(t)|^2$.
 
 \subsection{Approximate revival}
 The range of systems for which the spectrum \todo{is it inaccurate to describle the spectrum (as opposed to the eigenvalues) as mutually irrational?} is mutually rational is a small one. 
@@ -518,31 +561,80 @@ While we see that the system does appear to get arbitrarily close to revival, bu
 \newpage
 \section{The Poincar\'e Recurrence Theorem}
 
-In 1890, Henri Poincar\'e proved the following theorem for classical mechanics: "Any phase-space configuration $(q,p)$ of a system enclosed in a finite volume will be repeated as accurately as one wishes
-after a finite(be it possibly very long) interval of time'. This theorem was extended to quantum systems in 1956 by P. Bocchieri and A. Loinger\cite{Bocchieri1957}, where it takes a slightly different
-form:"Let us consider a system with discrete energy eigenvalues $E_n$; if $\psi(t_0)$ is its state vector in the Schr{\"o}dinger picture at the time $t_0$ and $\epsilon$ is any positive number, at 
-least one time T will exist such that the norm $||\ket{\psi(T)}-\ket{\psi(t_0)}||$ of the vector $\ket{\psi(T)}-\ket{\psi(t_{0})}$ is smaller than $\epsilon$."
+In 1890, Henri Poincar\'e proved the following theorem for classical mechanics: ``Any phase-space configuration $(q,p)$ of a system enclosed in a finite volume will be repeated as accurately as one wishes
+after a finite (be it possibly very long) interval of time''. This theorem was extended to quantum systems in 1956 by P. Bocchieri and A. Loinger \cite{Bocchieri1957}, where they gave a slightly different
+form: ``Let us consider a system with discrete energy eigenvalues $E_n$; if $\psi(t_0)$ is its state vector in the Schr{\"o}dinger picture at the time $t_0$ and $\epsilon$ is any positive number, at 
+least one time $T$ will exist such that the norm $||\ket{\psi(T)}-\ket{\psi(t_0)}||$ of the vector $\ket{\psi(T)}-\ket{\psi(t_{0})}$ is smaller than $\epsilon$.''
 
 \subsection{Proof}
 The proof presented by Bocchieri and Loinger shows the theorem to be true for an infinite-dimensional system. In this dissertation, we investigate only finite-dimensional systems, and a simpler version of 
-the proof can be constructed. Let $D$ be the dimensionality of the system (an expression for calculating $D$ will be derived later \todo{See square brackets}[Should I do this later? Or make a section earlier? Where should it go?]).
-We will first show that there exists a time $T$ at which $||\ket{\psi(T)}-\ket{\psi(t_0)}||^2<\epsilon'$ for any $\epsilon'>0$ and then extend this to $||\ket{\psi(T)}-\ket{\psi(t_0)}||<\epsilon$. Note that in
-the following we will introduce the notation $\tau=T-t_0$ and $\alpha^2=||\ket{\psi(T)}-\ket{\psi(t_0)}||^2$.
+the proof can be constructed. We will first show that there exists a time $T$ at which $||\ket{\psi(T)}-\ket{\psi(t_0)}||^2<\epsilon'$ for any $\epsilon'>0$ and then extend this to $||\ket{\psi(T)}-\ket{\psi(t_0)}||<\epsilon$. Note that in
+the following we will introduce the notation $\tau=T-t_0$ and $\alpha^2(T=||\ket{\psi(T)}-\ket{\psi(t_0)}||^2$.
 
 \begin{align*}
- \alpha^2=&\left(\bra {\psi(T)}-\bra {\psi(t_0)}\right)\left(\ket{\psi(T)}-\ket{\psi(t_0)}\right) \\
+ \alpha^2(T)=&\left(\bra {\psi(T)}-\bra {\psi(t_0)}\right)\left(\ket{\psi(T)}-\ket{\psi(t_0)}\right) \\
  = \ &2-\braket{\psi(T)|\psi(t_0)}-\braket{\psi(t_0)|\psi(T)} \\
- = \ &2-\left(\sum_{n=1}^{D}c_n^* e^{iE_{n}T}\bra{E_n}\right)\left(\sum_{j=1}^{D}c_je^{-iE_{j}t_{0}}\bra{E_j}\right)-\left(\sum_{j=1}^{D}c_j^*e^{iE_{j}t_{0}}\ket{E_j}\right)\left(\sum_{n=1}^{D}c_n e^{-iE_{n}T}\ket{E_n}\right) \\
- = \ &2-\left(\sum_{n=1}^D |c_n|^2 e^{iE_{n}(T-t_0)}+\sum_{n=1}^D |c_n|^2 e^{-iE_{n}(T-t_0)}\right) \ \ \ \text{since} \braket{E_j|E_n}=\delta_{ij} \\
- = \ &2\left(\sum_{n=1}^D |c_n|^2\left(1-cos\left(E_{n}\tau\right) \right) \right) \ \ \text{because}  \ \sum_{n=1}^D |c_n|^2=1 \\
- \leq\ &2\left(\sum_{n=1}^D\left(1-cos\left(E_{n}\tau\right) \right) \right)
-\end{align}
+ = \ &2-\left(\sum_{n=1}^{\mathcal{D}}c_n^* e^{iE_{n}T}\bra{E_n}\right)\left(\sum_{j=1}^{\mathcal{D}}c_je^{-iE_{j}t_{0}}\bra{E_j}\right)-\left(\sum_{j=1}^{\mathcal{D}}c_j^*e^{iE_{j}t_{0}}\ket{E_j}\right)\left(\sum_{n=1}^{\mathcal{D}}c_n e^{-iE_{n}T}\ket{E_n}\right) \\
+ = \ &2-\left(\sum_{n=1}^\mathcal{D} |c_n|^2 e^{iE_{n}(T-t_0)}+\sum_{n=1}^\mathcal{D} |c_n|^2 e^{-iE_{n}(T-t_0)}\right) \ \ \ \text{since} \braket{E_j|E_n}=\delta_{ij} \\
+ = \ &2\left(\sum_{n=1}^\mathcal{D} |c_n|^2\left(1-\cos\left(E_{n}\tau\right) \right) \right) \ \ \text{because}  \ \sum_{n=1}^\mathcal{D} |c_n|^2=1 \\
+ \leq\ &2\left(\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right) \right)
+\end{align*}
 \todo{is that last inequality valid?}
-It is sufficient to show that there exists a value of $\tau$ such that $\sum_{n=1}^D\left(1-cos\left(E_{n}\tau\right) \right)<\hat{\epsilon}$. \todo{I've gotten myself into some messy 
-notation here with 3 different defined epsilons.} This is actually the case according to a standard result of the theory of the almost-periodic functions.\todo{need reference! The one from Bocchieri is in German.}
+It is sufficient to show that there exists a value of $\tau$ such that $\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right)<\epsilon'$. This is actually the case 
+according to a standard result of the theory of the almost-periodic functions.\todo{need reference! The one from Bocchieri is in German.}
 \\\\
-From here I can show that if $||\ket{\psi(T)}-\ket{\psi(t_0)}||^2<\epsilon'$ then $||\ket{\psi(T)}-\ket{\psi(t_0)}||<\sqrt{\epsilon'}$ and define $\epsilon=\sqrt{\epsilon'}$. I also have to define $\epsilon'=2\hat{\epsilon}$.
-However, I'd rather not write this out before making the notation cleaner.
+Evidently, if we know that there exists a time $T$ such that $\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right)<\epsilon'$, then at this same time $\alpha^2(T)<2\epsilon'$, which implies 
+that $\alpha(T)=||\ket{\psi(T)}-\ket{\psi(t_0)}||<\sqrt{2\epsilon'}$. Taking $epsilon=\sqrt{2\epsilon'}$ shows that $||\ket{\psi(T)}-\ket{\psi(t_0)}||$ is guaranteed be arbitrarily small at some 
+arbitrarily large time $T$.
+\todo{is there a problem with using T here and t* elsewhere?}
+
+\section{Large 1D systems}
+To determine the mutual rationality or mutual irrationality of the spectrum for an arbitrarily large one-dimensional system with a single particle, we look to a result about the eigenvalues
+of tridiagonal matrices proven by W. Yueh \cite{Yueh2006}. A tridiagonal matrix has the form
+\begin{equation}
+ A_n= \begin{bmatrix}
+ b & c & 0 & 0&\dots & 0\\
+ a & b & c & 0&\dots & 0\\
+ 0 & a & b & c& \dots & 0\\
+ 0 & 0 & a & b& \dots & 0\\
+ \vdots & \vdots & \vdots&\vdots & \ddots & c\\
+ 0 & 0 & 0 & 0 & a & b
+ \end{bmatrix}.
+\end{equation}
+It was shown that the eigenvalues of a matrix of this form are given by
+\begin{equation}
+ \lambda_k=-b+2\sqrt{ac}\cos\left(\frac{k\pi}{n+1}\right)
+\end{equation}
+
+The Hamiltonian of any one-dimensional system with $N$ sites and $1$ particle is has the form
+
+\begin{equation}
+ A_n= \begin{bmatrix}
+ 0 & -J & 0 & 0&\dots & 0\\
+ -J & 0 & -J & 0&\dots & 0\\
+ 0 & -J & 0 & -J& \dots & 0\\
+ 0 & 0 & -J & 0& \dots & 0\\
+ \vdots & \vdots & \vdots&\vdots & \ddots & -J\\
+ 0 & 0 & 0 & 0 & -J & 0
+ \end{bmatrix},
+\end{equation}
+and consequently has eigenvalues
+\begin{equation}
+\label{1D_eigenvalues}
+ E_k=-2J\cos\left(\frac{k\pi}{N+1}\right), \ k=1,2,\dots,N.
+\end{equation}
+This result is particularly interesting when combined with Niven's theorem, which tells us that if $x$ is
+rational \textit{in degrees}, then the only possible rational values of $\cos(x)$ are $0, \pm \frac{1}{2}$ and $\pm 1$ \cite{Niven2005}. Note in our case that $\frac{k\pi}{N+1}\neq 0, \pi$
+for $k=1,2,\dots,N$, so $\cos(\frac{k\pi}{N+1})\neq\pm1$ and we are left with $3$ rational options.
+
+When we are evaluating in degrees, equation \ref{1D_eigenvalues} becomes
+\begin{equation}
+ _k=-2J\cos\left(\frac{180k}{N+1}\right), \ k=1,2,\dots,N.
+\end{equation}
+The argument of cosine here is clearly rational since $N$ and $k$ are integers. Hence we know that for a system with non-degenerate eigenvalues, there can be at most $3$ eigenvalues ($\{0,\pm\frac{J}{2}\}$)
+that are rational. So $\mathcal{D}<=3$ for a system with all eigenvalues rational (the lattice must have at most $3$ sites). We must have at least $N-3$ irrational eigenvalues for any larger system size. 
+\todo{Can I prove that all systems larger than N=3 have **mutually** irrational eigenvalues}?
+
 
 \newpage
 \bibliographystyle{plain}
