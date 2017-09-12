@@ -1,6 +1,6 @@
 \documentclass[a4paper,10pt]{article}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
+\usepackage{amsmath, amssymb}
 \usepackage{braket}
 \usepackage{todonotes}
 \usepackage{listings}
@@ -14,7 +14,13 @@
 %   linkcolor=blue,
 %    filecolor=magenta,      
 %    urlcolor=blue,}
- 
+
+% Just to do labels in gnuplot, Yeah!
+\usepackage{graphicx}
+\usepackage{gnuplottex}
+\usepackage{gnuplot-lua-tikz}
+
+
 \urlstyle{same}
 
 %opening
@@ -37,7 +43,6 @@ optical lattice. The main focus is on determining how the tunneling energies and
 whether or not the system exhibits relaxation to a thermal state. For systems in which revival to the initial state occurs regularly (those which don't thermalise), 
 a method for calculating the revival period is developed. For the systems which exhibit thermalisation, we attempt to characterise the long term
 states using [ETH, entropy of entanglement, whatever I actually end up doing].
-
 
 
 \end{abstract}
@@ -229,7 +234,11 @@ Here
 \begin{equation}
  J_{j,l}=\int  \psi^{*}(R_j-x) \hat{h}_1  \psi(R_l-x)dx
 \end{equation}
-characterises the strength of the hopping between sites $j$ and $l$, which (intuitively) depends on the combination of the lattice depth and the kinetic energy. We take this hopping strength to be negligible
+characterises the strength of the hopping between sites $j$ and $l$, which (intuitively) depends on the combination of the lattice depth and the kinetic energy. 
+
+\todo{put in image of overlap here}
+
+We take this hopping strength to be negligible
 for sites which are not nearest-neighbours because the localised wavefunctions have exponentially decaying tails, so the overlap is expected to be small. Of the permitted hopping interactions, we assume 
 that each has identical strength. This assumption allows us to write
 \begin{equation}
@@ -432,33 +441,32 @@ operators?
 
 \newpage
 \section{System size and analyticity}
-\todo{I'm not really sure where to put this section}
-Whilst the main focus of this project is on smaller lattices with few particles, it is of interest to investigate larger system sizes (necessarily by more approximate methods) to see how much
+Whilst the main focus of this project is on smaller lattices with few particles, it is of interest to investigate larger system sizes (necessarily by approximate methods) to see how much
 of the behaviour of the small systems is preserved in the larger ones.
 \subsection{Small systems}
-We can decompose any time evolved state $\ket{\psi(t)}$ of our system in terms of its state at $t=0$, $\ket{\psi(t)}$, and the energy eigenvectors $\ket{E_n}$ (see section \ref{revival}
+We can decompose any time evolved state $\ket{\psi(t)}$ of our system in terms of its state at $t=0$, $\ket{\psi(0)}$, and the energy eigenvectors $\ket{E_n}$ (see section \ref{revival}
 for details):
 \begin{equation}
   \ket{\psi(t)}=\sum_je^{iE_{j}t}\ket{E_j}\braket{E_j|\psi(0)}.
 \end{equation}
 Calculating $\ket{\psi(t)}$ from the above formula requires that we diagonalise the Hamiltonian and find its energy eigenvectors and eigenvalues. This is easy for small systems, in particular
-those that have only a single particle on them. This method has the significant advantage of being ''analytic``, at least up to the precision of the values stored for the state ket and spectrum.
+those that have only a single particle on them. This method has the significant advantage of being ``analytic'', at least up to the precision of the values stored for the state ket and spectrum.
 \todo{does ''spectrum`` cover eigenvalues and eigenvectors both?} All instances of $\ket{\psi(t)}$ are calculated from the initial state $\ket{\psi(0)}$, so the value \todo{is value the right word 
-since psi(t) is a vector?}we calculate for $\ket{\psi(t)}$ is independent of the timestep between each instance of $\ket{\psi(t)}$ that we calculate. This has the further advantage that we need 
-not concern ourselves with drifting of the norm\todo{clunky sentence}. However, as the number of lattice sites and particles in the system increases, the time required to apply this method increases
-dramatically. This is because the dimensionality $\mathcal{D}$ of the system grows according to
+since psi(t) is a vector?}we calculate for $\ket{\psi(t)}$ is independent of the timestep between each instance of $\ket{\psi(t)}$ that we calculate. This has the further advantage that in a numerical
+algoritm we need not concern ourselves with drifting of the norm\todo{clunky sentence}. However, as the number of lattice sites and particles in the system increases, the time required to apply 
+this method increases dramatically. This is because the dimensionality $\mathcal{D}$ of the system grows according to
 \begin{equation}
- \mathcal{D}=\frac{\left(N+P-1\right)!}{P!\left(N-1\right)}, \label{time_evolution}
+ \mathcal{D}=\frac{\left(N+P-1\right)!}{P!\left(N-1\right)!}, \label{time_evolution}
 \end{equation}
-Where $N$ is the number of lattice sites and $P$ is the number of particles on the lattice. Unsurprisingly, this is the same as the number of possible pure number states (since these form
+where $N$ is the number of lattice sites and $P$ is the number of particles on the lattice. Unsurprisingly, this is the same as the number of possible pure number states (since these form
 an orthonormal basis), and so the formula deduced is just the formula for the number of ways to arrange $P$ objects into $N$ containers that is familiar from elementary statistical mechanics.
-The Hamiltonian is a $\mathcal{D}\times\mathcal{D}$ square matrix, and diagonalising it and then evolving the system according to equation \ref{time_evolution} quickly becomes impractical 
+The Hamiltonian is a $\mathcal{D}\times\mathcal{D}$ square matrix, and diagonalising it and then evolving the system according to equation (\ref{time_evolution}) quickly becomes impractical 
 for systems with large numbers of particles and lattice sites. For these systems, a different approach to time evolution is required. We have chosen to use a Gross-Pitaevskii equation to reduce
-the dimensionality of the system. Doing this forces us to take an iterative approach to time evolution rather than an analytic one. A Runge-Kutta-Feldberg algorithm was written for this purpose.
+the dimensionality of the system. Doing this forces us to take an iterative approach to time evolution rather than an analytic one. A Runge-Kutta-Feldberg algorithm \cite{Burden2005} was written for this purpose.
 
 \subsection{The Gross-Pitaevskii Equation (GPE)}
 The GPE is a classical mean-field equation for describing Bose-Einstein condensates (BECs) in the zero-temperature limit. In the smaller systems that we consider with the analytic method, it is rare
-for us to have more than two particles on a lattice, and hence the concept of ''macroscopic occupation of the ground state`` that is integral to Bose-Einstein condensation has little meaning here.
+for us to have more than two particles on a lattice, and hence the concept of ``macroscopic occupation of the ground state'' that is integral to Bose-Einstein condensation has little importance here.
 The validity of some of the assumptions that we make in this method will rely on there being a large number of particles. \todo{keep going here with masters thesis info, what's another good source?}
 When second quantising our Hamiltonian earlier, in equation \label{field_operators_wannier} we decomposed the field operators into linear combinations of single-particle Wannier position states. 
 However, it is possible to decompose the field operators into any complete single-particle basis. If we chose the single particle energy basis $\{\phi_i\}$, then we get
@@ -515,16 +523,22 @@ To demonstrate this exact revival, consider a one dimensional lattice with three
 Diagonalising this matrix yields the eigenvalues $\{-\sqrt{2}J,0,\sqrt{2}J\}$. These are mutually rational (if we divide them all by $\sqrt{2}J$ they are all rational). 
 If we rescale the energies by $\sqrt{2}J$ by absorbing that factor into the time scale, then we get eigenvalues $\{-1,0,1\}$.
 We can see from the graph of the simulation below that this matches up with a return to the initial state at times that are multiples of $2\pi$.
-%\todo{use data from '3by1_revival_data' folder to get this to plot properly once you ask Danny how to put fractions in axis titles}
 
 \begin{figure}[H]
- \begin{center}
- \includegraphics[width=1.0\textwidth]{showing_revival_3by1}
- \end{center}
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/20170912T164043_evolution_n.dat" u 1:4 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating revival for a system with $3$ lattice sites and a single boson.}
 \end{figure}
 
+
 The reason that there appear to be several revivals that our method ``misses'' is that states with different phases in the coefficients of the eigenvectors can also produce $\langle n_1 \rangle =1$, whereas the revival time that is 
-calculated in our method corresponds to exact revival of the initial wavefunction and not $\langle n_1 \rangle ~ |\psi(t)|^2$.
+calculated in our method corresponds to exact revival of the initial wavefunction and not $\langle n_1 \rangle \sim |\psi(t)|^2$.
 
 \subsection{Approximate revival}
 The range of systems for which the spectrum \todo{is it inaccurate to describle the spectrum (as opposed to the eigenvalues) as mutually irrational?} is mutually rational is a small one. 
@@ -542,15 +556,15 @@ system is \\\\
 \end{equation}
 \\\\
 The eigenvalues of this system are $\{-\sqrt{3}J,-J,0,J,\sqrt{3}J\}$. These are clearly not mutually rational, so we cannot find an exact revival time for this system, despite the fact that it is 
-fully integrable. Running a simulation of this system where we start the boson off on the first site, we find that the probability of finding the boson on the first site never quite reaches $1$ again.
+fully integrable. Running a simulation of this system where we start a single boson off on the first site, we find that the probability of finding the boson on the first site never quite reaches $1$ again.
 
 \todo{run this again with the xaxis labelled 't/J'}
 \begin{figure}[H]
- \includegraphics[width=1.0\textwidth]{5_by_1_T1e4_U0}
+ \includegraphics[width=0.9\textwidth]{5_by_1_T1e4_U0}
  \centering
 \end{figure}
-
-Judging the figure above by eye, it may appear that we have exact revival, but this is not actually the case. If we look at how long it takes for the system to get within epsilon of
+\todo{make this full text width if can without adding extra page}
+Judging the figure above by eye, it may appear that we have exact revival, but this is not actually the case. If we look at how long it takes for the system to get within $\epsilon$ of
 its initial state (i.e. $||\ket{\psi(t)}-\ket{\psi(0)}||<\epsilon$)
 we get the graph below. Note that $t^*$ denotes the time at which the system got within a particular value of $\epsilon$ of the initial state.
 \begin{figure}[H]
@@ -568,18 +582,23 @@ least one time $T$ will exist such that the norm $||\ket{\psi(T)}-\ket{\psi(t_0)
 
 \subsection{Proof}
 The proof presented by Bocchieri and Loinger shows the theorem to be true for an infinite-dimensional system. In this dissertation, we investigate only finite-dimensional systems, and a simpler version of 
-the proof can be constructed. We will first show that there exists a time $T$ at which $||\ket{\psi(T)}-\ket{\psi(t_0)}||^2<\epsilon'$ for any $\epsilon'>0$ and then extend this to $||\ket{\psi(T)}-\ket{\psi(t_0)}||<\epsilon$. Note that in
-the following we will introduce the notation $\tau=T-t_0$ and $\alpha^2(T=||\ket{\psi(T)}-\ket{\psi(t_0)}||^2$.
+the proof can be constructed. We will first show that there exists a time $T$ at which $||\ket{\psi(T)}-\ket{\psi(t_0)}||^2<2\epsilon'$ for any $\epsilon'>0$ and then extend this to $||\ket{\psi(T)}-\ket{\psi(t_0)}||<\epsilon$. Note that in
+the following we will introduce the notation $\tau=T-t_0$ and $\alpha^2(T)=||\ket{\psi(T)}-\ket{\psi(t_0)}||^2$.
 
 \begin{align*}
  \alpha^2(T)=&\left(\bra {\psi(T)}-\bra {\psi(t_0)}\right)\left(\ket{\psi(T)}-\ket{\psi(t_0)}\right) \\
  = \ &2-\braket{\psi(T)|\psi(t_0)}-\braket{\psi(t_0)|\psi(T)} \\
- = \ &2-\left(\sum_{n=1}^{\mathcal{D}}c_n^* e^{iE_{n}T}\bra{E_n}\right)\left(\sum_{j=1}^{\mathcal{D}}c_je^{-iE_{j}t_{0}}\bra{E_j}\right)-\left(\sum_{j=1}^{\mathcal{D}}c_j^*e^{iE_{j}t_{0}}\ket{E_j}\right)\left(\sum_{n=1}^{\mathcal{D}}c_n e^{-iE_{n}T}\ket{E_n}\right) \\
+ = \ &2-\sum_{j,n=1}^{\mathcal{D}}c_n^* e^{iE_{n}T}\bra{E_n}\left(c_je^{-iE_{j}t_{0}}\ket{E_j}\right)-\sum_{j,n=1}^{\mathcal{D}}c_j^*e^{iE_{j}t_{0}}\bra{E_j}\left(c_n e^{-iE_{n}T}\ket{E_n}\right) \\
  = \ &2-\left(\sum_{n=1}^\mathcal{D} |c_n|^2 e^{iE_{n}(T-t_0)}+\sum_{n=1}^\mathcal{D} |c_n|^2 e^{-iE_{n}(T-t_0)}\right) \ \ \ \text{since} \braket{E_j|E_n}=\delta_{ij} \\
  = \ &2\left(\sum_{n=1}^\mathcal{D} |c_n|^2\left(1-\cos\left(E_{n}\tau\right) \right) \right) \ \ \text{because}  \ \sum_{n=1}^\mathcal{D} |c_n|^2=1 \\
- \leq\ &2\left(\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right) \right)
+ \leq\ &2\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right)
 \end{align*}
 \todo{is that last inequality valid?}
+NOTE: ALTERNATIVE 3rd line above (which is better?):
+\begin{equation}
+ = 2-\sum_{j,n=1}^{\mathcal{D}}c_n^* c_je^{iE_{n}T}e^{-iE_{j}t_{0}}\braket{E_n|E_j}-\sum_{j,n=1}^{\mathcal{D}}c_j^*c_ne^{iE_{j}t_{0}}e^{-iE_{n}T}\braket{E_j|E_n} 
+\end{equation}
+
 It is sufficient to show that there exists a value of $\tau$ such that $\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right)<\epsilon'$. This is actually the case 
 according to a standard result of the theory of the almost-periodic functions.\todo{need reference! The one from Bocchieri is in German.}
 \\\\
@@ -597,7 +616,7 @@ of tridiagonal matrices proven by W. Yueh \cite{Yueh2006}. A tridiagonal matrix 
  a & b & c & 0&\dots & 0\\
  0 & a & b & c& \dots & 0\\
  0 & 0 & a & b& \dots & 0\\
- \vdots & \vdots & \vdots&\vdots & \ddots & c\\
+ \vdots & \vdots & \vdots&\vdots & \ddots & c\\the
  0 & 0 & 0 & 0 & a & b
  \end{bmatrix}.
 \end{equation}
@@ -632,8 +651,10 @@ When we are evaluating in degrees, equation \ref{1D_eigenvalues} becomes
  _k=-2J\cos\left(\frac{180k}{N+1}\right), \ k=1,2,\dots,N.
 \end{equation}
 The argument of cosine here is clearly rational since $N$ and $k$ are integers. Hence we know that for a system with non-degenerate eigenvalues, there can be at most $3$ eigenvalues ($\{0,\pm\frac{J}{2}\}$)
-that are rational. So $\mathcal{D}<=3$ for a system with all eigenvalues rational (the lattice must have at most $3$ sites). We must have at least $N-3$ irrational eigenvalues for any larger system size. 
-\todo{Can I prove that all systems larger than N=3 have **mutually** irrational eigenvalues}?
+that are rational. So $\mathcal{D}\leq3$ for a system with all eigenvalues rational (the lattice must have at most $3$ sites). We must have at least $N-3$ irrational eigenvalues for any larger system size. 
+\todo{Can I prove that all systems larger than N=3 have **mutually** irrational eigenvalues?}
+
+
 
 
 \newpage
