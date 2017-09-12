@@ -65,42 +65,46 @@ pattern act as a periodic potential on the atoms through the optical dipole forc
 beams at particular frequencies and amplitudes, any lattice geometry that can be constructed via Fourier synthesis can, in principle, be produced \cite{Bloch2012}.
 This fine degree of control over the lattice parameters, in conjunction with the ability to tune the strength of interparticle interactions by 
 manipulating Feshbach resonances \cite{Chin2010}, makes ultracold bosons on optical lattices an excellent arena in which to explore various model 
-Hamiltonians for condensed matter systems and quantum optics. \\\\
+Hamiltonians for condensed matter systems and quantum optics. \\
 
 There are further advantages which can make conducting experiments with ultracold bosons on optical lattices more attractive than working with 
 solids directly. One is that there are always impurities present in the solids we find in nature. These impurities can have significant impacts
 on the properties of the solid which cannot necessarily be accounted for by a perturbative approach which assumes these effects 
-to be small. \todo{reference this at some point from the book I meant to get from David}\\\\
-
-\todo{see square brackets} [Here I can either say a) or b).\\ a) Optical lattices are highly uniform, so when dealing with bosons on optical lattices this problem of impurities does not arise.\\
-b) Is this statement from \cite{Bloch2012} relevant to this question?
-\begin{figure}[H]
- \begin{center}
-   \includegraphics[width=8cm]{optical_lattices_Bloch}
- \end{center}
- \end{figure}
-]
+to be small. \todo{reference this at some point from the book I meant to get from David}Optical lattices are highly uniform, so when dealing with bosons on optical lattices this problem of impurities does not arise.\\\\
 Another benefit of working with bosons on optical lattices is that we can easily control the state of each of the particles on the lattice. Furthermore, 
 the potential can be altered or switched off entirely during the experiment, which is a feature that is not available in any solid state experiment \cite{Morsch2006}.
-
 
 
 \section{First quantised representation}
 This paper will deal exclusively with bosons on optical lattices, and not investigate cases involving fermions.
 There are a number of different contributions to the Hamiltonian for bosons on optical lattices, and these contributions can be seen to have analogues in condensed matter systems.
 The individual bosons will have kinetic energy, and the potential created by the lattice also contributes to how the system evolves in time, so it must feature in the Hamiltonian.
-The bosons may be interacting (we will assume this only occurs if they occupy the same lattice sites), and there may also be an external potential imposed that can vary in strength
-from site to site. From this reasoning, we can construct a first quantised Hamiltonian for a 1D system of interacting bosons on an optical lattice, in the presence of an external potential $V_{\text{ext}}$
+The bosons may be interacting, and there may also be an external potential imposed that can vary in strength from site to site. 
+\\\\
+With regards to the interparticle interactions, we consider repulsive scattering interactions. We will consider systems that are dilute, in the sense that the average spacing between
+bosons is much greater than the effective range of the interparticle interactions. This makes it reasonable to consider only two-particle scattering events and neglect the rare higher
+order collisions, provided we keep the strength of the interparticle interactions small. Even when reduced to its two-body form, $U(r-r')$, \todo{should I write this with vector rs? or 
+with x instead of r? Should it have a sum in it?}the form of the 
+interatomic scattering potential has short range terms that can be difficult to deal with. We can replace this object with an mathematically convenient effective potential with a similar scattering
+profile\todo{is ``scattering profile'' the right term? It felt right, but I actually have no idea}, in this case we assume delta-function interactions\todo{better term than delta-function interactions?}. Because the ultracold bosons have such low 
+energy, s-wave scattering dominates, and the interparticle interaction potential can be expressed simply in terms of the s-wave scattering length, $a_s$, as
+\begin{equation}
+ U_{\text{eff}}=\frac{2\pi\hbar^2a_s}{m}\sum_{i,j}\delta(x_{i}-x_{j}).
+\end{equation}
+For simplicity, we will introduce the notation $U_0=\frac{4\pi\hbar^2a_s}{m}$.
+Having made these simplifications, we can construct a first quantised Hamiltonian for a 1D system of interacting bosons on an optical lattice, in the presence of an external potential $V_{\text{ext}}$
 \begin{equation}
   \label{eq:HamiltonianCoordinateRepresentation}
- \hat{h}=\sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{i}V_{\text{lattice}}(R_{i})+V_{\text{ext}}(x)+\frac{U}{2}\sum_{i,j}\delta(x_{i}-x_{j}).
+ \hat{h}=\sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{i}V_{\text{lattice}}(R_{i})+V_{\text{ext}}(x)+\frac{U_0}{2}\sum_{i,j}\delta(x_{i}-x_{j}).
 \end{equation}
 Similar Hamiltonians are frequently used to describe systems of electrons on atomic lattices. To promote conciseness, we introduce the abbreviations 
 \begin{equation}
  \hat{h}_1=\sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{i}V_{\text{lattice}}(R_{i}), \ \hat{h}_{\text{ext}} =V_{\text{ext}}(x) 
 \end{equation}
-and $\hat{h}_{\text{int}}=\frac{U}{2}\sum_{i,j}\delta(x_{i}-x_{j})$, so that $\hat{h}=\hat{h}_1+\hat{h}_{\text{ext}}+\hat{h}_{\text{int}}$.
+and $\hat{h}_{\text{int}}=\frac{U_0}{2}\sum_{i,j}\delta(x_{i}-x_{j})$, so that $\hat{h}=\hat{h}_1+\hat{h}_{\text{ext}}+\hat{h}_{\text{int}}$.
 \\\\
+
+
 
 \section{Effect of indistinguishability}
 The Hamiltonian in the previous section would act on a bosonic many-particle wavefunction. A single particle wavefunction $\psi(\vec{r})$ is 
@@ -226,7 +230,10 @@ We can use this to rewrite the field operators as
 \label{field_operators_wannier}
  \hat{\psi}=\sum_j \hat{a}_{j}(t)\psi(R_j-x).
 \end{equation}
+
+\todo{should aj actually have time dependence here?}
 With this in mind, we can write
+
 \begin{equation}
  \int  \sum_j\hat{a}_j^{\dagger}\psi^{*}(R_j-x) \hat{h}_1  \sum_l  \hat{a}_l\psi(R_l-x)dx=\sum_{j,l} J_{j,l}\hat{a}_{j}^{\dagger}\hat{a}_l.
 \end{equation}
@@ -234,16 +241,25 @@ Here
 \begin{equation}
  J_{j,l}=\int  \psi^{*}(R_j-x) \hat{h}_1  \psi(R_l-x)dx
 \end{equation}
-characterises the strength of the hopping between sites $j$ and $l$, which (intuitively) depends on the combination of the lattice depth and the kinetic energy. 
+characterises the strength of the hopping between sites $j$ and $l$. It is typically described \todo{need references!} as characterising the overlap of the single-particle spatial wavefunctions (see figure below).
 
-\todo{put in image of overlap here}
+\begin{figure}[H]
+ \begin{center}
+   \includegraphics[width=\textwidth]{J_overlap_drawing}
+ \end{center}
+ \label{J_overlap_drawing}
+ \caption{J is considered as the overlap of highly centralised Wannier functions centred at neighbouring lattice sites.}
+ \end{figure}
 
-We take this hopping strength to be negligible
-for sites which are not nearest-neighbours because the localised wavefunctions have exponentially decaying tails, so the overlap is expected to be small. Of the permitted hopping interactions, we assume 
-that each has identical strength. This assumption allows us to write
+This is not entirely accurate, as the Wannier states are orthonormal and so the integral over their inner product is zero. More precisely, $J_{j,l}$ takes the inner product between a Wannier state
+$\psi(R_j-x)$ and the state produced by the action of $\hat{h}_1$ on the Wannier state $\psi(R_l-x)$, which does not have to be zero. However, the depiction in figure \ref{J_overlap_drawing} can still
+be useful for developing an intuition for what $J$ is, since $J$ depends on the combination of the lattice depth (and width) and the kinetic energy and so would the overlap of the spatial wavefunctions
+if they were not orthonormal. It is also clear from the figure that computing overlap integrals using wavefunctions on non-neigbouring sites does not add much accuracy to our model, so we neglect these.
+For the hopping interactions that are permitted, we assume that each has identical strength. This assumption allows us to write
 \begin{equation}
  \hat{H}_1=\int  \hat{\psi}^{\dagger}(x) \bigg(  \sum_{i}-\frac{\hbar^{2}}{2m}  \partial_{x_{i}}^2+\sum_{j}V_{\text{lattice}}(R_{j})  \bigg)    \hat{\psi}(x)dx=J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.),
 \end{equation}
+\todo{should I replace the middle of the above equation with h1, or leave as is?}
 where $h.c.$ denotes the hermitian conjugate.
 We can go through a similar process for the contributions of the external potential and on-site interactions between bosons. The external potential gives an on-site energy that can vary
 at different locations in the lattice
@@ -255,7 +271,7 @@ at different locations in the lattice
 The term for on-site interaction between bosons is a two-particle operator, thus second quantisation requires integration between two sets of boson field operators \todo{bad math here?? Revisit and check}
 
 \begin{equation}
-\hat{H}_{\text{int}} \int  \hat{\psi}^{\dagger}(x)\hat{\psi}^{\dagger}(x) \frac{U}{2}\sum_{i,j}\delta(x_{i}-x_{j})  \hat{\psi}(x) \hat{\psi}(x) dx = \frac{U}{2}\sum_i \hat{a}_i^{\dagger}\hat{a}_i^{\dagger}\hat{a}_i\hat{a}_i
+\hat{H}_{\text{int}}= \int  \hat{\psi}^{\dagger}(x)\hat{\psi}^{\dagger}(x) \frac{U_0}{2}\sum_{i,j}\delta(x_{i}-x_{j})  \hat{\psi}(x) \hat{\psi}(x) dx = \frac{U_0}{2}\sum_i \hat{a}_i^{\dagger}\hat{a}_i^{\dagger}\hat{a}_i\hat{a}_i
 \end{equation}
 
 
@@ -270,29 +286,25 @@ Putting these terms together, we arrive at the Bose-Hubbard model described in t
 The Hamiltonian for a weakly interacting BEC in an 1-dimensional optical lattice and subject to harmonic trapping potential is given by the sum of $\hat{H}_1$, $\hat{H}_{\text{ext}}$ and $\hat{H}_{\text{int}}$:
 
 \begin{equation}
- \hat{H}_{1D}=J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.)+\frac{U}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i}+\sum_{i}{\epsilon_i}\hat{a}^\dagger_{j}\hat{a}_{j}.
+ \hat{H}_{1D}=J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.)+\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i}+\sum_{i}{\epsilon_i}\hat{a}^\dagger_{j}\hat{a}_{j},
 \end{equation}
-The $\epsilon_i$'s refer to on-site energies at each lattice site due to the harmonic trap, and the middle term gives an interaction energy when there is more than one particle 
-on a particular site.
-\todo{Should I have a diagram here or elsewhere where I actually draw in the laser beam and the wavefunction overlap?}
-\\\\
-This project will look at scenarios where there is no external harmonic potential which produces different on-site energies for different sites.  
-Under these conditions, the Hamiltonian in one dimension reduces to
+and is known as the Bose-Hubbard Hamiltonian. The $\epsilon_i$'s refer to on-site energies at each lattice site due to the harmonic trap, 
+and the middle term gives an interaction energy when there is more than one particle on a particular site.
+This project will look at scenarios where there is no external harmonic potential which produces different on-site energies for different sites (the uniform lattice potential remains, so $J$ is 
+still defined as before).  
+In the absence of this external potential, the Hamiltonian in one dimension reduces to
 
 \begin{equation}
 \begin{align*}
-\hat{H}_{1D}=&J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.\ ) +\frac{U}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i}.
+\hat{H}_{1D}=&J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.\ ) +\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i}.
 \end{align*}
 \end{equation}
 
-The atoms in the lattice are still subject to the lattice potential. We can see this from the definition of $J$ as the ``hopping integral'' in terms of the Hamiltonian of
-the system in the wavefunction representation.
-\\\\
 This project aims to explore the dynamics of both this one dimensional system and the two dimensional version where we couple multiple chains of lattice sites together. The 
 system Hamiltonian in two dimensions is
  
 \begin{equation}
-\hat{H}_{2D}=(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j} + J'\sum_{i,j}\hat{a}^\dagger_{i,j}\hat{a}_{i+1,j})+h.c. +\frac{U}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i},
+\hat{H}_{2D}=(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j} + J'\sum_{i,j}\hat{a}^\dagger_{i,j}\hat{a}_{i+1,j})+h.c. +\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i},
 \end{equation}
 where the $i$ index denotes which chain is being referred to and the $j$ index denotes how far along the chain a site is. $J'$ is another hopping parameter; it characterises the 
 overlap between adjacent Wannier states \todo{factcheck: should this be Bloch states? or neither?}on different chains.
@@ -643,7 +655,7 @@ and consequently has eigenvalues
  E_k=-2J\cos\left(\frac{k\pi}{N+1}\right), \ k=1,2,\dots,N.
 \end{equation}
 This result is particularly interesting when combined with Niven's theorem, which tells us that if $x$ is
-rational \textit{in degrees}, then the only possible rational values of $\cos(x)$ are $0, \pm \frac{1}{2}$ and $\pm 1$ \cite{Niven2005}. Note in our case that $\frac{k\pi}{N+1}\neq 0, \pi$
+rational \textit{in degrees}, then the only possible rational values of $\cos(x)$ are $0, \pm \frac{1}{2}$ and $\pm 1$ \cite{DoubleIvan}. Note in our case that $\frac{k\pi}{N+1}\neq 0, \pi$
 for $k=1,2,\dots,N$, so $\cos(\frac{k\pi}{N+1})\neq\pm1$ and we are left with $3$ rational options.
 
 When we are evaluating in degrees, equation \ref{1D_eigenvalues} becomes
