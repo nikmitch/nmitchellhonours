@@ -184,18 +184,23 @@ so that $\hat{h}=\hat{h}_1+\hat{h}_{\text{ext}}+\hat{h}_{\text{int}}$.
 
 
 \section{Effect of indistinguishability}
-The Hamiltonian in the previous section would act on a bosonic many-particle wave function. A single particle wave function $\psi(\vec{r})$ is
-defined within a Hilbert space $\mathcal{H}$, which is the space of complex, square integrable functions. It must satisfy $\int d^3\vec{r}|\psi(\vec{r})|^2<\infty$.
-A wave function that represents the state of $N$ indistinguishable particles, $\psi(\vec{r}_{1},\vec{r}_{2},\dots,\vec{r}_{N})$ is defined within $\mathcal{H}^N$, where
-$\mathcal{H}^N$ is constructed as the tensor product $N$ single-particle Hilbert spaces:
+The Hamiltonian in the previous section would act on a bosonic many-particle 
+wavefunction. A single particle wave function $\psi(\mathbf{r})$ is defined within 
+a Hilbert space $\mathcal{H}$, which is the space of complex, square integrable 
+functions. It must satisfy $\int d^3\mathbf{r}|\psi(\mathbf{r})|^2<\infty$.
+A wave function that represents the state of $N$ indistinguishable particles, 
+$\psi(\mathbf{r}_{1},\mathbf{r}_{2},\dots,\mathbf{r}_{N})$ is defined within 
+$\mathcal{H}^N$, where $\mathcal{H}^N$ is constructed as the tensor product 
+$N$ single-particle Hilbert spaces:
 \begin{equation}
  \mathcal{H}^N=\mathcal{H}\otimes \mathcal{H} \otimes \dots\otimes \mathcal{H}.
 \end{equation}
-The wave functions in this space are also subject to normalisation constraints, i.e.,
+The wave functions in this space are also subject to normalisation constraints, 
+i.e.,
 
 \begin{equation*}
-    \int d^{3} \vec{r}_{1} d^{3}\vec{r}_{2} \dots d^{3}\vec{r}_{N}
-        \abs{\psi(\vec{r}_{1},\vec{r}_{2},\dots,\vec{r}_{N})}^{2}
+    \int d^{3} \mathbf{r}_{1} d^{3}\mathbf{r}_{2} \dots d^{3}\mathbf{r}_{N}
+        \abs{\psi(\mathbf{r}_{1},\mathbf{r}_{2},\dots,\mathbf{r}_{N})}^{2}
     < \infty.
 \end{equation*}
 Whilst all functions satisfying the above constraints can be legitimately
@@ -223,10 +228,10 @@ We can formally extend this notion of exchange symmetry for larger systems and
 express the requirement of exchange symmetry for bosonic systems as
 \cite{Negele1988}
 \begin{equation*}
-    \psi({\vec{r}_{\mathcal{P}_1}, \vec{r}_{\mathcal{P}_2}, \dots,
-          \vec{r}_{\mathcal{P}_N}})
+    \psi({\mathbf{r}_{\mathcal{P}_1}, \mathbf{r}_{\mathcal{P}_2}, \dots,
+          \mathbf{r}_{\mathcal{P}_N}})
     =
-    \psi(\vec{r}_{1}, \vec{r}_{2}, \dots, \vec{r}_{N}),
+    \psi(\mathbf{r}_{1}, \mathbf{r}_{2}, \dots, \mathbf{r}_{N}),
 \end{equation*}
 where $\lbrace \mathcal{P}_{1}, \mathcal{P}_{2}, \dots, \mathcal{P}_{N} \rbrace$
 represents any permutation, $\mathcal{P}$, of the set $\lbrace 1, 2, \dots, N
@@ -238,12 +243,12 @@ the set of normalised single-particle wave functions $\lbrace \ket{\lambda}
 \rbrace$, and we have one boson in state $\ket{\lambda_1}$ and another in state
 $\ket{\lambda_2}$, then we can write the two-particle wave function as
 \begin{equation}
-    \psi(\vec{r}_{1},\vec{r}_{2})
+    \psi(\mathbf{r}_{1},\mathbf{r}_{2})
     =
     \frac{1}{\sqrt{2}}
     \big (
-        \braket{\vec{r}_{1} | \lambda_1} \braket{\vec{r}_{2} | \lambda_2} +
-        \braket{\vec{r}_{1} | \lambda_2} \braket{\vec{r}_{2} | \lambda_1}
+        \braket{\mathbf{r}_{1} | \lambda_1} \braket{\mathbf{r}_{2} | \lambda_2} +
+        \braket{\mathbf{r}_{1} | \lambda_2} \braket{\mathbf{r}_{2} | \lambda_1}
     \big ),
 \end{equation}
 or in Dirac bra-ket notation, the two-body states would be represented as
@@ -505,18 +510,30 @@ the absence of this external potential, the Hamiltonian in one dimension reduces
 to
 \begin{equation}
 \begin{align*}
-\hat{H}_{1D}=&J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.\ ) +\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i}.
+\hat{H}_{1D}
+=
+&J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.\ ) 
++
+\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}
+\hat{a}_{i}\hat{a}_{i}.
 \end{align*}
 \end{equation}
 
-This project aims to explore the dynamics of both this one dimensional system and the two dimensional version where we couple multiple chains of lattice sites together. The
-system Hamiltonian in two dimensions is
+This project aims to explore the dynamics of both this one dimensional system 
+and the two dimensional version where we couple multiple chains of lattice 
+sites together. The system Hamiltonian in two dimensions is
 
 \begin{equation}
-\hat{H}_{2D}=(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j} + J'\sum_{i,j}\hat{a}^\dagger_{i,j}\hat{a}_{i+1,j})+h.c. +\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}\hat{a}_{i}\hat{a}_{i},
+\hat{H}_{2D}=(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j} 
++ 
+J'\sum_{i,j}\hat{a}^\dagger_{i,j}\hat{a}_{i+1,j})+h.c. 
++
+\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}
+\hat{a}_{i}\hat{a}_{i},
 \end{equation}
-where the $i$ index denotes which chain is being referred to and the $j$ index denotes how far along the chain a site is. $J'$ is another hopping parameter; it characterises the
-overlap between adjacent Wannier states \todo{factcheck: should this be Bloch states? or neither?}on different chains.
+where the $i$ index denotes which chain is being referred to and the $j$ index 
+denotes how far along the chain a site is. $J'$ is another hopping parameter,
+in this case characterising the hopping between sites on different chains.
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=8cm]{lattice_pic}
@@ -535,145 +552,218 @@ thermal behaviour.
 \section{Thermalisation}
  \subsection{Overview}
 
-Thermalisation refers to a relaxation of a system to states where the values of macroscopic quantities are stationary, universal with respect to
-widely differing initial conditions, and predictable using statistical mechanics \cite{Rigol2008}. We observe thermalisation in a wide variety of classical systems, and there
-are strong theoretical reasons for anticipating this thermalisation. However, many of these reasons don't apply when considering quantum systems. The question of
-which, if any, quantum systems exhibit thermalisation and how the thermal states can be characterised is of considerable theoretical and experimental interest.
+Thermalisation refers to a relaxation of a system to states where the values 
+of macroscopic quantities are stationary, universal with respect to widely 
+differing initial conditions, and predictable using statistical mechanics 
+\cite{Rigol2008}. We observe thermalisation in a wide variety of classical 
+systems, and there are strong theoretical reasons for anticipating this 
+thermalisation. However, many of these reasons don't apply when considering 
+quantum systems. The question of which, if any, quantum systems exhibit 
+thermalisation and how the thermal states can be characterised is of 
+considerable theoretical and experimental interest.
 
  \subsection{Classical systems}
-To see why thermalisation is common and even expected in many classical systems, we need to understand the property of ergodicity and the impact of chaotic dynamics on it.
-If you start an isolated system in a particular configuration corresponding to a particular point in phase space, it can move through that phase space along the constant-energy
-manifold. A system is ergodic if the long-term time average of any single phase space trajectory is equivalent to an ensemble average. \todo{get Kinoshita's definition of ergodicity}
-\todo{Do I need to elaborate on this further?}Classical systems \todo{often? usually? sometimes?} exhibit chaotic dynamics, which are strongly nonlinear and allow the system to quickly
-and essentially uniformly explore the constant-energy manifold irrespective of the initial conditions. This promotes ergodicity, which is implicit in the fundamental assumption of
-statistical mechanics - all accessible microstates are equiprobable. \todo{Need to explicitly link ergodicity and thermalisation, otherwise this is just free-floating and its
-relevance is not obvious. What is this link?} This is what leads us to expect our classical systems to thermalise.
+To see why thermalisation is common and even expected in many classical 
+systems, we need to understand the property of ergodicity and the impact of 
+chaotic dynamics on it. If you start an isolated system in a particular 
+configuration corresponding to a particular point in phase space, it can move 
+through that phase space along the constant-energy manifold. A system is 
+ergodic if the long-term time average of any single phase space trajectory 
+is equivalent to an ensemble average. \todo{get Kinoshita's definition 
+of ergodicity} \todo{Do I need to elaborate on this further?}Classical systems 
+exhibit chaotic dynamics, which are strongly nonlinear and allow the system to 
+quickly and essentially uniformly explore the constant-energy manifold 
+irrespective of the initial conditions. This promotes ergodicity, which is 
+implicit in the fundamental assumption of statistical mechanics - all 
+accessible microstates are equiprobable. \todo{Need to explicitly link 
+ergodicity and thermalisation, otherwise this is just free-floating and its
+relevance is not obvious. What is this link?} This is what leads us to expect 
+our classical systems to thermalise.
 
  \subsection{Quantum systems}
-Quantum systems do not \todo{usually?} exhibit dynamic chaos \todo{see square brackets} [Rigol's line is ``dynamical chaos itself cannot occur in an isolated quantum system, in which the time
-evolution is linear and the spectrum is discrete'' How does that argument work?], so it is not obvious how one would justify applying the assumption of ergodicity in these systems. Because of
-this, it is unclear if, or when, we should expect quantum systems to thermalise, or what statistical ensemble we could use to characterise the relaxed states.
+Quantum systems do not \todo{usually?} exhibit dynamic chaos \todo{see square 
+brackets} [Rigol's line is ``dynamical chaos itself cannot occur in an isolated 
+quantum system, in which the time evolution is linear and the spectrum is 
+discrete'' How does that argument work?], so it is not obvious how one would 
+justify applying the assumption of ergodicity in these systems. Because of
+this, it is unclear if, or when, we should expect quantum systems to 
+thermalise, or what statistical ensemble we could use to characterise the 
+relaxed states.
 
 
 \section{Integrable systems}
-There are a number of classical, isolated systems that do not display thermalisation. The main difference between these systems and those which approach thermal equilibrium is the extent to which
-they are constrained relative to the number of degrees of freedom that they posess. This observation is formalised in the notion of integrability. A system is said to be integrable if it has \todo{half? according to
-handout this seems to be the case} as
-many independent integrals of motion (which are conserved) as it has degrees of freedom. An integral of motion for a Hamiltonian is a smooth function $I$ defined on an open subset of the
-phase space such that $\dot{I}=0$ on solutions. \todo{reference handout Danny gave me, I can't see anywhere where its from}So $I(x(t))=\text{constant}$, where $x(t)$ is the solution of the equations of motion
-for a particular initial condition. If $x_1(t)$ and $x_2(t)$ are solutions for different initial conditions, then in most cases $I(x_1(t))\ne I(x_2(t))$.
-Integrability is a useful property, though it is quite rare.
+There are a number of classical, isolated systems that do not display 
+thermalisation. The main difference between these systems and those which 
+approach thermal equilibrium is the extent to which they are constrained 
+relative to the number of degrees of freedom that they posess. This observation 
+is formalised in the notion of integrability. A system is said to be integrable 
+if it has \todo{half? according to handout this seems to be the case} as
+many independent integrals of motion (which are conserved) as it has degrees 
+of freedom. An integral of motion for a Hamiltonian is a smooth function 
+$I$ defined on an open subset of the phase space such that $\dot{I}=0$ on 
+solutions. \todo{reference handout Danny gave me, I can't see anywhere where 
+its from}So $I(x(t))=\text{constant}$, where $x(t)$ is the solution of the 
+equations of motion for a particular initial condition. If $x_1(t)$ and 
+$x_2(t)$ are solutions for different initial conditions, then in most cases 
+$I(x_1(t))\ne I(x_2(t))$. Integrability is a useful property, though it is 
+quite rare.
 
-Theoretically, we can find exact solutions for the equations of motion for a system if it is integrable, otherwise we cannot.
-In classical mechanics, the idea of integrability is well-understood and neatly defined. The situation in quantum mechanics is much more challenging. One reason for this is that
-the Heisenberg uncertainty principle prevents us from applying the idea of points in phase space with particular trajectories.
+Theoretically, we can find exact solutions for the equations of motion for a 
+system if it is integrable, otherwise we cannot. In classical mechanics, the 
+idea of integrability is well-understood and neatly defined. The situation in 
+quantum mechanics is much more challenging. One reason for this is that
+the Heisenberg uncertainty principle prevents us from applying the idea of 
+points in phase space with particular trajectories. With respect to the systems 
+that we are dealing with, it has been shown that a one-dimensional lattice 
+chain of non-interacting bosons is an integrable system \cite{Rigol2007}.
 
-With respect to the systems that we are dealing with, it has been shown that a one-dimensional lattice chain of non-interacting bosons is an integrable system \cite{Rigol2007}.
 
 
-
-\todo{see square brackets} [Maybe fall back on ``All 1D systems with conserved energy are integrable'' for U!=0, referencing page 6 of the handout Danny gave me. I don't really know where
-to go for 2D at this point.]
+\todo{see square brackets} [Maybe fall back on ``All 1D systems with conserved 
+energy are integrable'' for U!=0, referencing page 6 of the handout Danny gave 
+me. I don't really know where to go for 2D at this point.]
 
 \newpage
 \section{Experimental studies}
 \subsection{A quantum Newton's cradle}
-Kinoshita et. al. investigated \cite{Kinoshita2006} the thermalisation of an out-of-equilibrium 1D Bose gas, which is a  nearly-integrable system. They started with
-several thousand arrays of one-dimensional Bose gases, each containing from $40$ to $250$ $^{87}$Rb atoms. The atoms were trapped by combining a blue-detuned \todo{check I understand why this one is
-blue-detuned and the other red-detuned} two dimensional optical lattice, which provides tight transverse confinement, with a red-detuned crossed dipole trap \todo{what is a crossed dipole trap?}
-providing weak axial trapping. In order to create the non-equilibrium momentum distributions, they then pulsed on a $3.2$ THz detuned 1D lattice, which depletesd the zero momentum state
-and put the atoms in a superposition momentum state of $\pm2\hbar k$. The two parts of the wave function then oscillated out of phase with each other, colliding with each other twice every full cycle
-and either reflecting off each other elastically or transmitting straight through like a ``ghostly'' Newton's cradle (see diagram below)
+Kinoshita et. al. investigated \cite{Kinoshita2006} the thermalisation of an 
+out-of-equilibrium 1D Bose gas, which is a  nearly-integrable system. They 
+started with several thousand arrays of one-dimensional Bose gases, each 
+containing from $40$ to $250$ $^{87}$Rb atoms. The atoms were trapped by 
+combining a blue-detuned \todo{check I understand why this one is blue-detuned 
+and the other red-detuned} two dimensional optical lattice, which provides 
+tight transverse confinement, with a red-detuned crossed dipole trap 
+\todo{what is a crossed dipole trap?}providing weak axial trapping. In order 
+to create the non-equilibrium momentum distributions, they then pulsed on a 
+$3.2$ THz detuned 1D lattice, which depletesd the zero momentum state
+and put the atoms in a superposition momentum state of $\pm2\hbar k$. The two 
+parts of the wave function then oscillated out of phase with each other, 
+colliding with each other twice every full cycle and either reflecting off 
+each other elastically or transmitting straight through like a ``ghostly'' 
+Newton's cradle (see diagram below)
 
 \begin{figure}[H]
  \begin{center}
  \includegraphics[width=8cm]{quantum_newtons_cradle}
  \end{center}
  \caption{Sketches at various times of two out of equilibrium
-clouds of atoms in a 1D anharmonic trap. At time $t=0$ the atoms are put into a momentum superposition with $2\hbar k$ to the right and $2\hbar k$ to the left. The two parts of the
-wave function oscillate out of phase with each other with a period $\tau$. Each atom collides with the opposite momentum group
-twice every full cycle, for instance, at $t=0$ and $t=\frac{\tau}{2}$. Figure is from reference \cite{Kinoshita2006}.}
+clouds of atoms in a 1D anharmonic trap. At time $t=0$ the atoms are put into 
+a momentum superposition with $2\hbar k$ to the right and $2\hbar k$ to the 
+left. The two parts of the wave function oscillate out of phase with each other 
+with a period $\tau$. Each atom collides with the opposite momentum group
+twice every full cycle, for instance, at $t=0$ and $t=\frac{\tau}{2}$. Figure 
+is from reference \cite{Kinoshita2006}.}
  \end{figure}
 
-The weak anharmonicity of the trap caused the atoms to gradually dephase. However, the momentum distribution after dephasing was not gaussian (as one would expect for a thermalised state),
-and this momentum did not noticeably tend toward this equilibrium distribution, even after thousands of collisions.
+The weak anharmonicity of the trap caused the atoms to gradually dephase. 
+However, the momentum distribution after dephasing was not gaussian (as one 
+would expect for a thermalised state), and this momentum did not noticeably 
+tend toward this equilibrium distribution, even after thousands of collisions.
 
 \begin{figure}[H]
  \begin{center}
  \includegraphics[width=1.0\textwidth]{dephased_momentum_distribution}
  \end{center}
- \caption{\label{dephased_momentum_distribution}The blue and green curves in the above figure are projections from models that take into account loss and heating. The red line is the actual distribution observed. The dashed line
- is a gaussian with the same number of atoms and r.m.s. width as the actual distribution. }
+ \label{dephased_momentum_distribution}
+ \caption{The blue and green curves in the above figure are projections from 
+ models that take into account loss and heating. The red line is the actual 
+ distribution observed. The dashed line is a gaussian with the same number of 
+ atoms and r.m.s. width as the actual distribution. }
  \end{figure}
 
 
-To the extent that the actual distribution in figure \ref{dephased_momentum_distribution} conforms to the projected distribution rather than to the gaussian, the atoms have not
-thermalized.
+To the extent that the actual distribution in figure 
+\ref{dephased_momentum_distribution} conforms to the projected distribution 
+rather than to the gaussian, the atoms have not thermalized.
 
-These observations extended from the Tonks--Girardeau regime, which has very strong repulsive interactions between bosons so only pairwise collisions can occur, to the intermediate
-coupling regime, where there can be three- (or more) body collisions.
+These observations extended from the Tonks--Girardeau regime, which has very 
+strong repulsive interactions between bosons so only pairwise collisions can 
+occur, to the intermediate coupling regime, where there can be three- 
+(or more) body collisions.
 \newpage
 \subsection{Relaxation in a Completely Integrable Many-Body Quantum System}
 
-Inspired by the ``A Quantum Newton's Cradle'' study, investigations were made into a completely integrable many-body quantum system. In this experiment, hard-core bosons \todo{find a good
-description of what makes bosons "hard core``} on a 1D lattice were used. The authors, Rigol et. al \cite{Rigol2007}, started with a one dimensional bosonic Hamiltonian with no interactions
-and periodic boundary conditions for a lattice with $L$ lattice sites.
+Inspired by the ``A Quantum Newton's Cradle'' study, investigations were made 
+into a completely integrable many-body quantum system. In this experiment, 
+hard-core bosons on a 1D lattice were used. The authors, Rigol et. al 
+\cite{Rigol2007}, started with a one dimensional bosonic Hamiltonian with no 
+interactions and periodic boundary conditions for a lattice with $L$ lattice 
+sites.
 \begin{equation}
  \hat{H}=-J\sum_{i=1}^{L} (\hat{a}_{i}^{\dagger}\hat{a}_{i+1}+h.c.)
 \end{equation}
 
-They then mapped their bosonic system to a free ferminonic one using a Jordan-Wigner transformation:
+They then mapped their bosonic system to a free ferminonic one using a 
+Jordan-Wigner transformation:
 \begin{equation}
  \hat{H}=-J\sum_{i=1}^{L} (\hat{c}_{i}^{\dagger}\hat{c}_{i+1}+h.c.)
 \end{equation}
-Here $\hat{c}_{i}^{\dagger}$ and $\hat{c}_{i+1}$ are fermionic creation and annihilation operators.
-The integrals of motion were the fermionic quasi-momentum distribution operators, and the system thus must be integrable because
-there are as many of these operators as they had lattice sites. They have numerically investigated the time evolution of this system and found it to undergo relaxation to an equilibrium
-state. The properties of the state that the system relaxed to were not given by the grand-canonical ensemble, but rather by a generalised Gibbs ensemble, in which the partition function
-is extended to include all of the integrals of motion.
+Here $\hat{c}_{i}^{\dagger}$ and $\hat{c}_{i+1}$ are fermionic creation and 
+annihilation operators. The integrals of motion were the fermionic 
+quasi-momentum distribution operators, and the system thus must be 
+integrable because there are as many of these operators as they had lattice 
+sites. They have numerically investigated the time evolution of this system and 
+found it to undergo relaxation to an equilibrium state. The properties of the 
+state that the system relaxed to were not given by the grand-canonical 
+ensemble, but rather by a generalised Gibbs ensemble, in which the partition 
+function is extended to include all of the integrals of motion.
 
 
 \begin{figure}[H]
  \begin{center}
  \includegraphics[width=8cm]{grand_canonical_vs_GGE}
  \end{center}
- \caption{Equilibrium (quasi-)momentum distribution after relaxation in comparison with the predictions of the grand-canonical and of
-the fully constrained thermodynamical ensembles. The prediction  of the fully constrained  ensemble  is virtually  indistinct
-from the results of the dynamical simulation. Image taken from \cite{Rigol2007}.}
+ \caption{Equilibrium (quasi-)momentum distribution after relaxation in 
+ comparison with the predictions of the grand-canonical and of
+the fully constrained thermodynamical ensembles. The prediction  of the fully 
+constrained  ensemble  is virtually  indistinct from the results of the 
+dynamical simulation. Image taken from \cite{Rigol2007}.}
  \end{figure}
-\todo{the above caption (except the first sentence) is currently copy-pasted from the paper. I'm not sure how to reword those sentences any other way}
+\todo{the above caption (except the first sentence) is currently copy-pasted 
+from the paper. I'm not sure how to reword those sentences any other way}
 
 
-They further showed that their generalized equilibrium state carries more memory of the initial conditions than the usual thermodynamic one.
+They further showed that their generalized equilibrium state carries more 
+memory of the initial conditions than the usual thermodynamic one.
 
 \begin{figure}[H]
  \begin{center}
  \includegraphics[width=8cm]{after_relaxation_rigol}
  \end{center}
- \caption{The actual quasi-momentum distribution after relaxation vs predictions of the generalised Gibbs ensemble and the grand canonical ensemble. Image taken from \cite{Rigol2007}.}
+ \caption{The actual quasi-momentum distribution after relaxation vs 
+ predictions of the generalised Gibbs ensemble and the grand canonical 
+ ensemble. Image taken from \cite{Rigol2007}.}
  \end{figure}
 
-The momentum peaks remain clear and distinct during the whole duration  of  propagation; $t_{\text{fin}}=3000\hbar/J$.
+The momentum peaks remain clear and distinct during the whole duration  of  
+propagation; $t_{\text{fin}}=3000\hbar/J$.
 
 \subsection{Measuring entanglement entropy in a quantum many-body system}
 - I still don't see how this is supposed to relate to what I'm doing.
-I can write down the definition of the nth order R\'enyi entropies, and describe what purity is.
-I imagine that I could construct a system that is a 2 by N lattice and split it into two one-dimensional lattices of length N, then evaluate their purity (which must be zero for one of the
-chains and 1 for the other if I'm starting with all bosons on one site, right?), then do some second order renyi entropy calculation based on that. Then I could evolve the system in time
-and note that this entropy changes. How does that relate the thermalisation? What can I find out from this approach that I don't already get from just looking at expectation values of number
-operators?
+I can write down the definition of the nth order R\'enyi entropies, and 
+describe what purity is. I imagine that I could construct a system that is a 
+2 by N lattice and split it into two one-dimensional lattices of length N,
+then evaluate their purity (which must be zero for one of the chains and 1 for 
+the other if I'm starting with all bosons on one site, right?), then do some 
+second order renyi entropy calculation based on that. Then I could evolve the 
+system in time and note that this entropy changes. How does that relate to 
+thermalisation? What can I find out from this approach that I don't already 
+get from just looking at expectation values of number operators?
 
 \newpage
 
 \section{System size and analyticity}
 
-Whilst the main focus of this project is on smaller lattices with few particles, it is of interest to investigate larger system sizes (necessarily by approximate methods) to see how much
-of the behaviour of the small systems is preserved in the larger ones.
+Whilst the main focus of this project is on smaller lattices with few 
+particles, it is of interest to investigate larger system sizes (necessarily 
+by approximate methods) to see how much of the behaviour of the small systems 
+is preserved in the larger ones.
 
 \subsection{Small systems}
 
-We can decompose any time evolved state $\ket{\psi(t)}$ of our system in terms of its state at $t=0$, $\ket{\psi(0)}$, and the energy eigenvectors $\ket{E_n}$ (see section \ref{revival}
-for details):
+We can decompose any time evolved state $\ket{\psi(t)}$ of our system in terms 
+of its state at $t=0$, $\ket{\psi(0)}$, and the energy eigenvectors $\ket{E_n}$ 
+(see section \ref{revival} for details):
 \begin{equation}
   \ket{\psi(t)}=\sum_je^{iE_{j}t}\ket{E_j}\braket{E_j|\psi(0)}.
 \end{equation}
@@ -692,27 +782,113 @@ sites and particles in the system increases, the time required to apply this
 method increases dramatically. This is because the dimensionality $\mathcal{D}$
 of the system grows according to
 \begin{equation}
- \mathcal{D}=\frac{\left(N+P-1\right)!}{P!\left(N-1\right)!}, \label{time_evolution}
+ \mathcal{D}=\frac{\left(N+P-1\right)!}{P!\left(N-1\right)!},
+ \label{time_evolution}
 \end{equation}
-where $N$ is the number of lattice sites and $P$ is the number of particles on the lattice. Unsurprisingly, this is the same as the number of possible pure number states (since these form
-an orthonormal basis), and so the formula deduced is just the formula for the number of ways to arrange $P$ objects into $N$ containers that is familiar from elementary statistical mechanics.
-The Hamiltonian is a $\mathcal{D}\times\mathcal{D}$ square matrix, and diagonalising it and then evolving the system according to equation (\ref{time_evolution}) quickly becomes impractical
-for systems with large numbers of particles and lattice sites. For these systems, a different approach to time evolution is required. We have chosen to use a Gross-Pitaevskii equation to reduce
-the dimensionality of the system. Doing this forces us to take an iterative approach to time evolution rather than an analytic one. A Runge-Kutta-Feldberg algorithm \cite{Burden2005} was written for this purpose.
+where $N$ is the number of lattice sites and $P$ is the number of particles on 
+the lattice. Unsurprisingly, this is the same as the number of possible pure 
+number states (since these form an orthonormal basis), and so the formula 
+deduced is just the formula for the number of ways to arrange $P$ objects into 
+$N$ containers that is familiar from elementary statistical mechanics.
+The Hamiltonian is a $\mathcal{D}\times\mathcal{D}$ square matrix, and 
+diagonalising it and then evolving the system according to equation 
+(\ref{time_evolution}) quickly becomes impractical for systems with large 
+numbers of particles and lattice sites. We can use another familiar tool from
+elementary statistical mechanics - Stirling's approximation - to clarify the
+rate of growth of the dimensionality of the system. Stirling's 
+approximation \cite{Schroeder2007} is
+\begin{equation}
+ N!\approx N^N e^{-N}\sqrt{2\pi N}.
+\end{equation}
+All of the following assumptions (including Stirling's approximation) are 
+valid only for large $N$.
+\begin{equation*}
+ \mathcal{D}
+ =
+ \frac{\left(N+P-1\right)!}{P!\left(N-1\right)!}
+ \approx
+ \frac{\left(N+P\right)!}{P!N!}
+\end{equation*}
+
+Now applying Stirling's approximation to each factorial:
+\begin{equation*}
+ \mathcal{D} 
+ \approx
+ \frac{\left(P+N\right)^{P+N}e^{-\left(P+N\right)}\sqrt{2\pi(P+N)}}
+ {P^P e^{-P} N^N e^{-N} 2\pi \sqrt{PN}}
+ =
+ \frac{\left(P+N\right)^{P+N}\sqrt{2\pi(P+N)}}
+ {P^P N^N 2\pi \sqrt{PN}}.
+\end{equation*}
+The exponentials are much more significant than the multiplicative factors,
+so we have
+\begin{equation*}
+ \mathcal{D} 
+ \approx
+ \frac{\left(P+N\right)^{P+N}}
+ {P^P N^N}.
+\end{equation*}
+
+To get a more concrete idea of how quickly the dimensionality of a typical 
+system would grow, consider the case where we have roughly one boson per
+lattice site ($N\approx P$). In this case,
+\begin{equation*}
+ \mathcal{D}
+ \approx
+ \frac{(2P)^{2P}}{P^P P^P}
+ =
+ 2^{2P}=4^P.
+\end{equation*}
+This means that when we increase the size of the system by one lattice site 
+with one boson on it, the dimensionality roughly quadruples. In light of
+this exponential increase in dimensionality for large systems, a different 
+approach to time evolution is required. We have chosen to use a 
+Gross-Pitaevskii equation to reduce the dimensionality of the system. Doing 
+this forces us to take an iterative approach to time evolution rather than an 
+analytic one. A Runge-Kutta-Feldberg algorithm \cite{Burden2005} was written 
+for this purpose.
 
 \subsection{The Gross-Pitaevskii Equation (GPE)}
-The GPE is a classical mean-field equation for describing Bose-Einstein condensates (BECs) in the zero-temperature limit. In the smaller systems that we consider with the analytic method, it is rare
-for us to have more than two particles on a lattice, and hence the concept of ``macroscopic occupation of the ground state'' that is integral to Bose-Einstein condensation has little importance here.
-The validity of some of the assumptions that we make in this method will rely on there being a large number of particles. \todo{keep going here with masters thesis info, what's another good source?}
-When second quantising our Hamiltonian earlier, in equation \label{field_operators_wannier} we decomposed the field operators into linear combinations of single-particle Wannier position states.
-However, it is possible to decompose the field operators into any complete single-particle basis. If we chose the single particle energy basis $\{\phi_i\}$, then we get
+The GPE is a classical mean-field equation for describing Bose-Einstein 
+condensates (BECs) in the zero-temperature limit. In the smaller systems that 
+we consider with the analytic method, it is rare for us to have more than two 
+particles on a lattice, and hence the concept of ``macroscopic occupation of 
+the ground state'' that is integral to Bose-Einstein condensation has little 
+importance here. 
+
+The validity of some of the assumptions that we make in this 
+method will rely on there being a large number of particles. When second 
+quantising our Hamiltonian earlier, in equation (\ref{field_operators_wannier}) 
+we decomposed the field operators into linear combinations of single-particle 
+Wannier position states. However, it is possible to decompose the field 
+operators into any complete single-particle basis. If we chose the single 
+particle energy basis $\{\phi_i\}$, then we get
 \begin{equation}
- \hat{\Psi}(\vec{r})=\sum_{i=0}^\infty \hat{a}_i\phi_{i}(\vec{r}) = \hat{a}_0\phi_{0}(\vec{r}) + \sum_{i=1}^\infty \hat{a}_i\phi_{i}(\vec{r}).
+ \hat{\Psi}(\mathbf{r})
+ =
+ \sum_{i=0}^\infty \hat{a}_i\phi_{i}(\mathbf{r}) 
+ = 
+ \hat{a}_0\phi_{0}(\mathbf{r}) 
+ + 
+ \sum_{i=1}^\infty \hat{a}_i\phi_{i}(\mathbf{r}).
 \end{equation}
-Since the GPE is a tool for investigating near-zero temperature BECs (very low energy systems), we now assume that the occupancy of energy modes other than the ground modes is negligible, i.e.,
+Since the GPE is a tool for investigating near-zero temperature BECs (very low 
+energy systems), we now assume that the occupancy of energy modes other than 
+the ground modes is negligible, i.e.,
 \begin{equation}
- \hat{\Psi}(\vec{r})=\hat{a}_0\phi_{0}(\vec{r}).
+ \hat{\Psi}(\mathbf{r})=\hat{a}_0\phi_{0}(\mathbf{r}).
 \end{equation}
+Next we note that when there are a large number of particles in the ground
+state $\ket{N_0}$
+
+
+
+
+
+
+
+
+
 
 
 
@@ -720,23 +896,30 @@ Since the GPE is a tool for investigating near-zero temperature BECs (very low e
 
 \section{Revival \label{revival}}
 
-In a subset of the integrable systems considered, we observed regular instances in which the system would return to the state in which it was initially prepared (it ``revives'').
-To see why we might expect to see revival in some cases, consider the initial state of the system $\ket{\psi(0)}$, which evolves in time according to
+In a subset of the integrable systems considered, we observed regular instances 
+in which the system would return to the state in which it was initially 
+prepared (it ``revives''). To see why we might expect to see revival in 
+some cases, consider the initial state of the system $\ket{\psi(0)}$, which 
+evolves in time according to
 \begin{equation}
  \ket{\psi(t)}=e^{i\hat{H}t}\ket{\psi(0)}.
 \end{equation}
-Now noting that we can use the completeness relation for the energy eigenstates to expand the initial state in the energy basis,
-and incorporating the $\hbar^{-1}$ into the time scale,
+Now noting that we can use the completeness relation for the energy eigenstates 
+to expand the initial state in the energy basis, and incorporating the 
+$\hbar^{-1}$ into the time scale,
 \begin{align}
- \ket{\psi(t)} =&       e^{i\hat{H}t}\sum_j\ket{E_j}\braket{E_j|\psi(0)}  \nonumber \\
+ \ket{\psi(t)} =&e^{i\hat{H}t}\sum_j\ket{E_j}\braket{E_j|\psi(0)}  \nonumber \\
                =&\sum_je^{i\hat{H}t}\ket{E_j}\braket{E_j|\psi(0)} \nonumber \\
                 =&\sum_je^{iE_{j}t}\ket{E_j}\braket{E_j|\psi(0)}  \nonumber \\
                 =&\sum_j c_{j}e^{iE_{j}t}\ket{E_j}
 \end{align}
 
-From here it can be seen that the only time dependence appears in the complex exponentials, each of which is $2\pi$-periodic. If we can find some common time $t_r$ such
-that $E_{j} t_{r}=2 \pi k_{j}$, where $k_{j} \in \mathbb{Z} $ for all $j$, we will recover the initial state exactly, i.e., $\ket{\psi(t_{r})}=\ket{\psi(0)}$.
-The next section describes the conditions necessary for the existence of the revival time.\\
+From here it can be seen that the only time dependence appears in the complex 
+exponentials, each of which is $2\pi$-periodic. If we can find some common 
+time $t_r$ such that $E_{j} t_{r}=2 \pi k_{j}$, where $k_{j} \in \mathbb{Z} $ 
+for all $j$, we will recover the initial state exactly, i.e., 
+$\ket{\psi(t_{r})}=\ket{\psi(0)}$. The next section describes the conditions 
+necessary for the existence of the revival time.\\
 
 
 \subsection{Exact revival}
@@ -749,9 +932,6 @@ rational when divided by the same irrational number.
     rational when divided by a common real number.
 \end{definition}
 
-
-
-
 For example, the set of
 hypothetical eigenvalues $\lbrace 0, \sqrt{2}, 2 \sqrt{2}, \frac{3 \sqrt{2}}{10}
 \rbrace$ is mutually rational, whereas $\lbrace 0, \sqrt{2}, \sqrt{3}\rbrace$ is
@@ -763,7 +943,7 @@ multiple of ${q_j}$.
 We are yet to find any systems with nonzero interparticle interaction that have
 mutually rational eigenvalues. In one dimension, the only systems that we have
 found that meet the criterion of mutually irrational eigenvalues are those with
-fewer than 4 lattice sites. In two dimensions, \todo{do a comprehensive batch of
+fewer than $4$ lattice sites. In two dimensions, \todo{do a comprehensive batch of
 simulations to determine what is and isn't ok in 2D}.
 
 To demonstrate this exact revival, consider a one dimensional lattice with three
@@ -793,26 +973,26 @@ return to the initial state at times that are multiples of $2\pi$.
         plot "./Data/20170912T164043_evolution_n.dat" u 1:4 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating revival for a system with $3$ lattice sites and a single boson.}
+     \caption{Demonstrating revival for a system with $3$ lattice sites and a 
+     single boson.}
 \end{figure}
 
 The reason that there appear to be several revivals that our method ``misses''
-is that states with different phases in the coefficients of the eigenvectors can
-also produce $\langle n_{1} \rangle = 1$, whereas the revival time that is
-calculated in our method corresponds to exact revival of the initial wave
-function and not $\langle n_{1} \rangle \sim \norm{\psi(t)}^{2}$.
+is that states with different phases in the coefficients of the eigenvectors 
+can also produce $\langle n_{1} \rangle = 1$, whereas the revival time that is
+calculated in our method corresponds to exact revival of the initial 
+wavefunction and not $\langle n_{1} \rangle \sim \norm{\psi(t)}^{2}$.
 
 
 \subsection{Approximate revival}
 
-The range of systems for which the spectrum \todo{is it inaccurate to describe
-the spectrum (as opposed to the eigenvalues) as mutually irrational?} is
-mutually rational is a small one. All systems which have nonzero interparticle
-interactions have mutually irrational eigenvalues. One of the most interesting
-results so far is that even in the one dimensional single particle case, if
-there are more than three lattice sites, the spectrum will be irrational. We can
-demonstrate this by considering a single chain of five sites with one boson. The
-Hamiltonian for this system is
+The range of systems for which the eigenvalues are mutually rational is a small 
+one. All systems which have nonzero interparticle interactions have mutually 
+irrational eigenvalues. One of the most interesting results so far is that 
+even in the one dimensional single particle case, if there are more than 
+three lattice sites, the eigenvalues will be irrational. We can demonstrate this 
+by considering a single chain of five sites with one boson. The Hamiltonian for 
+this system is
 \begin{equation}
     \hat{H}_{5}
     =
@@ -826,16 +1006,29 @@ Hamiltonian for this system is
 \end{equation}
 The eigenvalues of this system are $\lbrace -\sqrt{3}J, -J, 0, J, \sqrt{3}J
 \rbrace$. These are clearly not mutually rational, so we cannot find an exact
-revival time for this system, despite the fact that it is fully integrable.
-Running a simulation of this system where we start a single boson off on the
-first site, we find that the probability of finding the boson on the first site
-never quite reaches 1 again.
-\todo{run this again with the xaxis labelled 't/J'}
+revival time for this system, despite the fact that it is fully 
+integrable \cite{Rigol2007}. Note that the eigenvalues of a system with $4$ 
+lattice sites are also mutually irrational (they are 
+$\frac{J}{2}\lbrace -1-\sqrt{5}, 1+\sqrt{5},1-\sqrt{5},-1+\sqrt{5}\rbrace$)
+but those for a system of $5$ lattice sites are more convenient to work with.
+
+Running a simulation of this system of $5$ lattice sites where we 
+start a single boson off on the first site, we find that the probability of 
+finding the boson on the first site never quite reaches unity again.
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{5_by_1_T1e4_U0}
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/5by1_T1e4.dat" u 1:6 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating absence of exact revival for a system with $5$ 
+     lattice sites and a single boson.}
 \end{figure}
-\todo{make this full text width if can without adding extra page}
+
 Judging the figure above by eye, it may appear that we have exact revival, but
 this is not actually the case. If we look at how long it takes for the system to
 get within $\epsilon$ of its initial state (i.e. $\norm{\ket{\psi(t)} -
@@ -850,10 +1043,10 @@ While we see that the system does appear to get arbitrarily close to revival,
 but it can take arbitrarily long to do so. This result can be explained in terms
 of the Poincar\'e recurrence theorem.
 
-
 \section{The Poincar\'e Recurrence Theorem}
 
-In 1890, Henri Poincar\'e proved the following theorem for classical mechanics:
+In 1890, Henri Poincar\'e proved \todo{how to cite him?} the following theorem 
+for classical mechanics:
 \begin{quote}
     Any phase-space configuration $(q, p)$ of a system enclosed in a finite
     volume will be repeated as accurately as one wishes after a finite (be it
@@ -872,30 +1065,52 @@ Loinger \cite{Bocchieri1957}, where they gave a slightly different form:
 
 \subsection{Proof}
 
-The proof presented by Bocchieri and Loinger shows the theorem to be true for an infinite-dimensional system. In this dissertation, we investigate only finite-dimensional systems, and a simpler version of
-the proof can be constructed. We will first show that there exists a time $T$ at which $||\ket{\psi(T)}-\ket{\psi(t_0)}||^2<2\epsilon'$ for any $\epsilon'>0$ and then extend this to $||\ket{\psi(T)}-\ket{\psi(t_0)}||<\epsilon$. Note that in
-the following we will introduce the notation $\tau=T-t_0$ and $\alpha^2(T)=||\ket{\psi(T)}-\ket{\psi(t_0)}||^2$.
+The proof presented by Bocchieri and Loinger shows the theorem to be true for 
+an infinite-dimensional system. In this dissertation, we investigate only 
+finite-dimensional systems, and a simpler version of the proof can be 
+constructed. We will first show that there exists a time $T$ at which 
+$||\ket{\psi(T)}-\ket{\psi(t_0)}||^2<2\epsilon'$ for any $\epsilon'>0$ and then 
+extend this to $||\ket{\psi(T)}-\ket{\psi(t_0)}||<\epsilon$. Note that in the 
+following we will introduce the notation $\tau=T-t_0$ and 
+$\alpha^2(T)=||\ket{\psi(T)}-\ket{\psi(t_0)}||^2$.
 
 \begin{align*}
  \alpha^2(T)
- &= \left(\bra {\psi(T)}-\bra {\psi(t_0)}\right)\left(\ket{\psi(T)}-\ket{\psi(t_0)}\right)
+ &= \left(\bra {\psi(T)}-\bra {\psi(t_0)}\right)
+    \left(\ket{\psi(T)}-\ket{\psi(t_0)}\right)
  \\
  &= 2-\braket{\psi(T)|\psi(t_0)}-\braket{\psi(t_0)|\psi(T)}
  \\
- &= 2-\sum_{j,n=1}^{\mathcal{D}}c_n^* c_je^{iE_{n}T}e^{-iE_{j}t_{0}}\braket{E_n|E_j}-\sum_{j,n=1}^{\mathcal{D}}c_j^*c_ne^{iE_{j}t_{0}}e^{-iE_{n}T}\braket{E_j|E_n}
+ &= 2-\sum_{j,n=1}^{\mathcal{D}}c_n^* c_je^{iE_{n}T}e^{-iE_{j}t_{0}}
+ \braket{E_n|E_j}
+ -
+ \sum_{j,n=1}^{\mathcal{D}}c_j^*c_ne^{iE_{j}t_{0}}e^{-iE_{n}T}
+ \braket{E_j|E_n}
  \\
- &= 2 - \sum_{n=1}^\mathcal{D} |c_n|^2 e^{iE_{n}(T-t_0)} - \sum_{n=1}^\mathcal{D} |c_n|^2 e^{-iE_{n}(T-t_0)} \ \ \ \text{since} \braket{E_j|E_n}=\delta_{ij}
+ &= 2 
+    - 
+    \sum_{n=1}^\mathcal{D} |c_n|^2 e^{iE_{n}(T-t_0)} 
+    - 
+    \sum_{n=1}^\mathcal{D} |c_n|^2 e^{-iE_{n}(T-t_0)} 
+    \qquad 
+    \text{since} 
+    \braket{E_j|E_n}
+    =
+    \delta_{ij}
  \\
- &= 2 \sum_{n=1}^\mathcal{D} |c_n|^2\left(1-\cos\left(E_{n}\tau\right) \right) \ \ \text{because}  \ \sum_{n=1}^\mathcal{D} |c_n|^2=1
+ &= 2 \sum_{n=1}^\mathcal{D} |c_n|^2\left(1-\cos\left(E_{n}\tau\right) \right) 
+ \qquad 
+ \text{because}  
+ \ \sum_{n=1}^\mathcal{D} |c_n|^2=1
  \\
- &\leq 2\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right)
+ &\leq 
+ 2\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right)
 \end{align*}
 
 It is sufficient to show that there is a $\tau$ such that
 $\sum_{n=1}^\mathcal{D}{\left(1 - \cos{(E_{n}\tau)} \right)} < \epsilon'$.
 This is actually the case according to a standard result of the theory of the
-almost-periodic functions.\todo{need reference! The one from Bocchieri is in
-German.}
+almost-periodic functions.\cite{Besicovitch1954}
 
 Evidently, if we know that there exists a time $T$ such that
 \begin{equation}
@@ -912,7 +1127,7 @@ guaranteed be arbitrarily small at some arbitrarily large time $T$.
 
 \section{Large 1D systems}
 
-To determine the mutual rationality or mutual irrationality of the spectrum for
+To determine the mutual rationality or mutual irrationality of the eigenvalues for
 an arbitrarily large one-dimensional system with a single particle, we look to a
 result about the eigenvalues of tridiagonal matrices proven by W. Yueh
 \cite{Yueh2006}. A tridiagonal matrix has the form
@@ -955,10 +1170,13 @@ This result is particularly interesting when combined with Niven's theorem
 \cite{DoubleIvan}.
 
 \begin{theorem}[Niven's theorem]
-    BLA BLA
+  If $\theta$ is rational in degrees, say $\theta=2\pi r$ for some rational
+  number $r$, then the only rational values of the trigonometric functions of
+  $\theta$ are as follows: $\sin \theta, \cos \theta =0, \pm\frac{1}{2},\pm1;\ \
+  \sec\theta, \csc\theta=\pm1,\pm2; \\ \tan\theta,\cot\theta=0,\pm1.$
 \end{theorem}
-In other word this theorem tells us that if $x$ is rational \textit{in degrees},
-then the only possible rational values of $\cos(x)$ are $0, \pm \frac{1}{2}$ and
+In other words, this theorem tells us that if $x$ is rational \textit{in 
+degrees}, then the only possible rational values of $\cos(x)$ are $0, \pm \frac{1}{2}$ and
 $\pm 1$. Note in our case that $\frac{k\pi}{N+1}\neq 0, \pi$ for $k=1$, 2,
 \dots, $N$, so $\cos{\!(\frac{k\pi}{N+1})} \neq \pm 1$ and we are left with 3
 rational options.
@@ -981,17 +1199,11 @@ have **mutually** irrational eigenvalues?}
 \bibliography{honours}
 
 
-%Note: \url{https://arxiv.org/pdf/1007.5331.pdf} has a good description of what quantum ergodicity is on page 10
-%\\ Note: \url{http://www.physicspages.com/tag/field-operators/} was the thing that made field operators make some sense for me
-%\\Note: \url{http://www.nucleares.unam.mx/~alberto/apuntes/altland.pdf} was super useful for background second quantisation.
-%\\Note: \url{http://iopscience.iop.org/article/10.1209/epl/i2004-10265-7/pdf} mentions finding the 1D B-H model to not be integrable. This could be v useful when including U(n*n-n) term
-%\\Note: \url{https://arxiv.org/pdf/cond-mat/0410614v1.pdf} might have good stuff for background section of dissertation
-%\newpage
-
-
-%\section{Additional questions for Danny}
-
-
-
+%Note: \url{https://arxiv.org/pdf/1007.5331.pdf} has a good description of 
+%what quantum ergodicity is on page 10
+%\\ Note: \url{http://www.physicspages.com/tag/field-operators/} was the thing 
+%that made field operators make some sense for me
+%\\Note: \url{https://arxiv.org/pdf/cond-mat/0410614v1.pdf} might have good 
+%stuff for background section of dissertation
 
 \end{document}
