@@ -1058,6 +1058,7 @@ initial state.
 \begin{figure}[H]
  \includegraphics[width=1.0\textwidth]{recurrence_times}
  \centering
+ \label{1Drecurrencetimes}
 \end{figure}
 While we see that the system does appear to get arbitrarily close to revival,
 but it can take arbitrarily long to do so. This result can be explained in terms
@@ -1077,8 +1078,8 @@ Loinger \cite{Bocchieri1957}, where they gave a slightly different form:
 \begin{quote}
     Let us consider a system with discrete energy eigenvalues $E_{n}$; if
     $\Psi(t_{0})$ is its state vector in the Schr{\"o}dinger picture at the time
-    $t_{0}$ and $\epsilon$ is any positive number, at least one time $T$ will
-    exist such that the norm $\norm{\Psi(T) - \Psi(t_0)}$ of the vector $\Psi(T)
+    $t_{0}$ and $\epsilon$ is any positive number, at least one time $t^*$ will
+    exist such that the norm $\norm{\Psi(t^*) - \Psi(t_0)}$ of the vector $\Psi(t^*)
     - \Psi(t_{0})$ is smaller than $\epsilon$.
 \end{quote}
 
@@ -1088,30 +1089,30 @@ Loinger \cite{Bocchieri1957}, where they gave a slightly different form:
 The proof presented by Bocchieri and Loinger shows the theorem to be true for 
 an infinite-dimensional system. In this dissertation, we investigate only 
 finite-dimensional systems, and a simpler version of the proof can be 
-constructed. We will first show that there exists a time $T$ at which 
-$||\ket{\psi(T)}-\ket{\psi(t_0)}||^2<2\epsilon'$ for any $\epsilon'>0$ and then 
-extend this to $||\ket{\psi(T)}-\ket{\psi(t_0)}||<\epsilon$. Note that in the 
-following we will introduce the notation $\tau=T-t_0$ and 
-$\alpha^2(T)=||\ket{\psi(T)}-\ket{\psi(t_0)}||^2$.
+constructed. We will first show that there exists a time $t^*$ at which 
+$||\ket{\psi(t^*)}-\ket{\psi(t_0)}||^2<2\epsilon'$ for any $\epsilon'>0$ and then 
+extend this to $||\ket{\psi(t^*)}-\ket{\psi(t_0)}||<\epsilon$. Note that in the 
+following we will introduce the notation $\tau=t^*-t_0$ and 
+$\alpha^2(t^*)=||\ket{\psi(t^*)}-\ket{\psi(t_0)}||^2$.
 
 \begin{align*}
- \alpha^2(T)
- &= \left(\bra {\psi(T)}-\bra {\psi(t_0)}\right)
-    \left(\ket{\psi(T)}-\ket{\psi(t_0)}\right)
+ \alpha^2(t^*)
+ &= \left(\bra {\psi(t^*)}-\bra {\psi(t_0)}\right)
+    \left(\ket{\psi(t^*)}-\ket{\psi(t_0)}\right)
  \\
- &= 2-\braket{\psi(T)|\psi(t_0)}-\braket{\psi(t_0)|\psi(T)}
+ &= 2-\braket{\psi(t^*)|\psi(t_0)}-\braket{\psi(t_0)|\psi(t^*)}
  \\
- &= 2-\sum_{j,n=1}^{\mathcal{D}}c_n^* c_je^{iE_{n}T}e^{-iE_{j}t_{0}}
+ &= 2-\sum_{j,n=1}^{\mathcal{D}}c_n^* c_je^{iE_{n}t^*}e^{-iE_{j}t_{0}}
  \braket{E_n|E_j}
  -
- \sum_{j,n=1}^{\mathcal{D}}c_j^*c_ne^{iE_{j}t_{0}}e^{-iE_{n}T}
+ \sum_{j,n=1}^{\mathcal{D}}c_j^*c_ne^{iE_{j}t_{0}}e^{-iE_{n}t^*}
  \braket{E_j|E_n}
  \\
  &= 2 
     - 
-    \sum_{n=1}^\mathcal{D} |c_n|^2 e^{iE_{n}(T-t_0)} 
+    \sum_{n=1}^\mathcal{D} |c_n|^2 e^{iE_{n}(t^*-t_0)} 
     - 
-    \sum_{n=1}^\mathcal{D} |c_n|^2 e^{-iE_{n}(T-t_0)} 
+    \sum_{n=1}^\mathcal{D} |c_n|^2 e^{-iE_{n}(t^*-t_0)} 
     \qquad 
     \text{since} 
     \braket{E_j|E_n}
@@ -1132,18 +1133,16 @@ $\sum_{n=1}^\mathcal{D}{\left(1 - \cos{(E_{n}\tau)} \right)} < \epsilon'$.
 This is actually the case according to a standard result of the theory of the
 almost-periodic functions.\cite{Besicovitch1954}
 
-Evidently, if we know that there exists a time $T$ such that
+Evidently, if we know that there exists a time $t^*$ such that
 \begin{equation}
     \sum_{n=1}^{\mathcal{D}}%
         {\left ( 1 - \cos{\left(E_{n}\tau\right)} \right )}
     < \epsilon',
 \end{equation}
-then at this same time $\alpha^{2}(T) < 2 \epsilon'$, which implies $\alpha(T) =
-\norm{\ket{\psi(T)} - \ket{\psi(t_0)}} < \sqrt{2 \epsilon'}$. Taking $\epsilon =
-\sqrt{2 \epsilon'}$ shows that $\norm{\ket{\psi(T)} - \ket{\psi(t_0)}}$ is
-guaranteed be arbitrarily small at some arbitrarily large time $T$.
-\todo{is there a problem with using T here and t* elsewhere?}
-
+then at this same time $\alpha^{2}(t^*) < 2 \epsilon'$, which implies $\alpha(t^*) =
+\norm{\ket{\psi(t^*)} - \ket{\psi(t_0)}} < \sqrt{2 \epsilon'}$. Taking $\epsilon =
+\sqrt{2 \epsilon'}$ shows that $\norm{\ket{\psi(t^*)} - \ket{\psi(t_0)}}$ is
+guaranteed be arbitrarily small at some arbitrarily large time $t^*$.
 
 \section{Large 1D systems}
 
@@ -1165,6 +1164,7 @@ result about the eigenvalues of tridiagonal matrices proven by W. Yueh
 \end{equation}
 It was shown that the eigenvalues of a matrix of this form are given by
 \begin{equation}
+\label{tridiagonal_eigenvalues_formula}
     \lambda_{k} = -b + 2 \sqrt{ac} \cos{\!\left( \frac{k \pi}{N+1} \right )}
 \end{equation}
 where $k=1$, 2,\dots, $N$. The Hamiltonian of any one-dimensional system with
@@ -1212,7 +1212,7 @@ $\mathcal{D} \leq 3$ for a system with all eigenvalues rational (the lattice
 must have at most 3 sites). We must have at least $(N-3)$ irrational eigenvalues
 for any larger system size. \todo{Can I prove that all systems larger than N=3
 have **mutually** irrational eigenvalues?}
-
+\newpage
 \section{2D systems}
 \subsection{Single particle case}
 In the single particle case (which is identical to the many-particle 
@@ -1244,7 +1244,7 @@ reference to how many dimensions the lattice is in.
 Consider the Hamiltonian for a $3$ by $3$ lattice with no interactions
 
 \begin{equation}
-    \hat{H}_{3}
+    \hat{H}_{3\times3}
     =
     \begin{pmatrix}
          0& -J&  0& -J'&  0&  0&  0&  0&  0\\
@@ -1259,14 +1259,16 @@ Consider the Hamiltonian for a $3$ by $3$ lattice with no interactions
 
     \end{pmatrix}.
 \end{equation}
-
-To find the energy eigenvalues, we must solve the equation
+In contrast to the one-dimensional single particle case, this Hamiltonian (and
+any other Hamiltonian for a 2D system) is not tridiagonal. Hence we cannot use 
+W. Yueh's result (equation (\ref{tridiagonal_eigenvalues_formula})) here.
+Hence, to find the energy eigenvalues, we must solve the equation
 \begin{equation}
  \lambda\left(2J^2-\lambda^2\right)
- \left(2Q^2-\lambda^2\right)
- \left(-4\lambda^2\left(J^2+Q^2\right)
+ \left(2J'^2-\lambda^2\right)
+ \left(-4\lambda^2\left(J^2+J'^2\right)
  +
- 4\left(J^2-Q^2\right)^2
+ 4\left(J^2-J'^2\right)^2
  +
  \lambda^4\right)
  =
@@ -1317,14 +1319,14 @@ eigenvalues now, which (as is clear from equation (\ref{1D_eigenvalues}))
 was not possible in the 1D case.
 Now consider a case identical to the previous one, except with $J=1$
 and $J'=3/5$. Note that equation (\ref{revival_time_formula}) predicts
-a revival time of $t^*=10\pi$\todo{should this be over $\sqrt{2}$?} here, which is 
+a revival time of $t^*=10\pi$ \todo{should $t^*$ be over $\sqrt{2}$?} here, which is 
 consistent with the simulation.
 
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set title "Probability that boson found on first site over time"
-        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by3T1e2H-2rescaledJP0.6.dat" u 1:10 w l lc 1 notitle
      \end{gnuplot}
@@ -1332,18 +1334,75 @@ consistent with the simulation.
      \caption{Demonstrating revival for a $3$ by $3$ square lattice with a 
      single boson and $\lbrace J,J'\rbrace$ mutually rational.}
 \end{figure}
+If we now consider the case where $J$ and $J'$ are not mutually rational,
+then we see that we do not get full revival. The simulation that the 
+figure below corresponds to was run with $J=1,J'=\frac{1}{\sqrt{2}}$.
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by3T1e3J1JP1_sqrt2.dat" u 1:10 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating absence of revival for a $3$ by $3$ lattice 
+     with a single boson and $\lbrace J,J'\rbrace$ mutually irrational.}
+\end{figure}
+
+I'd like to do an epsilon analysis like in figure \ref{1Drecurrencetimes}.
+
+As mentioned earlier, regular and exact revival does not appear to be a feature
+of 2D systems with square lattices larger than $3\times3$. The following 
+figure is from simulation of a boson on a $4\times4$ lattice with $J=J'$.
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/4by4T1e3.dat" u 1:17 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating absence of revival for a $4$ by $4$ lattice 
+     with a single boson and $J=J'$.}
+\end{figure}
+
+This is clearer visually in larger systems, such as the following one which is
+$15\times15$ with $J=J'$.
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/15by15T1e3notscaled.dat" u 1:226 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating absence of revival for a $15$ by $15$ lattice 
+     with a single boson and $J=J'$}
+\end{figure}
+
+Is there any value in including any others (either between 4x4
+and 15x15 or larger than 15x15)?\\\\\\\\ 
+
+***********************************
 
 
-***********************************************************************
-Next:
-
-Try running a simulation with J=1, J'=sqrt2 and see what happens with revival. 
-I feel like it can't be too different from what happens with J=1, 
-J'=1.414000. Maybe do an epsilon analysis?
+\todo{see square brackets}[Should I look at solving a 4 by 4 lattice (16 by 16 Hamiltonian) analytically?
+Are there programs that can tell me the exact eigenvalues??]
 
 
-Should I look at solving a 4 by 4 lattice (16 by 16 Hamiltonian) analytically?
-Are there programs that can tell me the exact eigenvalues??
+have a yarn about the difficulty of getting analytic results because not only 
+is the Hamiltonian not tridiagonal (because of interchain hopping terms), it 
+is also not Toeplitz (http://ee.stanford.edu/~gray/toeplitz.pdf) because of 
+the periodic boundary conditions. So whilst this seems to mirror what we see in
+one dimensional systems, we cannot state conclusions about these systems with
+the confidence that comes with a rigourous mathematical framework.
+
 
 \newpage
 \bibliographystyle{unsrt}

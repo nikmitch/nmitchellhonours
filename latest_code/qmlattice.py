@@ -24,12 +24,12 @@ import matplotlib as mpl
 import qmlattice_utils as qm
 
 # == PHYSICAL PARAMETERS =======================================================
-nx = 3
+nx = 4
 ny = nx
 P  = 1
 
 J  = -1/np.sqrt(2)
-JP = -2/5*np.sqrt(2)
+JP = -1/np.sqrt(2)
 U  =  0.0
 
 LATTICE_TYPE = "full"    # Options are: "full", "random_one", "manual"
@@ -49,8 +49,8 @@ MANUAL_LINKS = [((0,0), (1,0)),
 np.set_printoptions(linewidth=250)
 
 TMIN = 0
-TMAX = int(100)
-TN   = int(1e5)
+TMAX = int(1000)
+TN   = int(1e6)
 
 BLOCK_LENGTH = 3000
 
