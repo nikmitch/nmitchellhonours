@@ -466,9 +466,9 @@ def export_block(fname, time, block, parameters):
         (nrow, ncol) = np.shape(block)
         # Export time and real data line by line.
         for n in range(nrow):
-            fid.write("{0:>12.4f}".format(time[n]))
+            fid.write("{0:>18.10f}".format(time[n]))
             for k in range(ncol):
-                fid.write("{0:>10.4f}".format(block[n, k]))
+                fid.write("{0:>16.10f}".format(block[n, k]))
             fid.write("\n")
 
     return(fname)

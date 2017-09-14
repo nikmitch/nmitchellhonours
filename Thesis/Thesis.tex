@@ -524,9 +524,9 @@ and the two dimensional version where we couple multiple chains of lattice
 sites together. The system Hamiltonian in two dimensions is
 
 \begin{equation}
-\hat{H}_{2D}=(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j} 
+\hat{H}_{2D}=\left(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j} 
 + 
-J'\sum_{i,j}\hat{a}^\dagger_{i,j}\hat{a}_{i+1,j})+h.c. 
+J'\sum_{i,j}\hat{a}^\dagger_{i,j}\hat{a}_{i+1,j}\right)+h.c. 
 +
 \frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}
 \hat{a}_{i}\hat{a}_{i},
@@ -783,7 +783,7 @@ method increases dramatically. This is because the dimensionality $\mathcal{D}$
 of the system grows according to
 \begin{equation}
  \mathcal{D}=\frac{\left(N+P-1\right)!}{P!\left(N-1\right)!},
- \label{time_evolution}
+ \label{dimensionality_exact}
 \end{equation}
 where $N$ is the number of lattice sites and $P$ is the number of particles on 
 the lattice. Unsurprisingly, this is the same as the number of possible pure 
@@ -792,7 +792,7 @@ deduced is just the formula for the number of ways to arrange $P$ objects into
 $N$ containers that is familiar from elementary statistical mechanics.
 The Hamiltonian is a $\mathcal{D}\times\mathcal{D}$ square matrix, and 
 diagonalising it and then evolving the system according to equation 
-(\ref{time_evolution}) quickly becomes impractical for systems with large 
+(\ref{dimensionality_exact}) quickly becomes impractical for systems with large 
 numbers of particles and lattice sites. We can use another familiar tool from
 elementary statistical mechanics - Stirling's approximation - to clarify the
 rate of growth of the dimensionality of the system. Stirling's 
@@ -879,16 +879,28 @@ the ground modes is negligible, i.e.,
  \hat{\Psi}(\mathbf{r})=\hat{a}_0\phi_{0}(\mathbf{r}).
 \end{equation}
 Next we note that when there are a large number of particles in the ground
-state $\ket{N_0}$
-
-
-
-
-
-
-
-
-
+state $\ket{N_0}$ then the action of the creation and destruction operators
+on the ground state approximately commute:
+\begin{equation}
+ \hat{a}_0\hat{a}^\dagger_0\ket{N_0}
+ =
+ N_0 \sqrt{1+\frac{1}{N_0}}\ket{N_0}
+ \approx
+ N_0\ket{N_0}
+ =
+ \hat{a}^\dagger_0\hat{a}_0\ket{N_0}
+\end{equation}
+It is this property of commutation that leads us to replace the creation and
+annihilation operators by $\sqrt{N_0}$, which allows us to approximate the
+field operator $\hat{Psi}(\mathbf{r})$ with a wavefunction
+\begin{equation}
+ \hat{\Psi}(\mathbf{r})
+ =
+ \hat{a}_0\phi_{0}(\mathbf{r})
+ \approx
+ N_0\phi_{0}(\mathbf{r})
+ =\psi_0(\mathbf{r}).
+\end{equation}
 
 
 
@@ -908,17 +920,18 @@ Now noting that we can use the completeness relation for the energy eigenstates
 to expand the initial state in the energy basis, and incorporating the 
 $\hbar^{-1}$ into the time scale,
 \begin{align}
+\label{time_evolution}
  \ket{\psi(t)} =&e^{i\hat{H}t}\sum_j\ket{E_j}\braket{E_j|\psi(0)}  \nonumber \\
                =&\sum_je^{i\hat{H}t}\ket{E_j}\braket{E_j|\psi(0)} \nonumber \\
                 =&\sum_je^{iE_{j}t}\ket{E_j}\braket{E_j|\psi(0)}  \nonumber \\
-                =&\sum_j c_{j}e^{iE_{j}t}\ket{E_j}
+                =&\sum_j c_{j}e^{iE_{j}t}\ket{E_j}             
 \end{align}
 
 From here it can be seen that the only time dependence appears in the complex 
 exponentials, each of which is $2\pi$-periodic. If we can find some common 
-time $t_r$ such that $E_{j} t_{r}=2 \pi k_{j}$, where $k_{j} \in \mathbb{Z} $ 
+time $t_r$ such that $E_{j} t^*=2 \pi k_{j}$, where $k_{j} \in \mathbb{Z} $ 
 for all $j$, we will recover the initial state exactly, i.e., 
-$\ket{\psi(t_{r})}=\ket{\psi(0)}$. The next section describes the conditions 
+$\ket{\psi(t^*)}=\ket{\psi(0)}$. The next section describes the conditions 
 necessary for the existence of the revival time.\\
 
 
@@ -937,8 +950,15 @@ hypothetical eigenvalues $\lbrace 0, \sqrt{2}, 2 \sqrt{2}, \frac{3 \sqrt{2}}{10}
 \rbrace$ is mutually rational, whereas $\lbrace 0, \sqrt{2}, \sqrt{3}\rbrace$ is
 not. In the case of mutually rational eigenvalues, we can write $E_{j} =
 \frac{p_{j}}{q_{j}}$, where $p_{j}$, $q_{j} \in \mathbb{Z}$. The revival time is
-then given by $t_{r} = 2\pi Q_{LCM}$, where $Q_{LCM}$ is the lowest common
-multiple of ${q_j}$.
+then given by 
+\begin{equation}
+\label{revival_time_formula}
+ t^* = \frac{2\pi Q_{LCM}}{P_{HCF}},
+\end{equation}
+
+where $Q_{LCM}$ is the 
+lowest common multiple of $\lbrace eq_j\rbrace$ and $P_{HCF}$ is the highest 
+common factor of the $\lbrace p_j \rbrace$.
 
 We are yet to find any systems with nonzero interparticle interaction that have
 mutually rational eigenvalues. In one dimension, the only systems that we have
@@ -950,7 +970,7 @@ To demonstrate this exact revival, consider a one dimensional lattice with three
 sites with a single boson and hopping constant $J$. The Hamiltonian for this
 system is
 \begin{equation}
-    \hat{H}_{3}
+    \hat{H}_{3\times1}
     =
     \begin{pmatrix}
          0 & -J &  0 \\
@@ -994,7 +1014,7 @@ three lattice sites, the eigenvalues will be irrational. We can demonstrate this
 by considering a single chain of five sites with one boson. The Hamiltonian for 
 this system is
 \begin{equation}
-    \hat{H}_{5}
+    \hat{H}_{5\times1}
     =
     \begin{pmatrix}
          0 & -J &  0 &  0 &  0 \\
@@ -1193,9 +1213,140 @@ must have at most 3 sites). We must have at least $(N-3)$ irrational eigenvalues
 for any larger system size. \todo{Can I prove that all systems larger than N=3
 have **mutually** irrational eigenvalues?}
 
+\section{2D systems}
+\subsection{Single particle case}
+In the single particle case (which is identical to the many-particle 
+non-interacting case, up to normalisation), the Hamiltonian is given by
+
+\begin{equation}
+\hat{H}_{2D}=\left(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j} 
++ 
+J'\sum_{i,j}\hat{a}^\dagger_{i,j}\hat{a}_{i+1,j}\right)+h.c. .
+\end{equation}
+Like in the one-dimensional single-particle case, the Hamiltonian is an 
+$N\times N$ square matrix.
+
+\subsubsection{Square lattices}
+Square lattices are an interesting subset of the 2D systems because of the 
+interesting parallels that we have uncovered between them and the 1D 
+noninteracting case. The smallest truly two-dimensional square lattice is 
+$3$ by $3$, as a $2$ by $2$ system is equivalent to a $4$ by $1$ system with
+periodic boundary conditions. Analogously to the 1D non-interacting case,
+we observe exact revival in the $3$ by $3$ lattice (like the $3$ by $1$ lattice), 
+but not for $4$ by $4$ lattices or larger. 
+
+As in the 1D case, this appears to follow the same pattern with respect to the
+eigenvalues: if the eigenvalues are mutually irrational, we do not see exact
+and regular revival, if they are mutually rational then we do. This is what
+we would predict from equation (\ref{time_evolution}), as it makes no 
+reference to how many dimensions the lattice is in.
+
+Consider the Hamiltonian for a $3$ by $3$ lattice with no interactions
+
+\begin{equation}
+    \hat{H}_{3}
+    =
+    \begin{pmatrix}
+         0& -J&  0& -J'&  0&  0&  0&  0&  0\\
+ -J&  0& -J&  0& -J'&  0&  0&  0&  0\\
+  0& -J&  0&  0&  0& -J'&  0&  0&  0\\
+ -J'&  0&  0&  0& -J&  0& -J'&  0&  0\\
+  0& -J'&  0& -J&  0& -J&  0& -J'&  0\\
+  0&  0& -J'&  0& -J&  0&  0&  0& -J'\\
+  0&  0&  0& -J'&  0&  0&  0& -J&  0\\
+  0&  0&  0&  0& -J'&  0& -J&  0& -J\\
+  0&  0&  0&  0&  0& -J'&  0& -J&  0
+
+    \end{pmatrix}.
+\end{equation}
+
+To find the energy eigenvalues, we must solve the equation
+\begin{equation}
+ \lambda\left(2J^2-\lambda^2\right)
+ \left(2Q^2-\lambda^2\right)
+ \left(-4\lambda^2\left(J^2+Q^2\right)
+ +
+ 4\left(J^2-Q^2\right)^2
+ +
+ \lambda^4\right)
+ =
+ 0.
+\end{equation}
+This gives us the eigenvalues 
+$\lbrace 
+0,
+\pm\sqrt{2}J,
+\pm\sqrt{2}J',
+\pm \sqrt{2}(J+J'),
+\pm \sqrt{2}(J-J')
+\rbrace$,
+or, after rescaling,
+$\lbrace 
+0,
+\pm J,
+\pm J',
+\pm (J+J'),
+\pm (J-J')
+\rbrace$. 
+From this, we can see that $J$ and $J'$ have to be rational (up to a common 
+possibly irrational scale factor) in order for the eigenvalues to be mutually
+rational. In other words, for the eigenvalues to be mutually rational,
+$J$ and $J'$ must be. To demonstrate this, we have run a simulation of the 
+time evolution of a boson that starts in the top left corner (``first lattice 
+site'')of a $3$ by $3$ lattice with $J=J'$. 
+
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by3T1e2H-2rescaled.dat" u 1:10 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating revival for a $3$ by $3$ square lattice with a 
+     single boson and $J=J'$.}
+\end{figure}
+
+The eigenvalues for this system (with $J=J'$) are 
+$\lbrace 0,\pm\sqrt{2}J,\pm 2\sqrt{2}J    \rbrace$ 
+($\lbrace 0,\pm1,\pm 2    \rbrace$ if scaled), which are clearly mutually
+rational. We also note that we must have degeneracy in the
+eigenvalues now, which (as is clear from equation (\ref{1D_eigenvalues})) 
+was not possible in the 1D case.
+Now consider a case identical to the previous one, except with $J=1$
+and $J'=3/5$. Note that equation (\ref{revival_time_formula}) predicts
+a revival time of $t^*=10\pi$\todo{should this be over $\sqrt{2}$?} here, which is 
+consistent with the simulation.
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by3T1e2H-2rescaledJP0.6.dat" u 1:10 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating revival for a $3$ by $3$ square lattice with a 
+     single boson and $\lbrace J,J'\rbrace$ mutually rational.}
+\end{figure}
+
+
+***********************************************************************
+Next:
+
+Try running a simulation with J=1, J'=sqrt2 and see what happens with revival. 
+I feel like it can't be too different from what happens with J=1, 
+J'=1.414000. Maybe do an epsilon analysis?
+
+
+Should I look at solving a 4 by 4 lattice (16 by 16 Hamiltonian) analytically?
+Are there programs that can tell me the exact eigenvalues??
 
 \newpage
-\bibliographystyle{plain}
+\bibliographystyle{unsrt}
 \bibliography{honours}
 
 

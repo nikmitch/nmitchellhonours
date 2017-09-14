@@ -35,15 +35,16 @@ def hamSparse(psi):
                 +np.conj(hop[0][ind]) * psi[ljn] \
                 +np.conj(hop[1][ind]) * psi[ujn] \
                 +U*np.power(np.abs(psi[ind]), 2)*psi[ind]
+        
     return phi
 
-nx=3
+nx=10
 ny=nx
 N=nx*ny
 hop=np.zeros((3,N),dtype=np.complex128)
 
 jAmp=-1.0
-U=0.2
+U=10.0
 for ind in range(N):
   ix=ind%nx
   iy=(ind-ix)/nx
@@ -68,13 +69,13 @@ for ind in range(N):
 psi=np.matrix(np.zeros(N,dtype=np.complex128)).T
 phi=np.matrix(np.zeros(N,dtype=np.complex128)).T
 
-psi[0][0]=1.0
+psi[:][:]=1.0
 
 t=0
 
-T=2
+T=10
 dt=1e-1
-nStep=30
+nStep=100
 
 psiSP=psi.copy()
 
@@ -84,15 +85,24 @@ outputs=[]
 
 tolerance=1e-6
 scale=1.0
-kay=1
-
+kay=0
 
 plt.ioff()
 
 while (kay<nStep):
 
-  Tloc=kay*T/nStep
+  fig = plt.figure(figsize=(3.375,3.375))
+  imSP=pow(abs(np.array(psiSP).reshape(-1)),2).reshape(nx,ny)
+  plt.imshow(imSP,vmin=0.0,vmax=1.0)
+  plt.savefig("psi_%04d" % kay+ "_u_%+07.4f.png" % U)
+  plt.close()
+  plt.clf()
+  current_probs=np.diagflat(np.abs(psiSP))*np.abs(psiSP)
   kay+=1
+  print("t=%.3f, " %t + "dt: %f, " %dt + "dN:%7.3e" %(1.0-np.sum(current_probs)))
+
+  Tloc=float(kay)*float(T)/float(nStep)
+  print("stepping up to time %f" % Tloc)
 
   while (t<Tloc):
     while (True):
@@ -105,34 +115,29 @@ while (kay<nStep):
       k6=delt*hamSparse(psiSP-(8.0/27.0)*k1+(2.0)*k2-(3544.0/2565.0)*k3+(1859.0/4104.0)*k4-(11.0/40.0)*k5)
 
       residual_error=(1.0/dt)*abs(1.0/360.0*k1-128.0/4275.0*k3-2197.0/75240.0*k4+1.0/50.0*k5+2.0/55.0*k6).max()
-      if (residual_error<tolerance):
-        #exit the loop
-        break
 
       #rescale timestep and retry.
       scale=0.84*(tolerance/residual_error)**(0.25)
       if scale<0.1:
         dt=0.1*dt
-      elif scale>4:
+      elif scale>4.0:
         dt=4.0*dt
       else:
         dt=scale*dt
-      print("err=%.3e " %residual_error + "dt=%.3f, " %dt + "rescale:%7.3e" %(scale))
+
+      if (residual_error<tolerance):
+        #exit the loop
+        break
+
+      #print("err=%.3e " %residual_error + "dt=%.3f, " %dt + "rescale:%7.3e" %(scale))
 
     psiSP+=25.0/216.0*k1+1408.0/2565.0*k3+2197.0/4104.0*k4-1.0/5.0*k5    
     t+=dt
     
-    fig = plt.figure(figsize=(3.375,3.375))
-    imSP=pow(abs(np.array(psiSP).reshape(-1)),2).reshape(nx,ny)
-    plt.imshow(np.log(imSP),vmin=0.0,vmax=1.0)
-    plt.savefig("psi_%04d.png" % t)
-#    plt.close()
-    plt.clf()
-  current_probs=np.diagflat(np.abs(psiSP))*np.abs(psiSP)
-#  current_first_site=current_probs[0]
-#  current_first_site=np.asarray(current_first_site)[0][0]
-#  outputs.append([t,current_first_site])
-  print("t=%.3f, " %t + "dN:%7.3e" %(1.0-np.sum(current_probs)))
+
+  #current_first_site=current_probs[0]
+  #current_first_site=np.asarray(current_first_site)[0][0]
+  #outputs.append([t,current_first_site])
 
 print("Time evolution required:         ", time.time() - tic, " seconds.")  
 
