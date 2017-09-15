@@ -1,14 +1,11 @@
 % For full compilation to get the final document
-% \documentclass[a4paper, 10pt]{article}
+\documentclass[a4paper, 10pt]{article}
 
 % For quick compilation without figures
-\documentclass[a4paper, 10pt, draft]{article}
-
+%\documentclass[a4paper, 10pt, draft]{article}
 \usepackage{float}
 \usepackage{listings}
 \usepackage{todonotes}
-% \usepackage[capposition=top, font=small]{floatrow}
-
 \usepackage{braket}
 \usepackage{mathtools}
 \usepackage[mathscr]{euscript}
@@ -108,7 +105,7 @@ optics.
     \begin{center}
         \includegraphics[width=8cm]{bosons_on_lattice}
     \end{center}
-    \caption{Bosons on a 2D optical lattice. Figure is taken from\newline
+    \caption{Bosons on a two-dimensional optical lattice. Figure is taken from\newline
              \texttt{www.uibk.ac.at/th-physik/qo/research/opticallattices.html.en}
             }
 \end{figure}
@@ -131,7 +128,7 @@ is a feature that is not available in any solid state experiment
 
 \section{First quantised representation}
 
-This paper will deal exclusively with bosons on optical lattices, and not
+This dissertation will deal exclusively with bosons on optical lattices, and not
 investigate cases involving fermions. There are a number of different
 contributions to the Hamiltonian for bosons on optical lattices, and these
 contributions can be seen to have analogues in condensed matter systems. The
@@ -527,8 +524,8 @@ to
 \end{align*}
 \end{equation}
 
-This project aims to explore the dynamics of both this one dimensional system
-and the two dimensional version where we couple multiple chains of lattice
+This project aims to explore the dynamics of both this one-dimensional system
+and the two-dimensional version where we couple multiple chains of lattice
 sites together. The system Hamiltonian in two dimensions is
 
 \begin{equation}
@@ -700,15 +697,15 @@ me. I don't really know where to go for 2D at this point.]
 \subsection{A quantum Newton's cradle}
 
 Kinoshita et. al. investigated \cite{Kinoshita2006} the thermalisation of an
-out-of-equilibrium 1D Bose gas, which is a  nearly-integrable system. They
+out-of-equilibrium one-dimensional Bose gas, which is a  nearly-integrable system. They
 started with several thousand arrays of one-dimensional Bose gases, each
 containing from $40$ to $250$ $^{87}$Rb atoms. The atoms were trapped by
 combining a blue-detuned \todo{check I understand why this one is blue-detuned
-and the other red-detuned} two dimensional optical lattice, which provides
+and the other red-detuned} two-dimensional optical lattice, which provides
 tight transverse confinement, with a red-detuned crossed dipole trap
 \todo{what is a crossed dipole trap?}providing weak axial trapping. In order
 to create the non-equilibrium momentum distributions, they then pulsed on a
-$3.2$ THz detuned 1D lattice, which depleted the zero momentum state
+$3.2$ THz detuned one-dimensional lattice, which depleted the zero momentum state
 and put the atoms in a superposition momentum state of $\pm2\hbar k$. The two
 parts of the wave function then oscillated out of phase with each other,
 colliding with each other twice every full cycle and either reflecting off
@@ -761,8 +758,8 @@ occur, to the intermediate coupling regime, where there can be three-
 
 Inspired by the ``A Quantum Newton's Cradle'' study, investigations were made
 into a completely integrable many-body quantum system. In this experiment,
-hard-core bosons on a 1D lattice were used. The authors, Rigol et. al
-\cite{Rigol2007}, started with a one dimensional bosonic Hamiltonian with no
+hard-core bosons on a one-dimensional lattice were used. The authors, Rigol et. al
+\cite{Rigol2007}, started with a one-dimensional bosonic Hamiltonian with no
 interactions and periodic boundary conditions for a lattice with $L$ lattice
 sites.
 \begin{equation}
@@ -819,7 +816,7 @@ propagation; $t_{\text{fin}} = 3000 \hbar/J$.
 - I still don't see how this is supposed to relate to what I'm doing.
 I can write down the definition of the nth order R\'enyi entropies, and
 describe what purity is. I imagine that I could construct a system that is a
-2 by N lattice and split it into two one-dimensional lattices of length N,
+$2 \times N$ lattice and split it into two one-dimensional lattices of length N,
 then evaluate their purity (which must be zero for one of the chains and 1 for
 the other if I'm starting with all bosons on one site, right?), then do some
 second order renyi entropy calculation based on that. Then I could evolve the
@@ -1033,7 +1030,7 @@ found that meet the criterion of mutually irrational eigenvalues are those with
 fewer than $4$ lattice sites. In two dimensions, \todo{do a comprehensive batch of
 simulations to determine what is and isn't ok in 2D}.
 
-To demonstrate this exact revival, consider a one dimensional lattice with three
+To demonstrate this exact revival, consider a one-dimensional lattice with three
 sites with a single boson and hopping constant $J$. The Hamiltonian for this
 system is
 \begin{equation}
@@ -1076,7 +1073,7 @@ wave function and not $\langle n_{1} \rangle \sim \norm{\psi(t)}^{2}$.
 The range of systems for which the eigenvalues are mutually rational is a small
 one. All systems which have nonzero interparticle interactions have mutually
 irrational eigenvalues. One of the most interesting results so far is that
-even in the one dimensional single particle case, if there are more than
+even in the one-dimensional single particle case, if there are more than
 three lattice sites, the eigenvalues will be irrational. We can demonstrate this
 by considering a single chain of five sites with one boson. The Hamiltonian for
 this system is
@@ -1130,7 +1127,7 @@ While we see that the system does appear to get arbitrarily close to revival,
 but it can take arbitrarily long to do so. This result can be explained in terms
 of the Poincar\'e recurrence theorem.
 
-\section{The Poincar\'e Recurrence Theorem}
+\subsection{The Poincar\'e Recurrence Theorem}
 
 In 1890, Henri Poincar\'e proved \todo{how to cite him?} the following theorem
 for classical mechanics:
@@ -1215,7 +1212,7 @@ Loinger \cite{Bocchieri1957}, where they gave a slightly different form:
 \end{proof}
 
 
-\section{Large 1D systems}
+\subsection{Large one-dimensional systems}
 
 To determine the mutual rationality or mutual irrationality of the eigenvalues for
 an arbitrarily large one-dimensional system with a single particle, we look to a
@@ -1423,6 +1420,69 @@ We now can state one of our main results in this section.
     rational.
 \end{proof}
 
+\subsection{Interacting one-dimensional systems}
+
+So far, we have considered only systems of single particles. We have found that
+when interactions are present, thermalisation is guaranteed, even in systems
+that previously exhibited clear and regular revival.\todo{look at 2x1
+case, I haven't checked that recently.} \todo{I should talk about dimensionality
+here, refer to the formula for it.} We also note that once we introduce 
+even weak interactions, we notice that the long-term average for the 
+expectation value of the number operator tends towards $\frac{P}{N}$ i.e. 
+the particles become evenly distributed in space.
+
+
+These are the graphs I have generated so far:\\
+
+2by1, 2 particles, U=0.1
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/2by1_U0.1_T1e4.dat" u 1:3 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $2\times 1$ lattice
+     with two bosons and $U=0.1$.}
+\end{figure}
+
+3by1, 2 particles, U=0.1
+
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xrange [0:20000]
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by1_U0.1_T1e5.dat" u 1:4 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     with two bosons and $U=0.1$.}
+\end{figure}
+
+
+4by1, 2 particles, U=0.1
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xrange [0:20000]
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/4by1_U0.1_T1e5.dat" u 1:5 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $4\times 1$ lattice
+     with two bosons and $U=0.1$.}
+\end{figure}
+
+
 
 \section{Two-dimensional systems}
 
@@ -1447,11 +1507,13 @@ $N \times N$ square matrix.
 
 Square lattices are an interesting subset of the two-dimensional systems because
 of the interesting parallels that we have uncovered between them and the
-one-dimensional non-interacting case. The smallest truly two-dimensional square
-lattice is $3 \times 3$, as a $2 \times 2$ system is equivalent to a $4 \times
-1$ system with periodic boundary conditions. Analogously to the one-dimensional
-non-interacting case, we observe exact revival in the $3 \times 3$ lattice (like
-the $3 \times 1$ lattice), but not for $4 \times 4$ lattices or larger.
+one-dimensional non-interacting case\todo{does it still make sense to describe 
+these parallels as interesting once we realise that the system is separable?}. 
+The smallest truly two-dimensional square lattice is $3 \times 3$, as a 
+$2 \times 2$ system is equivalent to a $4 \times1$ system with periodic 
+boundary conditions. Analogously to the one-dimensional non-interacting case, 
+we observe exact revival in the $3 \times 3$ lattice (like the $3 \times 1$ 
+lattice), but not for $4 \times 4$ lattices or larger.
 
 As in the one-dimensional case, this appears to follow the same pattern with
 respect to the eigenvalues: if the eigenvalues are mutually irrational, we do
@@ -1459,7 +1521,7 @@ not see exact and regular revival, if they are mutually rational then we do.
 This is what we would predict from equation (\ref{time_evolution}), as it makes
 no reference to how many dimensions the lattice is in.
 
-Consider the Hamiltonian for a $3$ by $3$ lattice with no interactions
+Consider the Hamiltonian for a $3\times3$ lattice with no interactions
 \begin{equation}
     \hat{H}_{3\times3}
     =
@@ -1476,7 +1538,7 @@ Consider the Hamiltonian for a $3$ by $3$ lattice with no interactions
     \end{pmatrix}.
 \end{equation}
 In contrast to the one-dimensional single particle case, this Hamiltonian (and
-any other Hamiltonian for a 2D system) is not tridiagonal. Hence we cannot use
+any other Hamiltonian for a two-dimensional system) is not tridiagonal. Hence we cannot use
 W. Yueh's result (equation (\ref{tridiagonal_eigenvalues_formula})) here.
 Hence, to find the energy eigenvalues, we must solve for the zeros of the
 characteristic polynomial
@@ -1506,7 +1568,7 @@ possibly irrational scale factor) in order for the eigenvalues to be mutually
 rational. In other words, for the eigenvalues to be mutually rational,
 $J$ and $J'$ must be. To demonstrate this, we have run a simulation of the
 time evolution of a boson that starts in the top left corner (``first lattice
-site'')of a $3$ by $3$ lattice with $J=J'$.
+site'')of a $3 \times3$ lattice with $J=J'$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
@@ -1516,7 +1578,7 @@ site'')of a $3$ by $3$ lattice with $J=J'$.
         plot "./Data/3by3T1e2H-2rescaled.dat" u 1:10 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating revival for a $3$ by $3$ square lattice with a
+     \caption{Demonstrating revival for a $3 \times 3$ square lattice with a
      single boson and $J=J'$.}
 \end{figure}
 
@@ -1545,7 +1607,7 @@ consistent with the simulation.
         plot "./Data/3by3T1e2H-2rescaledJP0.6.dat" u 1:10 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating revival for a $3$ by $3$ square lattice with a
+     \caption{Demonstrating revival for a $3 \times 3$ square lattice with a
      single boson and $\lbrace J,J'\rbrace$ mutually rational.}
 \end{figure}
 If we now consider the case where $J$ and $J'$ are not mutually rational,
@@ -1561,14 +1623,14 @@ figure below corresponds to was run with $J=1,J'=\frac{1}{\sqrt{2}}$.
         plot "./Data/3by3T1e3J1JP1_sqrt2.dat" u 1:10 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating absence of revival for a $3$ by $3$ lattice
+     \caption{Demonstrating absence of revival for a $3\times 3$ lattice
      with a single boson and $\lbrace J,J'\rbrace$ mutually irrational.}
 \end{figure}
 
 I'd like to do an epsilon analysis like in figure \ref{1Drecurrencetimes}.
 
 As mentioned earlier, regular and exact revival does not appear to be a feature
-of 2D systems with square lattices larger than $3\times3$. The following
+of two-dimensional systems with square lattices larger than $3\times3$. The following
 figure is from simulation of a boson on a $4\times4$ lattice with $J=J'$.
 
 \begin{figure}[H]
@@ -1580,7 +1642,7 @@ figure is from simulation of a boson on a $4\times4$ lattice with $J=J'$.
         plot "./Data/4by4T1e3.dat" u 1:17 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating absence of revival for a $4$ by $4$ lattice
+     \caption{Demonstrating absence of revival for a $4\times4$ lattice
      with a single boson and $J=J'$.}
 \end{figure}
 
@@ -1596,26 +1658,52 @@ $15\times15$ with $J=J'$.
         plot "./Data/15by15T1e3notscaled.dat" u 1:226 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating absence of revival for a $15$ by $15$ lattice
+     \caption{Demonstrating absence of revival for a $15 \times 15$ lattice
      with a single boson and $J=J'$}
 \end{figure}
 
-Is there any value in including any others (either between 4x4
-and 15x15 or larger than 15x15)?\\\\\\\\
+The attentive reader may notice that in the absence of interparticle 
+interactions, there is no coupling between the two dimensions, and so the 
+system is separable into two one-dimensional systems. For example, we can 
+write the Hamiltonian for the $3\times3$ system with intrachain hopping $J$
+and interchain hopping $J'$ can be considered as a combination of two 
+$3\times1$ systems, one with hopping $J$ and the other with hopping $J'$, i.e.
 
-***********************************
-
-
-\todo{see square brackets}[Should I look at solving a 4 by 4 lattice (16 by 16 Hamiltonian) analytically?
-Are there programs that can tell me the exact eigenvalues??]
-
-
-have a yarn about the difficulty of getting analytic results because not only
-is the Hamiltonian not tridiagonal (because of interchain hopping terms), it
-is also not Toeplitz (http://ee.stanford.edu/~gray/toeplitz.pdf) because of
-the periodic boundary conditions. So whilst this seems to mirror what we see in
-one dimensional systems, we cannot state conclusions about these systems with
-the confidence that comes with a rigourous mathematical framework.
+\begin{equation}
+ \hat{H}_{3\times3}=\hat{H}_{3\times1}^{(J)}\otimes {I}_3
+ +
+ {I}_3\otimes H_{3\times1}^{(J')},
+\end{equation}
+where 
+\begin{equation}
+    \hat{H}_{3\times1}^{(J)}
+    =
+    \begin{pmatrix}
+         0 & -J &  0 \\
+        -J &  0 & -J \\
+         0 & -J &  0
+    \end{pmatrix},
+    \quad
+    {I}_3\otimes H_{3\times1}^{(J')}
+    =
+    \begin{pmatrix}
+         0 & -J' &  0 \\
+        -J' &  0 & -J' \\
+         0 & -J' &  0
+    \end{pmatrix},
+\end{equation}
+$I_3$ is the $3\times3$ identity matrix and $\otimes$ is a Kronecker tensor.
+Since the individual systems exihibit revival, it is hence unsurpising that 
+the two-dimensional one (almost always) does too. This also explains why the 
+absence of revival we see for one-dimensional systems with more than $3$ 
+lattice sites is mirrored by an absence of revival in square lattices larger
+than $3\times3$.
+\todo{What more should I do here?}
+\subsubsection{Non-square lattices}
+Is there much to talk about here? It seems a lot like if one of the dimensions
+of the lattice is greater than 3, then we don't get revival, if we're dealing 
+with 3x3, 3x2 or 2x3 then we do. Should I point this out, and should I run 
+simulations to show this?
 
 
 \newpage
