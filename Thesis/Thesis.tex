@@ -700,10 +700,10 @@ Kinoshita et. al. investigated \cite{Kinoshita2006} the thermalisation of an
 out-of-equilibrium one-dimensional Bose gas, which is a  nearly-integrable system. They
 started with several thousand arrays of one-dimensional Bose gases, each
 containing from $40$ to $250$ $^{87}$Rb atoms. The atoms were trapped by
-combining a blue-detuned \todo{check I understand why this one is blue-detuned
-and the other red-detuned} two-dimensional optical lattice, which provides
-tight transverse confinement, with a red-detuned crossed dipole trap
-\todo{what is a crossed dipole trap?}providing weak axial trapping. In order
+combining a blue-detuned \todo{write more about red-detuned and blue-detuned 
+lasers from what I learned talking to David.} two-dimensional optical lattice, 
+which provides tight transverse confinement, with a red-detuned crossed dipole 
+trap providing weak axial trapping. In order
 to create the non-equilibrium momentum distributions, they then pulsed on a
 $3.2$ THz detuned one-dimensional lattice, which depleted the zero momentum state
 and put the atoms in a superposition momentum state of $\pm2\hbar k$. The two
@@ -793,8 +793,7 @@ function is extended to include all of the integrals of motion.
              results of the dynamical simulation. Image taken from
              \cite{Rigol2007}.}
  \end{figure}
-\todo{the above caption (except the first sentence) is currently copy-pasted
-from the paper. I'm not sure how to reword those sentences any other way}
+
 
 
 They further showed that their generalised equilibrium state carries more memory
@@ -848,11 +847,10 @@ for small systems, in particular those that have only a single particle on them.
 This method has the significant advantage of being ``analytic'', at least up to
 the precision of the values stored for the eigenvalues and eigenvectors. All
 instances of $\ket{\psi(t)}$ are calculated from the initial state
-$\ket{\psi(0)}$, so the value \todo{is value the right word since psi(t)
-is a vector?}we calculate for $\ket{\psi(t)}$ is independent of the time-step
+$\ket{\psi(0)}$, so the value we calculate for $\ket{\psi(t)}$ is independent of the time-step
 between each instance of $\ket{\psi(t)}$ that we calculate. This has the further
 advantage that in a numerical algorithm we need not concern ourselves with
-drifting of the norm\todo{clunky sentence}. However, as the number of lattice
+drifting of the norm. However, as the number of lattice
 sites and particles in the system increases, the time required to apply this
 method increases dramatically. This is because the dimensionality $\mathcal{D}$
 of the system grows according to
@@ -1027,8 +1025,9 @@ common factor of the $\lbrace p_j \rbrace$.
 We are yet to find any systems with nonzero interparticle interaction that have
 mutually rational eigenvalues. In one dimension, the only systems that we have
 found that meet the criterion of mutually irrational eigenvalues are those with
-fewer than $4$ lattice sites. In two dimensions, \todo{do a comprehensive batch of
-simulations to determine what is and isn't ok in 2D}.
+fewer than $4$ lattice sites. In two dimensions, the only systems that exhibit
+revival have three or fewer chains and three or fewer lattice sites on each 
+chain (see section \ref{2Dsystems}).
 
 To demonstrate this exact revival, consider a one-dimensional lattice with three
 sites with a single boson and hopping constant $J$. The Hamiltonian for this
@@ -1283,8 +1282,10 @@ have **mutually** irrational eigenvalues?}
 
 The spectrum of a one-dimensional system with $N$ sites and a single particle
 has proven to be \eqref{1D_eigenvalues}. It is apparent that $E_{k}$ is a
-strictly monotonically decreasing function as $k$ increases, thus $E_{k_{2}} <
-E_{k_{1}}$ whenever $k_{1} < k_{2}$. Although we have shown --invoking Niven's
+strictly monotonically decreasing function as $k$ increases because $\cos(x)$ is
+strictly monotonically decreasing on the interval $x\in(0,\pi)$ and 
+$0<\frac{k\pi}{N+1}<\pi$ for $k=1,\dots,N$. Thus, $E_{k_{2}} <
+E_{k_{1}}$ whenever $k_{1} < k_{2}$. We have shown --invoking Niven's
 theorem-- that for all $N>3$ the values of the cosine function are irrational.
 However, this result on its own does not guarantee the violation of recurrence,
 as the latter notion requires the energy eigenvalues to be {\emph{mutually}}
@@ -1292,73 +1293,9 @@ irrational. We thus have to prove that there is no such case when all
 eigenvalues are the multiples of the same irrational number.
 
 Below we answer the question: is there a {\emph{rational}} $\gamma$ such
-that $E_{k_{1}} = \gamma E_{k_{2}}$ for $k_{1} \ne k_{2}$? However, before
-we attempt to disprove the existence of the possibility of a common irrational
-unit of energy, we prove an auxiliary lemma.
+that $E_{k_{1}} = \gamma E_{k_{2}}$ for $k_{1} \ne k_{2}$? 
 
-\begin{lemma}[Distinct energy eigenvalues]
-    The elements of the sequence of energy eigenvalues
-    \begin{equation*}
-        E_{k} = \cos{\!\left ( \frac{k \pi}{N+1} \right )}
-        \qquad k=1, 2, \dots N,
-    \end{equation*}
-    are distinct.
-\end{lemma}
-\begin{proof}
-    Let us prove this statement via reductio ad absurdum. Thus assume that there
-    are distinct integers, $k_{1}$ and $k_{2}$, between 1 and $N$ inclusively,
-    such that the equality $E_{k_{1}} = E_{k_{2}}$ is satisfied. Therefore
-    \begin{align*}
-        E_{k_{1}}
-        &=
-        E_{k_{2}}
-        \\
-        \cos{\!\left ( \frac{k_{1} \pi}{N+1} \right )}
-        &=
-        \cos{\!\left ( \frac{k_{2} \pi}{N+1} \right )}
-    \end{align*}
-    Rearranging the equation on one side and using the trigonometric identity
-    \begin{equation*}
-        \cos{\!(\alpha)} - \cos{\!(\beta)}
-        =
-        -2 \sin{\!\left ( \frac{\alpha+\beta}{2} \right )}
-        \sin{\!\left ( \frac{\alpha - \beta}{2} \right )}
-    \end{equation*}
-    for the difference of two cosine functions we obtain
-    \begin{equation*}
-        0
-        =
-        E_{k_{1}} - E_{k_{2}}
-        =
-        -2
-        \sin{\!\left ( \frac{k_{1} + k_{2}}{2(N+1)} \,\pi\right )}
-        \sin{\!\left ( \frac{k_{1} - k_{2}}{2(N+1)} \,\pi\right )}.
-    \end{equation*}
-    A product vanishes only if at least one of its factors vanishes, thus we
-    have to consider two cases:
-    \begin{equation*}
-        \sin{\!\left ( \frac{k_{1} + k_{2}}{2(N+1)} \,\pi\right )} = 0
-        \qquad \text{and/or} \qquad
-        \sin{\!\left ( \frac{k_{1} - k_{2}}{2(N+1)} \,\pi\right )} = 0.
-    \end{equation*}
-    Since $k_{1}$ and $k_{2}$ are distinct and their minimal value is unity
-    while their maximal value is $N$, the sum $k_{1}+k_{2}$ is an integer
-    between $3$ and $2N-1$. Consequently the argument of the first sine function
-    cannot ever be an integer multiple of $\pi$. Similarly the difference $k_{1}
-    - k_{2}$ varies between $1-N$ and $N-1$, but cannot take the value $0$ due
-    to our assumption that $k_{1}$ and $k_{2}$ are distinct. Therefore the ratio
-    $(k_{1}-k_{2})/(2(N-1))$ is never an integer.
-
-    In summary we found that the equation $E_{k_{1}} = E_{k_{2}}$ does not
-    have an integer solution $(k_{1}, k_{2})$ in the allowed set of integers
-    between 1 and $N$. We arrived at a contradiction, since we assumed that
-    there is a solution. We thus have to conclude the energy eigenvalues in the
-    set $\lbrace E_{k} \rbrace$ are all distinct.
-\end{proof}
-
-\noindent
-We now can state one of our main results in this section.
-\begin{theorem*}[Nik's no-recurrence]
+\begin{theorem*}[Recurrence condition]
     Consider the sequence of energy eigenvalues
     \begin{equation*}
         E_{k} = \cos{\!\left ( \frac{k \pi}{N+1} \right )}
@@ -1419,22 +1356,21 @@ We now can state one of our main results in this section.
     $k_{1}$, $k_{2}$ are integers between 1 and $N$ inclusively and $\gamma$ is
     rational.
 \end{proof}
-
+Hence, we have shown that all one-dimensional noninteracting systems with more
+than three lattice sites should exhibit thermalisation.
 \subsection{Interacting one-dimensional systems}
 
 So far, we have considered only systems of single particles. We have found that
 when interactions are present, thermalisation is guaranteed, even in systems
-that previously exhibited clear and regular revival.\todo{look at 2x1
-case, I haven't checked that recently.} \todo{I should talk about dimensionality
+that previously exhibited clear and regular revival. \todo{I should talk about dimensionality
 here, refer to the formula for it.} We also note that once we introduce 
 even weak interactions, we notice that the long-term average for the 
 expectation value of the number operator tends towards $\frac{P}{N}$ i.e. 
-the particles become evenly distributed in space.
+the particles become evenly distributed on the lattice.
 
-
-These are the graphs I have generated so far:\\
-
-2by1, 2 particles, U=0.1
+Let us first look at a $2\times1$ lattice with two bosons on it. Here we expect 
+the long term average to be $\frac{N}{P}=\frac{2}{2}=1$, which is consistent 
+with what we see.
 
 \begin{figure}[H]
     \centering
@@ -1446,11 +1382,12 @@ These are the graphs I have generated so far:\\
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $2\times 1$ lattice
-     with two bosons and $U=0.1$.}
+     with two bosons and $U_0=0.1$.}
 \end{figure}
 
-3by1, 2 particles, U=0.1
-
+We see a similar pattern with a $3\times1$ lattice with two particles, with the
+long-term average being $2/3$.
+ 
 
 \begin{figure}[H]
     \centering
@@ -1465,26 +1402,131 @@ These are the graphs I have generated so far:\\
      \caption{Demonstrating thermalisation for a $3\times 1$ lattice
      with two bosons and $U=0.1$.}
 \end{figure}
-
-
-4by1, 2 particles, U=0.1
+The agreement of the long-term average with a uniform spatial distribution is
+also clear for larger system sizes, such as a $10\times1$ lattice with
+two bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}/{N}
+=0.2$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set title "Probability that boson found on first site over time"
-        set xrange [0:20000]
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/4by1_U0.1_T1e5.dat" u 1:5 w l lc 1 notitle
+        plot "./Data/10by1_U0.1_T2e4.dat" u 1:11 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $4\times 1$ lattice
+     \caption{Demonstrating thermalisation for a $10\times 1$ lattice
+     with two bosons and $U=0.1$.}
+     \label{10by1_U0.1}
+\end{figure}
+
+\subsubsection{Effect of interaction strength}
+Have been running a numuber of simulations here, not $100\%$ sure what exactly
+to conclude about it yet. It seems that increasing the interaction strength 
+speeds up the thermalisation, but having stronger interparticle interactions also
+increases the amount of variance/noise in the long-term state. Consider the 
+following graphs and let me know if you think this is a reasonable thing to 
+conclude (note that some simulations are run to later times than others).
+
+All of the following simulations are run for a $3\times1$ lattice with two
+bosons. U=0.005 (short term)
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+	f(x)=0.6667
+        set title "Probability that boson found on first site over time"
+        set xlabel "$t$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by1_U0.005_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l 
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     with two bosons and $U=0.005$.}
+\end{figure}
+
+U=0.005 (long term)
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+	f(x)=0.6667
+        set title "Probability that boson found on first site over time"
+        set xlabel "$t$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by1_U0.005_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     with two bosons and $U=0.005$.}
+\end{figure}
+
+U=0.01 \todo{this looked interesting, so I have another one of these going to
+T=1e6 on the thunderbirds}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+	f(x)=0.6667
+        set xlabel "$t$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by1_U0.01_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     with two bosons and $U_0=0.01$.}
+\end{figure}
+
+U=0.1 
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        f(x)=0.6667
+        set xlabel "$t$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by1_U0.1_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
      with two bosons and $U=0.1$.}
 \end{figure}
 
+U=0.5
 
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        f(x)=0.6667
+        set xlabel "$t$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by1_U0.5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     with two bosons and $U_0=0.5$.}
+\end{figure}
 
-\section{Two-dimensional systems}
+U=5
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        f(x)=0.6667
+        set xlabel "$t$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by1_U5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     with two bosons and $U_0=5$.}
+\end{figure}
+\section{Two-dimensional systems\label{2Dsystems}}
 
 \subsection{Single particle case}
 

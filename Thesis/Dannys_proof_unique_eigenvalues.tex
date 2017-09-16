@@ -1,0 +1,81 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+%opening
+\title{}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{Danny's proof of unique eigenvalues}
+However, before
+we attempt to disprove the existence of the possibility of a common irrational
+unit of energy, we prove an auxiliary lemma.
+
+\begin{lemma}[Distinct energy eigenvalues]
+    The elements of the sequence of energy eigenvalues
+    \begin{equation*}
+        E_{k} = \cos{\!\left ( \frac{k \pi}{N+1} \right )}
+        \qquad k=1, 2, \dots N,
+    \end{equation*}
+    are distinct.
+\end{lemma}
+\begin{proof}
+    Let us prove this statement via reductio ad absurdum. Thus assume that there
+    are distinct integers, $k_{1}$ and $k_{2}$, between 1 and $N$ inclusively,
+    such that the equality $E_{k_{1}} = E_{k_{2}}$ is satisfied. Therefore
+    \begin{align*}
+        E_{k_{1}}
+        &=
+        E_{k_{2}}
+        \\
+        \cos{\!\left ( \frac{k_{1} \pi}{N+1} \right )}
+        &=
+        \cos{\!\left ( \frac{k_{2} \pi}{N+1} \right )}
+    \end{align*}
+    Rearranging the equation on one side and using the trigonometric identity
+    \begin{equation*}
+        \cos{\!(\alpha)} - \cos{\!(\beta)}
+        =
+        -2 \sin{\!\left ( \frac{\alpha+\beta}{2} \right )}
+        \sin{\!\left ( \frac{\alpha - \beta}{2} \right )}
+    \end{equation*}
+    for the difference of two cosine functions we obtain
+    \begin{equation*}
+        0
+        =
+        E_{k_{1}} - E_{k_{2}}
+        =
+        -2
+        \sin{\!\left ( \frac{k_{1} + k_{2}}{2(N+1)} \,\pi\right )}
+        \sin{\!\left ( \frac{k_{1} - k_{2}}{2(N+1)} \,\pi\right )}.
+    \end{equation*}
+    A product vanishes only if at least one of its factors vanishes, thus we
+    have to consider two cases:
+    \begin{equation*}
+        \sin{\!\left ( \frac{k_{1} + k_{2}}{2(N+1)} \,\pi\right )} = 0
+        \qquad \text{and/or} \qquad
+        \sin{\!\left ( \frac{k_{1} - k_{2}}{2(N+1)} \,\pi\right )} = 0.
+    \end{equation*}
+    Since $k_{1}$ and $k_{2}$ are distinct and their minimal value is unity
+    while their maximal value is $N$, the sum $k_{1}+k_{2}$ is an integer
+    between $3$ and $2N-1$. Consequently the argument of the first sine function
+    cannot ever be an integer multiple of $\pi$. Similarly the difference $k_{1}
+    - k_{2}$ varies between $1-N$ and $N-1$, but cannot take the value $0$ due
+    to our assumption that $k_{1}$ and $k_{2}$ are distinct. Therefore the ratio
+    $(k_{1}-k_{2})/(2(N-1))$ is never an integer.
+
+    In summary we found that the equation $E_{k_{1}} = E_{k_{2}}$ does not
+    have an integer solution $(k_{1}, k_{2})$ in the allowed set of integers
+    between 1 and $N$. We arrived at a contradiction, since we assumed that
+    there is a solution. We thus have to conclude the energy eigenvalues in the
+    set $\lbrace E_{k} \rbrace$ are all distinct.
+\end{proof}
+
+\end{document}
