@@ -9,6 +9,28 @@ import matplotlib.pyplot as plt
 from numpy.linalg import eigh
 from numpy.linalg import solve
 
+import qmlattice_utils_GPE as qm
+
+# Defining simulatino parameters
+nx=3
+ny=nx
+N=nx*ny
+hop=np.zeros((3,N),dtype=np.complex128)
+
+jAmp=-1.0/np.sqrt(2)
+U=0.5
+block_length = 50
+
+T=50
+dt=1e-1
+nStep=500
+
+# For data export
+fname_probs = "U0.5_RKF_3by3_T50.dat"
+block = np.zeros((block_length, N))
+simtime = np.zeros(block_length)
+counter = 1
+
 
 def hamSparse(psi):
     global N, nx, ny, U
@@ -38,13 +60,7 @@ def hamSparse(psi):
         
     return phi
 
-nx=10
-ny=nx
-N=nx*ny
-hop=np.zeros((3,N),dtype=np.complex128)
 
-jAmp=-1.0
-U=0.0
 for ind in range(N):
   ix=ind%nx
   iy=(ind-ix)/nx
@@ -69,13 +85,13 @@ for ind in range(N):
 psi=np.matrix(np.zeros(N,dtype=np.complex128)).T
 phi=np.matrix(np.zeros(N,dtype=np.complex128)).T
 
-psi[:][:]=1.0
+#psi[:][:]=1.0
+'''I don't understand the above inital condition. Trying something different
+here.'''
+psi[0]=1.0
 
 t=0
 
-T=100
-dt=1e-1
-nStep=1000
 
 psiSP=psi.copy()
 
@@ -89,14 +105,15 @@ kay=0
 
 plt.ioff()
 
+
 while (kay<nStep):
 
-  fig = plt.figure(figsize=(3.375,3.375))
+#  fig = plt.figure(figsize=(3.375,3.375))
   imSP=pow(abs(np.array(psiSP).reshape(-1)),2).reshape(nx,ny)
-  plt.imshow(imSP,vmin=0.0,vmax=1.0)
-  plt.savefig("psi_%04d" % kay+ "_u_%+07.4f.png" % U)
-  plt.close()
-  plt.clf()
+#  plt.imshow(imSP,vmin=0.0,vmax=1.0)
+#  plt.savefig("psi_%04d" % kay+ "_u_%+07.4f.png" % U)
+#  plt.close()
+#  plt.clf()
   current_probs=np.diagflat(np.abs(psiSP))*np.abs(psiSP)
   kay+=1
   print("t=%.3f, " %t + "dt: %f, " %dt + "dN:%7.3e" %(1.0-np.sum(current_probs)))
@@ -133,11 +150,31 @@ while (kay<nStep):
 
     psiSP+=25.0/216.0*k1+1408.0/2565.0*k3+2197.0/4104.0*k4-1.0/5.0*k5    
     t+=dt
-    
 
+  simtime[counter-1] = t
+  block[counter-1, :] = np.transpose(current_probs)
+  print(counter)  
+  
+  if (counter > 0) and (counter % block_length == 0):
+#    print("We are in, Houston!", counter)  
+    fname_probs = qm.export_block(fname_probs, simtime, block, None)
+    counter = 1
+    block = np.zeros((block_length, N))
+    simtime = np.zeros(block_length)
+  else:
+    counter = counter + 1
+  
   #current_first_site=current_probs[0]
   #current_first_site=np.asarray(current_first_site)[0][0]
   #outputs.append([t,current_first_site])
+
+# Saving the last block
+block = block[0:counter-1, :]
+simtime = simtime[0:counter-1]
+fname_probs = qm.export_block(fname_probs, simtime, block, None)
+with open(fname_probs, "a+") as fid:
+    fid.write("\n\n")
+
 
 print("Time evolution required:         ", time.time() - tic, " seconds.")  
 

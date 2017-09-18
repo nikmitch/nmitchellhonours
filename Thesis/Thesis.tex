@@ -1432,14 +1432,19 @@ that $E_{k_{1}} = \gamma E_{k_{2}}$ for $k_{1} \ne k_{2}$?
 Hence, we have shown that all one-dimensional noninteracting systems with more
 than three lattice sites should exhibit thermalisation.
 \subsection{Interacting one-dimensional systems}
-
-So far, we have considered only systems of single particles. We have found that
-when interactions are present, thermalisation is guaranteed, even in systems
-that previously exhibited clear and regular revival. \todo{I should talk about dimensionality
-here, refer to the formula for it.} We also note that once we introduce 
-even weak interactions, we notice that the long-term average for the 
-expectation value of the number operator tends towards $\frac{P}{N}$ i.e. 
-the particles become evenly distributed on the lattice.
+\todo{Should I talk about dimensionality of Hamiltonian and/or having to choose
+a numbering convention for the representation?}
+Adding multiple interacting particles introduces a number of interesting 
+features in the thermalisation properties of our system. We have found that
+when weak interactions are present, thermalisation is guaranteed, even in systems
+that previously exhibited clear and regular revival. We also note that with weak
+interactions the long-term average for the expectation value of the number 
+operator tends towards $\frac{P}{N}$ i.e. the particles become evenly 
+distributed on the lattice.\todo{confirm this happens the same way for lots
+of different initial conditions.}
+With stronger interactions, we observe a kind of localisation \todo{is this the
+right word?}, which we will investigate in section 
+\ref{changing_interaction_strength}. 
 
 Let us first look at a $2\times1$ lattice with two bosons on it. Here we expect 
 the long term average to be $\frac{N}{P}=\frac{2}{2}=1$, which is consistent 
@@ -1505,19 +1510,13 @@ two bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}/{N}
      \label{10by1_U0.1}
 \end{figure}
 
-\subsubsection{Effect of interaction strength}
+\subsubsection{Effect of interaction 
+strength\label{changing_interaction_strength}}
 
-Current thoughts on this:
-
-
-
-Have been running a numuber of simulations here, not $100\%$ sure what exactly
-to conclude about it yet. It seems that increasing the interaction strength 
-speeds up the thermalisation, but having stronger interparticle interactions also
-increases the amount of variance/noise in the long-term state. Consider the 
-following graphs and let me know if you think this is a reasonable thing to 
-conclude (note that some simulations are run to later times than others).
-
+When the interaction strength is increased, we notice an increasing 
+dependence of the long-term averages of the expectation values of the number 
+operators. This suggests that having strong interparticle interactions can 
+frustrate thermalisation. \todo{add more words here}
 All of the following simulations are run for a $3\times1$ lattice with two
 bosons. U=0.005 (short term)
 
@@ -1539,7 +1538,14 @@ bosons. U=0.005 (short term)
      $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70245.$}
 \end{figure}
 
-
+The time average of the expectation value of the number operator
+for the first site, $\overline{\langle n_1 \rangle}=0.70245.$, is 
+greater than $\frac{P}{N}=0.67$. This may appear to be a result of the 
+contributions to the time average of the early timesteps, as the bosons were
+on the first site at t=0. However, running a simulation with the same 
+parameters for $5$ times as long gives an average that is nearly 
+indistinguishable from this, suggesting that the early data is not skewing the
+result.\\
 U=0.005 (long term)
 
 \begin{figure}[H]
@@ -1681,6 +1687,51 @@ U=5
      with two bosons and $U_0=5$. The long time average of 
      $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.88260.$}
 \end{figure}
+
+We can look at the long-term averages for the expecation value of the occupation
+of all of the lattice sites (not just the one that the boson started on). When
+we do this, a remarkable pattern emerges. If we start the boson on the first 
+site, for low values of $U_0$ the average time spent on the second site is 
+slightly lower than the outer lattice sites. We believe this to be a result of 
+the repulsive contact interactions. However, once $U_0$ gets larger (especially
+once it becomes greater than $1$), we find that the long-term average for
+the site furthest from the one that the boson begins on drops dramatically.
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set yrange [0:1]
+        set xlabel "$U_0$"
+        set ylabel "$Long term averages$"
+        plot "./Data/Long_term_averages_for_3by1_systems" u 1:2 w l lc 1 title "$\\overline{\\langle n_{1} \\rangle}$", "./Data/Long_term_averages_for_3by1_systems" u 1:3 w l title "$\\overline{\\langle n_{2} \\rangle}$", "./Data/Long_term_averages_for_3by1_systems" u 1:4 w l title "$\\overline{\\langle n_{3} \\rangle}$"
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \label{3by1_comparisons}
+     \caption{Long term averages for $3\times1$ systems with varying 
+     interparticle interaction strengths}
+\end{figure}
+
+We have run simulations for higher values of $U_0$ in which we see that 
+$\overline{\langle n_{1} \rangle}$ and $\overline{\langle n_{2} \rangle}$
+asymptotically approach unity, and $\overline{\langle n_{3} \rangle}$ goes to
+zero. 
+
+One potential explanation for this behaviour is that when the interparticle 
+interactions are so powerful, beginning the system with both particles on
+the same site means that the system has very high energy. When one of the 
+particles moves to the second lattice site, conservation of energy demands
+that the system still have high energy, but the interparticle interactions
+only apply to bosons on the same site. Hence, the boson must gain a large 
+amount of kinetic energy. The kinetic energy is proportional to the 
+curvature of the wavefunction ($\sim \nabla^2$), and hence the boson must be
+highly localised within the second lattice site. The stronger the interparticle
+interactions, the more kinetic energy this boson must have and thus the more
+localised it is. This ``narrowness'' of the boson's spatial wavefunction \
+reduces its tendency to tunnel into the third lattice site, so 
+$\overline{\langle n_{3} \rangle}$ goes to zero. \todo{is this a Mott Insulator?}
+
+
 \section{Two-dimensional systems\label{2Dsystems}}
 
 \subsection{Single particle case}
@@ -1698,27 +1749,14 @@ non-interacting case, up to normalisation), the Hamiltonian is given by
     h.c.
 \end{equation}
 Like in the one-dimensional single-particle case, the Hamiltonian is an
-$N \times N$ square matrix.
+$N \times N$ square matrix. We see many similarities between these systems
+and one-dimensional single particle systems. We can attribute this to 
+the fact that, in the absence of any interparticle interactions, the two-
+dimensional systems are separable. To demonstrate this, consider the Hamiltonian
+for a $3\times3$ lattice with a single boson on it, with hopping in the $x$-
+direction characterised by $J$ and hopping in the $y$-direction characterised 
+by $J'$ 
 
-\subsubsection{Square lattices}
-
-Square lattices are an interesting subset of the two-dimensional systems because
-of the interesting parallels that we have uncovered between them and the
-one-dimensional non-interacting case\todo{does it still make sense to describe 
-these parallels as interesting once we realise that the system is separable?}. 
-The smallest truly two-dimensional square lattice is $3 \times 3$, as a 
-$2 \times 2$ system is equivalent to a $4 \times1$ system with periodic 
-boundary conditions. Analogously to the one-dimensional non-interacting case, 
-we observe exact revival in the $3 \times 3$ lattice (like the $3 \times 1$ 
-lattice), but not for $4 \times 4$ lattices or larger.
-
-As in the one-dimensional case, this appears to follow the same pattern with
-respect to the eigenvalues: if the eigenvalues are mutually irrational, we do
-not see exact and regular revival, if they are mutually rational then we do.
-This is what we would predict from equation (\ref{time_evolution}), as it makes
-no reference to how many dimensions the lattice is in.
-
-Consider the Hamiltonian for a $3\times3$ lattice with no interactions
 \begin{equation}
     \hat{H}_{3\times3}
     =
@@ -1734,38 +1772,57 @@ Consider the Hamiltonian for a $3\times3$ lattice with no interactions
          0  &  0  &  0  &  0  &  0  & -J' &  0  & -J  &  0
     \end{pmatrix}.
 \end{equation}
-In contrast to the one-dimensional single particle case, this Hamiltonian (and
-any other Hamiltonian for a two-dimensional system) is not tridiagonal. Hence we cannot use
-W. Yueh's result (equation (\ref{tridiagonal_eigenvalues_formula})) here.
-Hence, to find the energy eigenvalues, we must solve for the zeros of the
-characteristic polynomial
+
+We use this example rather than a $2\times2$ lattice because the $2\times2$ 
+lattice is not strictly two-dimensional (it is equivalent to a $4 \times1$ 
+system with periodic boundary conditions). We note that this $3\times3$ system
+can be considered as a combination of two $3\times1$ systems, one with hopping 
+$J$ and the other with hopping $J'$, i.e.
+
 \begin{equation}
-    \lambda \left ( 2 J^{2} - \lambda^{2} \right )
-    \left ( 2 J'^{2} - \lambda^{2} \right )
-    \left ( -4 \lambda^{2} \left ( J^{2} + J'^{2} \right )
-    +
-    4 \left ( J^{2} - J'^{2} \right )^{2}
-    +
-    \lambda^{4} \right )
-    =
-    0.
+ \hat{H}_{3\times3}=\hat{H}_{3\times1}^{(J)}\otimes {I}_3
+ +
+ {I}_3\otimes H_{3\times1}^{(J')},
 \end{equation}
-This gives us the eigenvalues
-\begin{equation*}
-    \lbrace
-        0, \pm\sqrt{2}J, \pm\sqrt{2}J', \pm \sqrt{2}(J+J'), \pm \sqrt{2}(J-J')
-    \rbrace,
-\end{equation*}
-or, after rescaling,
-\begin{equation*}
-    \lbrace 0, \pm J, \pm J', \pm (J+J'), \pm (J-J') \rbrace.
-\end{equation*}
-From this, we can see that $J$ and $J'$ have to be rational (up to a common
-possibly irrational scale factor) in order for the eigenvalues to be mutually
-rational. In other words, for the eigenvalues to be mutually rational,
-$J$ and $J'$ must be. To demonstrate this, we have run a simulation of the
-time evolution of a boson that starts in the top left corner (``first lattice
-site'')of a $3 \times3$ lattice with $J=J'$.
+where 
+\begin{equation}
+    \hat{H}_{3\times1}^{(J)}
+    =
+    \begin{pmatrix}
+         0 & -J &  0 \\
+        -J &  0 & -J \\
+         0 & -J &  0
+    \end{pmatrix},
+    \quad
+    {I}_3\otimes H_{3\times1}^{(J')}
+    =
+    \begin{pmatrix}
+         0 & -J' &  0 \\
+        -J' &  0 & -J' \\
+         0 & -J' &  0
+    \end{pmatrix},
+\end{equation}
+$I_3$ is the $3\times3$ identity matrix and $\otimes$ is a Kronecker tensor.
+Since the individual $3\times1$ systems exihibit revival, it is unsurpising that 
+the two-dimensional one (almost always) does too. The revival time for the 
+overall system is simply the lowest common multiple of the revival times of the
+one-dimensional systems. Consequently, the case for which we do
+not see revival in a $3by3$ noninteracting system is when $J$ and $J'$ are
+mutually irrational, as this makes their revival times mutually irrational 
+\todo{Need to finish this argument off here, am too tired to do it atm}.
+
+The separability of these \todo{quasi-two-dimensional}two-dimensional systems
+suggests that if either of the systems that it separates into have mutually
+irrational eigenvalues (and thus do not exhibit revival) then the whole system
+will not revive either. In other words, if we have an $m\times n$ lattice, then
+we will see thermalisation if $\text{max}\lbrace m,n \rbrace >3$.
+
+We can now look at the simulation of several systems to demonstrate that
+the above conditions for revival or thermalisation hold.
+
+Consider first the time evolution (shown in figure \ref{3by3_equal_hop_U0}) of 
+a boson that starts in the top left corner (``first lattice site'') of a ]
+$3 \times3$ lattice with $J=J'$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
@@ -1777,9 +1834,10 @@ site'')of a $3 \times3$ lattice with $J=J'$.
      \vspace*{-5mm}
      \caption{Demonstrating revival for a $3 \times 3$ square lattice with a
      single boson and $J=J'$.}
+     \label{3by3_equal_hop_U0}
 \end{figure}
 
-The eigenvalues for this system (with $J=J'$) are
+The \todo{should I get rid of this text}eigenvalues for this system (with $J=J'$) are
 \begin{equation*}
     \lbrace 0, \pm\sqrt{2} J, \pm 2 \sqrt{2} J \rbrace
     \quad \text{or after scaling} \quad
@@ -1824,11 +1882,8 @@ figure below corresponds to was run with $J=1,J'=\frac{1}{\sqrt{2}}$.
      with a single boson and $\lbrace J,J'\rbrace$ mutually irrational.}
 \end{figure}
 
-I'd like to do an epsilon analysis like in figure \ref{1Drecurrencetimes}.
-
-As mentioned earlier, regular and exact revival does not appear to be a feature
-of two-dimensional systems with square lattices larger than $3\times3$. The following
-figure is from simulation of a boson on a $4\times4$ lattice with $J=J'$.
+The principles discussed earlier lead us to expect revival to be absent from
+$4\times4$ systems, such as the following one (which has $J=J'$).
 
 \begin{figure}[H]
     \centering
@@ -1843,7 +1898,7 @@ figure is from simulation of a boson on a $4\times4$ lattice with $J=J'$.
      with a single boson and $J=J'$.}
 \end{figure}
 
-This is clearer visually in larger systems, such as the following one which is
+Is it worth putting in a larger system, like the following one?
 $15\times15$ with $J=J'$.
 
 \begin{figure}[H]
@@ -1859,48 +1914,27 @@ $15\times15$ with $J=J'$.
      with a single boson and $J=J'$}
 \end{figure}
 
-The attentive reader may notice that in the absence of interparticle 
-interactions, there is no coupling between the two dimensions, and so the 
-system is separable into two one-dimensional systems. For example, we can 
-write the Hamiltonian for the $3\times3$ system with intrachain hopping $J$
-and interchain hopping $J'$ can be considered as a combination of two 
-$3\times1$ systems, one with hopping $J$ and the other with hopping $J'$, i.e.
+We finish this section by demonstrating that it is sufficient that either
+$m>3$ or $n>3$ for thermalisation to be frustrated in a $m\times n$ lattice.
+We do this by considering a $3\times4$ lattice with a single boson and $J=J'$.
 
-\begin{equation}
- \hat{H}_{3\times3}=\hat{H}_{3\times1}^{(J)}\otimes {I}_3
- +
- {I}_3\otimes H_{3\times1}^{(J')},
-\end{equation}
-where 
-\begin{equation}
-    \hat{H}_{3\times1}^{(J)}
-    =
-    \begin{pmatrix}
-         0 & -J &  0 \\
-        -J &  0 & -J \\
-         0 & -J &  0
-    \end{pmatrix},
-    \quad
-    {I}_3\otimes H_{3\times1}^{(J')}
-    =
-    \begin{pmatrix}
-         0 & -J' &  0 \\
-        -J' &  0 & -J' \\
-         0 & -J' &  0
-    \end{pmatrix},
-\end{equation}
-$I_3$ is the $3\times3$ identity matrix and $\otimes$ is a Kronecker tensor.
-Since the individual systems exihibit revival, it is hence unsurpising that 
-the two-dimensional one (almost always) does too. This also explains why the 
-absence of revival we see for one-dimensional systems with more than $3$ 
-lattice sites is mirrored by an absence of revival in square lattices larger
-than $3\times3$.
-\todo{What more should I do here?}
-\subsubsection{Non-square lattices}
-Is there much to talk about here? It seems a lot like if one of the dimensions
-of the lattice is greater than 3, then we don't get revival, if we're dealing 
-with 3x3, 3x2 or 2x3 then we do. Should I point this out, and should I run 
-simulations to show this?
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by4_U0_T1e5.dat" u 1:13 w l lc 1 notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating absence of revival for a $3 \times 4$ lattice
+     with a single boson and $J=J'$}
+     \label{3by4}
+\end{figure}
+
+It is not entirely clear from figure \ref{3by4} that revival does not happen,
+but examination of the source data reveals that there are no times aside from
+the very beginning at which $\langle n_1 \rangle$ is greater than $0.985$.
 
 
 \section{Two-dimensional interacting systems}
