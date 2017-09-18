@@ -115,9 +115,10 @@ directly. One is that there are always impurities present in the solids we find
 in nature. These impurities can have significant impacts on the properties of
 the solid which cannot necessarily be accounted for by a perturbative approach
 which assumes these effects to be small. \todo{reference this at some point from
-the book I meant to get from David}Optical lattices are highly uniform, so when
-dealing with bosons on optical lattices this problem of impurities does not
-arise.
+the book I meant to get from David} For large-enough detunings from an atomic
+transition frequency, optical lattices can be considered to be purely 
+conservative and defect-free potentials \cite{Bloch2012}, so when dealing with 
+bosons on optical lattices this problem of impurities does not arise.
 
 Another benefit of working with bosons on optical lattices is that we can easily
 control the state of each of the particles on the lattice. Furthermore, the
@@ -964,6 +965,78 @@ field operator $\hat{Psi}(\mathbf{r})$ with a wave function
     \psi_{0}(\mathbf{r}).
 \end{equation}
 
+\subsection{Runge-Kutta-Feldberg Method}
+The nonlinear term in the GPE prevents us from being able to represent the 
+Hamiltonian in matrix form. Hence we cannot find the eigenvectors and 
+eigenvalues of the system directly, which prevents us from using the 'analytic' 
+approach to time evolution that we used for smaller system sizes. One method
+that we could use in its pace is to simply expand the time evolution
+operator $e^{-i\hat{H}t}$ in a Taylor series, truncated at an appropriate order,
+i.e.,
+\begin{equation}
+ \ket{\psi(t)}
+ =
+ e^{-i\hat{H}t}\ket{\psi(0)}
+ =
+ \left
+ (1
+ +
+ (-i\hat{H}t)
+ +
+ \frac{1}{2}(-i\hat{H}t)^2
+ +
+ \frac{1}{6}((-i\hat{H}t)^3
+ +
+ \dots
+ \right)
+ \ket{\psi(0)}.
+\end{equation}
+When we are working with systems in which $U_0 \neq 0$, the nonlinearity 
+that is present quickly causes inaccuracies in any low-order ($\leq3$) Taylor 
+method. This can be observed by calculating the norm of $\ket{\psi(t)}$ at 
+each timestep (it quickly grows significantly greater than $1$). Using a 
+higher-order Taylor method is slow, due to the computation time required to 
+calculate the derivatives of $e^{-i\hat{H}t}$ at each timestep\todo{check this
+is exactly correct}. 
+
+A standard Runge-Kutta method speeds up the calculation by avoiding calculating 
+these derivatives while retaining high-order truncation error. One of the most 
+frequently used Runge-Kutta methods is a fourth order method, which has 
+truncation error of $\mathcal{O}(h^4)$, where $h$ is the size of the timestep.
+
+For a given differential equation 
+\begin{equation}
+ y'=f(t,y)
+\end{equation}
+with initial condition $y(t=0)=\alpha$, we can approximate the value of $y$ at
+$N$ successive times (each separated by timestep $h$) by $w$, where
+\begin{align*}
+ w_0&=\alpha
+ k_1&=hf(t_i,w_i)
+ k_2&=hf\left(t_i+\frac{h}{2}),w_i+\frac{1}{2}k_1\right)
+ k_3&=hf\left(t_i+\frac{h}{2}),w_i+\frac{1}{2}k_2\right)
+ k_4=hf(t_{i+1},w_i+k_3)
+ w_{i+1}=w_i+\frac{1}{6}(k_1+2k_2+2k_3+k4)
+ \end{align*}
+for each $i=0,1,\dots,N-1$. Setting $y=\ket{psi(t)}$, $w_0=\psi(t=0)$ and 
+$f(t,y)=i\hat{H}$
+
+\todo{blarg. need to work through this again to get it right}
+
+
+Even when using this method, we are concerned about the effect of the nonlinear 
+term on our error. Hence we adopt a more sophisticated algorithm 
+(the Runge-Kutta-Feldberg method). This method incorporates a estimate of the
+truncation error and adapts the step size as it goes to ensure that the error
+stays below a certain tolerance set by the user. 
+
+Specifically, it uses a Runge-Kutta method of order five to estimate the 
+local error in a Runge-Kutta method of order four. If the estimated error
+is greater than the tolerance, then the timestep is shortened and the error is 
+estimated again. The interested reader may refer to chapter $5$ of 
+\emph{Numerical Analysis} by R. Burden and J. Faires \cite{Burden2005} for the 
+precise details of the algorithm used.
+
 
 
 \section{Results}
@@ -1274,7 +1347,7 @@ When we are evaluating in degrees, equation \eqref{1D_eigenvalues} becomes
 \end{equation}
 The argument of cosine here is clearly rational since $N$ and $k$ are integers.
 Hence we know that for a system with non-degenerate eigenvalues, there can be at
-most 3 eigenvalues, $\lbrace 0, \pm \frac{J}{2} \rbrace$, that are rational. So
+most three eigenvalues, $\lbrace 0, \pm \frac{J}{2} \rbrace$, that are rational. So
 $\mathcal{D} \leq 3$ for a system with all eigenvalues rational (the lattice
 must have at most 3 sites). We must have at least $(N-3)$ irrational eigenvalues
 for any larger system size. \todo{Can I prove that all systems larger than N=3
@@ -1370,15 +1443,19 @@ the particles become evenly distributed on the lattice.
 
 Let us first look at a $2\times1$ lattice with two bosons on it. Here we expect 
 the long term average to be $\frac{N}{P}=\frac{2}{2}=1$, which is consistent 
-with what we see.
+with what we see.\todo{on reflection, this actually looks a lot like revival :/}
 
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+	f(x)=1
+	g(x)=1.0066
+	P(x)=2
+	set yrange [0:2.5]
         set title "Probability that boson found on first site over time"
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/2by1_U0.1_T1e4.dat" u 1:3 w l lc 1 notitle
+        plot "./Data/2by1_U0.1_T1e4.dat" u 1:3 w l lc 1 notitle, f(x) title "$P/N=1$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $2\times 1$ lattice
@@ -1393,15 +1470,19 @@ long-term average being $2/3$.
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set title "Probability that boson found on first site over time"
-        set xrange [0:20000]
+        f(x)=0.667
+        g(x)=0.70387
+        P(x)=2
+	set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.1_T1e5.dat" u 1:4 w l lc 1 notitle
+        plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "$P/N=0.67$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $3\times 1$ lattice
      with two bosons and $U=0.1$.}
 \end{figure}
+
 The agreement of the long-term average with a uniform spatial distribution is
 also clear for larger system sizes, such as a $10\times1$ lattice with
 two bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}/{N}
@@ -1410,9 +1491,13 @@ two bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}/{N}
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set title "Probability that boson found on first site over time"
+        f(x)=0.2
+        g(x)=0.24110
+        P(x)=2
+	set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/10by1_U0.1_T2e4.dat" u 1:11 w l lc 1 notitle
+        plot "./Data/10by1_U0.1_T2e4.dat" u 1:11 w l lc 1 notitle, f(x) title "$P/N=0.2$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $10\times 1$ lattice
@@ -1421,6 +1506,11 @@ two bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}/{N}
 \end{figure}
 
 \subsubsection{Effect of interaction strength}
+
+Current thoughts on this:
+
+
+
 Have been running a numuber of simulations here, not $100\%$ sure what exactly
 to conclude about it yet. It seems that increasing the interaction strength 
 speeds up the thermalisation, but having stronger interparticle interactions also
@@ -1435,15 +1525,20 @@ bosons. U=0.005 (short term)
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
 	f(x)=0.6667
+	g(x)=0.70245
+	P(x)=2
+	set yrange [0:2.5]
         set title "Probability that boson found on first site over time"
         set xlabel "$t$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.005_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l 
+        plot "./Data/3by1_U0.005_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "$P/N=0.67$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$" 
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $3\times 1$ lattice
-     with two bosons and $U=0.005$.}
+     with two bosons and $U=0.005$. The long time average of 
+     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70245.$}
 \end{figure}
+
 
 U=0.005 (long term)
 
@@ -1451,18 +1546,21 @@ U=0.005 (long term)
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
 	f(x)=0.6667
+	g(x)=0.70280
+	P(x)=2
+	set yrange [0:2.5]
         set title "Probability that boson found on first site over time"
         set xlabel "$t$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.005_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l
+        plot "./Data/3by1_U0.005_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $3\times 1$ lattice
-     with two bosons and $U=0.005$.}
+     with two bosons and $U=0.005$. The long time average of 
+     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70280.$}
 \end{figure}
 
-U=0.01 \todo{this looked interesting, so I have another one of these going to
-T=1e6 on the thunderbirds}
+U=0.01
 
 
 \begin{figure}[H]
@@ -1470,13 +1568,38 @@ T=1e6 on the thunderbirds}
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set title "Probability that boson found on first site over time"
 	f(x)=0.6667
+	g(x)=0.70329
+	P(x)=2
+	set yrange [0:2.5]
         set xlabel "$t$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.01_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l
+        plot "./Data/3by1_U0.01_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title ``P/N=0.67'' w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $3\times 1$ lattice
-     with two bosons and $U_0=0.01$.}
+     with two bosons and $U_0=0.01$. The long time average of 
+     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70329.$}
+\end{figure}
+
+
+U=0.01 (to T=1e6)
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+	f(x)=0.6667
+	g(x)=0.70319
+	P(x)=2
+	set yrange [0:2.5]
+        set xlabel "$t$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by1_U0.01_T1e6dt1.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     with two bosons and $U_0=0.01$. The long time average of 
+     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70319.$}
 \end{figure}
 
 U=0.1 
@@ -1486,13 +1609,17 @@ U=0.1
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set title "Probability that boson found on first site over time"
         f(x)=0.6667
+        g(x)=0.70390
+        P(x)=2
+	set yrange [0:2.5]
         set xlabel "$t$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.1_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l
+        plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $3\times 1$ lattice
-     with two bosons and $U=0.1$.}
+     with two bosons and $U=0.1$. The long time average of 
+     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70390.$}
 \end{figure}
 
 U=0.5
@@ -1502,13 +1629,37 @@ U=0.5
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set title "Probability that boson found on first site over time"
         f(x)=0.6667
+        g(x)=0.71241
+        P(x)=2
+	set yrange [0:2.5]
         set xlabel "$t$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l
+        plot "./Data/3by1_U0.5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $3\times 1$ lattice
-     with two bosons and $U_0=0.5$.}
+     with two bosons and $U_0=0.5$. The long time average of 
+     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.71241$.}
+\end{figure}
+
+U=2
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set title "Probability that boson found on first site over time"
+        P(x)=2
+	set yrange [0:2.5]
+        g(x)=0.77936
+        f(x)=0.6667
+        set xlabel "$t$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by1_U2_T1e6dt1.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     with two bosons and $U_0=5$. The long time average of 
+     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.77936.$}
 \end{figure}
 
 U=5
@@ -1517,14 +1668,18 @@ U=5
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set title "Probability that boson found on first site over time"
+        P(x)=2
+	set yrange [0:2.5]
+        g(x)=0.88260
         f(x)=0.6667
         set xlabel "$t$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title 'P/N=0.67' w l
+        plot "./Data/3by1_U5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $3\times 1$ lattice
-     with two bosons and $U_0=5$.}
+     with two bosons and $U_0=5$. The long time average of 
+     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.88260.$}
 \end{figure}
 \section{Two-dimensional systems\label{2Dsystems}}
 
@@ -1748,6 +1903,9 @@ with 3x3, 3x2 or 2x3 then we do. Should I point this out, and should I run
 simulations to show this?
 
 
+\section{Two-dimensional interacting systems}
+We will now look at two-dimensional systems where the particles have repulsive
+interactions ($U_0 >0$). Like in the one-dimensional case, 
 \newpage
 \bibliographystyle{unsrt}
 \bibliography{honours}

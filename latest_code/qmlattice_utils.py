@@ -474,10 +474,10 @@ def export_block(fname, time, block, parameters):
     return(fname)
 
 
-def read_evolve_file(fname):
+def read_evolve_file(fname, cols):
     '''Read the data file exported from the evolve function.'''
     try:
-        tmp = np.loadtxt(fname, comments="#")
+        tmp = np.loadtxt(fname, usecols=cols, comments="#")
     except IOError:
         print("!WARNING: reading file has failed {0:>s}".format(fname))
 

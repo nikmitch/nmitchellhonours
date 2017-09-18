@@ -44,7 +44,7 @@ N=nx*ny
 hop=np.zeros((3,N),dtype=np.complex128)
 
 jAmp=-1.0
-U=10.0
+U=0.0
 for ind in range(N):
   ix=ind%nx
   iy=(ind-ix)/nx
@@ -73,9 +73,9 @@ psi[:][:]=1.0
 
 t=0
 
-T=10
+T=100
 dt=1e-1
-nStep=100
+nStep=1000
 
 psiSP=psi.copy()
 
