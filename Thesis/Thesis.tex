@@ -1,8 +1,8 @@
 % For full compilation to get the final document
-\documentclass[a4paper, 10pt]{article}
+% \documentclass[a4paper, 10pt]{article}
 
 % For quick compilation without figures
-%\documentclass[a4paper, 10pt, draft]{article}
+\documentclass[a4paper, 10pt, draft]{article}
 \usepackage{float}
 \usepackage{listings}
 \usepackage{todonotes}
@@ -84,48 +84,49 @@
 
 \section{Introduction}
 \todo{see square brackets}
-[Want to include some of the stuff from section \ref{DraftFromDanny} at the 
+[Want to include some of the stuff from section \ref{DraftFromDanny} at the
 start here]
-The question of how, and under what conditions, closed quantum systems approach 
+The question of how, and under what conditions, closed quantum systems approach
 thermal equilibrium is an old question that forms the basis of a large and
 active field of research. Thermalisation is well understood in the context
-of classical mechanics, where it is understood \todo{I'd rather not repeat 
-``understood'' twice in same sentence.} to emerge from the chaotic 
+of classical mechanics, where it is understood \todo{I'd rather not repeat
+``understood'' twice in same sentence.} to emerge from the chaotic
 dynamics of sufficiently unconstrained systems. However, the time evolution of
-quantum systems is strictly linear, and \todo{hence?} they do not exhibit chaotic 
-dynamics. Nonetheless, there are a number of closed quantum systems in which 
-thermalisation is observed, in the sense that the systems relax to states in 
-which the values of macroscopic quantities are stationary, universal with 
-respect to widely differing initial conditions, and predictable using 
-statistical mechanics \cite{Rigol2008}. 
+quantum systems is strictly linear, and \todo{hence?} they do not exhibit chaotic
+dynamics. Nonetheless, there are a number of closed quantum systems in which
+thermalisation is observed, in the sense that the systems relax to states in
+which the values of macroscopic quantities are stationary, universal with
+respect to widely differing initial conditions, and predictable using
+statistical mechanics \cite{Rigol2008}.
 
 This project investigates the time evolution of a variety of different systems
-composed of noninteracting and interacting bosons on one-dimensional and 
-two-dimensional optical lattices that are prepared in far-from-equilibrium 
+composed of noninteracting and interacting bosons on one-dimensional and
+two-dimensional optical lattices that are prepared in far-from-equilibrium
 states. These systems are investigated analytically where possible, and with
-numerical methods for larger and more complicated systems where an analytic 
-approach is not tractable. We focus primarily on gaining a strong 
+numerical methods for larger and more complicated systems where an analytic
+approach is not tractable. We focus primarily on gaining a strong
 understanding of smaller systems of few lattice sites and bosons, as these
 can be solved exactly. From here, we look at some larger systems with a more
-approximate method that revolves around using an adaptive Runge-Kutta method
-to evolve the system wavefunction according to the Gross-Pitaevskii equation.
-We then look for similarities in the results of the simulations run according 
-to each method to see what similarities in behaviour are retained as we move 
-from small, exactly solved systems to large, numerically approximated systems.
+approximate method that revolves around using an adaptive Runge-Kutta-Feldberg
+method to evolve the system wavefunction according to the Gross-Pitaevskii
+equation. We then look for similarities in the results of the simulations run
+according to each method to see what similarities in behaviour are retained as
+we move from small, exactly solved systems to large, numerically approximated
+systems.
 
 \newpage
 \section{Experiments with optical lattices}
 
-This project considers the thermalisation behaviour of systems of bosons on 
+This project considers the thermalisation behaviour of systems of bosons on
 optical lattices. One of the main factors that make these systems interesting
-to work with are the deep similarities between the Hamiltonians of systems that 
+to work with are the deep similarities between the Hamiltonians of systems that
 can be generated using bosons on an optical lattices and those of electrons
-moving on a lattice potential produced by a periodic array of atom cores. We can 
-simulate these condensed matter systems with ultracold atoms by using optical 
-lattices to generate the periodic potential. An optical lattice is produced by 
-overlapping multiple laser beams and making use of the interference pattern. 
-The alternating bright and dark areas of the interference pattern act as a 
-periodic potential on the atoms through the optical dipole 
+moving on a lattice potential produced by a periodic array of atom cores. We can
+simulate these condensed matter systems with ultracold atoms by using optical
+lattices to generate the periodic potential. An optical lattice is produced by
+overlapping multiple laser beams and making use of the interference pattern.
+The alternating bright and dark areas of the interference pattern act as a
+periodic potential on the atoms through the optical dipole
 force \cite{Bloch2012}. By superimposing different
 combinations of laser beams at particular frequencies and amplitudes, any
 lattice geometry that can be constructed via Fourier synthesis can, in
@@ -150,8 +151,8 @@ in nature. These impurities can have significant impacts on the properties of
 the solid which cannot necessarily be accounted for by a perturbative approach
 which assumes these effects to be small. \todo{reference this at some point from
 the book I meant to get from David} For large-enough detunings from an atomic
-transition frequency, optical lattices can be considered to be purely 
-conservative and defect-free potentials \cite{Bloch2012}, so when dealing with 
+transition frequency, optical lattices can be considered to be purely
+conservative and defect-free potentials \cite{Bloch2012}, so when dealing with
 bosons on optical lattices this problem of impurities does not arise.
 
 Another benefit of working with bosons on optical lattices is that we can easily
@@ -381,11 +382,12 @@ to observe that any occupation number eigenstate can be created from the empty
 (or ``vacuum'') state $\ket{0}$ by repeated action of
 creation operators \cite{Altland2010}
 \begin{equation}
- \ket{n_1,n_2,\dots}=\prod_i\frac{1}{\sqrt{n_i!}}(\hat{a}_i^{\dagger})^{n_i}\ket{0}.
+    \ket{n_{1}, n_{2}, \dots}
+    =
+    \prod_{i}{\frac{1}{\sqrt{n_{i}!}}(\hat{a}_i^{\dagger})^{n_{i}}} \ket{0}.
 \end{equation}
-
-It may seem that the state space $S_N\mathcal{H}^N$ that we have constructed is
-not robust enough to accommodate these operators. Indeed, the creation and
+It may seem that the state space $S_{N}\mathcal{H}^N$ that we have constructed
+is not robust enough to accommodate these operators. Indeed, the creation and
 annihilation operators take us from the $N$-particle Hilbert space to the
 $(N+1)$- and $(N-1)$-particle Hilbert spaces, respectively. In order to account
 for these differences in particle number, we must really be working within the
@@ -394,7 +396,6 @@ symmetric Fock states $\mathcal{F}_{S}(\mathcal{H})$, defined by the direct sum
 \begin{equation}
     \mathcal{F}_{S}(\mathcal{H}) = \oplus_{N=0}^\infty S_{N} \mathcal{H}^N.
 \end{equation}
-
 However, we will be working in systems in which the particle number is
 conserved. Each combination of creation and annihilation operators that appears
 in the Hamiltonian will create an equal number of particles to the number
@@ -455,7 +456,7 @@ With this in mind, we can write
 \end{equation}
 Here we have introduced a shorthand notation
 \begin{equation}
- J_{j,l} = \int{\psi^{*}(R_{j} - x) \hat{h}_{1} \psi(R_{l}-x) \,dx}
+    J_{j,l} = \int{\psi^{*}(R_{j} - x) \hat{h}_{1} \psi(R_{l} - x) \,dx}
 \end{equation}
 for the numerical values of these integrals. Notice that the integration --at
 least numerically-- can indeed be carried out and characterises the strength of
@@ -520,7 +521,6 @@ operators
     \sum_{i}
         {\hat{a}_{i}^{\dagger} \hat{a}_{i}^{\dagger} \hat{a}_{i} \hat{a}_{i}}
 \end{equation}
-
 Putting these terms together, we arrive at the Bose-Hubbard model described in
 the next section.
 
@@ -548,28 +548,27 @@ harmonic potential which produces different on-site energies for different sites
 (the uniform lattice potential remains, so $J$ is still defined as before). In
 the absence of this external potential, the Hamiltonian in one dimension reduces
 to
-\begin{equation}
-\begin{align*}
-\hat{H}_{1D}
-=
-&J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.\ )
-+
-\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}
-\hat{a}_{i}\hat{a}_{i}.
-\end{align*}
-\end{equation}
+\begin{equation*}
+    \hat{H}_{1D}
+    =
+    J \sum_{i}{(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.)} +
+    \frac{U_{0}}{2}
+    \sum_{i}{\hat{a}^\dagger_{i} \hat{a}^\dagger_{i} \hat{a}_{i}\hat{a}_{i}}.
+\end{equation*}
 
 This project aims to explore the dynamics of both this one-dimensional system
 and the two-dimensional version where we couple multiple chains of lattice
 sites together. The system Hamiltonian in two dimensions is
-
 \begin{equation}
-\hat{H}_{2D}=\left(J\sum_{i,j}\hat{a}^\dagger_{i,j+1}\hat{a}_{i,j}
-+
-J'\sum_{i,j}\hat{a}^\dagger_{i,j}\hat{a}_{i+1,j}\right)+h.c.
-+
-\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}
-\hat{a}_{i}\hat{a}_{i},
+    \hat{H}_{2D}
+    =
+    \left (
+        J \sum_{i,j}{\hat{a}^{\dagger}_{i,j+1} \hat{a}_{i,j}} +
+        J'\sum_{i,j}{\hat{a}^{\dagger}_{i,j} \hat{a}_{i+1,j}}
+    \right) +
+    \text{h.c.} +
+    \frac{U_{0}}{2}
+    \sum_{i}{\hat{a}^{\dagger}_{i}\hat{a}^{\dagger}_{i} \hat{a}_{i}\hat{a}_{i}},
 \end{equation}
 where the $i$ index denotes which chain is being referred to and the $j$ index
 denotes how far along the chain a site is. $J'$ is another hopping parameter,
@@ -732,24 +731,23 @@ me. I don't really know where to go for 2D at this point.]
 \subsection{A quantum Newton's cradle}
 
 Kinoshita et. al. investigated \cite{Kinoshita2006} the thermalisation of an
-out-of-equilibrium one-dimensional Bose gas, which is a  nearly-integrable system. They
-started with several thousand arrays of one-dimensional Bose gases, each
-containing from $40$ to $250$ $^{87}$Rb atoms. The atoms were trapped by
-combining a blue-detuned \todo{write more about red-detuned and blue-detuned 
-lasers from what I learned talking to David.} two-dimensional optical lattice, 
-which provides tight transverse confinement, with a red-detuned crossed dipole 
-trap providing weak axial trapping. In order
-to create the non-equilibrium momentum distributions, they then pulsed on a
-$3.2$ THz detuned one-dimensional lattice, which depleted the zero momentum state
-and put the atoms in a superposition momentum state of $\pm2\hbar k$. The two
-parts of the wave function then oscillated out of phase with each other,
-colliding with each other twice every full cycle and either reflecting off
-each other elastically or transmitting straight through like a ``ghostly''
-Newton's cradle (see diagram below)
-
+out-of-equilibrium one-dimensional Bose gas, which is a  nearly-integrable
+system. They started with several thousand arrays of one-dimensional Bose gases,
+each containing from $40$ to $250$ $^{87}$Rb atoms. The atoms were trapped by
+combining a blue-detuned \todo{write more about red-detuned and blue-detuned
+lasers from what I learned talking to David.} two-dimensional optical lattice,
+which provides tight transverse confinement, with a red-detuned crossed dipole
+trap providing weak axial trapping. In order to create the non-equilibrium
+momentum distributions, they then pulsed on a $3.2$\,THz detuned one-dimensional
+lattice, which depleted the zero momentum state and put the atoms in a
+superposition momentum state of $\pm2\hbar k$. The two parts of the wavefunction
+then oscillated out of phase with each other, colliding with each other twice
+every full cycle and either reflecting off each other elastically or
+transmitting straight through like a ``ghostly'' Newton's cradle (see diagram
+below)
 \begin{figure}[H]
     \begin{center}
-    \includegraphics[width=8cm]{quantum_newtons_cradle}
+        \includegraphics[width=8cm]{quantum_newtons_cradle}
     \end{center}
     \caption{Sketches at various times of two out of equilibrium clouds of atoms
              in a one-dimensional anharmonic trap. At time $t=0$ the atoms are
@@ -759,13 +757,11 @@ Newton's cradle (see diagram below)
              atom collides with the opposite momentum group twice every full
              cycle, for instance, at $t=0$ and $t = \frac{\tau}{2}$. Figure is
              from reference \cite{Kinoshita2006}.}
- \end{figure}
-
+\end{figure}
 The weak anharmonicity of the trap caused the atoms to gradually dephase.
-However, the momentum distribution after dephasing was not gaussian (as one
+However, the momentum distribution after dephasing was not Gaussian (as one
 would expect for a thermalised state), and this momentum did not noticeably
 tend toward this equilibrium distribution, even after thousands of collisions.
-
 \begin{figure}[H]
     \begin{center}
     \includegraphics[width=1.0\textwidth]{dephased_momentum_distribution}
@@ -773,15 +769,13 @@ tend toward this equilibrium distribution, even after thousands of collisions.
     \caption{\label{dephased_momentum_distribution}
              The blue and green curves in the above figure are projections from
              models that take into account loss and heating. The red line is the
-             actual distribution observed. The dashed line is a gaussian with
+             actual distribution observed. The dashed line is a Gaussian with
              the same number of atoms and r.m.s. width as the actual
              distribution.}
- \end{figure}
-
-
+\end{figure}
 To the extent that the actual distribution in figure
 \ref{dephased_momentum_distribution} conforms to the projected distribution
-rather than to the gaussian, the atoms have not thermalised.
+rather than to the Gaussian, the atoms have not thermalised.
 
 These observations extended from the Tonks--Girardeau regime, which has very
 strong repulsive interactions between bosons so only pairwise collisions can
@@ -793,18 +787,19 @@ occur, to the intermediate coupling regime, where there can be three-
 
 Inspired by the ``A Quantum Newton's Cradle'' study, investigations were made
 into a completely integrable many-body quantum system. In this experiment,
-hard-core bosons on a one-dimensional lattice were used. The authors, Rigol et. al
-\cite{Rigol2007}, started with a one-dimensional bosonic Hamiltonian with no
+hard-core bosons on a one-dimensional lattice were used. The authors, Rigol et.
+al \cite{Rigol2007}, started with a one-dimensional bosonic Hamiltonian with no
 interactions and periodic boundary conditions for a lattice with $L$ lattice
 sites.
 \begin{equation}
  \hat{H}=-J\sum_{i=1}^{L} (\hat{a}_{i}^{\dagger}\hat{a}_{i+1}+h.c.)
 \end{equation}
-
-They then mapped their bosonic system to a free ferminonic one using a
+They then mapped their bosonic system to a free fermionic one using a
 Jordan-Wigner transformation:
 \begin{equation}
- \hat{H}=-J\sum_{i=1}^{L} (\hat{c}_{i}^{\dagger}\hat{c}_{i+1}+h.c.)
+    \hat{H}
+    =
+    -J \sum_{i=1}^{L}{(\hat{c}_{i}^{\dagger}\hat{c}_{i+1} + \text{h.c.})}
 \end{equation}
 Here $\hat{c}_{i}^{\dagger}$ and $\hat{c}_{i+1}$ are fermionic creation and
 annihilation operators. The integrals of motion were the fermionic
@@ -815,22 +810,17 @@ found it to undergo relaxation to an equilibrium state. The properties of the
 state that the system relaxed to were not given by the grand-canonical
 ensemble, but rather by a generalised Gibbs ensemble, in which the partition
 function is extended to include all of the integrals of motion.
-
-
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=8cm]{grand_canonical_vs_GGE}
     \end{center}
     \caption{Equilibrium (quasi-)momentum distribution after relaxation in
              comparison with the predictions of the grand-canonical and of the
-             fully constrained thermodynamic ensembles. The prediction  of the
-             fully constrained  ensemble  is virtually  indistinct from the
+             fully constrained thermodynamic ensembles. The prediction of the
+             fully constrained  ensemble is virtually indistinct from the
              results of the dynamical simulation. Image taken from
              \cite{Rigol2007}.}
- \end{figure}
-
-
-
+\end{figure}
 They further showed that their generalised equilibrium state carries more memory
 of the initial conditions than the usual thermodynamic one.
 \begin{figure}[H]
@@ -840,20 +830,20 @@ of the initial conditions than the usual thermodynamic one.
     \caption{The actual quasi-momentum distribution after relaxation versus
              predictions of the generalised Gibbs ensemble and the grand
              canonical ensemble. Image taken from \cite{Rigol2007}.}
- \end{figure}
-
+\end{figure}
 The momentum peaks remain clear and distinct during the whole duration  of
 propagation; $t_{\text{fin}} = 3000 \hbar/J$.
+
 
 \subsection{Measuring entanglement entropy in a quantum many-body system}
 
 - I still don't see how this is supposed to relate to what I'm doing.
-I can write down the definition of the nth order R\'enyi entropies, and
+I can write down the definition of the nth order R{\'e}nyi entropy, and
 describe what purity is. I imagine that I could construct a system that is a
 $2 \times N$ lattice and split it into two one-dimensional lattices of length N,
 then evaluate their purity (which must be zero for one of the chains and 1 for
 the other if I'm starting with all bosons on one site, right?), then do some
-second order renyi entropy calculation based on that. Then I could evolve the
+second order Renyi entropy calculation based on that. Then I could evolve the
 system in time and note that this entropy changes. How does that relate to
 thermalisation? What can I find out from this approach that I don't already
 get from just looking at expectation values of number operators?
@@ -862,10 +852,10 @@ get from just looking at expectation values of number operators?
 
 \section{System size and analyticity}
 
-Whilst the main focus of this project is on smaller lattices with few
-particles, it is of interest to investigate larger system sizes (necessarily
-by approximate methods) to see how much of the behaviour of the small systems
-is preserved in the larger ones.
+Whilst the main focus of this project is on smaller lattices with few particles,
+it is of interest to investigate larger system sizes (necessarily by approximate
+methods) to see how much of the behaviour of the small systems is preserved in
+the larger ones.
 
 
 \subsection{Small systems}
@@ -882,13 +872,13 @@ for small systems, in particular those that have only a single particle on them.
 This method has the significant advantage of being ``analytic'', at least up to
 the precision of the values stored for the eigenvalues and eigenvectors. All
 instances of $\ket{\psi(t)}$ are calculated from the initial state
-$\ket{\psi(0)}$, so the value we calculate for $\ket{\psi(t)}$ is independent of the time-step
-between each instance of $\ket{\psi(t)}$ that we calculate. This has the further
-advantage that in a numerical algorithm we need not concern ourselves with
-drifting of the norm. However, as the number of lattice
-sites and particles in the system increases, the time required to apply this
-method increases dramatically. This is because the dimensionality $\mathcal{D}$
-of the system grows according to
+$\ket{\psi(0)}$, so the value we calculate for $\ket{\psi(t)}$ is independent of
+the time-step between each instance of $\ket{\psi(t)}$ that we calculate. This
+has the further advantage that in a numerical algorithm we need not concern
+ourselves with drifting of the norm. However, as the number of lattice sites and
+particles in the system increases, the time required to apply this method
+increases dramatically. This is because the dimensionality $\mathcal{D}$ of the
+system grows according to
 \begin{equation}
     \label{dimensionality_exact}
     \mathcal{D} = \frac{(N + P - 1)!}{P! (N-1)!},
@@ -955,13 +945,13 @@ to have more than two particles on a lattice, and hence the concept of
 ``macroscopic occupation of the ground state'' that is integral to Bose-Einstein
 condensation has little importance here.
 
-The validity of some of the assumptions that we make in this
-method will rely on there being a large number of particles. When second
-quantising our Hamiltonian earlier, in equation (\ref{field_operators_wannier})
-we decomposed the field operators into linear combinations of single-particle
-Wannier position states. However, it is possible to decompose the field
-operators into any complete single-particle basis. If we chose the single
-particle energy basis $\{\phi_i\}$, then we get
+The validity of some of the assumptions that we make in this method will rely on
+there being a large number of particles. When second quantising our Hamiltonian
+earlier, in equation (\ref{field_operators_wannier}) we decomposed the field
+operators into linear combinations of single-particle Wannier position states.
+However, it is possible to decompose the field operators into any complete
+single-particle basis. If we chose the single particle energy basis $\lbrace
+\phi_{i} \rbrace$, then we get
 \begin{equation}
     \hat{\Psi}(\mathbf{r})
     =
@@ -974,22 +964,22 @@ Since the GPE is a tool for investigating near-zero temperature BECs (very low
 energy systems), we now assume that the occupancy of energy modes other than
 the ground modes is negligible, i.e.,
 \begin{equation}
- \hat{\Psi}(\mathbf{r})=\hat{a}_0\phi_{0}(\mathbf{r}).
+    \hat{\Psi}(\mathbf{r}) = \hat{a}_{0} \phi_{0}(\mathbf{r}).
 \end{equation}
-Next we note that when there are a large number of particles in the ground
-state $\ket{N_0}$ then the action of the creation and destruction operators
-on the ground state approximately commute:
+Next we note that when there are a large number of particles in the ground state
+$\ket{N_{0}}$ then the action of the creation and destruction operators on the
+ground state approximately commute:
 \begin{equation}
- \hat{a}_0\hat{a}^\dagger_0\ket{N_0}
- =
- N_0 \sqrt{1+\frac{1}{N_0}}\ket{N_0}
- \approx
- N_0\ket{N_0}
- =
- \hat{a}^\dagger_0\hat{a}_0\ket{N_0}
+    \hat{a}_{0} \hat{a}^{\dagger}_{0} \ket{N_{0}}
+    =
+    N_{0} \sqrt{1+\frac{1}{N_{0}}} \ket{N_{0}}
+    \approx
+    N_{0} \ket{N_{0}}
+    =
+    \hat{a}^{\dagger}_{0} \hat{a}_{0} \ket{N_{0}}
 \end{equation}
 It is this property of commutation that leads us to replace the creation and
-annihilation operators by $\sqrt{N_0}$, which allows us to approximate the
+annihilation operators by $\sqrt{N_{0}}$, which allows us to approximate the
 field operator $\hat{Psi}(\mathbf{r})$ with a wave function
 \begin{equation}
     \hat{\Psi}(\mathbf{r})
@@ -999,78 +989,75 @@ field operator $\hat{Psi}(\mathbf{r})$ with a wave function
     \psi_{0}(\mathbf{r}).
 \end{equation}
 
-\subsection{Runge-Kutta-Feldberg Method}
-The nonlinear term in the GPE prevents us from being able to represent the 
-Hamiltonian in matrix form. Hence we cannot find the eigenvectors and 
-eigenvalues of the system directly, which prevents us from using the 'analytic' 
-approach to time evolution that we used for smaller system sizes. One method
-that we could use in its pace is to simply expand the time evolution
-operator $e^{-i\hat{H}t}$ in a Taylor series, truncated at an appropriate order,
-i.e.,
-\begin{equation}
- \ket{\psi(t)}
- =
- e^{-i\hat{H}t}\ket{\psi(0)}
- =
- \left
- (1
- +
- (-i\hat{H}t)
- +
- \frac{1}{2}(-i\hat{H}t)^2
- +
- \frac{1}{6}((-i\hat{H}t)^3
- +
- \dots
- \right)
- \ket{\psi(0)}.
-\end{equation}
-When we are working with systems in which $U_0 \neq 0$, the nonlinearity 
-that is present quickly causes inaccuracies in any low-order ($\leq3$) Taylor 
-method. This can be observed by calculating the norm of $\ket{\psi(t)}$ at 
-each timestep (it quickly grows significantly greater than $1$). Using a 
-higher-order Taylor method is slow, due to the computation time required to 
-calculate the derivatives of $e^{-i\hat{H}t}$ at each timestep\todo{check this
-is exactly correct}. 
 
-A standard Runge-Kutta method speeds up the calculation by avoiding calculating 
-these derivatives while retaining high-order truncation error. One of the most 
-frequently used Runge-Kutta methods is a fourth order method, which has 
+\subsection{Runge-Kutta-Feldberg Method}
+
+The nonlinear term in the GPE prevents us from being able to represent the
+Hamiltonian in matrix form. Hence we cannot find the eigenvectors and
+eigenvalues of the system directly, which prevents us from using the 'analytic'
+approach to time evolution that we used for smaller system sizes. One method
+that we could use in its pace is to simply expand the time evolution operator
+$e^{-i \hat{H} t}$ in a Taylor series, truncated at an appropriate order, i.e.,
+\begin{equation}
+    \ket{\psi(t)}
+    =
+    e^{-i\hat{H}t}\ket{\psi(0)}
+    =
+    \left (
+        1 + (-i \hat{H} t) + \frac{1}{2}(-i \hat{H} t)^{2} +
+        \frac{1}{6}(-i \hat{H} t)^{3} + \dots
+    \right)
+    \ket{\psi(0)}.
+\end{equation}
+When we are working with systems in which $U_{0} \neq 0$, the nonlinearity that
+is present quickly causes inaccuracies in any low-order ($\leq3$) Taylor method.
+This can be observed by calculating the norm of $\ket{\psi(t)}$ at each timestep
+(it quickly grows significantly greater than $1$). Using a higher-order Taylor
+method is slow, due to the computation time required to calculate the
+derivatives of $e^{-i\hat{H}t}$ at each timestep\todo{check this is exactly
+correct}.
+
+A standard Runge-Kutta method speeds up the calculation by avoiding calculating
+these derivatives while retaining high-order truncation error. One of the most
+frequently used Runge-Kutta methods is a fourth order method, which has
 truncation error of $\mathcal{O}(h^4)$, where $h$ is the size of the timestep.
 
-For a given differential equation 
+For a given differential equation
 \begin{equation}
- y'=f(t,y)
+    y' = f(t,y)
 \end{equation}
-with initial condition $y(t=0)=\alpha$, we can approximate the value of $y$ at
+with initial condition $y(t=0) = \alpha$, we can approximate the value of $y$ at
 $N$ successive times (each separated by timestep $h$) by $w$, where
 \begin{align*}
- w_0&=\alpha \\
- k_1&=hf(t_i,w_i) \\
- k_2&=hf\left(t_i+\frac{h}{2}),w_i+\frac{1}{2}k_1\right) \\
- k_3&=hf\left(t_i+\frac{h}{2}),w_i+\frac{1}{2}k_2\right) \\
- k_4=hf(t_{i+1},w_i+k_3) \\
- w_{i+1}=w_i+\frac{1}{6}(k_1+2k_2+2k_3+k4) \\
- \end{align*}
-for each $i=0,1,\dots,N-1$. Setting $y=\ket{\psi(t)}$, $w_0=\psi(t=0)$ and 
-$f(t,y)=i\hat{H}$.
+    w_{0}   &= \alpha
+    \\
+    k_{1}   &= hf(t_{i}, w_{i})
+    \\
+    k_{2}   &= hf \left( t_{i} + \frac{h}{2}), w_{i} + \frac{1}{2} k_{1} \right)
+    \\
+    k_{3}   &= hf \left( t_{i} + \frac{h}{2}), w_i+\frac{1}{2} k_{2} \right)
+    \\
+    k_{4}   &= hf (t_{i+1}, w_{i+k_{3}})
+    \\
+    w_{i+1} &= w_{i} + \frac{1}{6}(k_{1} + 2 k_{2} + 2 k_{3} + k_{4})
+\end{align*}
+for each $i = 0$, 1, \dots, $N-1$. Setting $y = \ket{\psi(t)}$, $w_{0} =
+\psi(t=0)$ and $f(t,y) = i \hat{H}$.
 
 \todo{blarg. need to work through this again to get it right}
 
-
-Even when using this method, we are concerned about the effect of the nonlinear 
-term on our error. Hence we adopt a more sophisticated algorithm 
+Even when using this method, we are concerned about the effect of the nonlinear
+term on our error. Hence we adopt a more sophisticated algorithm
 (the Runge-Kutta-Feldberg method). This method incorporates a estimate of the
 truncation error and adapts the step size as it goes to ensure that the error
-stays below a certain tolerance set by the user. 
+stays below a certain tolerance set by the user.
 
-Specifically, it uses a Runge-Kutta method of order five to estimate the 
+Specifically, it uses a Runge-Kutta method of order five to estimate the
 local error in a Runge-Kutta method of order four. If the estimated error
-is greater than the tolerance, then the timestep is shortened and the error is 
-estimated again. The interested reader may refer to chapter $5$ of 
-\emph{Numerical Analysis} by R. Burden and J. Faires \cite{Burden2005} for the 
+is greater than the tolerance, then the timestep is shortened and the error is
+estimated again. The interested reader may refer to chapter $5$ of
+\emph{Numerical Analysis} by R. Burden and J. Faires \cite{Burden2005} for the
 precise details of the algorithm used.
-
 
 
 \section{Results}
@@ -1083,7 +1070,7 @@ prepared (it ``revives''). To see why we might expect to see revival in
 some cases, consider the initial state of the system $\ket{\psi(0)}$, which
 evolves in time according to
 \begin{equation}
- \ket{\psi(t)}=e^{i\hat{H}t}\ket{\psi(0)}.
+    \ket{\psi(t)} = e^{i \hat{H} t} \ket{\psi(0)}.
 \end{equation}
 Now noting that we can use the completeness relation for the energy eigenstates
 to expand the initial state in the energy basis, and incorporating the
@@ -1095,13 +1082,12 @@ $\hbar^{-1}$ into the time scale,
                &= \sum_je^{iE_{j}t}\ket{E_j}\braket{E_j|\psi(0)}    \nonumber \\
                &= \sum_j c_{j}e^{iE_{j}t}\ket{E_j}
 \end{align}
-
 From here it can be seen that the only time dependence appears in the complex
-exponentials, each of which is $2\pi$-periodic. If we can find some common
-time $t_r$ such that $E_{j} t^*=2 \pi k_{j}$, where $k_{j} \in \mathbb{Z} $
+exponentials, each of which is $2 \pi$-periodic. If we can find some common time
+$t_{r}$ such that $E_{j} t^{\ast} = 2 \pi k_{j}$, where $k_{j} \in \mathbb{Z}$
 for all $j$, we will recover the initial state exactly, i.e.,
-$\ket{\psi(t^*)}=\ket{\psi(0)}$. The next section describes the conditions
-necessary for the existence of the revival time.\\
+$\ket{\psi(t^{\ast})} = \ket{\psi(0)}$. The next section describes the
+conditions necessary for the existence of the revival time.
 
 
 \subsection{Exact revival}
@@ -1113,16 +1099,14 @@ rational when divided by the same irrational number.
     We say that a set of eigenvalues are mutually rational if they are all
     rational when divided by a common real number.
 \end{definition}
-
-For example, the set of
-hypothetical eigenvalues $\lbrace 0, \sqrt{2}, 2 \sqrt{2}, \frac{3 \sqrt{2}}{10}
-\rbrace$ is mutually rational, whereas $\lbrace 0, \sqrt{2}, \sqrt{3}\rbrace$ is
-not. In the case of mutually rational eigenvalues, we can write $E_{j} =
-\frac{p_{j}}{q_{j}}$, where $p_{j}$, $q_{j} \in \mathbb{Z}$. The revival time is
-then given by
+For example, the set of hypothetical eigenvalues $\lbrace 0, \sqrt{2}, 2
+\sqrt{2}, \frac{3 \sqrt{2}}{10} \rbrace$ is mutually rational, whereas $\lbrace
+0, \sqrt{2}, \sqrt{3}\rbrace$ is not. In the case of mutually rational
+eigenvalues, we can write $E_{j} = \frac{p_{j}}{q_{j}}$, where $p_{j}$, $q_{j}
+\in \mathbb{Z}$. The revival time is then given by
 \begin{equation}
-\label{revival_time_formula}
- t^* = \frac{2\pi Q_{LCM}}{P_{HCF}},
+    \label{revival_time_formula}
+    t^{\ast} = \frac{2\pi Q_{LCM}}{P_{HCF}},
 \end{equation}
 
 where $Q_{LCM}$ is the
@@ -1133,7 +1117,7 @@ We are yet to find any systems with nonzero interparticle interaction that have
 mutually rational eigenvalues. In one dimension, the only systems that we have
 found that meet the criterion of mutually irrational eigenvalues are those with
 fewer than $4$ lattice sites. In two dimensions, the only systems that exhibit
-revival have three or fewer chains and three or fewer lattice sites on each 
+revival have three or fewer chains and three or fewer lattice sites on each
 chain (see section \ref{2Dsystems}).
 
 To demonstrate this exact revival, consider a one-dimensional lattice with three
@@ -1220,7 +1204,7 @@ finding the boson on the first site never quite reaches unity again.
 Judging the figure above by eye, it may appear that we have exact revival, but
 this is not actually the case. If we look at how long it takes for the system to
 get within $\epsilon$ of its initial state (i.e. $\norm{\ket{\psi(t)} -
-\ket{\psi(0)}} < \epsilon$) we get the graph below. Note that $t^*$ denotes the
+\ket{\psi(0)}} < \epsilon$) we get the graph below. Note that $t^{\ast}$ denotes the
 time at which the system got within a particular value of $\epsilon$ of the
 initial state.
 \begin{figure}[H]
@@ -1247,8 +1231,8 @@ Loinger \cite{Bocchieri1957}, where they gave a slightly different form:
 \begin{theorem*}[Quantum recurrence]
     Let us consider a system with discrete energy eigenvalues $E_{n}$; if
     $\Psi(t_{0})$ is its state vector in the Schr{\"o}dinger picture at the time
-    $t_{0}$ and $\epsilon$ is any positive number, at least one time $t^*$ will
-    exist such that the norm $\norm{\Psi(t^*) - \Psi(t_0)}$ of the vector $\Psi(t^*)
+    $t_{0}$ and $\epsilon$ is any positive number, at least one time $t^{\ast}$ will
+    exist such that the norm $\norm{\Psi(t^{\ast}) - \Psi(t_{0})}$ of the vector $\Psi(t^{\ast})
     - \Psi(t_{0})$ is smaller than $\epsilon$.
 \end{theorem*}
 \begin{proof}
@@ -1259,41 +1243,54 @@ Loinger \cite{Bocchieri1957}, where they gave a slightly different form:
     $\norm{\ket{\psi(t^{*})} - \ket{\psi(t_{0})}}^{2} < 2 \epsilon'$ for any
     $\epsilon' > 0$ and then extend this to $\norm{\ket{\psi(t^{*})} -
     \ket{\psi(t_{0})}} < \epsilon$. Note that in the following we will introduce
-    the notation $\tau=t^{*} - t_0$ and $\alpha^{2}(t^{*}) = \norm{
+    the notation $\tau=t^{*} - t_{0}$ and $\alpha^{2}(t^{*}) = \norm{
     \ket{\psi(t^{*})} - \ket{\psi(t_{0})}}^{2}$.
     \begin{align*}
-     \alpha^2(t^*)
-     &= \left(\bra {\psi(t^*)}-\bra {\psi(t_0)}\right)
-        \left(\ket{\psi(t^*)}-\ket{\psi(t_0)}\right)
-     \\
-     &= 2-\braket{\psi(t^*)|\psi(t_0)}-\braket{\psi(t_0)|\psi(t^*)}
-     \\
-     &= 2-\sum_{j,n=1}^{\mathcal{D}}c_n^* c_je^{iE_{n}t^*}e^{-iE_{j}t_{0}}
-     \braket{E_n|E_j}
-     -
-     \sum_{j,n=1}^{\mathcal{D}}c_j^*c_ne^{iE_{j}t_{0}}e^{-iE_{n}t^*}
-     \braket{E_j|E_n}
-     \\
-     &= 2
+        \alpha^2(t^{\ast})
+        &=
+        \left ( \bra{\psi(t^{\ast})} - \bra{\psi(t_{0})} \right )
+        \left ( \ket{\psi(t^{\ast})} - \ket{\psi(t_{0})} \right )
+        \\
+        &=
+        2 - \braket{\psi(t^{\ast})|\psi(t_{0})} -
+            \braket{\psi(t_{0})|\psi(t^{\ast})}
+        \\
+        &=
+        2 -
+        \sum_{j,n=1}^{\mathcal{D}}
+            {c_{n}^{\ast} c_{j} e^{i E_{n} t^{\ast}} e^{-i E_{j} t_{0}}
+             \braket{E_n|E_j}
+            }
         -
-        \sum_{n=1}^\mathcal{D} |c_n|^2 e^{iE_{n}(t^*-t_0)}
-        -
-        \sum_{n=1}^\mathcal{D} |c_n|^2 e^{-iE_{n}(t^*-t_0)}
-        \qquad
-        \text{since}
-        \braket{E_j|E_n}
-        =
-        \delta_{ij}
-     \\
-     &=
-     2 \sum_{n=1}^\mathcal{D} |c_n|^2\left(1-\cos\left(E_{n}\tau\right) \right)
-     \qquad
-     \text{because}
-     \ \sum_{n=1}^\mathcal{D} |c_n|^2=1
-     \\
-     &\leq
-     2\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right).
+        \sum_{j,n=1}^{\mathcal{D}}
+            {c_{j}^{\ast} c_{n} e^{i E_{j} t_{0}} e^{-i E_{n} t^{\ast}}
+             \braket{E_j|E_n}
+            }
     \end{align*}
+    since the energy eigenfunctions are orthonormal, $\braket{E_j|E_n} =
+    \delta_{ij}$, the right hand side simplifies to
+    \begin{equation*}
+        \alpha^2(t^{\ast})
+        =
+        2 -
+        \sum_{n=1}^{\mathcal{D}}{\abs{c_{n}}^{2} e^{i E_{n} (t^{\ast} - t_{0})}}
+        -
+        \sum_{n=1}^{\mathcal{D}}{|c_n|^2 e^{-iE_{n}(t^{\ast}-t_{0})}}.
+     \end{equation*}
+     Furthermore due to the totality of the energy basis the $l_{2}$ norm of the
+     expansion coefficients is unity, i.e., $\sum_{n=1}^{\mathcal{D}}%
+     {\abs{c_{n}}^{2} = 1}$, thus
+    \begin{equation*}
+        \alpha^2(t^{\ast})
+        =
+        2
+        \sum_{n=1}^{\mathcal{D}}
+            {\abs{c_{n}}^{2} \left ( 1 - \cos{\!(E_{n} \tau)} \right)}
+        \leq
+        2
+        \sum_{n=1}^{\mathcal{D}}
+            {\bigl (1 - \cos{\!( E_{n} \tau )} \bigr )}.
+    \end{equation*}
     It is sufficient to show that there is a $\tau$ such that
     $\sum_{n=1}^{\mathcal{D}}{\left(1 - \cos{(E_{n}\tau)} \right)} < \epsilon'$.
     This is actually the case according to a standard result of the theory of
@@ -1319,9 +1316,9 @@ Loinger \cite{Bocchieri1957}, where they gave a slightly different form:
 
 \subsection{Large one-dimensional systems}
 
-To determine the mutual rationality or mutual irrationality of the eigenvalues for
-an arbitrarily large one-dimensional system with a single particle, we look to a
-result about the eigenvalues of tridiagonal matrices proven by W. Yueh
+To determine the mutual rationality or mutual irrationality of the eigenvalues
+for an arbitrarily large one-dimensional system with a single particle, we look
+to a result about the eigenvalues of tridiagonal matrices proven by W. Yueh
 \cite{Yueh2006}. A tridiagonal matrix has the form
 \begin{equation}
     A_{N \times N}
@@ -1383,22 +1380,22 @@ Hence we know that for a system with non-degenerate eigenvalues, there can be at
 most three eigenvalues, $\lbrace 0, \pm \frac{J}{2} \rbrace$, that are rational. So
 $\mathcal{D} \leq 3$ for a system with all eigenvalues rational (the lattice
 must have at most 3 sites). We must have at least $(N-3)$ irrational eigenvalues
-for any larger system size. 
+for any larger system size.
 
 The spectrum of a one-dimensional system with $N$ sites and a single particle
 has proven to be \eqref{1D_eigenvalues}. It is apparent that $E_{k}$ is a
 strictly monotonically decreasing function as $k$ increases because $\cos(x)$ is
-strictly monotonically decreasing on the interval $x\in(0,\pi)$ and 
-$0<\frac{k\pi}{N+1}<\pi$ for $k=1,\dots,N$. Thus, $E_{k_{2}} <
-E_{k_{1}}$ whenever $k_{1} < k_{2}$. We have shown --invoking Niven's
-theorem-- that for all $N>3$ the values of the cosine function are irrational.
-However, this result on its own does not guarantee the violation of recurrence,
-as the latter notion requires the energy eigenvalues to be {\emph{mutually}}
-irrational. We thus have to prove that there is no such case when all
-eigenvalues are the multiples of the same irrational number.
+strictly monotonically decreasing on the interval $x\in(0,\pi)$ and $0 <
+\frac{k\pi}{N+1} < \pi$ for $k=1,\dots,N$. Thus, $E_{k_{2}} < E_{k_{1}}$
+whenever $k_{1} < k_{2}$. We have shown --invoking Niven's theorem-- that for
+all $N>3$ the values of the cosine function are irrational. However, this result
+on its own does not guarantee the violation of recurrence, as the latter notion
+requires the energy eigenvalues to be {\emph{mutually}} irrational. We thus have
+to prove that there is no such case when all eigenvalues are the multiples of
+the same irrational number.
 
 Below we answer the question: is there a {\emph{rational}} $\gamma$ such
-that $E_{k_{1}} = \gamma E_{k_{2}}$ for $k_{1} \ne k_{2}$? 
+that $E_{k_{1}} = \gamma E_{k_{2}}$ for $k_{1} \ne k_{2}$?
 
 \begin{theorem*}[Mutual Rationality Recurrence Theorem]
     Consider the sequence of energy eigenvalues
@@ -1468,80 +1465,194 @@ to thermalise.
 \subsection{Interacting one-dimensional systems}
 \todo{Should I talk about dimensionality of Hamiltonian and/or having to choose
 a numbering convention for the representation?}
-Adding multiple interacting particles introduces a number of interesting 
+Adding multiple interacting particles introduces a number of interesting
 features in the thermalisation properties of our system. We have found that
-when weak interactions are present, thermalisation appears to occur in all 
-one-dimensional systems, including those that exhibited clear and regular 
+when weak interactions are present, thermalisation appears to occur in all
+one-dimensional systems, including those that exhibited clear and regular
 revival in the noninteracting case. We also note that with weak
-interactions the long-term average for the expectation value of the number 
-operators all tend towards $\frac{P}{N}$, i.e., the particles become evenly 
+interactions the long-term average for the expectation value of the number
+operators all tend towards $\frac{P}{N}$, i.e., the particles become evenly
 distributed on the lattice.\todo{confirm this happens the same way for lots
 of different initial conditions.}
-With stronger interactions, however, we observe localisation, which we will 
-investigate in section \ref{changing_interaction_strength}. 
+With stronger interactions, however, we observe localisation, which we will
+investigate in section \ref{changing_interaction_strength}.
 
-To see why the systems that exhibited revival in the noninteracting case 
-thermalise once interactions are added, we consider the specific case of 
-two bosons on a $3\times1$ lattice. In the absence of interactions, this 
+To see why the systems that exhibited revival in the noninteracting case
+thermalise once interactions are added, we consider the specific case of
+two bosons on a $3\times1$ lattice. In the absence of interactions, this
 is identical to a single boson on a $3\times1$ lattice, up to normalisation.
 We can see from figure \ref{3by1_noninteract_revival} that we have exact revival
 in this system. Once we have multiple particles with interactions in the system,
-we need a larger dimensional basis to represent all of the distinct number 
-states, and thus we need a larger Hamiltonian. We need to pick an ordering 
-convention for our number states in order to define the representation of 
+we need a larger dimensional basis to represent all of the distinct number
+states, and thus we need a larger Hamiltonian. We need to pick an ordering
+convention for our number states in order to define the representation of
 the Hamiltonian matrix. In this project, we have chosen to order the states
 in such a way that the states with the lowest index have the most particles on
 one particular side of the lattice, i.e.,
-\begin{equation}
-\ket{200}=\ket{1}, 
-\ket{110}=\ket{2}, 
-\ket{101}=\ket{3}, 
-\ket{020}=\ket{4}, 
-\dots, 
-\ket{002}=\ket{10}.
-\end{equation}
-
+\begin{equation*}
+    \ket{200} = \ket{1},\,
+    \ket{110} = \ket{2},\,
+    \ket{101} = \ket{3},\,
+    \ket{020} = \ket{4},\,
+    \dots,\,
+    \ket{002} = \ket{10}.
+\end{equation*}
 Using this basis, we can represent the Hamiltonian as
-
 \begin{equation}
     \hat{H}_{3\times1}^{\left(P=2\right)}
     =
     \begin{pmatrix}
-         U & -\sqrt{2}J & 0 & 0 & 0 & 0 \\
-	-\sqrt{2}J & 0 & -\sqrt{2}J &  -J & 0 & 0 \\
-	0 & -\sqrt{2}J & U &  0 & -\sqrt{2}J & 0 \\
-	0 & -J & 0 & 0 & -J & 0\\0 & 0 & -\sqrt{2}J & -J & 0 & -\sqrt{2}J \\ 
-	0 & 0 & 0 & 0 & -\sqrt{2}J & U
+             U & -\sqrt{2}J &          0 &   0 &          0 &          0 \\
+    -\sqrt{2}J &          0 & -\sqrt{2}J &  -J &          0 &          0 \\
+             0 & -\sqrt{2}J &          U &   0 & -\sqrt{2}J &          0 \\
+             0 &         -J &          0 &   0 &         -J &          0 \\
+             0 &          0 & -\sqrt{2}J &  -J &          0 & -\sqrt{2}J \\
+             0 &          0 &          0 &   0 & -\sqrt{2}J &          U
     \end{pmatrix}.
 \end{equation}
-
 The eigenvalues of this system are
+% UNCOMMENT THIS MATHEMATICAL ENVIRONMENT AND DELETE THE ONE AFTER IT IF YOU DO
+% NOT LIKE THE INTRODUCTION OF A SHORTHAND NOTATION, LAMBDA.
+% \begin{align*}
+%     \lambda_{1}
+%     &=
+%     U_{0}
+%     \\
+%     \lambda_{2}
+%     &=
+%     \frac{1}{2} \left(U_{0} - \sqrt{8J^2 + U_{0}^2}\right)
+%     \\
+%     \lambda_{3}
+%     &=
+%     \frac{1}{2}(U_{0} + \sqrt{8J^2 + U_{0}^2})
+%     \\
+%     \lambda_{4}
+%     &=
+%     \frac{U_{0}}{3} -
+%     \frac{-24 J^{2} - U_{0}^2}
+%          {
+%           3 \left (
+%                 9 J^{2} U_{0} + U_{0}^3 + 3 \sqrt{3}
+%                 \sqrt{-512 J^{6} - 61 J^{4} U_{0}^{2} - 2 J^{2} U_{0}^{4}}
+%             \right)^{\frac{1}{3}}}
+%     \\
+%     &\phantom{=}
+%     +
+%     \frac{1}{3}
+%     \left (
+%         9 J^{2} U_{0} + U_{0}^{3} +
+%         3 \sqrt{3} \sqrt{-512 J^{6} - 61 J^{4} U_{0}^{2} - 2 J^{2} U_{0}^4}
+%     \right )^{\frac{1}{3}}
+%     \\
+%     \lambda_{5}
+%     &=
+%     \frac{U_{0}}{3} +
+%     \frac{(1 + i \sqrt{3})(-24 J^{2} - U_{0}^{2})}
+%          {6
+%           \left (
+%               9 J^{2} U_{0} + U_{0}^{3} +
+%               3 \sqrt{3}
+%               \sqrt{-512 J^{6} - 61 J^{4} U_{0}^{2} - 2 J^{2} U_{0}^{4}}
+%           \right )^{\frac{1}{3}}
+%          }
+%     \\
+%     &\phantom{=}
+%     -
+%     \frac{1}{6} (1 - i \sqrt{3})
+%     \left (
+%         9 J^{2} U_{0} + U_{0}^{3} +
+%         3 \sqrt{3} \sqrt{-512 J^{6} - 61 J^{4} U_{0}^{2} - 2 J^{2} U_{0}^{4}}
+%     \right )^{\frac{1}{3}}
+%     \\
+%     \lambda_{6}
+%     &=
+%     \frac{U_{0}}{3} +
+%     \frac{(1 - i\sqrt{3})(-24 J^{2} - U_{0}^{2})}
+%          {6
+%           \left (
+%               9 J^{2} U_{0} + U_{0}^{3} +
+%               3 \sqrt{3} \sqrt{-512 J^{6} - 61 J^{4} U_{0}^{2} - 2 J^{} U_{0}^4}
+%           \right )^{\frac{1}{3}}
+%          }
+%     \\
+%     &\phantom{=}
+%     -
+%     \frac{1}{6} (1 + i\sqrt{3})
+%     \left (
+%         9 J^{2} U_{0} + U_{0}^{3} +
+%         3 \sqrt{3} \sqrt{-512 J^{6} - 61 J^{4} U_{0}^{2} - 2 J^{2} U_{0}^{4}}
+%     \right )^{\frac{1}{3}}
+% \end{align*}
 \begin{align*}
- \lambda_1&=U_0 \\ 
- \lambda_2&= \frac{1}{2}\left(U_0 - \sqrt{8J^2 + U_0^2}\right)\\ 
- \lambda_3&=\frac{1}{2}(U_0 + \sqrt{8J^2 + U_0^2})\\
- \lambda_4&=\frac{U_0}{3} - \frac{-24J^2 - U_0^2}{{3\left(9J^2U_0 + U_0^3 + 3\sqrt{3}\sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4}}\right)^{\frac{1}{3}}} \\ 
- &+ \frac{1}{3}(9J^2U_0 + U_0^3 + 3\sqrt{3}
-    \sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4})^{\frac{1}{3}}\\
- \lambda_5&= \frac{U_0}{3} + 
- \frac{(1 + i\sqrt{3})(-24J^2 - U_0^2)}{{6\left(9J^2U_0 + U_0^3 + 3\sqrt{3}\sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4}}\right)
-   ^{\frac{1}{3}}}\\
-   &-\frac{1}{6}(1 - i\sqrt{3})
-   \left(9J^2U_0 + U_0^3 + 3\sqrt{3}\sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4}\right)^{\frac{1}{3}}\\
- \lambda_6&= \frac{U_0}{3} + \frac{(1 - i\sqrt{3})(-24J^2 - U_0^2)}{{6\left(9J^2U_0 + U_0^3 + 3\sqrt{3}\sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4}\right)^
-   {\frac{1}{3}}}}\\
-   &- \frac{1}{6}(1 + i\sqrt{3})
-   \left(9J^2U_0 + U_0^3 + 3\sqrt{3}\sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4}\right)^{\frac{1}{3}}
+    \lambda_{1}
+    &=
+    U_{0}
+    \\
+    \lambda_{2}
+    &=
+    \frac{1}{2} \left(U_{0} - \sqrt{8J^2 + U_{0}^2}\right)
+    \\
+    \lambda_{3}
+    &=
+    \frac{1}{2}(U_{0} + \sqrt{8J^2 + U_{0}^2})
+    \\
+    \lambda_{4}
+    &=
+    \frac{U_{0}}{3} -
+    \frac{-24 J^{2} - U_{0}^2}
+         {
+          3 \left (
+                9 J^{2} U_{0} + U_{0}^3 + 3 \sqrt{3} \Lambda
+            \right)^{\frac{1}{3}}}
+    +
+    \frac{1}{3}
+    \left ( 9 J^{2} U_{0} + U_{0}^{3} + 3\sqrt{3} \Lambda \right )^{\frac{1}{3}}
+    \\
+    \lambda_{5}
+    &=
+    \frac{U_{0}}{3} +
+    \frac{(1 + i \sqrt{3})(-24 J^{2} - U_{0}^{2})}
+         {6
+          \left (
+              9 J^{2} U_{0} + U_{0}^{3} + 3 \sqrt{3} \Lambda
+          \right )^{\frac{1}{3}}
+         }
+    -
+    \frac{1}{6} (1 - i \sqrt{3})
+    \left (
+        9 J^{2} U_{0} + U_{0}^{3} +
+        3 \sqrt{3} \Lambda
+    \right )^{\frac{1}{3}}
+    \\
+    \lambda_{6}
+    &=
+    \frac{U_{0}}{3} +
+    \frac{(1 - i\sqrt{3})(-24 J^{2} - U_{0}^{2})}
+         {6
+          \left (
+              9 J^{2} U_{0} + U_{0}^{3} +
+              3 \sqrt{3} \Lambda
+          \right )^{\frac{1}{3}}
+         }
+    -
+    \frac{1}{6} (1 + i\sqrt{3})
+    \left (
+        9 J^{2} U_{0} + U_{0}^{3} +
+        3 \sqrt{3} \Lambda
+    \right )^{\frac{1}{3}}
 \end{align*}
-There are some eigenvalues in the above set with multiplicity greater than one.
+where we introduced the temporary shorthand notation of
+\begin{equation*}
+    \Lambda = \sqrt{-512 J^{6} - 61 J^{4} U_{0}^{2} - 2 J^{2} U_{0}^{4}}.
+\end{equation*}
 Whilst we have not proven that the above eigenvalues form a mutually irrational
 set, when we consider the number of square roots and third roots in the above
-set of eigenvalues, we see that it at least appears very unlikely that a 
-particular combination of $J$ and $U_0$ would result in a mutually rational
-set of eigenvalues. 
+set of eigenvalues, we see that it at least appears very unlikely that a
+particular combination of $J$ and $U_{0}$ would result in a mutually rational
+set of eigenvalues.
 
 When we run a simulation of this system, we find that the long term average
-for the particle to be on the same site that it started on approaches 
+for the particle to be on the same site that it started on approaches
 $\frac{P}{N}=\frac{2}{3}$, which is consistent with it thermalising.
 
 \begin{figure}[H]
@@ -1550,7 +1661,7 @@ $\frac{P}{N}=\frac{2}{3}$, which is consistent with it thermalising.
         f(x)=0.667
         g(x)=0.70387
         P(x)=2
-	set yrange [0:2.5]
+        set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "$P/N=0.67$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
@@ -1560,7 +1671,7 @@ $\frac{P}{N}=\frac{2}{3}$, which is consistent with it thermalising.
      with two bosons and $U=0.1$.}
 \end{figure}
 
-We observe something similar in the case of a $2\times1$ lattice with two 
+We observe something similar in the case of a $2\times1$ lattice with two
 bosons on it. Here we expect the long term average to be $\frac{P}{N}=
 \frac{2}{2}=1$, which is consistent with what we see.
 \todo{on reflection, this looks a bit like revival. Look at data file to test.}
@@ -1568,33 +1679,32 @@ bosons on it. Here we expect the long term average to be $\frac{P}{N}=
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-	f(x)=1
-	g(x)=1.0066
-	P(x)=2
-	set yrange [0:2.5]
+        f(x)=1
+        g(x)=1.0066
+        P(x)=2
+        set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/2by1_U0.1_T1e4.dat" u 1:3 w l lc 1 notitle, f(x) title "$P/N=1$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $2\times 1$ lattice
-     with two bosons and $U_0=0.1$.}
+     with two bosons and $U_{0}=0.1$.}
 \end{figure}
 
 We see a similar pattern with a $3\times1$ lattice with two particles, with the
 long-term average being $2/3$.
- 
+
 The agreement of the long-term average with a uniform spatial distribution is
-also clear for larger system sizes, such as a $10\times1$ lattice with
-two bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}{N}
-=0.2$.
+also clear for larger system sizes, such as a $10\times1$ lattice with two
+bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}{N} =0.2$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         f(x)=0.2
         g(x)=0.24110
         P(x)=2
-	set yrange [0:2.5]
+        set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/10by1_U0.1_T2e4.dat" u 1:11 w l lc 1 notitle, f(x) title "$P/N=0.2$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
@@ -1605,12 +1715,12 @@ two bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}{N}
      \label{10by1_U0.1}
 \end{figure}
 
-\subsubsection{Effect of interaction 
-strength\label{changing_interaction_strength}}
+\subsubsection{Effect of interaction strength
+               \label{changing_interaction_strength}}
 
-When the interaction strength is increased, we notice an increasing 
-dependence of the long-term averages of the expectation values of the number 
-operators. This suggests that having strong interparticle interactions can 
+When the interaction strength is increased, we notice an increasing
+dependence of the long-term averages of the expectation values of the number
+operators. This suggests that having strong interparticle interactions can
 frustrate thermalisation. \todo{add more words here}
 All of the following simulations are run for a $3\times1$ lattice with two
 bosons. U=0.005 (short term)
@@ -1618,89 +1728,78 @@ bosons. U=0.005 (short term)
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-	f(x)=0.6667
-	g(x)=0.70245
-	P(x)=2
-	set yrange [0:2.5]
+    f(x)=0.6667
+    g(x)=0.70245
+    P(x)=2
+    set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.005_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "$P/N=0.67$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$" 
+        plot "./Data/3by1_U0.005_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "$P/N=0.67$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Demonstrating thermalisation for a $3\times 1$ lattice
-     with two bosons and $U=0.005$. The long time average of 
+     with two bosons and $U=0.005$. The long time average of
      $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70245.$}
 \end{figure}
 
-The time average of the expectation value of the number operator
-for the first site, $\overline{\langle n_1 \rangle}=0.70245.$, is 
-greater than $\frac{P}{N}=0.67$. This may appear to be a result of the 
-contributions to the time average of the early timesteps, as the bosons were
-on the first site at t=0. However, running a simulation with the same 
-parameters for $5$ times as long gives an average that is nearly 
-indistinguishable from this, suggesting that the early data is not skewing the
-result.\\
-U=0.005 (long term)
-
+The time average of the expectation value of the number operator for the first
+site, $\overline{\langle n_1 \rangle}=0.70245.$, is greater than $\frac{P}{N} =
+0.67$. This may appear to be a result of the contributions to the time average
+of the early timesteps, as the bosons were on the first site at t=0. However,
+running a simulation with the same parameters for $5$ times as long gives an
+average that is nearly indistinguishable from this, suggesting that the early
+data is not skewing the result.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-	f(x)=0.6667
-	g(x)=0.70280
-	P(x)=2
-	set yrange [0:2.5]
+        f(x)=0.6667
+        g(x)=0.70280
+        P(x)=2
+        set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.005_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Thermalisation for a $3\times 1$ lattice
-     with two bosons and $U=0.005$. The long time average of 
-     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70280.$}
+     \caption{Thermalisation for a $3\times 1$ lattice with two bosons and $U =
+              0.005$. The long time average of $\langle n_1 \rangle$ is
+              $\overline{\langle n_1 \rangle}=0.70280.$}
 \end{figure}
-
-U=0.01
-
 
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-	f(x)=0.6667
-	g(x)=0.70329
-	P(x)=2
-	set yrange [0:2.5]
+        f(x)=0.6667
+        g(x)=0.70329
+        P(x)=2
+        set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.01_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title ``P/N=0.67'' w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Thermalisation for a $3\times 1$ lattice
-     with two bosons and $U_0=0.01$. The long time average of 
-     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70329.$}
+     \caption{Thermalisation for a $3\times 1$ lattice with two bosons and
+              $U_{0} = 0.01$. The long time average of $\langle n_1 \rangle$ is
+              $\overline{\langle n_1 \rangle}=0.70329.$}
 \end{figure}
-
-
-U=0.01 (to T=1e6)
 
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set title "Probability that boson found on first site over time"
-	f(x)=0.6667
-	g(x)=0.70319
-	P(x)=2
-	set yrange [0:2.5]
+        f(x)=0.6667
+        g(x)=0.70319
+        P(x)=2
+        set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.01_T1e6dt1.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Thermalisation for a $3\times 1$ lattice
-     with two bosons and $U_0=0.01$. The long time average of 
-     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70319.$}
+     \caption{Thermalisation for a $3\times 1$ lattice with two bosons and
+              $U_{0} = 0.01$. The long time average of $\langle n_1 \rangle$ is
+              $\overline{\langle n_1 \rangle}=0.70319.$}
 \end{figure}
-
-U=0.1 
 
 \begin{figure}[H]
     \centering
@@ -1708,18 +1807,16 @@ U=0.1
         f(x)=0.6667
         g(x)=0.70390
         P(x)=2
-	set yrange [0:2.5]
+        set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Thermalisation for a $3\times 1$ lattice
-     with two bosons and $U=0.1$. The long time average of 
-     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70390.$}
+     \caption{Thermalisation for a $3\times 1$ lattice with two bosons and $U =
+              0.1$. The long time average of $\langle n_1 \rangle$ is
+              $\overline{\langle n_1 \rangle}=0.70390.$}
 \end{figure}
-
-U=0.5
 
 \begin{figure}[H]
     \centering
@@ -1727,24 +1824,22 @@ U=0.5
         f(x)=0.6667
         g(x)=0.71241
         P(x)=2
-	set yrange [0:2.5]
+        set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Thermalisation for a $3\times 1$ lattice
-     with two bosons and $U_0=0.5$. The long time average of 
-     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.71241$.}
+     \caption{Thermalisation for a $3\times 1$ lattice with two bosons and
+              $U_{0} = 0.5$. The long time average of $\langle n_1 \rangle$ is
+              $\overline{\langle n_1 \rangle}=0.71241$.}
 \end{figure}
-
-U=2
 
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         P(x)=2
-	set yrange [0:2.5]
+        set yrange [0:2.5]
         g(x)=0.77936
         f(x)=0.6667
         set xlabel "$\\displaystyle \\frac{t}{J}$"
@@ -1752,18 +1847,16 @@ U=2
         plot "./Data/3by1_U2_T1e6dt1.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Thermalisation for a $3\times 1$ lattice
-     with two bosons and $U_0=5$. The long time average of 
-     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.77936.$}
+     \caption{Thermalisation for a $3\times 1$ lattice with two bosons and
+              $U_{0} = 2$. The long time average of $\langle n_1 \rangle$ is
+              $\overline{\langle n_1 \rangle}=0.77936.$}
 \end{figure}
-
-U=5
 
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         P(x)=2
-	set yrange [0:2.5]
+        set yrange [0:2.5]
         g(x)=0.88260
         f(x)=0.6667
         set xlabel "$\\displaystyle \\frac{t}{J}$"
@@ -1771,17 +1864,17 @@ U=5
         plot "./Data/3by1_U5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Thermalisation for a $3\times 1$ lattice
-     with two bosons and $U_0=5$. The long time average of 
-     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.88260.$}
+     \caption{Thermalisation for a $3\times 1$ lattice with two bosons and
+              $U_{0} = 5$. The long time average of $\langle n_1 \rangle$ is
+              $\overline{\langle n_1 \rangle}=0.88260.$}
 \end{figure}
 
-We can look at the long-term averages for the expecation value of the occupation
+We can look at the long-term averages for the expectation value of the occupation
 of all of the lattice sites (not just the one that the boson started on). When
-we do this, a remarkable pattern emerges. If we start the boson on the first 
-site, for low values of $U_0$ the average time spent on the second site is 
-slightly lower than the outer lattice sites. We believe this to be a result of 
-the repulsive contact interactions. However, once $U_0$ gets larger (especially
+we do this, a remarkable pattern emerges. If we start the boson on the first
+site, for low values of $U_{0}$ the average time spent on the second site is
+slightly lower than the outer lattice sites. We believe this to be a result of
+the repulsive contact interactions. However, once $U_{0}$ gets larger (especially
 once it becomes greater than $1$), we find that the long-term average for
 the site furthest from the one that the boson begins on drops dramatically.
 
@@ -1789,92 +1882,87 @@ the site furthest from the one that the boson begins on drops dramatically.
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set yrange [0:1]
-        set xlabel "$U_0$"
+        set xlabel "$U_{0}$"
         set ylabel "$Long term averages$"
         plot "./Data/Long_term_averages_for_3by1_systems" u 1:2 w l lc lp 1 title "$\\overline{\\langle n_{1} \\rangle}$", "./Data/Long_term_averages_for_3by1_systems" u 1:3 w l lp title "$\\overline{\\langle n_{2} \\rangle}$", "./Data/Long_term_averages_for_3by1_systems" u 1:4 w l lp title "$\\overline{\\langle n_{3} \\rangle}$"
      \end{gnuplot}
      \vspace*{-5mm}
      \label{3by1_comparisons}
-     \caption{Long term averages for $3\times1$ systems with varying 
-     interparticle interaction strengths}
+     \caption{Long term averages for $3\times1$ systems with varying
+              interparticle interaction strengths}
 \end{figure}
 
-We have run simulations for higher values of $U_0$ in which we see that 
+We have run simulations for higher values of $U_{0}$ in which we see that
 $\overline{\langle n_{1} \rangle}$ and $\overline{\langle n_{2} \rangle}$
 asymptotically approach unity, and $\overline{\langle n_{3} \rangle}$ approaches
-zero. 
+zero.
 
-One potential explanation for this behaviour is as follows. If the interparticle 
+One potential explanation for this behaviour is as follows. If the interparticle
 interactions are so powerful, beginning the system with both particles on
-the same site means that the system has very high energy. When one of the 
+the same site means that the system has very high energy. When one of the
 particles moves to the second lattice site, conservation of energy demands
 that the system still have high energy, but the interparticle interactions
-only apply to bosons on the same site. Hence, the boson must gain a large 
-amount of kinetic energy. The kinetic energy is proportional to the 
+only apply to bosons on the same site. Hence, the boson must gain a large
+amount of kinetic energy. The kinetic energy is proportional to the
 curvature of the wavefunction ($\sim \nabla^2\psi$), and hence the boson must be
 highly localised within the second lattice site. The stronger the interparticle
 interactions, the more kinetic energy this boson must have and thus the more
-localised it is. This ``narrowness'' of the boson's spatial wavefunction \
-reduces its tendency to tunnel into the third lattice site, so 
+localised it is. This ``narrowness'' of the boson's spatial wavefunction
+reduces its tendency to tunnel into the third lattice site, so
 $\overline{\langle n_{3} \rangle}$ goes to zero. This behaviour suggests
-that the system undergoes a quantum phase transition from a superfluid (when 
-$U_0$ is small)to a Mott insulator (when $U_0$ is large).
+that the system undergoes a quantum phase transition from a superfluid (when
+$U_{0}$ is small)to a Mott insulator (when $U_{0}$ is large).
 
-This suggestion that what we are observing is a quantum phase transition is 
-inspired by work done\todo{this is in their introduction, not their experiment. 
-So is ``work done" the right terminology?} by Greiner et al. \cite{Greiner2002}, 
+This suggestion that what we are observing is a quantum phase transition is
+inspired by work done\todo{this is in their introduction, not their experiment.
+So is ``work done" the right terminology?} by Greiner et al. \cite{Greiner2002},
 who state that for a system described by the Bose-Hubbard Hamiltonian
-
-\begin{equation}
-\begin{align*}
-\hat{H}
-=
-&J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.\ )
-+
-\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}
-\hat{a}_{i}\hat{a}_{i},
-\end{align*}
-\end{equation}
-in the limit where the tunneling term dominates the Hamiltonian, the 
-ground-state energy is minimised if each of the single-particle wavefunctions of $P$
-atoms are spread out over the entire lattice of $N$ lattice sites. This is
+\begin{equation*}
+    \hat{H}
+    =
+    J \sum_{i}{(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.)} +
+    \frac{U_{0}}{2}
+    \sum_{i}{\hat{a}^{\dagger}_{i} \hat{a}^{\dagger}_{i} \hat{a}_{i} \hat{a}_{i}},
+\end{equation*}
+in the limit where the tunnelling term dominates the Hamiltonian, the
+ground-state energy is minimised if each of the single-particle wavefunctions of
+$P$ atoms are spread out over the entire lattice of $N$ lattice sites. This is
 consistent with the values that we found for the long-term averages of number
-operator expectation values for $U_0<<J$, which were close to $\frac{P}{N}$.
+operator expectation values for $U_{0} \ll J$, which were close to $\frac{P}{N}$.
 
-They further note that if system is homogeneous (i.e. 
-$\epsilon_i=\text{const}$), as our systems are, then the many-body ground state
-is given by
-
+They further note that if system is homogeneous (i.e. $\epsilon_{i} =
+\text{const}$), as our systems are, then the many-body ground state is given by
 \begin{equation}
- \ket{\Psi_SF}^{\left(U_0=0\right)}
- \propto 
- \left( \sum_{i=1}^N \hat{a}_i^\dagger \right) ^P 
- \ket{0}.
+    \ket{\Psi_{SF}}^{ \left ( U_{0} = 0 \right)}
+    \propto
+    \left ( \sum_{i=1}^{N}{\hat{a}_{i}^{\dagger}} \right )^{P}
+    \ket{0}.
 \end{equation}
+[This state is well described by a macroscopic wavefunction with long range
+phase coherence throughout the lattice]\todo{ask exactly what sentence in "[]"
+means, then reword}.
 
-[This state is well described by a macroscopic wavefunction with long range 
-phase coherence throughout the lattice]\todo{ask exactly what sentence in "[]" 
-means, then reword}. 
-
-On the other hand, if $U_0$ dominates the Hamiltonian\todo{maybe I can talk 
-about Tonks-Girardeau gas somewhere in here, see highlighted paper}, then the 
+On the other hand, if $U_{0}$ dominates the Hamiltonian\todo{maybe I can talk
+about Tonks-Girardeau gas somewhere in here, see highlighted paper}, then the
 ground state of the system is given by highly localised atomic wavefunctions
-with a \emph{fixed number} of atoms per lattice site that minimise the 
-interaction energy \cite{Bloch2005}. For a homogeneous lattice, this ground state is
+with a \emph{fixed number} of atoms per lattice site that minimise the
+interaction energy \cite{Bloch2005}. For a homogeneous lattice, this ground
+state is
 \begin{equation}
- \ket{\Psi_MI}^{\left(J=0\right)}
- \propto 
-  \prod_{i=1}^N \left( \hat{a}_i^\dagger \right)^\frac{P}{N} 
- \ket{0}.
+    \ket{\Psi_MI}^{\left(J=0\right)}
+    \propto
+    \prod_{i=1}^N \left( \hat{a}_i^\dagger \right)^\frac{P}{N}
+    \ket{0}.
 \end{equation}
 This state has very little phase coherence, but perfect correlations in particle
-number exist between lattice sites\todo{see square brackets}. [does this mean 
-that when P<N each lattice site has either one particle on it or zero? If so, 
-then point out that this is consisten with the data in figure 
-\ref{3by1_comparisons}]. The most important observation that we make about this 
+number exist between lattice sites\todo{see square brackets}. [does this mean
+that when P<N each lattice site has either one particle on it or zero? If so,
+then point out that this is consistent with the data in figure
+\ref{3by1_comparisons}]. The most important observation that we make about this
 Mott insulator state is that it cannot be described by a macroscopic
 wavefunction, and so when we later use the Gross-Pitaevskii equation we will
-not be able to legitimately consider systems with $U_0>J$.
+not be able to legitimately consider systems with $U_{0}>J$.
+
 
 \section{Two-dimensional systems\label{2Dsystems}}
 
@@ -1892,15 +1980,13 @@ non-interacting case, up to normalisation), the Hamiltonian is given by
     +
     h.c.
 \end{equation}
-Like in the one-dimensional single-particle case, the Hamiltonian is an
-$N \times N$ square matrix. We see many similarities between these systems
-and one-dimensional single particle systems. We can attribute this to 
-the fact that, in the absence of any interparticle interactions, the 
-two-dimensional systems are separable. To demonstrate this, consider the Hamiltonian
-for a $3\times3$ lattice with a single boson on it, with hopping in the 
-$x$-direction characterised by $J$ and hopping in the $y$-direction 
-characterised by $J'$ 
-
+Like in the one-dimensional single-particle case, the Hamiltonian is an $N
+\times N$ square matrix. We see many similarities between these systems and
+one-dimensional single particle systems. We can attribute this to the fact that,
+in the absence of any interparticle interactions, the two-dimensional systems
+are separable. To demonstrate this, consider the Hamiltonian for a $3 \times 3$
+lattice with a single boson on it, with hopping in the $x$-direction
+characterised by $J$ and hopping in the $y$-direction characterised by $J'$
 \begin{equation}
     \hat{H}_{3\times3}
     =
@@ -1917,18 +2003,18 @@ characterised by $J'$
     \end{pmatrix}.
 \end{equation}
 
-We use this example rather than a $2\times2$ lattice because the $2\times2$ 
-lattice is not strictly two-dimensional (it is equivalent to a $4 \times1$ 
-system with periodic boundary conditions). We note that this $3\times3$ system
-can be considered as a combination of two $3\times1$ systems, one with hopping 
+We use this example rather than a $2 \times 2$ lattice because the $2 \times 2$
+lattice is not strictly two-dimensional (it is equivalent to a $4 \times 1$
+system with periodic boundary conditions). We note that this $3 \times 3$ system
+can be considered as a combination of two $3 \times 1$ systems, one with hopping
 $J$ and the other with hopping $J'$, i.e.
-
 \begin{equation}
- \hat{H}_{3\times3}=\hat{H}_{3\times1}^{(J)}\otimes {I}_3
- +
- {I}_3\otimes H_{3\times1}^{(J')},
+ \hat{H}_{3 \times 3}
+ =
+ \hat{H}_{3 \times 1}^{(J)} \otimes {I}_{3}  +
+ {I}_{3} \otimes H_{3 \times 1}^{(J')},
 \end{equation}
-where 
+where
 \begin{equation}
     \hat{H}_{3\times1}^{(J)}
     =
@@ -1941,32 +2027,30 @@ where
     H_{3\times1}^{(J')}
     =
     \begin{pmatrix}
-         0 & -J' &  0 \\
+         0 & -J' &  0  \\
         -J' &  0 & -J' \\
          0 & -J' &  0
     \end{pmatrix},
 \end{equation}
-and $I_3$ is the $3\times3$ identity matrix, while $\otimes$ is a Kronecker 
-tensor product.
-Since the individual $3\times1$ systems exihibit revival, it is unsurpising that 
-the two-dimensional one (almost always) does too. The revival time for the 
-overall system is simply the lowest common multiple of the revival times of the
-one-dimensional systems. Consequently, the case for which we do
+and $I_{3}$ is the $3 \times 3$ identity matrix, while $\otimes$ is a Kronecker
+tensor product. Since the individual $3 \times 1$ systems exhibit revival, it is
+unsurprising that the two-dimensional one (almost always) does too. The revival
+time for the overall system is simply the lowest common multiple of the revival
+times of the one-dimensional systems. Consequently, the case for which we do
 not see revival in a $3\times3$ noninteracting system is when $J$ and $J'$ are
-mutually irrational, as this renders their revival times mutually irrational 
+mutually irrational, as this renders their revival times mutually irrational
 \todo{Need to finish this argument off here, am too tired to do it atm}.
 
 The separability of these \todo{quasi-two-dimensional}two-dimensional systems
 suggests that if either of the systems that it separates into have mutually
 irrational eigenvalues (and thus do not exhibit revival) then the whole system
-will not revive either. In other words, if we have an $m\times n$ lattice, then
-we will see thermalisation if $\text{max}\lbrace m,n \rbrace >3$.
+will not revive either. In other words, if we have an $m \times n$ lattice, then
+we will see thermalisation if $\max{\lbrace m,n \rbrace} > 3$. We can now look
+at the simulation of several systems to demonstrate that the above condition for
+revival or thermalisation holds.
 
-We can now look at the simulation of several systems to demonstrate that
-the above condition for revival or thermalisation holds.
-
-Consider first the time evolution, figure \ref{3by3_equal_hop_U0}, of 
-a boson that starts in the top left corner (``first lattice site'') of 
+Consider first the time evolution, figure \ref{3by3_equal_hop_U0}, of
+a boson that starts in the top left corner (``first lattice site'') of
 a $3 \times3$ lattice with $J=J'$.
 \begin{figure}[H]
     \centering
@@ -1981,22 +2065,23 @@ a $3 \times3$ lattice with $J=J'$.
      \label{3by3_equal_hop_U0}
 \end{figure}
 
-The \todo{should I get rid of this text}eigenvalues for this system (with $J=J'$) are
+The \todo{should I get rid of this text}eigenvalues for this system (with $J =
+J'$) are
 \begin{equation*}
     \lbrace 0, \pm\sqrt{2} J, \pm 2 \sqrt{2} J \rbrace
     \quad \text{or after scaling} \quad
     \lbrace 0,\pm 1,\pm 2 \rbrace.
 \end{equation*}
-These energy eigenvalues are clearly mutually rational. We also note that we
-must have degeneracy in the eigenvalues now due to several symmetries of
+There are some eigenvalues in the above set with multiplicity greater than one,
+however, these energy eigenvalues are clearly mutually rational. We also note
+that we must have degeneracy in the eigenvalues now due to several symmetries of
 geometric origin (e.g., rotation by $\frac{\pi}{2}$), which was not possible in
 the one-dimensional case, as is clear from equation (\ref{1D_eigenvalues}).
 
-Now consider a case identical to the previous one, except with $J=1$
-and $J'=3/5$. Note that equation (\ref{revival_time_formula}) predicts
-a revival time of $t^*=10\pi$ \todo{should $t^*$ be over $\sqrt{2}$?} here, which is
-consistent with the simulation.
-
+Now consider a case identical to the previous one, except with $J=1$ and $J' =
+\tfrac{3}{5}$. Note that equation (\ref{revival_time_formula}) predicts a
+revival time of $t^{\ast}=10\pi$ \todo{should $t^{\ast}$ be over $\sqrt{2}$?}
+here, which is consistent with the simulation.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
@@ -2005,11 +2090,11 @@ consistent with the simulation.
         plot "./Data/3by3T1e2H-2rescaledJP0.6.dat" u 1:10 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Revival for a $3 \times 3$ square lattice with a
-     single boson and $\lbrace J,J'\rbrace$ mutually rational.}
+     \caption{Revival for a $3 \times 3$ square lattice with a single boson and
+              $\lbrace J,J'\rbrace$ mutually rational.}
 \end{figure}
 If we now consider the case where $J$ and $J'$ are not mutually rational,
-then we see that we do not get full revival, see figure 
+then we see that we do not get full revival, see figure
 \ref{3by1JJdashmutuallyirrational}.
 
 \begin{figure}[H]
@@ -2021,14 +2106,13 @@ then we see that we do not get full revival, see figure
      \end{gnuplot}
      \vspace*{-5mm}
      \label{3by1JJdashmutuallyirrational}
-     \caption{Absence of revival for a $3\times 3$ lattice
-     with a single boson and $\lbrace J,J'\rbrace$ mutually 
-     irrational: $J=1$ and $J'=\frac{1}{\sqrt{2}}$}
+     \caption{Absence of revival for a $3\times 3$ lattice with a single boson
+              and $\lbrace J,J'\rbrace$ mutually irrational: $J=1$ and $J' =
+              \frac{1}{\sqrt{2}}$}
 \end{figure}
 
 The principles discussed earlier lead us to expect revival to be absent from
 $4\times4$ systems, such as the following one with $J=J'$.
-
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
@@ -2037,13 +2121,12 @@ $4\times4$ systems, such as the following one with $J=J'$.
         plot "./Data/4by4T1e3.dat" u 1:17 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Absence of revival for a $4\times4$ lattice
-     with a single boson and $J=J'$.}
+     \caption{Absence of revival for a $4\times4$ lattice with a single boson
+              and $J=J'$.}
 \end{figure}
 
-Is it worth putting in a larger system, like the following one?
-$15\times15$ with $J=J'$.
-
+Is it worth putting in a larger system, like the following one? $15 \times 15$
+with $J=J'$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
@@ -2052,14 +2135,13 @@ $15\times15$ with $J=J'$.
         plot "./Data/15by15T1e3notscaled.dat" u 1:226 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Absence of revival for a $15 \times 15$ lattice
-     with a single boson and $J=J'$}
+     \caption{Absence of revival for a $15 \times 15$ lattice with a single
+              boson and $J=J'$.}
 \end{figure}
 
-We finish this section by demonstrating that it is sufficient that either
-$m>3$ or $n>3$ for thermalisation to be frustrated in a $m\times n$ lattice.
-We do this by considering a $3\times4$ lattice with a single boson and $J=J'$.
-
+We finish this section by demonstrating that it is sufficient that either $m >
+3$ or $n > 3$ for thermalisation to be frustrated in a $m \times n$ lattice.
+We do this by considering a $3 \times 4$ lattice with a single boson and $J=J'$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
@@ -2068,20 +2150,21 @@ We do this by considering a $3\times4$ lattice with a single boson and $J=J'$.
         plot "./Data/3by4_U0_T1e5.dat" u 1:13 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Absence of revival for a $3 \times 4$ lattice
-     with a single boson and $J=J'$.}
+     \caption{Absence of revival for a $3 \times 4$ lattice with a single boson
+              and $J=J'$.}
      \label{3by4}
 \end{figure}
-
 It is not entirely clear from figure \ref{3by4} that revival does not happen,
 but examination of the source data reveals that there are no times aside from
-the very beginning at which $\langle n_1 \rangle$ is greater than $0.985$.
+the very beginning at which $\langle n_{1} \rangle$ is greater than $0.985$.
 
 
 \section{Two-dimensional interacting systems}
+
 We will now look at two-dimensional systems where the particles have repulsive
-interactions ($U_0 >0$). Like in the one-dimensional case, 
+interactions ($U_{0} > 0$). Like in the one-dimensional case,
 \newpage
+
 \bibliographystyle{unsrt}
 \bibliography{honours}
 
