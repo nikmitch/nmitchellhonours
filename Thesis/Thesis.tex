@@ -1,8 +1,8 @@
 % For full compilation to get the final document
-% \documentclass[a4paper, 10pt]{article}
+\documentclass[a4paper, 10pt]{article}
 
 % For quick compilation without figures
-\documentclass[a4paper, 10pt, draft]{article}
+% \documentclass[a4paper, 10pt, draft]{article}
 \usepackage{float}
 \usepackage{listings}
 \usepackage{todonotes}
@@ -632,24 +632,17 @@ equilibrium}}. However, this phenomenon raises the question: how does the system
 approach its new equilibrium state?
 
 While Ludwig Boltzmann developed the theory of entropy based on notions of
-statistics and probability theory (L. Boltzmann: ``Weitere Studien über das
-Wärmegleichgewicht unter Gasmolekülen''. [Further studies about the heat
-equilibrium among gas molecules] Sitzungsberichte der Akademie der
-Wissenschaften Wien (II) 66 (1872) pp. 275–370.). During the derivation of the
-aesthetically pleasing relatinoship $S=k_{B}\ln{\!(W)}$ for an ideal gas
-consisting of $N$ particles, Boltzmann a priori considered that each realisation
-of particles is equally probable. However, the evolution of the system would
-lead to a distribution of macroscopic quantities for which there are more
-possible microscopic realisations.
+statistics and probability theory \cite{Boltzmann1872, BoltzmannReprint2011,
+Mueller2007}. During the derivation of the aesthetically pleasing relationship
+$S = k_{B} \ln{\!(W)}$ for an ideal gas consisting of $N$ particles, Boltzmann
+a~priori considered that each realisation of particles is equally probable.
+However, the evolution of the system would lead to a distribution of macroscopic
+quantities for which there are more possible microscopic realisations.
 
 Although Boltzmann established the connection between the micro- and macroscopic
-world, even his contemporaries, e.g., Lord Kelvin (W. Thomson: ``The kinetic
-theory of energy dissipation'', Proceedings of the Royal Society of Edinburgh 8
-(1874) pp. 325–334.) and Johann Josef Loschmidt (Loschmidt, J., (1876/1877),
-``Über die Zustand des Wärmegleichgewichtes eines Systems von Körpern mit
-Rücksicht auf die Schwerkraft'', Wiener Berichte, 73: 128, 366 (1876); 75: 287;
-76: 209 (1877).), raised two philosopically hard questions: reversibility and
-recurrence.
+world, even his contemporaries, e.g., Lord Kelvin \cite{Thomson1875,
+Thomson1874} and Johann Josef Loschmidt \cite{Mueller2007}, raised two
+philosophically hard questions: reversibility and recurrence.
 
 The former relies on the time-reversal symmetry of classical mechanics, thus one
 may expect processes with decreasing entropy occurring as often as ones which
@@ -659,23 +652,17 @@ world with quantum mechanics. The basic equation of non-relativistic quantum
 mechanics is the Sch{\"o}dinger equation, which is {\emph{not}} invariant under
 time-reveral symmetry.
 
-The second objection was raised by Planck's student, Ernst Zermelo. His argument
-was based on Henri Poincare's fresh result (H. Poincaré: ``Sur le problème des
-trois corps et les équations de dynamique'' [On the three-body problem and the
-dynamical equations] Acta mathematica 13 (1890) pp.1–270. See also : H. Poincaré:
-``Le mécanisme et l’expérience’’ [Mechanics and experience] Revue Métaphysique
-Morale 1 (1893) pp. 534–537.), namely that a mechanical system returns or almost
-returns to its initial state. Zermelo argued (E. Zermelo: ``Über einen Satz der
-Dynamik und die mechanische Wärmelehre'' [On a theorem of dynamics and the
-mechanical theory of heat] Annalen der Physik 57 (1896) pp. 485–494.) that if
-this is the case then entropy must decrease in some portion of the time
-evolution.
+The second objection was raised by Planck's student, Ernst Zermelo
+\cite{Zermelo1896, Zermelo2013}. His argument was based on Henri Poincare's
+fresh result \cite{Poincare1890, Poincare2017}, namely that a mechanical system
+returns or almost returns to its initial state. Zermelo argued that if this is
+the case then entropy must decrease in some portion of the time evolution.
 
 This second argument, however, is at the heart of this dissertation as well,
 since unitary time evolution forms the basis of quantum mechanics. The
 incongruence between the notions of thermalisation and unitary time evolution
 inspired a vibrant research field \cite{Calabrese2006, Cazalilla2006, Rigol2007,
-Palma2015}. One of the emerging ideas is the {\emph{eigenstate thermalization
+Palma2015}. One of the emerging ideas is the {\emph{eigenstate thermalisation
 hypothesis}} (ETH) \cite{}. If the conditions of ETH are satisfied then it leads
 to thermalisation, as it has been proven \cite{}, i.e., ETH is sufficient for
 guaranteeing thermalisation. Recently G. de Palma et al. also argued
@@ -683,6 +670,7 @@ guaranteeing thermalisation. Recently G. de Palma et al. also argued
 
 
 \subsection{Quantum systems}
+
 Quantum systems do not \todo{usually?} exhibit dynamic chaos \todo{see square
 brackets} [Rigol's line is ``dynamical chaos itself cannot occur in an isolated
 quantum system, in which the time evolution is linear and the spectrum is
@@ -694,6 +682,7 @@ relaxed states.
 
 
 \section{Integrable systems}
+
 There are a number of classical, isolated systems that do not display
 thermalisation. The main difference between these systems and those which
 approach thermal equilibrium is the extent to which they are constrained
@@ -718,8 +707,6 @@ the Heisenberg uncertainty principle prevents us from applying the idea of
 points in phase space with particular trajectories. With respect to the systems
 that we are dealing with, it has been shown that a one-dimensional lattice
 chain of non-interacting bosons is an integrable system \cite{Rigol2007}.
-
-
 
 \todo{see square brackets} [Maybe fall back on ``All 1D systems with conserved
 energy are integrable'' for U!=0, referencing page 6 of the handout Danny gave
@@ -847,8 +834,8 @@ second order Renyi entropy calculation based on that. Then I could evolve the
 system in time and note that this entropy changes. How does that relate to
 thermalisation? What can I find out from this approach that I don't already
 get from just looking at expectation values of number operators?
-
 \newpage
+
 
 \section{System size and analyticity}
 
@@ -856,7 +843,6 @@ Whilst the main focus of this project is on smaller lattices with few particles,
 it is of interest to investigate larger system sizes (necessarily by approximate
 methods) to see how much of the behaviour of the small systems is preserved in
 the larger ones.
-
 
 \subsection{Small systems}
 
@@ -888,11 +874,11 @@ the lattice. Unsurprisingly, this is the same as the number of possible pure
 number states (since these form an orthonormal basis), and so the formula
 deduced is just the formula for the number of ways to arrange $P$ objects into
 $N$ containers that is familiar from elementary statistical mechanics.
-The Hamiltonian is a $\mathcal{D}\times\mathcal{D}$ square matrix, and
+The Hamiltonian is a $\mathcal{D} \times \mathcal{D}$ square matrix, and
 diagonalising it and then evolving the system according to equation
 (\ref{dimensionality_exact}) quickly becomes impractical for systems with large
 numbers of particles and lattice sites. We can use another familiar tool from
-elementary statistical mechanics -- Stirling's approximation -- to clarify the
+elementary statistical mechanics --Stirling's approximation-- to clarify the
 rate of growth of the dimensionality of the system. Stirling's
 approximation \cite{Schroeder2007} is
 \begin{equation}
@@ -915,8 +901,8 @@ Now applying Stirling's approximation to each factorial:
     \frac{(P + N)^{P+N} \sqrt{2 \pi (P+N)}}
          {P^{P} N^{N} 2\pi \sqrt{PN}}.
 \end{equation*}
-The exponentials are much more significant than the multiplicative factors,
-so we have
+The exponentials are much more significant than the multiplicative factors, so
+we have
 \begin{equation*}
     \mathcal{D} \approx \frac{(P + N)^{P+N}}{P^P N^N}.
 \end{equation*}
@@ -926,14 +912,13 @@ per lattice site ($N \approx P$). In this case,
 \begin{equation*}
     \mathcal{D} \approx \frac{(2P)^{2P}}{P^{P} P^{P}} = 2^{2P} = 4^{P}.
 \end{equation*}
-This means that when we increase the size of the system by one lattice site
-with one boson on it, the dimensionality roughly quadruples. In light of
-this exponential increase in dimensionality for large systems, a different
-approach to time evolution is required. We have chosen to use a
-Gross-Pitaevskii equation to reduce the dimensionality of the system. Doing
-this forces us to take an iterative approach to time evolution rather than an
-analytic one. A Runge-Kutta-Feldberg algorithm \cite{Burden2005} was written
-for this purpose.
+This means that when we increase the size of the system by one lattice site with
+one boson on it, the dimensionality roughly quadruples. In light of this
+exponential increase in dimensionality for large systems, a different approach
+to time evolution is required. We have chosen to use a Gross-Pitaevskii equation
+to reduce the dimensionality of the system. Doing this forces us to take an
+iterative approach to time evolution rather than an analytic one. A
+Runge-Kutta-Feldberg algorithm \cite{Burden2005} was written for this purpose.
 
 
 \subsection{The Gross-Pitaevskii Equation}
@@ -1106,17 +1091,15 @@ eigenvalues, we can write $E_{j} = \frac{p_{j}}{q_{j}}$, where $p_{j}$, $q_{j}
 \in \mathbb{Z}$. The revival time is then given by
 \begin{equation}
     \label{revival_time_formula}
-    t^{\ast} = \frac{2\pi Q_{LCM}}{P_{HCF}},
+    t^{\ast} = \frac{2 \pi Q_{\text{LCM}}}{P_{\text{HCF}}},
 \end{equation}
-
-where $Q_{LCM}$ is the
-lowest common multiple of $\lbrace eq_j\rbrace$ and $P_{HCF}$ is the highest
-common factor of the $\lbrace p_j \rbrace$.
+where $Q_{\text{LCM}}$ is the lowest common multiple of $\lbrace q_{j} \rbrace$
+and $P_{\text{HCF}}$ is the highest common factor of the $\lbrace p_{j} \rbrace$.
 
 We are yet to find any systems with nonzero interparticle interaction that have
 mutually rational eigenvalues. In one dimension, the only systems that we have
 found that meet the criterion of mutually irrational eigenvalues are those with
-fewer than $4$ lattice sites. In two dimensions, the only systems that exhibit
+fewer than 4 lattice sites. In two dimensions, the only systems that exhibit
 revival have three or fewer chains and three or fewer lattice sites on each
 chain (see section \ref{2Dsystems}).
 
@@ -1133,7 +1116,7 @@ system is
     \end{pmatrix}.
 \end{equation}
 Diagonalising this matrix yields the eigenvalues $\lbrace -\sqrt{2}J, 0,
-\sqrt{2}J \rbrace$. These are mutually rational (if we divide them all by
+\sqrt{2} J \rbrace$. These are mutually rational (if we divide them all by
 $\sqrt{2}J$ they are all rational). If we rescale the energies by $\sqrt{2}J$ by
 absorbing that factor into the time scale, then we get eigenvalues $\{-1,0,1\}$.
 We can see from the graph of the simulation below that this matches up with a
@@ -1147,8 +1130,7 @@ return to the initial state at times that are multiples of $2\pi$.
      \end{gnuplot}
      \vspace*{-5mm}
      \label{3by1_noninteract_revival}
-     \caption{Revival for a system with $3$ lattice sites and a
-     single boson.}
+     \caption{Revival for a system with 3 lattice sites and a single boson.}
 \end{figure}
 
 The reason that there appear to be several revivals that our method ``misses''
@@ -1180,15 +1162,15 @@ this system is
 \end{equation}
 The eigenvalues of this system are $\lbrace -\sqrt{3}J, -J, 0, J, \sqrt{3}J
 \rbrace$. These are clearly not mutually rational, so we cannot find an exact
-revival time for this system, despite the fact that it is fully
-integrable \cite{Rigol2007}. Note that the eigenvalues of a system with $4$
-lattice sites are also mutually irrational (they are
-$\frac{J}{2}\lbrace -1-\sqrt{5}, 1+\sqrt{5},1-\sqrt{5},-1+\sqrt{5}\rbrace$)
-but those for a system of $5$ lattice sites are more convenient to work with.
+revival time for this system, despite the fact that it is fully integrable
+\cite{Rigol2007}. Note that the eigenvalues of a system with $4$ lattice sites
+are also mutually irrational (they are $\frac{J}{2}\lbrace -1 - \sqrt{5}, 1 +
+\sqrt{5}, 1 - \sqrt{5}, -1 + \sqrt{5} \rbrace$) but those for a system of 5
+lattice sites are more convenient to work with.
 
-Running a simulation of this system of $5$ lattice sites where we
-start a single boson off on the first site, we find that the probability of
-finding the boson on the first site never quite reaches unity again.
+Running a simulation of this system of $5$ lattice sites where we start a single
+boson off on the first site, we find that the probability of finding the boson
+on the first site never quite reaches unity again.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
@@ -1197,29 +1179,30 @@ finding the boson on the first site never quite reaches unity again.
         plot "./Data/5by1_T1e4.dat" u 1:6 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Absence of exact revival for a system with $5$
-     lattice sites and a single boson.}
+     \caption{Absence of exact revival for a system with 5 lattice sites and a
+              single boson.}
 \end{figure}
 
 Judging the figure above by eye, it may appear that we have exact revival, but
 this is not actually the case. If we look at how long it takes for the system to
 get within $\epsilon$ of its initial state (i.e. $\norm{\ket{\psi(t)} -
-\ket{\psi(0)}} < \epsilon$) we get the graph below. Note that $t^{\ast}$ denotes the
-time at which the system got within a particular value of $\epsilon$ of the
+\ket{\psi(0)}} < \epsilon$) we get the graph below. Note that $t^{\ast}$ denotes
+the time at which the system got within a particular value of $\epsilon$ of the
 initial state.
 \begin{figure}[H]
- \includegraphics[width=1.0\textwidth]{recurrence_times}
- \centering
- \label{1Drecurrencetimes}
+    \includegraphics[width=1.0\textwidth]{recurrence_times}
+    \centering
+    \label{1Drecurrencetimes}
 \end{figure}
 While we see that the system does appear to get arbitrarily close to revival,
 but it can take arbitrarily long to do so. This result can be explained in terms
-of the Poincar\'e recurrence theorem.
+of the Poincar{\'e} recurrence theorem.
+
 
 \subsection{The Poincar\'e Recurrence Theorem}
 
-In 1890, Henri Poincar\'e proved \todo{how to cite him?} the following theorem
-for classical mechanics:
+In 1890, Henri Poincar{\'e} proved \cite{Poincare1890, Poincare2017} the
+following theorem for classical mechanics:
 \begin{quote}
     Any phase-space configuration $(q, p)$ of a system enclosed in a finite
     volume will be repeated as accurately as one wishes after a finite (be it
@@ -1227,13 +1210,12 @@ for classical mechanics:
 \end{quote}
 This theorem was extended to quantum systems in 1956 by P. Bocchieri and A.
 Loinger \cite{Bocchieri1957}, where they gave a slightly different form:
-
 \begin{theorem*}[Quantum recurrence]
     Let us consider a system with discrete energy eigenvalues $E_{n}$; if
     $\Psi(t_{0})$ is its state vector in the Schr{\"o}dinger picture at the time
-    $t_{0}$ and $\epsilon$ is any positive number, at least one time $t^{\ast}$ will
-    exist such that the norm $\norm{\Psi(t^{\ast}) - \Psi(t_{0})}$ of the vector $\Psi(t^{\ast})
-    - \Psi(t_{0})$ is smaller than $\epsilon$.
+    $t_{0}$ and $\epsilon$ is any positive number, at least one time $t^{\ast}$
+    will exist such that the norm $\norm{\Psi(t^{\ast}) - \Psi(t_{0})}$ of the
+    vector $\Psi(t^{\ast}) - \Psi(t_{0})$ is smaller than $\epsilon$.
 \end{theorem*}
 \begin{proof}
     The proof presented by Bocchieri and Loinger shows the theorem to be true
@@ -1360,10 +1342,10 @@ This result is particularly interesting when combined with Niven's theorem
 \cite{DoubleIvan}.
 
 \begin{theorem*}[Niven's theorem]
-  If $\theta$ is rational in degrees, say $\theta=2\pi r$ for some rational
-  number $r$, then the only rational values of the trigonometric functions of
-  $\theta$ are as follows: $\sin \theta, \cos \theta =0, \pm\frac{1}{2},\pm1;\ \
-  \sec\theta, \csc\theta=\pm1,\pm2; \\ \tan\theta,\cot\theta=0,\pm1.$
+    If $\theta$ is rational in degrees, say $\theta=2\pi r$ for some rational
+    number $r$, then the only rational values of the trigonometric functions of
+    $\theta$ are as follows: $\sin \theta, \cos \theta =0, \pm\frac{1}{2},\pm 1;
+    \sec\theta, \csc\theta=\pm1,\pm2; \\ \tan\theta,\cot\theta=0,\pm1.$
 \end{theorem*}
 In other words, this theorem tells us that if $x$ is rational \textit{in
 degrees}, then the only possible rational values of $\cos(x)$ are $0, \pm
@@ -1377,8 +1359,8 @@ When we are evaluating in degrees, equation \eqref{1D_eigenvalues} becomes
 \end{equation}
 The argument of cosine here is clearly rational since $N$ and $k$ are integers.
 Hence we know that for a system with non-degenerate eigenvalues, there can be at
-most three eigenvalues, $\lbrace 0, \pm \frac{J}{2} \rbrace$, that are rational. So
-$\mathcal{D} \leq 3$ for a system with all eigenvalues rational (the lattice
+most three eigenvalues, $\lbrace 0, \pm \frac{J}{2} \rbrace$, that are rational.
+So $\mathcal{D} \leq 3$ for a system with all eigenvalues rational (the lattice
 must have at most 3 sites). We must have at least $(N-3)$ irrational eigenvalues
 for any larger system size.
 
@@ -1463,6 +1445,7 @@ than three lattice sites should not exhibit recurrence, and are thus expected
 to thermalise.
 
 \subsection{Interacting one-dimensional systems}
+
 \todo{Should I talk about dimensionality of Hamiltonian and/or having to choose
 a numbering convention for the representation?}
 Adding multiple interacting particles introduces a number of interesting
@@ -1664,7 +1647,10 @@ $\frac{P}{N}=\frac{2}{3}$, which is consistent with it thermalising.
         set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "$P/N=0.67$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle,     \
+             f(x) title "$P/N=0.67$" w l,                            \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $3\times 1$ lattice
@@ -1685,7 +1671,10 @@ bosons on it. Here we expect the long term average to be $\frac{P}{N}=
         set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/2by1_U0.1_T1e4.dat" u 1:3 w l lc 1 notitle, f(x) title "$P/N=1$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/2by1_U0.1_T1e4.dat" u 1:3 w l lc 1 notitle,     \
+             f(x) title "$P/N=1$" w l,                               \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $2\times 1$ lattice
@@ -1707,7 +1696,10 @@ bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}{N} =0.2$.
         set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/10by1_U0.1_T2e4.dat" u 1:11 w l lc 1 notitle, f(x) title "$P/N=0.2$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/10by1_U0.1_T2e4.dat" u 1:11 w l lc 1 notitle,   \
+             f(x) title "$P/N=0.2$" w l,                             \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $10\times 1$ lattice
@@ -1734,12 +1726,15 @@ bosons. U=0.005 (short term)
     set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.005_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "$P/N=0.67$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/3by1_U0.005_T2e4.dat" u 1:4 w l lc 1 notitle,   \
+             f(x) title "$P/N=0.67$" w l,                            \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
-     with two bosons and $U=0.005$. The long time average of
-     $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70245.$}
+     \caption{Demonstrating thermalisation for a $3\times 1$ lattice with two
+              bosons and $U=0.005$. The long time average of $\langle n_{1}
+              \rangle$ is $\overline{\langle n_1 \rangle}=0.70245.$}
 \end{figure}
 
 The time average of the expectation value of the number operator for the first
@@ -1758,7 +1753,10 @@ data is not skewing the result.
         set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.005_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/3by1_U0.005_T1e5.dat" u 1:4 w l lc 1 notitle,   \
+             f(x) title "$P/N=0.67$" w l,                            \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $3\times 1$ lattice with two bosons and $U =
@@ -1775,7 +1773,10 @@ data is not skewing the result.
         set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.01_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title ``P/N=0.67'' w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/3by1_U0.01_T1e5.dat" u 1:4 w l lc 1 notitle,    \
+             f(x) title "$P/N=0.67$" w l,                            \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $3\times 1$ lattice with two bosons and
@@ -1793,7 +1794,10 @@ data is not skewing the result.
         set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.01_T1e6dt1.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/3by1_U0.01_T1e6dt1.dat" u 1:4 w l lc 1 notitle, \
+             f(x) title "$P/N=0.67$" w l,                            \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $3\times 1$ lattice with two bosons and
@@ -1810,7 +1814,10 @@ data is not skewing the result.
         set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle,     \
+             f(x) title "$P/N=0.67$" w l,                            \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $3\times 1$ lattice with two bosons and $U =
@@ -1827,7 +1834,10 @@ data is not skewing the result.
         set yrange [0:2.5]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/3by1_U0.5_T2e4.dat" u 1:4 w l lc 1 notitle,     \
+             f(x) title "$P/N=0.67$" w l,                            \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $3\times 1$ lattice with two bosons and
@@ -1844,7 +1854,10 @@ data is not skewing the result.
         f(x)=0.6667
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U2_T1e6dt1.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/3by1_U2_T1e6dt1.dat" u 1:4 w l lc 1 notitle,    \
+             f(x) title "$P/N=0.67$" w l,                            \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $3\times 1$ lattice with two bosons and
@@ -1861,30 +1874,34 @@ data is not skewing the result.
         f(x)=0.6667
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+        plot "./Data/3by1_U5_T2e4.dat" u 1:4 w l lc 1 notitle,       \
+             f(x) title "$P/N=0.67$" w l,                            \
+             g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, \
+             P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
      \caption{Thermalisation for a $3\times 1$ lattice with two bosons and
               $U_{0} = 5$. The long time average of $\langle n_1 \rangle$ is
               $\overline{\langle n_1 \rangle}=0.88260.$}
 \end{figure}
-
-We can look at the long-term averages for the expectation value of the occupation
-of all of the lattice sites (not just the one that the boson started on). When
-we do this, a remarkable pattern emerges. If we start the boson on the first
-site, for low values of $U_{0}$ the average time spent on the second site is
-slightly lower than the outer lattice sites. We believe this to be a result of
-the repulsive contact interactions. However, once $U_{0}$ gets larger (especially
-once it becomes greater than $1$), we find that the long-term average for
-the site furthest from the one that the boson begins on drops dramatically.
-
+We can look at the long-term averages for the expectation value of the
+occupation of all of the lattice sites and not just the one that the boson
+started on. When we do this, a remarkable pattern emerges. If we start the boson
+on the first site, for low values of $U_{0}$ the average time spent on the
+second site is slightly lower than the outer lattice sites. We believe this to
+be a result of the repulsive contact interactions. However, once $U_{0}$ gets
+larger (especially once it becomes greater than $1$), we find that the long-term
+average for the site furthest from the one that the boson begins on drops
+dramatically.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set yrange [0:1]
         set xlabel "$U_{0}$"
         set ylabel "$Long term averages$"
-        plot "./Data/Long_term_averages_for_3by1_systems" u 1:2 w l lc lp 1 title "$\\overline{\\langle n_{1} \\rangle}$", "./Data/Long_term_averages_for_3by1_systems" u 1:3 w l lp title "$\\overline{\\langle n_{2} \\rangle}$", "./Data/Long_term_averages_for_3by1_systems" u 1:4 w l lp title "$\\overline{\\langle n_{3} \\rangle}$"
+        plot "./Data/Long_term_averages_for_3by1_systems" u 1:2 w lp title "$\\overline{\\langle n_{1} \\rangle}$", \
+             "./Data/Long_term_averages_for_3by1_systems" u 1:3 w lp title "$\\overline{\\langle n_{2} \\rangle}$", \
+             "./Data/Long_term_averages_for_3by1_systems" u 1:4 w lp title "$\\overline{\\langle n_{3} \\rangle}$"
      \end{gnuplot}
      \vspace*{-5mm}
      \label{3by1_comparisons}
