@@ -523,7 +523,7 @@ def evolve(d0, spectrum, parameters):
     ce = np.multiply(np.conj(c), e)
 
     # Time evolution and export in blocks
-    fname_d = export_header("evolution_d", parameters)
+#    fname_d = export_header("evolution_d", parameters)
     fname_n = export_header("evolution_n", parameters)
 
     block_length = parameters["Maximal block length in export"]
@@ -543,7 +543,7 @@ def evolve(d0, spectrum, parameters):
         if (counter > 0) and (counter % block_length == 0):
             d2 = np.square(np.abs(block))
             n_exp = occupation(d2, parameters)
-            fname_d = export_block(fname_d, t, d2, parameters)
+#            fname_d = export_block(fname_d, t, d2, parameters)
             fname_n = export_block(fname_n, t, n_exp, parameters)
             counter = 0
 
@@ -557,7 +557,7 @@ def evolve(d0, spectrum, parameters):
     block = block[0:counter, :]
     block = np.square(np.abs(block))
     n_exp = occupation(block, parameters)
-    fname_d = export_block(fname_d, t, block, parameters)
+#    fname_d = export_block(fname_d, t, block, parameters)
     fname_n = export_block(fname_n, t, n_exp, parameters)
 
     return

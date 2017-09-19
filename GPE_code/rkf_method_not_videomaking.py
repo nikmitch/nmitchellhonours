@@ -12,21 +12,21 @@ from numpy.linalg import solve
 import qmlattice_utils_GPE as qm
 
 # Defining simulatino parameters
-nx=3
+nx=5
 ny=nx
 N=nx*ny
 hop=np.zeros((3,N),dtype=np.complex128)
 
 jAmp=-1.0/np.sqrt(2)
-U=0.5
+U=0.1
 block_length = 50
 
-T=50
+T=100
 dt=1e-1
-nStep=500
+nStep=1000
 
 # For data export
-fname_probs = "U0.5_RKF_3by3_T50.dat"
+fname_probs = "U10_RKF_3by3_T100.dat"
 block = np.zeros((block_length, N))
 simtime = np.zeros(block_length)
 counter = 1

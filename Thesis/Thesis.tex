@@ -63,6 +63,7 @@
 \maketitle
 
 \begin{abstract}
+\todo{rewrite this when rest done, David/Danny ignore the abstract for now please}
     Systems of ultra-cold gases in light-induced periodic potentials (optical
     lattices) are of great experimental and theoretical interest, and have been
     since the first experimental realisation of Bose-Einstein condensation in
@@ -80,19 +81,52 @@
     thermalisation, we attempt to characterise the long term states using [ETH,
     entropy of entanglement, whatever I actually end up doing].
 \end{abstract}
-\todo{I think I should include some ``flavour'' here with vaguely interesting
-general statements about thermodynamics}
+
+\section{Introduction}
+\todo{see square brackets}
+[Want to include some of the stuff from section \ref{DraftFromDanny} at the 
+start here]
+The question of how, and under what conditions, closed quantum systems approach 
+thermal equilibrium is an old question that forms the basis of a large and
+active field of research. Thermalisation is well understood in the context
+of classical mechanics, where it is understood \todo{I'd rather not repeat 
+``understood'' twice in same sentence.} to emerge from the chaotic 
+dynamics of sufficiently unconstrained systems. However, the time evolution of
+quantum systems is strictly linear, and \todo{hence?} they do not exhibit chaotic 
+dynamics. Nonetheless, there are a number of closed quantum systems in which 
+thermalisation is observed, in the sense that the systems relax to states in 
+which the values of macroscopic quantities are stationary, universal with 
+respect to widely differing initial conditions, and predictable using 
+statistical mechanics \cite{Rigol2008}. 
+
+This project investigates the time evolution of a variety of different systems
+composed of noninteracting and interacting bosons on one-dimensional and 
+two-dimensional optical lattices that are prepared in far-from-equilibrium 
+states. These systems are investigated analytically where possible, and with
+numerical methods for larger and more complicated systems where an analytic 
+approach is not tractable. We focus primarily on gaining a strong 
+understanding of smaller systems of few lattice sites and bosons, as these
+can be solved exactly. From here, we look at some larger systems with a more
+approximate method that revolves around using an adaptive Runge-Kutta method
+to evolve the system wavefunction according to the Gross-Pitaevskii equation.
+We then look for similarities in the results of the simulations run according 
+to each method to see what similarities in behaviour are retained as we move 
+from small, exactly solved systems to large, numerically approximated systems.
 
 \newpage
 \section{Experiments with optical lattices}
 
-In a typical condensed matter system, we can model electrons as moving on a
-lattice potential produced by a periodic array of atom cores. We can simulate
-this type of system with ultracold atoms using optical lattices to generate the
-periodic potential. An optical lattice is produced by overlapping multiple laser
-beams and making use of the interference pattern. The alternating bright and
-dark areas of the interference pattern act as a periodic potential on the atoms
-through the optical dipole force \cite{Bloch2012}. By superimposing different
+This project considers the thermalisation behaviour of systems of bosons on 
+optical lattices. One of the main factors that make these systems interesting
+to work with are the deep similarities between the Hamiltonians of systems that 
+can be generated using bosons on an optical lattices and those of electrons
+moving on a lattice potential produced by a periodic array of atom cores. We can 
+simulate these condensed matter systems with ultracold atoms by using optical 
+lattices to generate the periodic potential. An optical lattice is produced by 
+overlapping multiple laser beams and making use of the interference pattern. 
+The alternating bright and dark areas of the interference pattern act as a 
+periodic potential on the atoms through the optical dipole 
+force \cite{Bloch2012}. By superimposing different
 combinations of laser beams at particular frequencies and amplitudes, any
 lattice geometry that can be constructed via Fourier synthesis can, in
 principle, be produced \cite{Bloch2012}. This fine degree of control over the
@@ -588,7 +622,7 @@ ergodicity and thermalisation, otherwise this is just free-floating and its
 relevance is not obvious. What is this link?} This is what leads us to expect
 our classical systems to thermalise.
 
-\subsection{Draft: from Danny}
+\subsection{Draft: from Danny\label{DraftFromDanny}}
 
 It is our everyday experience that a hot tea or coffee cools and reaches the
 temperature of its surrounding, or in general when a system or its environment
@@ -603,7 +637,7 @@ statistics and probability theory (L. Boltzmann: ``Weitere Studien über das
 Wärmegleichgewicht unter Gasmolekülen''. [Further studies about the heat
 equilibrium among gas molecules] Sitzungsberichte der Akademie der
 Wissenschaften Wien (II) 66 (1872) pp. 275–370.). During the derivation of the
-esthetically pleasing relatinoship $S=k_{B}\ln{\!(W)}$ for an ideal gas
+aesthetically pleasing relatinoship $S=k_{B}\ln{\!(W)}$ for an ideal gas
 consisting of $N$ particles, Boltzmann a priori considered that each realisation
 of particles is equally probable. However, the evolution of the system would
 lead to a distribution of macroscopic quantities for which there are more
@@ -1011,15 +1045,15 @@ For a given differential equation
 with initial condition $y(t=0)=\alpha$, we can approximate the value of $y$ at
 $N$ successive times (each separated by timestep $h$) by $w$, where
 \begin{align*}
- w_0&=\alpha
- k_1&=hf(t_i,w_i)
- k_2&=hf\left(t_i+\frac{h}{2}),w_i+\frac{1}{2}k_1\right)
- k_3&=hf\left(t_i+\frac{h}{2}),w_i+\frac{1}{2}k_2\right)
- k_4=hf(t_{i+1},w_i+k_3)
- w_{i+1}=w_i+\frac{1}{6}(k_1+2k_2+2k_3+k4)
+ w_0&=\alpha \\
+ k_1&=hf(t_i,w_i) \\
+ k_2&=hf\left(t_i+\frac{h}{2}),w_i+\frac{1}{2}k_1\right) \\
+ k_3&=hf\left(t_i+\frac{h}{2}),w_i+\frac{1}{2}k_2\right) \\
+ k_4=hf(t_{i+1},w_i+k_3) \\
+ w_{i+1}=w_i+\frac{1}{6}(k_1+2k_2+2k_3+k4) \\
  \end{align*}
-for each $i=0,1,\dots,N-1$. Setting $y=\ket{psi(t)}$, $w_0=\psi(t=0)$ and 
-$f(t,y)=i\hat{H}$
+for each $i=0,1,\dots,N-1$. Setting $y=\ket{\psi(t)}$, $w_0=\psi(t=0)$ and 
+$f(t,y)=i\hat{H}$.
 
 \todo{blarg. need to work through this again to get it right}
 
@@ -1123,13 +1157,13 @@ return to the initial state at times that are multiples of $2\pi$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/20170912T164043_evolution_n.dat" u 1:4 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating revival for a system with $3$ lattice sites and a
+     \label{3by1_noninteract_revival}
+     \caption{Revival for a system with $3$ lattice sites and a
      single boson.}
 \end{figure}
 
@@ -1174,13 +1208,12 @@ finding the boson on the first site never quite reaches unity again.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/5by1_T1e4.dat" u 1:6 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating absence of exact revival for a system with $5$
+     \caption{Absence of exact revival for a system with $5$
      lattice sites and a single boson.}
 \end{figure}
 
@@ -1259,7 +1292,7 @@ Loinger \cite{Bocchieri1957}, where they gave a slightly different form:
      \ \sum_{n=1}^\mathcal{D} |c_n|^2=1
      \\
      &\leq
-     2\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right)
+     2\sum_{n=1}^\mathcal{D}\left(1-\cos\left(E_{n}\tau\right) \right).
     \end{align*}
     It is sufficient to show that there is a $\tau$ such that
     $\sum_{n=1}^{\mathcal{D}}{\left(1 - \cos{(E_{n}\tau)} \right)} < \epsilon'$.
@@ -1350,8 +1383,7 @@ Hence we know that for a system with non-degenerate eigenvalues, there can be at
 most three eigenvalues, $\lbrace 0, \pm \frac{J}{2} \rbrace$, that are rational. So
 $\mathcal{D} \leq 3$ for a system with all eigenvalues rational (the lattice
 must have at most 3 sites). We must have at least $(N-3)$ irrational eigenvalues
-for any larger system size. \todo{Can I prove that all systems larger than N=3
-have **mutually** irrational eigenvalues?}
+for any larger system size. 
 
 The spectrum of a one-dimensional system with $N$ sites and a single particle
 has proven to be \eqref{1D_eigenvalues}. It is apparent that $E_{k}$ is a
@@ -1368,7 +1400,7 @@ eigenvalues are the multiples of the same irrational number.
 Below we answer the question: is there a {\emph{rational}} $\gamma$ such
 that $E_{k_{1}} = \gamma E_{k_{2}}$ for $k_{1} \ne k_{2}$? 
 
-\begin{theorem*}[Recurrence condition]
+\begin{theorem*}[Mutual Rationality Recurrence Theorem]
     Consider the sequence of energy eigenvalues
     \begin{equation*}
         E_{k} = \cos{\!\left ( \frac{k \pi}{N+1} \right )}
@@ -1430,25 +1462,108 @@ that $E_{k_{1}} = \gamma E_{k_{2}}$ for $k_{1} \ne k_{2}$?
     rational.
 \end{proof}
 Hence, we have shown that all one-dimensional noninteracting systems with more
-than three lattice sites should exhibit thermalisation.
+than three lattice sites should not exhibit recurrence, and are thus expected
+to thermalise.
+
 \subsection{Interacting one-dimensional systems}
 \todo{Should I talk about dimensionality of Hamiltonian and/or having to choose
 a numbering convention for the representation?}
 Adding multiple interacting particles introduces a number of interesting 
 features in the thermalisation properties of our system. We have found that
-when weak interactions are present, thermalisation is guaranteed, even in systems
-that previously exhibited clear and regular revival. We also note that with weak
+when weak interactions are present, thermalisation appears to occur in all 
+one-dimensional systems, including those that exhibited clear and regular 
+revival in the noninteracting case. We also note that with weak
 interactions the long-term average for the expectation value of the number 
-operator tends towards $\frac{P}{N}$ i.e. the particles become evenly 
+operators all tend towards $\frac{P}{N}$, i.e., the particles become evenly 
 distributed on the lattice.\todo{confirm this happens the same way for lots
 of different initial conditions.}
-With stronger interactions, we observe a kind of localisation \todo{is this the
-right word?}, which we will investigate in section 
-\ref{changing_interaction_strength}. 
+With stronger interactions, however, we observe localisation, which we will 
+investigate in section \ref{changing_interaction_strength}. 
 
-Let us first look at a $2\times1$ lattice with two bosons on it. Here we expect 
-the long term average to be $\frac{N}{P}=\frac{2}{2}=1$, which is consistent 
-with what we see.\todo{on reflection, this actually looks a lot like revival :/}
+To see why the systems that exhibited revival in the noninteracting case 
+thermalise once interactions are added, we consider the specific case of 
+two bosons on a $3\times1$ lattice. In the absence of interactions, this 
+is identical to a single boson on a $3\times1$ lattice, up to normalisation.
+We can see from figure \ref{3by1_noninteract_revival} that we have exact revival
+in this system. Once we have multiple particles with interactions in the system,
+we need a larger dimensional basis to represent all of the distinct number 
+states, and thus we need a larger Hamiltonian. We need to pick an ordering 
+convention for our number states in order to define the representation of 
+the Hamiltonian matrix. In this project, we have chosen to order the states
+in such a way that the states with the lowest index have the most particles on
+one particular side of the lattice, i.e.,
+\begin{equation}
+\ket{200}=\ket{1}, 
+\ket{110}=\ket{2}, 
+\ket{101}=\ket{3}, 
+\ket{020}=\ket{4}, 
+\dots, 
+\ket{002}=\ket{10}.
+\end{equation}
+
+Using this basis, we can represent the Hamiltonian as
+
+\begin{equation}
+    \hat{H}_{3\times1}^{\left(P=2\right)}
+    =
+    \begin{pmatrix}
+         U & -\sqrt{2}J & 0 & 0 & 0 & 0 \\
+	-\sqrt{2}J & 0 & -\sqrt{2}J &  -J & 0 & 0 \\
+	0 & -\sqrt{2}J & U &  0 & -\sqrt{2}J & 0 \\
+	0 & -J & 0 & 0 & -J & 0\\0 & 0 & -\sqrt{2}J & -J & 0 & -\sqrt{2}J \\ 
+	0 & 0 & 0 & 0 & -\sqrt{2}J & U
+    \end{pmatrix}.
+\end{equation}
+
+The eigenvalues of this system are
+\begin{align*}
+ \lambda_1&=U_0 \\ 
+ \lambda_2&= \frac{1}{2}\left(U_0 - \sqrt{8J^2 + U_0^2}\right)\\ 
+ \lambda_3&=\frac{1}{2}(U_0 + \sqrt{8J^2 + U_0^2})\\
+ \lambda_4&=\frac{U_0}{3} - \frac{-24J^2 - U_0^2}{{3\left(9J^2U_0 + U_0^3 + 3\sqrt{3}\sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4}}\right)^{\frac{1}{3}}} \\ 
+ &+ \frac{1}{3}(9J^2U_0 + U_0^3 + 3\sqrt{3}
+    \sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4})^{\frac{1}{3}}\\
+ \lambda_5&= \frac{U_0}{3} + 
+ \frac{(1 + i\sqrt{3})(-24J^2 - U_0^2)}{{6\left(9J^2U_0 + U_0^3 + 3\sqrt{3}\sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4}}\right)
+   ^{\frac{1}{3}}}\\
+   &-\frac{1}{6}(1 - i\sqrt{3})
+   \left(9J^2U_0 + U_0^3 + 3\sqrt{3}\sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4}\right)^{\frac{1}{3}}\\
+ \lambda_6&= \frac{U_0}{3} + \frac{(1 - i\sqrt{3})(-24J^2 - U_0^2)}{{6\left(9J^2U_0 + U_0^3 + 3\sqrt{3}\sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4}\right)^
+   {\frac{1}{3}}}}\\
+   &- \frac{1}{6}(1 + i\sqrt{3})
+   \left(9J^2U_0 + U_0^3 + 3\sqrt{3}\sqrt{-512J^6 - 61J^4U_0^2 - 2J^2U_0^4}\right)^{\frac{1}{3}}
+\end{align*}
+There are some eigenvalues in the above set with multiplicity greater than one.
+Whilst we have not proven that the above eigenvalues form a mutually irrational
+set, when we consider the number of square roots and third roots in the above
+set of eigenvalues, we see that it at least appears very unlikely that a 
+particular combination of $J$ and $U_0$ would result in a mutually rational
+set of eigenvalues. 
+
+When we run a simulation of this system, we find that the long term average
+for the particle to be on the same site that it started on approaches 
+$\frac{P}{N}=\frac{2}{3}$, which is consistent with it thermalising.
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        f(x)=0.667
+        g(x)=0.70387
+        P(x)=2
+	set yrange [0:2.5]
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "$P/N=0.67$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Thermalisation for a $3\times 1$ lattice
+     with two bosons and $U=0.1$.}
+\end{figure}
+
+We observe something similar in the case of a $2\times1$ lattice with two 
+bosons on it. Here we expect the long term average to be $\frac{P}{N}=
+\frac{2}{2}=1$, which is consistent with what we see.
+\todo{on reflection, this looks a bit like revival. Look at data file to test.}
 
 \begin{figure}[H]
     \centering
@@ -1457,55 +1572,35 @@ with what we see.\todo{on reflection, this actually looks a lot like revival :/}
 	g(x)=1.0066
 	P(x)=2
 	set yrange [0:2.5]
-        set title "Probability that boson found on first site over time"
-        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/2by1_U0.1_T1e4.dat" u 1:3 w l lc 1 notitle, f(x) title "$P/N=1$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $2\times 1$ lattice
+     \caption{Thermalisation for a $2\times 1$ lattice
      with two bosons and $U_0=0.1$.}
 \end{figure}
 
 We see a similar pattern with a $3\times1$ lattice with two particles, with the
 long-term average being $2/3$.
  
-
-\begin{figure}[H]
-    \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
-        f(x)=0.667
-        g(x)=0.70387
-        P(x)=2
-	set yrange [0:2.5]
-        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
-        set ylabel "$\\langle n_{1} \\rangle$"
-        plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "$P/N=0.67$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
-     \end{gnuplot}
-     \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
-     with two bosons and $U=0.1$.}
-\end{figure}
-
 The agreement of the long-term average with a uniform spatial distribution is
 also clear for larger system sizes, such as a $10\times1$ lattice with
-two bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}/{N}
+two bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}{N}
 =0.2$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         f(x)=0.2
         g(x)=0.24110
         P(x)=2
 	set yrange [0:2.5]
-        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
+        set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/10by1_U0.1_T2e4.dat" u 1:11 w l lc 1 notitle, f(x) title "$P/N=0.2$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $10\times 1$ lattice
+     \caption{Thermalisation for a $10\times 1$ lattice
      with two bosons and $U=0.1$.}
      \label{10by1_U0.1}
 \end{figure}
@@ -1527,8 +1622,7 @@ bosons. U=0.005 (short term)
 	g(x)=0.70245
 	P(x)=2
 	set yrange [0:2.5]
-        set title "Probability that boson found on first site over time"
-        set xlabel "$t$"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.005_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "$P/N=0.67$" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$" 
      \end{gnuplot}
@@ -1555,13 +1649,12 @@ U=0.005 (long term)
 	g(x)=0.70280
 	P(x)=2
 	set yrange [0:2.5]
-        set title "Probability that boson found on first site over time"
-        set xlabel "$t$"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.005_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     \caption{Thermalisation for a $3\times 1$ lattice
      with two bosons and $U=0.005$. The long time average of 
      $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70280.$}
 \end{figure}
@@ -1572,17 +1665,16 @@ U=0.01
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
 	f(x)=0.6667
 	g(x)=0.70329
 	P(x)=2
 	set yrange [0:2.5]
-        set xlabel "$t$"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.01_T1e5.dat" u 1:4 w l lc 1 notitle, f(x) title ``P/N=0.67'' w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     \caption{Thermalisation for a $3\times 1$ lattice
      with two bosons and $U_0=0.01$. The long time average of 
      $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70329.$}
 \end{figure}
@@ -1598,12 +1690,12 @@ U=0.01 (to T=1e6)
 	g(x)=0.70319
 	P(x)=2
 	set yrange [0:2.5]
-        set xlabel "$t$"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.01_T1e6dt1.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     \caption{Thermalisation for a $3\times 1$ lattice
      with two bosons and $U_0=0.01$. The long time average of 
      $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70319.$}
 \end{figure}
@@ -1613,17 +1705,16 @@ U=0.1
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         f(x)=0.6667
         g(x)=0.70390
         P(x)=2
 	set yrange [0:2.5]
-        set xlabel "$t$"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.1_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     \caption{Thermalisation for a $3\times 1$ lattice
      with two bosons and $U=0.1$. The long time average of 
      $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.70390.$}
 \end{figure}
@@ -1633,17 +1724,16 @@ U=0.5
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         f(x)=0.6667
         g(x)=0.71241
         P(x)=2
 	set yrange [0:2.5]
-        set xlabel "$t$"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U0.5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     \caption{Thermalisation for a $3\times 1$ lattice
      with two bosons and $U_0=0.5$. The long time average of 
      $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.71241$.}
 \end{figure}
@@ -1653,17 +1743,16 @@ U=2
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         P(x)=2
 	set yrange [0:2.5]
         g(x)=0.77936
         f(x)=0.6667
-        set xlabel "$t$"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U2_T1e6dt1.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     \caption{Thermalisation for a $3\times 1$ lattice
      with two bosons and $U_0=5$. The long time average of 
      $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.77936.$}
 \end{figure}
@@ -1673,17 +1762,16 @@ U=5
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         P(x)=2
 	set yrange [0:2.5]
         g(x)=0.88260
         f(x)=0.6667
-        set xlabel "$t$"
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by1_U5_T2e4.dat" u 1:4 w l lc 1 notitle, f(x) title "P/N=0.67" w l, g(x) title "$\\overline{\\langle n_{1} \\rangle}$" w l, P(x) title "$P=2$"
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating thermalisation for a $3\times 1$ lattice
+     \caption{Thermalisation for a $3\times 1$ lattice
      with two bosons and $U_0=5$. The long time average of 
      $\langle n_1 \rangle$ is $\overline{\langle n_1 \rangle}=0.88260.$}
 \end{figure}
@@ -1700,11 +1788,10 @@ the site furthest from the one that the boson begins on drops dramatically.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         set yrange [0:1]
         set xlabel "$U_0$"
         set ylabel "$Long term averages$"
-        plot "./Data/Long_term_averages_for_3by1_systems" u 1:2 w l lc 1 title "$\\overline{\\langle n_{1} \\rangle}$", "./Data/Long_term_averages_for_3by1_systems" u 1:3 w l title "$\\overline{\\langle n_{2} \\rangle}$", "./Data/Long_term_averages_for_3by1_systems" u 1:4 w l title "$\\overline{\\langle n_{3} \\rangle}$"
+        plot "./Data/Long_term_averages_for_3by1_systems" u 1:2 w l lc lp 1 title "$\\overline{\\langle n_{1} \\rangle}$", "./Data/Long_term_averages_for_3by1_systems" u 1:3 w l lp title "$\\overline{\\langle n_{2} \\rangle}$", "./Data/Long_term_averages_for_3by1_systems" u 1:4 w l lp title "$\\overline{\\langle n_{3} \\rangle}$"
      \end{gnuplot}
      \vspace*{-5mm}
      \label{3by1_comparisons}
@@ -1714,23 +1801,80 @@ the site furthest from the one that the boson begins on drops dramatically.
 
 We have run simulations for higher values of $U_0$ in which we see that 
 $\overline{\langle n_{1} \rangle}$ and $\overline{\langle n_{2} \rangle}$
-asymptotically approach unity, and $\overline{\langle n_{3} \rangle}$ goes to
+asymptotically approach unity, and $\overline{\langle n_{3} \rangle}$ approaches
 zero. 
 
-One potential explanation for this behaviour is that when the interparticle 
+One potential explanation for this behaviour is as follows. If the interparticle 
 interactions are so powerful, beginning the system with both particles on
 the same site means that the system has very high energy. When one of the 
 particles moves to the second lattice site, conservation of energy demands
 that the system still have high energy, but the interparticle interactions
 only apply to bosons on the same site. Hence, the boson must gain a large 
 amount of kinetic energy. The kinetic energy is proportional to the 
-curvature of the wavefunction ($\sim \nabla^2$), and hence the boson must be
+curvature of the wavefunction ($\sim \nabla^2\psi$), and hence the boson must be
 highly localised within the second lattice site. The stronger the interparticle
 interactions, the more kinetic energy this boson must have and thus the more
 localised it is. This ``narrowness'' of the boson's spatial wavefunction \
 reduces its tendency to tunnel into the third lattice site, so 
-$\overline{\langle n_{3} \rangle}$ goes to zero. \todo{is this a Mott Insulator?}
+$\overline{\langle n_{3} \rangle}$ goes to zero. This behaviour suggests
+that the system undergoes a quantum phase transition from a superfluid (when 
+$U_0$ is small)to a Mott insulator (when $U_0$ is large).
 
+This suggestion that what we are observing is a quantum phase transition is 
+inspired by work done\todo{this is in their introduction, not their experiment. 
+So is ``work done" the right terminology?} by Greiner et al. \cite{Greiner2002}, 
+who state that for a system described by the Bose-Hubbard Hamiltonian
+
+\begin{equation}
+\begin{align*}
+\hat{H}
+=
+&J\sum_{i}(\hat{a}^\dagger_{i}\hat{a}_{i+1}+h.c.\ )
++
+\frac{U_0}{2}\sum_{i}\hat{a}^\dagger_{i}\hat{a}^\dagger_{i}
+\hat{a}_{i}\hat{a}_{i},
+\end{align*}
+\end{equation}
+in the limit where the tunneling term dominates the Hamiltonian, the 
+ground-state energy is minimised if each of the single-particle wavefunctions of $P$
+atoms are spread out over the entire lattice of $N$ lattice sites. This is
+consistent with the values that we found for the long-term averages of number
+operator expectation values for $U_0<<J$, which were close to $\frac{P}{N}$.
+
+They further note that if system is homogeneous (i.e. 
+$\epsilon_i=\text{const}$), as our systems are, then the many-body ground state
+is given by
+
+\begin{equation}
+ \ket{\Psi_SF}^{\left(U_0=0\right)}
+ \propto 
+ \left( \sum_{i=1}^N \hat{a}_i^\dagger \right) ^P 
+ \ket{0}.
+\end{equation}
+
+[This state is well described by a macroscopic wavefunction with long range 
+phase coherence throughout the lattice]\todo{ask exactly what sentence in "[]" 
+means, then reword}. 
+
+On the other hand, if $U_0$ dominates the Hamiltonian\todo{maybe I can talk 
+about Tonks-Girardeau gas somewhere in here, see highlighted paper}, then the 
+ground state of the system is given by highly localised atomic wavefunctions
+with a \emph{fixed number} of atoms per lattice site that minimise the 
+interaction energy \cite{Bloch2005}. For a homogeneous lattice, this ground state is
+\begin{equation}
+ \ket{\Psi_MI}^{\left(J=0\right)}
+ \propto 
+  \prod_{i=1}^N \left( \hat{a}_i^\dagger \right)^\frac{P}{N} 
+ \ket{0}.
+\end{equation}
+This state has very little phase coherence, but perfect correlations in particle
+number exist between lattice sites\todo{see square brackets}. [does this mean 
+that when P<N each lattice site has either one particle on it or zero? If so, 
+then point out that this is consisten with the data in figure 
+\ref{3by1_comparisons}]. The most important observation that we make about this 
+Mott insulator state is that it cannot be described by a macroscopic
+wavefunction, and so when we later use the Gross-Pitaevskii equation we will
+not be able to legitimately consider systems with $U_0>J$.
 
 \section{Two-dimensional systems\label{2Dsystems}}
 
@@ -1751,11 +1895,11 @@ non-interacting case, up to normalisation), the Hamiltonian is given by
 Like in the one-dimensional single-particle case, the Hamiltonian is an
 $N \times N$ square matrix. We see many similarities between these systems
 and one-dimensional single particle systems. We can attribute this to 
-the fact that, in the absence of any interparticle interactions, the two-
-dimensional systems are separable. To demonstrate this, consider the Hamiltonian
-for a $3\times3$ lattice with a single boson on it, with hopping in the $x$-
-direction characterised by $J$ and hopping in the $y$-direction characterised 
-by $J'$ 
+the fact that, in the absence of any interparticle interactions, the 
+two-dimensional systems are separable. To demonstrate this, consider the Hamiltonian
+for a $3\times3$ lattice with a single boson on it, with hopping in the 
+$x$-direction characterised by $J$ and hopping in the $y$-direction 
+characterised by $J'$ 
 
 \begin{equation}
     \hat{H}_{3\times3}
@@ -1794,7 +1938,7 @@ where
          0 & -J &  0
     \end{pmatrix},
     \quad
-    {I}_3\otimes H_{3\times1}^{(J')}
+    H_{3\times1}^{(J')}
     =
     \begin{pmatrix}
          0 & -J' &  0 \\
@@ -1802,13 +1946,14 @@ where
          0 & -J' &  0
     \end{pmatrix},
 \end{equation}
-$I_3$ is the $3\times3$ identity matrix and $\otimes$ is a Kronecker tensor.
+and $I_3$ is the $3\times3$ identity matrix, while $\otimes$ is a Kronecker 
+tensor product.
 Since the individual $3\times1$ systems exihibit revival, it is unsurpising that 
 the two-dimensional one (almost always) does too. The revival time for the 
 overall system is simply the lowest common multiple of the revival times of the
 one-dimensional systems. Consequently, the case for which we do
-not see revival in a $3by3$ noninteracting system is when $J$ and $J'$ are
-mutually irrational, as this makes their revival times mutually irrational 
+not see revival in a $3\times3$ noninteracting system is when $J$ and $J'$ are
+mutually irrational, as this renders their revival times mutually irrational 
 \todo{Need to finish this argument off here, am too tired to do it atm}.
 
 The separability of these \todo{quasi-two-dimensional}two-dimensional systems
@@ -1818,21 +1963,20 @@ will not revive either. In other words, if we have an $m\times n$ lattice, then
 we will see thermalisation if $\text{max}\lbrace m,n \rbrace >3$.
 
 We can now look at the simulation of several systems to demonstrate that
-the above conditions for revival or thermalisation hold.
+the above condition for revival or thermalisation holds.
 
-Consider first the time evolution (shown in figure \ref{3by3_equal_hop_U0}) of 
-a boson that starts in the top left corner (``first lattice site'') of a ]
-$3 \times3$ lattice with $J=J'$.
+Consider first the time evolution, figure \ref{3by3_equal_hop_U0}, of 
+a boson that starts in the top left corner (``first lattice site'') of 
+a $3 \times3$ lattice with $J=J'$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by3T1e2H-2rescaled.dat" u 1:10 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating revival for a $3 \times 3$ square lattice with a
+     \caption{Revival for a $3 \times 3$ square lattice with a
      single boson and $J=J'$.}
      \label{3by3_equal_hop_U0}
 \end{figure}
@@ -1856,45 +2000,44 @@ consistent with the simulation.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by3T1e2H-2rescaledJP0.6.dat" u 1:10 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating revival for a $3 \times 3$ square lattice with a
+     \caption{Revival for a $3 \times 3$ square lattice with a
      single boson and $\lbrace J,J'\rbrace$ mutually rational.}
 \end{figure}
 If we now consider the case where $J$ and $J'$ are not mutually rational,
-then we see that we do not get full revival. The simulation that the
-figure below corresponds to was run with $J=1,J'=\frac{1}{\sqrt{2}}$.
+then we see that we do not get full revival, see figure 
+\ref{3by1JJdashmutuallyirrational}.
 
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by3T1e3J1JP1_sqrt2.dat" u 1:10 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating absence of revival for a $3\times 3$ lattice
-     with a single boson and $\lbrace J,J'\rbrace$ mutually irrational.}
+     \label{3by1JJdashmutuallyirrational}
+     \caption{Absence of revival for a $3\times 3$ lattice
+     with a single boson and $\lbrace J,J'\rbrace$ mutually 
+     irrational: $J=1$ and $J'=\frac{1}{\sqrt{2}}$}
 \end{figure}
 
 The principles discussed earlier lead us to expect revival to be absent from
-$4\times4$ systems, such as the following one (which has $J=J'$).
+$4\times4$ systems, such as the following one with $J=J'$.
 
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         set xlabel "$\\displaystyle \\frac{t}{\\sqrt{2}J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/4by4T1e3.dat" u 1:17 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating absence of revival for a $4\times4$ lattice
+     \caption{Absence of revival for a $4\times4$ lattice
      with a single boson and $J=J'$.}
 \end{figure}
 
@@ -1904,13 +2047,12 @@ $15\times15$ with $J=J'$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/15by15T1e3notscaled.dat" u 1:226 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating absence of revival for a $15 \times 15$ lattice
+     \caption{Absence of revival for a $15 \times 15$ lattice
      with a single boson and $J=J'$}
 \end{figure}
 
@@ -1921,14 +2063,13 @@ We do this by considering a $3\times4$ lattice with a single boson and $J=J'$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set title "Probability that boson found on first site over time"
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/3by4_U0_T1e5.dat" u 1:13 w l lc 1 notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Demonstrating absence of revival for a $3 \times 4$ lattice
-     with a single boson and $J=J'$}
+     \caption{Absence of revival for a $3 \times 4$ lattice
+     with a single boson and $J=J'$.}
      \label{3by4}
 \end{figure}
 
