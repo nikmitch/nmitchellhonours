@@ -24,13 +24,13 @@ import matplotlib as mpl
 import qmlattice_utils as qm
 
 # == PHYSICAL PARAMETERS =======================================================
-nx = 10
+nx = 3
 ny = nx
 P  = 2
 
 J  = -1
 JP = -1
-U  =  2
+U  =  1
 
 LATTICE_TYPE = "full"    # Options are: "full", "random_one", "manual"
 
@@ -49,8 +49,8 @@ MANUAL_LINKS = [((0,0), (1,0)),
 np.set_printoptions(linewidth=250)
 
 TMIN = 0
-TMAX = int(1e3)
-TN   = int(1e4)
+TMAX = int(1e1)
+TN   = int(1e2)
 
 BLOCK_LENGTH = 3000
 
@@ -84,7 +84,8 @@ if __name__ == "__main__":
     H_onsite = qm.onsite_hamiltonian(parameters)
     H_hopping = qm.hopping_hamiltonian(parameters)
     H_full = H_hopping + H_onsite
-    
+    print(H_full.todense())
+    a=H_full.todense()
 
     # Energy eigenvalues and eigenvectors (for time evolution)
     spectrum = qm.calculate_spectrum(H_full, method="dense")

@@ -81,7 +81,7 @@
     thermalisation, we attempt to characterise the long term states using [ETH,
     entropy of entanglement, whatever I actually end up doing].
 \end{abstract}
-
+\newpage
 \section{Introduction}
 \todo{see square brackets}
 [Want to include some of the stuff from section \ref{DraftFromDanny} at the
@@ -1445,9 +1445,6 @@ than three lattice sites should not exhibit recurrence, and are thus expected
 to thermalise.
 
 \subsection{Interacting one-dimensional systems}
-
-\todo{Should I talk about dimensionality of Hamiltonian and/or having to choose
-a numbering convention for the representation?}
 Adding multiple interacting particles introduces a number of interesting
 features in the thermalisation properties of our system. We have found that
 when weak interactions are present, thermalisation appears to occur in all
@@ -1847,7 +1844,7 @@ data is not skewing the result.
 
 \begin{figure}[H]
     \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+    \begin{gnuplot}[terminal=cairolatex, terminaloptiointeracting ns={lw 2}, scale=0.95]
         P(x)=2
         set yrange [0:2.5]
         g(x)=0.77936
@@ -1991,7 +1988,7 @@ non-interacting case, up to normalisation), the Hamiltonian is given by
     \hat{H}_{2D}
     =
     \left (
-        J \sum_{i,j}{\hat{a}^{\dagger}_{i,j+1} \hat{a}_{i,j}} +
+        J \sum_{i,j}{\hat{a}^{\dagger}_{i,j} \hat{a}_{i,j+1}} +
         J'\sum_{i,j}{\hat{a}^{\dagger}_{i,j}   \hat{a}_{i+1,j}}
     \right )
     +
@@ -2178,8 +2175,83 @@ the very beginning at which $\langle n_{1} \rangle$ is greater than $0.985$.
 
 \section{Two-dimensional interacting systems}
 
-We will now look at two-dimensional systems where the particles have repulsive
-interactions ($U_{0} > 0$). Like in the one-dimensional case,
+We now move on to looking at systems in two dimensions that contain bosons
+with repulsive contact interactions. This is the regime in which the 
+dimensionality of the systems we consider is largest and grows fastest when 
+we take a many-body approach. Hence, we try to apply a Gross-Pitaevskii 
+treatment, which is more dimensionally efficient,\todo{find a better way to 
+describe "dimensionally efficient"} to these systems, with limited success.
+
+First, let us look at the results of the analytic many-body simulations
+for bosons on square lattices with weak interactions. When using a square
+lattice with $2$ bosons we can see thermalisation to a uniform particle 
+distribution for a variety of different weak interaction strengths.
+
+3by3 U0.1
+
+
+3by3 U0.5
+
+3by3 U1
+
+5by5 U0.1
+
+10by10 U0.1
+
+As discussed at the end of section \ref{changing_interaction_strength}, the 
+GPE does not accurately describe our system in the strongly interacting regime.
+
+
+3by3 U-1
+
+\subsection{Comparing GPE and many-body approaches}
+One of the key requirements of using the Gross-Pitaevskii approach is that
+the number of particles in the system is very large. This [will do this in 
+the morning, don't forget to talk about normalisation stuff from John]
+
+
+
+\newpage
+\section{Conclusions and further work}
+
+In this project, several distinct goals have been accomplished, while others
+remain as grounds for future investigation. A criterion for the exact revival
+of systems of noninteracting bosons in one dimension and two dimensions was
+deduced analytically. This criterion relates to the mutual rationality or 
+irrationality of the eigenvalues of the spectrum, and results from I. Niven's
+work on irrationality of trigonometric functions with rational arguments were
+supplemented by W. Yueh's results on the eigenvalues of tridiagonal matrices
+to prove that noninteracting $m\times n$ systems will only exhibit revival
+if $\text{max}\langle m,n \rangle \leq 3$. For systems with mutually rational
+eigenvalues, a formula for determining the exact time at which revival would
+occur was developed. 
+
+Our investigations into the thermalisation properties of interacting 
+one-dimensional systems were suggestive of a quantum phase transition from a
+superfluid to a Mott insulator as the strength of the interactions increases
+relative to the hopping energy. This was argued on the basis of the long term
+averages of the expectation values of the number operators for each site. 
+
+The simulations that we ran to model the dynamics of two-dimensional systems 
+with interactions have results from which it is much harder to draw confident 
+conclusions. The code developed for many body analytic evolution agreed very
+well with the Gross-Pitaevskii approach in the noninteracting case, but the
+two methods produced very different results once interactions were switched on.
+Neither method demonstrated clear thermalisation in the case of weak 
+interactions, which is what we expected from our one-dimensional results. In 
+future work, we may look to investigate these discrepancies in more detail.
+
+Another possible direction for further work on these systems could take the 
+form of a more advanced characterisation of the characterisation of the 
+thermal states, such as by using the entropy of entanglement 
+\todo{reference paper}. We could also attempt to prove whether or not
+any of the systems that we have studied satisfy Deutsch and Srednicki's 
+Eigenstate Thermalisation Hypothesis. Doing this could provide stronger
+theoretical grounding to inform our expectations regarding the thermalisation
+of two-dimensional systems with interactions, which is where the results 
+produced in this project are most ambiguous.
+
+
 \newpage
 
 \bibliographystyle{unsrt}
