@@ -30,7 +30,7 @@ P  = 6
 
 J  = -1
 JP = -1
-U  =  0.5
+U  =  1.0/6.0
 
 LATTICE_TYPE = "full"    # Options are: "full", "random_one", "manual"
 

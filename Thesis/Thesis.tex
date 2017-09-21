@@ -89,8 +89,7 @@ start here]
 The question of how, and under what conditions, closed quantum systems approach
 thermal equilibrium is an old question that forms the basis of a large and
 active field of research. Thermalisation is well understood in the context
-of classical mechanics, where it is understood \todo{I'd rather not repeat
-``understood'' twice in same sentence.} to emerge from the chaotic
+of classical mechanics, where it emerges from the chaotic
 dynamics of sufficiently unconstrained systems. However, the time evolution of
 quantum systems is strictly linear, and \todo{hence?} they do not exhibit chaotic
 dynamics. Nonetheless, there are a number of closed quantum systems in which
@@ -110,9 +109,11 @@ can be solved exactly. From here, we look at some larger systems with a more
 approximate method that revolves around using an adaptive Runge-Kutta-Feldberg
 method to evolve the system wavefunction according to the Gross-Pitaevskii
 equation. We then look for similarities in the results of the simulations run
-according to each method to see what similarities in behaviour are retained as
-we move from small, exactly solved systems to large, numerically approximated
-systems.
+according to each method to see what how much of the behaviour of small, 
+exactly solved systemsis preserved is we move to large, numerically approximated
+systems. By doing so, we aim to pave the way for a systematic study of the role
+of integrability in relaxation and thermalisation of far-from-equilibrium 
+quantum systems.
 
 \newpage
 \section{Experiments with optical lattices}
@@ -465,7 +466,7 @@ references!} as characterising the overlap of the single-particle spatial wave
 functions (see figure below).
 \begin{figure}[h!]
     \begin{center}
-        \includegraphics[width=0.8\textwidth]{J_overlap_drawing}
+        \includegraphics[width=0.8\textwidth]{J_overlap_drawing_smaller}
     \end{center}
     \caption{\label{fig:J_overlap_drawing}
              The strength of hopping $J$ is considered as the overlap of
@@ -611,93 +612,61 @@ configuration corresponding to a particular point in phase space, it can move
 through that phase space along the constant-energy manifold. A system is
 ergodic if the long-term time average of any single phase space trajectory
 is equivalent to an ensemble average. \todo{get Kinoshita's definition
-of ergodicity} \todo{Do I need to elaborate on this further?}Classical systems
-exhibit chaotic dynamics, which are strongly nonlinear and allow the system to
-quickly and essentially uniformly explore the constant-energy manifold
-irrespective of the initial conditions. This promotes ergodicity, which is
-implicit in the fundamental assumption of statistical mechanics - all
-accessible microstates are equiprobable. \todo{Need to explicitly link
-ergodicity and thermalisation, otherwise this is just free-floating and its
-relevance is not obvious. What is this link?} This is what leads us to expect
+of ergodicity} 
+
+Aside from a few rare examples that are usually emphasised in physics textbooks, 
+the equations of motion for most classical systems do not have simple analytical
+solutions \cite{Jensen1992}. This means that we usually need to resort to numerical methods to 
+determine the evolution of these systems in time by solving nonlinear partial 
+differential equations. It is a well known fact about such systems that they
+display an extreme sensitivity to the initial conditions, such that the 
+uncertainties or errors in the initial conditions can grow exponentially as the 
+system evolves in time, not merely as a result of numerical approximations
+made but as an intrinsic property of the system. Our inability to 
+know the initial conditions of a real system presents an notoriously 
+challenging obstacle to long term predictions of these nonlinear systems, such
+as the weather. 
+
+The nonlinearities present in chaotic systems drive them in seemingly irregular
+motion. This allows the system to quickly and essentially uniformly explore the 
+constant-energy manifold irrespective of the initial conditions. This promotes 
+ergodicity, and thereby provides justification for the fundamental assumption 
+of statistical mechanics - all accessible microstates are equiprobable. 
+This combination of factors is what leads us to expect
 our classical systems to thermalise.
-
-\subsection{Draft: from Danny\label{DraftFromDanny}}
-
-It is our everyday experience that a hot tea or coffee cools and reaches the
-temperature of its surrounding, or in general when a system or its environment
-undergo a change, the system of interest usually respond but after a while it
-reaches a new state where no further macroscopic change takes place and an
-observer may conclude that the system reached its {\emph{thermodynamic
-equilibrium}}. However, this phenomenon raises the question: how does the system
-approach its new equilibrium state?
-
-While Ludwig Boltzmann developed the theory of entropy based on notions of
-statistics and probability theory \cite{Boltzmann1872, BoltzmannReprint2011,
-Mueller2007}. During the derivation of the aesthetically pleasing relationship
-$S = k_{B} \ln{\!(W)}$ for an ideal gas consisting of $N$ particles, Boltzmann
-a~priori considered that each realisation of particles is equally probable.
-However, the evolution of the system would lead to a distribution of macroscopic
-quantities for which there are more possible microscopic realisations.
-
-Although Boltzmann established the connection between the micro- and macroscopic
-world, even his contemporaries, e.g., Lord Kelvin \cite{Thomson1875,
-Thomson1874} and Johann Josef Loschmidt \cite{Mueller2007}, raised two
-philosophically hard questions: reversibility and recurrence.
-
-The former relies on the time-reversal symmetry of classical mechanics, thus one
-may expect processes with decreasing entropy occurring as often as ones which
-increase the entropy of a system. We note here that the same objection cannot be
-raised if one replaces classical mechanics as the description of the microscopic
-world with quantum mechanics. The basic equation of non-relativistic quantum
-mechanics is the Sch{\"o}dinger equation, which is {\emph{not}} invariant under
-time-reveral symmetry.
-
-The second objection was raised by Planck's student, Ernst Zermelo
-\cite{Zermelo1896, Zermelo2013}. His argument was based on Henri Poincare's
-fresh result \cite{Poincare1890, Poincare2017}, namely that a mechanical system
-returns or almost returns to its initial state. Zermelo argued that if this is
-the case then entropy must decrease in some portion of the time evolution.
-
-This second argument, however, is at the heart of this dissertation as well,
-since unitary time evolution forms the basis of quantum mechanics. The
-incongruence between the notions of thermalisation and unitary time evolution
-inspired a vibrant research field \cite{Calabrese2006, Cazalilla2006, Rigol2007,
-Palma2015}. One of the emerging ideas is the {\emph{eigenstate thermalisation
-hypothesis}} (ETH) \cite{}. If the conditions of ETH are satisfied then it leads
-to thermalisation, as it has been proven \cite{}, i.e., ETH is sufficient for
-guaranteeing thermalisation. Recently G. de Palma et al. also argued
-\cite{Palma2015} that ETH is also necessary for thermalisation.
-
 
 \subsection{Quantum systems}
 
-Quantum systems do not \todo{usually?} exhibit dynamic chaos \todo{see square
-brackets} [Rigol's line is ``dynamical chaos itself cannot occur in an isolated
-quantum system, in which the time evolution is linear and the spectrum is
-discrete'' How does that argument work?], so it is not obvious how one would
-justify applying the assumption of ergodicity in these systems. Because of
-this, it is unclear if, or when, we should expect quantum systems to
+\todo{Do all bounded quantum mechanical systems have discrete spectra?}
+The time evolution of quantum mechanical systems is governed by the 
+Schr\"odinger equation, which is linear\todo{aren't we using a nonlinear 
+Schrodinger equation?}. This implies that the key ingredient
+in producing dynamical chaos in classical systems, namely, the presence of
+nonlinear equations of motion, is absent from quantum systems. 
+
+Without nonlinearities promoting exploration the phase space, it is
+not obvious how one would justify applying the assumption of ergodicity to 
+quantum systems. Hence, it is unclear if, or when, we should expect quantum systems to
 thermalise, or what statistical ensemble we could use to characterise the
-relaxed states.
+relaxed states. One possible candidate 
 
 
 \section{Integrable systems}
-
+\todo{note that integrable quantum systems violate the ETH}
 There are a number of classical, isolated systems that do not display
 thermalisation. The main difference between these systems and those which
 approach thermal equilibrium is the extent to which they are constrained
 relative to the number of degrees of freedom that they possess. This observation
 is formalised in the notion of integrability. A system is said to be integrable
-if it has \todo{half? according to handout this seems to be the case} as
-many independent integrals of motion (which are conserved) as it has degrees
-of freedom. An integral of motion for a Hamiltonian is a smooth function
-$I$ defined on an open subset of the phase space such that $\dot{I}=0$ on
-solutions. \todo{reference handout Danny gave me, I can't see anywhere where
-its from}So $I(x(t))=\text{constant}$, where $x(t)$ is the solution of the
-equations of motion for a particular initial condition. If $x_1(t)$ and
-$x_2(t)$ are solutions for different initial conditions, then in most cases
-$I(x_1(t))\ne I(x_2(t))$. Integrability is a useful property, though it is
-quite rare.
+if it has half as many independent integrals of motion (which are conserved) 
+as it has degrees of freedom. An integral of motion for a Hamiltonian is a 
+smooth function $I$ defined on an open subset of the phase space such that 
+$\dot{I}=0$ on solutions. \todo{reference handout Danny gave me, I can't see 
+anywhere where its from}So $I(x(t))=\text{constant}$, where $x(t)$ is the 
+solution of the equations of motion for a particular initial condition. If 
+$x_1(t)$ and $x_2(t)$ are solutions for different initial conditions, then in 
+most cases $I(x_1(t))\ne I(x_2(t))$. Integrability is a useful property, though 
+it is quite rare.
 
 Theoretically, we can find exact solutions for the equations of motion for a
 system if it is integrable, otherwise we cannot. In classical mechanics, the
@@ -957,7 +926,7 @@ ground state approximately commute:
 \begin{equation}
     \hat{a}_{0} \hat{a}^{\dagger}_{0} \ket{N_{0}}
     =
-    N_{0} \sqrt{1+\frac{1}{N_{0}}} \ket{N_{0}}
+    N_{0} \sqrt{1+1/N_{0}} \ket{N_{0}}
     \approx
     N_{0} \ket{N_{0}}
     =
@@ -965,11 +934,11 @@ ground state approximately commute:
 \end{equation}
 It is this property of commutation that leads us to replace the creation and
 annihilation operators by $\sqrt{N_{0}}$, which allows us to approximate the
-field operator $\hat{Psi}(\mathbf{r})$ with a wave function
+field operator $\hat{\Psi}(\mathbf{r})$ with a wave function
 \begin{equation}
     \hat{\Psi}(\mathbf{r})
     =
-    \hat{a}_{0} \phi_{0}(\mathbf{r}) \approx N_{0} \phi_{0}(\mathbf{r})
+    \hat{a}_{0} \phi_{0}(\mathbf{r}) \approx sqrt{N_{0}} \phi_{0}(\mathbf{r})
     =
     \psi_{0}(\mathbf{r}).
 \end{equation}
@@ -979,7 +948,7 @@ field operator $\hat{Psi}(\mathbf{r})$ with a wave function
 
 The nonlinear term in the GPE prevents us from being able to represent the
 Hamiltonian in matrix form. Hence we cannot find the eigenvectors and
-eigenvalues of the system directly, which prevents us from using the 'analytic'
+eigenvalues of the system directly, which prevents us from using the ``analytic''
 approach to time evolution that we used for smaller system sizes. One method
 that we could use in its pace is to simply expand the time evolution operator
 $e^{-i \hat{H} t}$ in a Taylor series, truncated at an appropriate order, i.e.,
@@ -1026,10 +995,7 @@ $N$ successive times (each separated by timestep $h$) by $w$, where
     \\
     w_{i+1} &= w_{i} + \frac{1}{6}(k_{1} + 2 k_{2} + 2 k_{3} + k_{4})
 \end{align*}
-for each $i = 0$, 1, \dots, $N-1$. Setting $y = \ket{\psi(t)}$, $w_{0} =
-\psi(t=0)$ and $f(t,y) = i \hat{H}$.
-
-\todo{blarg. need to work through this again to get it right}
+for each $i = 0$, 1, \dots, $N-1$. \todo{sub in details here if I have time later}
 
 Even when using this method, we are concerned about the effect of the nonlinear
 term on our error. Hence we adopt a more sophisticated algorithm
@@ -1043,7 +1009,7 @@ is greater than the tolerance, then the timestep is shortened and the error is
 estimated again. The interested reader may refer to chapter $5$ of
 \emph{Numerical Analysis} by R. Burden and J. Faires \cite{Burden2005} for the
 precise details of the algorithm used.
-
+\newpage
 
 \section{Results}
 
@@ -1350,8 +1316,8 @@ This result is particularly interesting when combined with Niven's theorem
 In other words, this theorem tells us that if $x$ is rational \textit{in
 degrees}, then the only possible rational values of $\cos(x)$ are $0, \pm
 \frac{1}{2}$ and $\pm 1$. Note in our case that $\frac{k\pi}{N+1}\neq 0, \pi$
-for $k=1$, 2, \dots, $N$, so $\cos{\!(\frac{k\pi}{N+1})} \neq \pm 1$ and we are
-left with 3 rational options.
+for $k=1, 2, \dots, N$, so $\cos{\!(\frac{k\pi}{N+1})} \neq \pm 1$ and we are
+left with $3$ rational options.
 
 When we are evaluating in degrees, equation \eqref{1D_eigenvalues} becomes
 \begin{equation}
@@ -1707,12 +1673,15 @@ bosons, as demonstrated in figure (\ref{10by1_U0.1}), where $\frac{P}{N} =0.2$.
 \subsubsection{Effect of interaction strength
                \label{changing_interaction_strength}}
 
-When the interaction strength is increased, we notice an increasing
-dependence of the long-term averages of the expectation values of the number
-operators. This suggests that having strong interparticle interactions can
-frustrate thermalisation. \todo{add more words here}
-All of the following simulations are run for a $3\times1$ lattice with two
-bosons. U=0.005 (short term)
+When the interaction strength is increased, we see that the long-term averages of 
+the expectation values of the number operators are much greater for lattice 
+sites that are closer to where to bosons are initially placed. This lack of 
+independence of the long term states from the initial conditions suggests that 
+having strong interparticle interactions can frustrate thermalisation, at least
+within the time scales that the simulations show. However, it is possible that
+these localised states are only metastable, in the sense that they would 
+eventually thermalise if given an arbitrarily long time to do so. The 
+following simulations are run for a $3\times1$ lattice with two bosons. 
 
 \begin{figure}[H]
     \centering
@@ -1886,7 +1855,8 @@ occupation of all of the lattice sites and not just the one that the boson
 started on. When we do this, a remarkable pattern emerges. If we start the boson
 on the first site, for low values of $U_{0}$ the average time spent on the
 second site is slightly lower than the outer lattice sites. We believe this to
-be a result of the repulsive contact interactions. However, once $U_{0}$ gets
+be due to the boundary conditions, as the effect becomes less pronounced when we
+look at systems with a greater number of lattice sites. However, once $U_{0}$ gets
 larger (especially once it becomes greater than $1$), we find that the long-term
 average for the site furthest from the one that the boson begins on drops
 dramatically.
@@ -1905,7 +1875,7 @@ dramatically.
      \caption{Long term averages for $3\times1$ systems with varying
               interparticle interaction strengths}
 \end{figure}
-
+\todo{move key in above figure so not obscured.}
 We have run simulations for higher values of $U_{0}$ in which we see that
 $\overline{\langle n_{1} \rangle}$ and $\overline{\langle n_{2} \rangle}$
 asymptotically approach unity, and $\overline{\langle n_{3} \rangle}$ approaches
@@ -1923,7 +1893,7 @@ highly localised within the second lattice site. The stronger the interparticle
 interactions, the more kinetic energy this boson must have and thus the more
 localised it is. This ``narrowness'' of the boson's spatial wavefunction
 reduces its tendency to tunnel into the third lattice site, so
-$\overline{\langle n_{3} \rangle}$ goes to zero. This behaviour suggests
+$\overline{\langle n_{3} \rangle}$ approaches zero. This behaviour suggests
 that the system undergoes a quantum phase transition from a superfluid (when
 $U_{0}$ is small)to a Mott insulator (when $U_{0}$ is large).
 
@@ -1941,8 +1911,9 @@ who state that for a system described by the Bose-Hubbard Hamiltonian
 in the limit where the tunnelling term dominates the Hamiltonian, the
 ground-state energy is minimised if each of the single-particle wavefunctions of
 $P$ atoms are spread out over the entire lattice of $N$ lattice sites. This is
-consistent with the values that we found for the long-term averages of number
-operator expectation values for $U_{0} \ll J$, which were close to $\frac{P}{N}$.
+the superfluid phase, and is consistent with the values that we found for the 
+long-term averages of number operator expectation values for $U_{0} \ll J$, 
+which were close to $\frac{P}{N}$.
 
 They further note that if system is homogeneous (i.e. $\epsilon_{i} =
 \text{const}$), as our systems are, then the many-body ground state is given by
@@ -1957,20 +1928,21 @@ phase coherence throughout the lattice]\todo{ask exactly what sentence in "[]"
 means, then reword}.
 
 On the other hand, if $U_{0}$ dominates the Hamiltonian\todo{maybe I can talk
-about Tonks-Girardeau gas somewhere in here, see highlighted paper}, then the
+about Tonks-Girardeau gas somewhere in here, see highlighted paper}, then the 
+system acts as a Mott insulator. When in this phase, the
 ground state of the system is given by highly localised atomic wavefunctions
 with a \emph{fixed number} of atoms per lattice site that minimise the
 interaction energy \cite{Bloch2005}. For a homogeneous lattice, this ground
 state is
 \begin{equation}
-    \ket{\Psi_MI}^{\left(J=0\right)}
+    \ket{\Psi_{MI}}^{\left(J=0\right)}
     \propto
     \prod_{i=1}^N \left( \hat{a}_i^\dagger \right)^\frac{P}{N}
     \ket{0}.
 \end{equation}
 This state has very little phase coherence, but perfect correlations in particle
 number exist between lattice sites\todo{see square brackets}. [does this mean
-that when P<N each lattice site has either one particle on it or zero? If so,
+that when $P<N$ each lattice site has either one particle on it or zero? If so,
 then point out that this is consistent with the data in figure
 \ref{3by1_comparisons}]. The most important observation that we make about this
 Mott insulator state is that it cannot be described by a macroscopic
@@ -2206,7 +2178,7 @@ Hence, in spite of unresolved issues with symmetry, we still observe much of
 the behaviour that we expect of these systems.
 
 \section{Two-dimensional interacting systems}
-
+\subsection{Comparing many-body and Gross-Pitaevskii approaches}
 We now move on to looking at systems in two dimensions that contain bosons
 with repulsive contact interactions. This is the regime in which the 
 dimensionality of the systems we consider is largest and grows fastest when 
@@ -2225,9 +2197,10 @@ to the number of particles, in this case $6$. To compensate for this, we
 must use a value of $U_0$ in the GPE simulation that is $6$ times as great as
 the one used in the many-body simulation that we want to compare it to.
 
-With that in mind, we have compared several different weak interaction strengths,
-avoiding strong interactions as the GPE is not an accurate description of our
-system in those cases. The noninteracting case displays close agreement between
+With that in mind, we have compared several systems with varying weak 
+interaction strengths. We avoid strong interactions as the GPE is not an 
+accurate description of our system in those cases for reasons outlined in
+section \ref{changing_interaction_strength}. The noninteracting case displays close agreement between
 the two methods (see figure \ref{2DnoninteractingcompareGPEMB}), with some 
 differences in the troughs \todo{is troughs the correct word?}. The GPE method
 is more approximate, but this doesn't necessarily mean it is missing physical
@@ -2248,14 +2221,15 @@ does here.
      \end{gnuplot}
      \vspace*{-5mm}
      \label{2DnoninteractingcompareGPEMB}
-     \caption{Comparing GPE and many-body noninteracting case}
+     \caption{Comparing GPE and many-body noninteracting case.}
 \end{figure}
 
 
 When we introduce weak interactions, the many-body simulations suggest that
 the system thermalises. However, the GPE code does not noticeably show this.
 One possible reason for this is that given the small system size and reflective 
-boundary conditions, the GPE wavefunction may be interfering with itself. This
+boundary conditions, the GPE wavefunction may be interfering with itself\todo{
+can I get a stronger explanation than this?}. This
 leads to behaviour that is qualitatively very different.
 
 
@@ -2356,6 +2330,69 @@ leads to behaviour that is qualitatively very different.
      \caption{GPE system evolution with $U_0=1$.}
 \end{figure}
 
+We can more closely analyse the thermalisation of the many-body states by 
+running longer simulations and taking averages of the expectation values that 
+exclude the transitional early behaviour. For a $3\times3$ system with 
+$U_0=0.1$ and $6$ particles, figure \ref{averageswitherrorbars} shows the 
+long-term averages of the expectation values of the number operators. While
+the averages are slightly higher for the lattice sites closest to the one where
+the bosons started, it is plausible that these differences would continue to 
+decrease for longer simulations.
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "Site number"
+        set ylabel "$\\overline{\\langle n_{i} \\rangle}$"       
+        set bar 0.5
+	average=6.0/9.0
+	set arrow 1 from graph 0,average to graph 1,average nohead linetype 3
+	plot [0.9:9.1][0:1] \
+	"./Data/Final_week_comparing/20170921T083611_evolution_n_TimeAverage.dat" u 1:4:6 ls 1 lw 2 w yerrorbars notitle
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \label{averageswitherrorbars}
+     \caption{Long term many-body averages for a $3\times3$ lattice with $6$ bosons
+     and  $U_0=0.1$. The bosons start on lattice site $9$.}
+\end{figure}
+
+\subsection{Strong interactions and large systems}
+
+Although the GPE method is unsuitable for modelling systems with strong 
+interactions, we can still take a many body approach to looking at these 
+systems in two dimensions. The many body simulations for
+weakly interacting systems that we investigated in the previous section appear 
+to exhibit thermalisation and are unaffected by the asymmetry we observed in 
+the noninteracting case. However, in the strongly interacting case the problem
+is present, as can be seen from table \ref{table:stronginteractasymmetry}. 
+
+\begin{table}[H]
+ \centering
+ \begin{tabular}{c r r r}
+  \hline
+  \multicolumn{4}{c}{Lattice site positions}\\
+  \hline
+  Column number &     Row 1     &     Row 2     &     Row 3\\
+  \hline
+   1            &     1.373     &     1.341     &     1.249\\
+   2            &     1.130     &     0.403     &     0.312\\
+   3            &     0.160     &     0.028     &     0.003\\
+   \hline
+ \end{tabular}
+ \caption{Asymmetry in long term averages for a $3\times3$ system with $6$ particles and
+ $U_0=10$.}
+ \label{table:stronginteractasymmetry}
+\end{table}
+
+Seeing as we are using $J=J'$ in these simulations, there is no clear reason 
+why the value of the long-term average for the lattice site $(3,1)$ should 
+differ from that of $(1,3)$. This flaw is significant enough that we have 
+limited our investigations into the strongly interacting regime until we 
+determine the cause of the asymmetry. However, it does appear from these 
+averages that thermalisation is at least temporarily frustrated, which is 
+consistent with a superfluid-Mott insulator transition similar to what we
+observed in the strongly interacting one-dimensional regime.
+
 For larger systems, we cannot use as many particles in the many-body simulations
 due to the computational costs of doing so. The largest interacting system
 that we can simulate with the many-body code is a system of $2$ bosons on 
@@ -2363,120 +2400,59 @@ a $10\times10$ lattice (see figure \ref{10by10_analyticU0.1}),
 which requires diagonalising a $5050\times5050$ Hamiltonian. This appears to 
 thermalise.
 
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+	f(x)=0.02
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/Final_week_comparing/10by10_U0.1_T1e3dt1.dat" u 1:101 w l lc 1 notitle, \
+        f(x) w l title "$P/N=0.02$"
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \label{10by10_analyticU0.1}
+     \caption{Many-body system evolution for a $10\times10$ lattice with $2$ 
+     bosons and $U_0=0.1$.}
+\end{figure}
 
-!!! Turns out I ran 10x1, not 10x10. This image is coming once I run the 
-simulation.!!!
-% 
-% \begin{figure}[H]
-%     \centering
-%     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-%         set xlabel "$\\displaystyle \\frac{t}{J}$"
-%         set ylabel "$\\langle n_{1} \\rangle$"
-%         plot "./Data/Final_week_comparing/10by1_U0.1_T2e4.dat" u 1:101 w l lc 1 notitle, 
-%      \end{gnuplot}
-%      \vspace*{-5mm}
-%      \label{10by10_analyticU0}
-%      \caption{Many-body system evolution for a $10\times10$ lattice with $2$ 
-%      bosons and $U_0=0.1$.}
-% \end{figure}
+When we look at larger system sizes with the GPE method, what we observe is
+suggestive of thermalisation. Whilst the Runge-Kutta-Feldberg code developed
+allows us to ensure that the norm of the GPE wavefunction does not drift, it is 
+not currently efficient enough to allow us to explore longer timescales and 
+gain more certainty about whether the thermalisation is real or only apparent.
 
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/Big_GPE/U0.1_RKF_10by10_T200.dat" u 1:2 w l lc 1 notitle, 
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{GPE evolution for a $10\times10$ system with $U_0=0.1$.}
+\end{figure}
 
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/Big_GPE/U0.5_RKF_10by10_T200.dat" u 1:2 w l lc 1 notitle, 
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{GPE evolution for a $10\times10$ system with $U_0=0.5$.}
+\end{figure}
 
-
-
-
-
-
-% The asymmetry problems that we observed in
-% section \ref{2DNoninteractingsection} are still present here. They seem
-% less prominent in the weakly-interacting case then the noninteracting case,
-% and are most clear in the strongly interacting regime. This can be seen from
-% the long term averages for $3\times3$ systems differing interaction strengths 
-%  $U_0$ presented in table [making table now].% \ref{table:longterm3by3Uvarying}.
-% 
-% \begin{table}[H]
-%  \centering
-%  \begin{tabular}{c r r r r r r r r r r r r}
-%   \hline
-%   \multicolumn{4}{c}{$U_0=0.1$} & & \multicolumn{3}{c}{$U_0=0.5$} & & \multicolumn{3}{c}{$U_0=30$}\\
-%   \hline
-%   Column number &     Row 1     &     Row 2     &     Row 3     & &     Row 1     &     Row 2     &     Row 3   & &     Row 1     &     Row 2     &     Row 3\\
-%   \hline
-%    1            &     0.328     &     0.035     &     0.152\\   & &
-%    2            &     0.107     &     0.133     &     0.167\\   & &
-%    3            &     0.051     &     0.012     &     0.016\\   & &
-%    \hline
-%  \end{tabular}
-%  \caption{Long term averages for a $3\times3$ interacting systems with $2$ bosons}
-%  \label{table:longterm3by3Uvarying}
-% \end{table}
-% 
-% 
-% ./get_average.cmd 3by3_U0.1_T1e6.dat 
-% #==================================================================================
-% #                               Statistics
-% #==================================================================================
-% #   Dimension     Count    Minimum            Mean          Maximum           Stdev
-% #----------------------------------------------------------------------------------
-%             1   1000000   0.000000   500000.000003   1000000.000000   288675.423269
-%             2   1000000   0.000000        0.109023         0.348093        0.043309
-%             3   1000000   0.000000        0.138730         0.406153        0.044468
-%             4   1000000   0.000000        0.168181         0.442474        0.055352
-%             5   1000000   0.000000        0.201547         0.498620        0.064356
-%             6   1000000   0.000000        0.259367         0.677490        0.083743
-%             7   1000000   0.000000        0.229457         0.627041        0.069088
-%             8   1000000   0.000000        0.268172         0.634991        0.082037
-%             9   1000000   0.000000        0.262793         0.729925        0.078254
-%            10   1000000   0.026511        0.362729         2.000000        0.173320
-% 
-% 
-%            
-% ./get_average.cmd 3by3_U0.5_T1e6.dat
-% #==================================================================================
-% #                               Statistics
-% #==================================================================================
-% #   Dimension     Count    Minimum            Mean          Maximum           Stdev
-% #----------------------------------------------------------------------------------
-%             1   1000000   0.000000   500000.000003   1000000.000000   288675.423269
-%             2   1000000   0.000000        0.106663         0.342708        0.042346
-%             3   1000000   0.000000        0.144353         0.389804        0.047078
-%             4   1000000   0.000000        0.158927         0.419959        0.052215
-%             5   1000000   0.000000        0.206456         0.583910        0.066411
-%             6   1000000   0.000000        0.222061         0.575795        0.073973
-%             7   1000000   0.000000        0.263596         0.822926        0.089012
-%             8   1000000   0.000000        0.254608         0.599000        0.070860
-%             9   1000000   0.000000        0.283409         0.702366        0.079568
-%            10   1000000   0.031518        0.359978         2.000000        0.176883
-% 
-% ./get_average.cmd 3by3_U30_T1e5dt1.dat 
-% #===============================================================================
-% #                             Statistics
-% #===============================================================================
-% #   Dimension     Count    Minimum           Mean         Maximum          Stdev
-% #-------------------------------------------------------------------------------
-%             1   1000000   0.000000   50000.000000   100000.000000   28867.542327
-%             2   1000000   0.000000       0.015624        0.062502       0.017470
-%             3   1000000   0.000000       0.011744        0.036389       0.013130
-%             4   1000000   0.000000       0.050755        0.157255       0.056746
-%             5   1000000   0.000000       0.167044        0.501444       0.179416
-%             6   1000000   0.000000       0.132662        0.357493       0.130045
-%             7   1000000   0.000000       0.106525        0.299558       0.108704
-%             8   1000000   0.000000       0.152420        0.376920       0.136550
-%             9   1000000   0.000000       0.035081        0.105815       0.038712
-%            10   1000000   0.054913       0.328102        1.000000       0.330429
-%            
-%            
-% 10by10 U0.1
-
-As discussed at the end of section \ref{changing_interaction_strength}, the 
-GPE does not accurately describe our system in the strongly interacting regime.
-
-
-
-\subsection{Comparing GPE and many-body approaches}
-One of the key requirements of using the Gross-Pitaevskii approach is that
-the number of particles in the system is very large. This [will do this in 
-the morning, don't forget to talk about normalisation stuff from John]
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/Big_GPE/U0.5_RKF_20by20_T2e2.dat" u 1:2 w l lc 1 notitle, 
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{GPE evolution for a $20\times20$ system with $U_0=0.5$.}
+\end{figure}
 
 
 
@@ -2501,24 +2477,23 @@ superfluid to a Mott insulator as the strength of the interactions increases
 relative to the hopping energy. This was argued on the basis of the long term
 averages of the expectation values of the number operators for each site. 
 
+
 The simulations that we ran to model the dynamics of two-dimensional systems 
 with interactions have results from which it is much harder to draw confident 
 conclusions. The code developed for many body analytic evolution agreed very
-well with the Gross-Pitaevskii approach in the noninteracting case, but the
-two methods produced very different results once interactions were switched on.
-Neither method demonstrated clear thermalisation in the case of weak 
-interactions, which is what we expected from our one-dimensional results. In 
-future work, we may look to investigate these discrepancies in more detail.
+well with the Gross-Pitaevskii approach in the noninteracting case. Both methods
+also appeared to demonstrate thermalisation for systems with larger lattices,
+though more efficient code needs to be developed to run simulations of these
+systems for longer before we can say anything with confidence here. The two 
+methods did not agree well for smaller system sizes.
 
-Another possible direction for further work on these systems could take the 
+A possible direction for further work on these systems could take the 
 form of a more advanced characterisation of the characterisation of the 
 thermal states, such as by using the entropy of entanglement 
 \todo{reference paper}. We could also attempt to prove whether or not
 any of the systems that we have studied satisfy Deutsch and Srednicki's 
-Eigenstate Thermalisation Hypothesis. Doing this could provide stronger
-theoretical grounding to inform our expectations regarding the thermalisation
-of two-dimensional systems with interactions, which is where the results 
-produced in this project are most ambiguous.
+Eigenstate Thermalisation Hypothesis, which provides a necessary and 
+sufficient condition for thermalisation.
 
 
 \newpage

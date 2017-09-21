@@ -17,138 +17,47 @@
 \begin{document}
 \section{3by3 U=0 longterm trying table}
 
-\begin{table}[H]
- \centering
- \begin{tabular}{c r r r}
-  \hline
-  \multicolumn{4}{c}{Lattice site positions}\\
-  \hline
-  Column number &     Row 1     &     Row 2     &     Row 3\\
-  \hline
-   1            &     0.328     &     0.035     &     0.152\\
-   2            &     0.107     &     0.133     &     0.167\\
-   3            &     0.051     &     0.012     &     0.016\\
-   \hline
- \end{tabular}
- \caption{Long term averages for a $3\times3$ noninteracting system}
- \label{table:longterm3by3U0}
-\end{table}
 
-\section{Comparing RKF and analytic}
 
-\begin{figure}[H]
-    \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set xlabel "$\\displaystyle \\frac{t}{J}$"
-        set ylabel "$\\langle n_{1} \\rangle$"
-        plot "U0_RKF_3by3_T1e3.dat" u 1:2 w l lc 1 notitle, 
-     \end{gnuplot}
-     \vspace*{-5mm}
-     \caption{RKF for U=0 case (zoomed out)}
-\end{figure}
+
+% \begin{figure}[H]
+%     \centering
+%     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+%         set xlabel "Site number"
+%         set ylabel "$\\overline{\\langle n_{i} \\rangle}$"       
+%         set terminal pdf dashed
+%         set output "TimeAverages.pdf"
+%         set bar 0.5
+% 	average=6.0/9.0
+% 	set arrow 1 from graph 0,average to graph 1,average nohead linetype 3
+% 	plot [0.9:9.1][0:1] \
+% 	"20170921T083611_evolution_n_TimeAverage.dat" u 1:4:6 ls 1 lw 2 w yerrorbars notitle
+% 	reset
+% 	set terminal x11
+%      \end{gnuplot}
+%      \vspace*{-5mm}
+%      \label{averageswitherrorbars}
+%      \caption{Long term many-body averages for a $3\times3$ lattice with $6$ bosons
+%      and  $U_0=0.1$. The bosons start on lattice site $9$.}
+% \end{figure}
 
 
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set xlabel "$\\displaystyle \\frac{t}{J}$"
-        set ylabel "$\\langle n_{1} \\rangle$"
-        plot "3by3_U0_analytic_T1e3.dat" u 1:10 w l notitle
+        set xlabel "Site number"
+        set ylabel "$\\overline{\\langle n_{i} \\rangle}$"       
+        set bar 0.5
+	average=6.0/9.0
+	set arrow 1 from graph 0,average to graph 1,average nohead linetype 3
+	plot [0.9:9.1][0:1] \
+	"20170921T083611_evolution_n_TimeAverage.dat" u 1:4:6 ls 1 lw 2 w yerrorbars notitle
      \end{gnuplot}
      \vspace*{-5mm}
-     \caption{Analytic for U=0 case (zoomed out)}
+     \label{averageswitherrorbars}
+     \caption{Long term many-body averages for a $3\times3$ lattice with $6$ bosons
+     and  $U_0=0.1$. The bosons start on lattice site $9$.}
 \end{figure}
-
-
-Now comparing zoomed in
-
-\begin{figure}[H]
-    \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set xlabel "$\\displaystyle \\frac{t}{J}$"
-        set xrange[0:50]
-        set ylabel "$\\langle n_{1} \\rangle$"
-        plot "U0_RKF_3by3_T1e3.dat" u 1:2 w l lc 1 title "GPE", \
-        "3by3_U0_analytic_T1e3.dat" u 1:10 w l title "Many-body"
-     \end{gnuplot}
-     \vspace*{-5mm}
-     \caption{Comparing GPE and many-body noninteracting case}
-\end{figure}
-
-           
-
-\begin{figure}[H]
-    \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set xlabel "$\\displaystyle \\frac{t}{J}$"
-        set ylabel "$\\langle n_{1} \\rangle$"
-        plot "U0.001_RKF_3by3_T1e3.dat" u 1:2 w l lc 1 notitle, 
-     \end{gnuplot}
-     \vspace*{-5mm}
-     \caption{RKF for U=0.001 case}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set xlabel "$\\displaystyle \\frac{t}{J}$"
-        set ylabel "$\\langle n_{1} \\rangle$"
-        plot "P6_U0.001_3by3_T1e3dt0.1.dat" u 1:10 w l lc 1 notitle, 
-     \end{gnuplot}
-     \vspace*{-5mm}
-     \caption{Analytic for U=0.001 case}
-\end{figure}
-
-
-
-\begin{figure}[H]
-    \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set xlabel "$\\displaystyle \\frac{t}{J}$"
-        set ylabel "$\\langle n_{1} \\rangle$"
-        plot "U0.1_RKF_3by3_T1e3.dat" u 1:2 w l lc 1 notitle, 
-     \end{gnuplot}
-     \vspace*{-5mm}
-     \caption{RKF for U=0.1 case}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set xlabel "$\\displaystyle \\frac{t}{J}$"
-        set ylabel "$\\langle n_{1} \\rangle$"
-        plot "P6_U0.1_3by3_T1e3dt0.1.dat" u 1:10 w l lc 1 notitle, 
-     \end{gnuplot}
-     \vspace*{-5mm}
-     \caption{Analytic for U=0.1 case}
-\end{figure}
-
-
-
-\begin{figure}[H]
-    \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set xlabel "$\\displaystyle \\frac{t}{J}$"
-        set ylabel "$\\langle n_{1} \\rangle$"
-        plot "U1_RKF_3by3_T1e3.dat" u 1:2 w l lc 1 notitle, 
-     \end{gnuplot}
-     \vspace*{-5mm}
-     \caption{RKF for U=1 case}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set xlabel "$\\displaystyle \\frac{t}{J}$"
-        set ylabel "$\\langle n_{1} \\rangle$"
-        plot "P6_U1_3by3_T1e3dt0.1.dat" u 1:10 w l lc 1 notitle, 
-     \end{gnuplot}
-     \vspace*{-5mm}
-     \caption{Analytic for U=1 case}
-\end{figure}
-
-
-
 
 
 \end{document}
