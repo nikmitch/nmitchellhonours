@@ -82,16 +82,16 @@
     entropy of entanglement, whatever I actually end up doing].
 \end{abstract}
 \newpage
-\section{Introduction}
-\todo{see square brackets}
-[Want to include some of the stuff from section \ref{DraftFromDanny} at the
-start here]
+\tableofcontents
+\include{Theoretical Background}
+\newpage
+\section*{Introduction}
 The question of how, and under what conditions, closed quantum systems approach
 thermal equilibrium is an old question that forms the basis of a large and
 active field of research. Thermalisation is well understood in the context
 of classical mechanics, where it emerges from the chaotic
 dynamics of sufficiently unconstrained systems. However, the time evolution of
-quantum systems is strictly linear, and \todo{hence?} they do not exhibit chaotic
+quantum systems is strictly linear, and hence they do not exhibit chaotic
 dynamics. Nonetheless, there are a number of closed quantum systems in which
 thermalisation is observed, in the sense that the systems relax to states in
 which the values of macroscopic quantities are stationary, universal with
@@ -116,6 +116,7 @@ of integrability in relaxation and thermalisation of far-from-equilibrium
 quantum systems.
 
 \newpage
+\chapter*{Theoretical Background}
 \section{Experiments with optical lattices}
 
 This project considers the thermalisation behaviour of systems of bosons on
@@ -648,7 +649,20 @@ Without nonlinearities promoting exploration the phase space, it is
 not obvious how one would justify applying the assumption of ergodicity to 
 quantum systems. Hence, it is unclear if, or when, we should expect quantum systems to
 thermalise, or what statistical ensemble we could use to characterise the
-relaxed states. One possible candidate 
+relaxed states. One possible source of theoretical predictions is the 
+Eigenstate Thermalisation Hypothesis, (ETH) proposed independently by Deutsch 
+\cite{Deutsch1991} and Srednicki \cite{Srednicki1994}. If the necessary 
+conditions hold for the ETH to be applied, then it implies that the [eigenstates 
+of generic quantum Hamiltonians are “typical” in the sense that the statistical 
+properties of physical observables are the same as those predicted by the 
+microcanonical ensemble. The ETH implies that the expectation values
+of such observables as well as their fluctuations in isolated quantum systems 
+far from equilibrium relax to (nearly) time-independent results that can be 
+described using traditional statistical mechanics ensembles.]\todo{part in 
+square brackets is copy pasted from \cite{DAlessio2016}}. Making predictions
+about our system using the ETH would require considerable use of Random Matrix
+Theory, which is beyond the scope of this dissertation but could form the basis
+of future work.
 
 
 \section{Integrable systems}
@@ -737,7 +751,6 @@ These observations extended from the Tonks--Girardeau regime, which has very
 strong repulsive interactions between bosons so only pairwise collisions can
 occur, to the intermediate coupling regime, where there can be three-
 (or more) body collisions.
-
 
 \subsection{Relaxation in a Completely Integrable Many-Body Quantum System}
 
