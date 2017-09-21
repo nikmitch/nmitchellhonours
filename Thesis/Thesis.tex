@@ -1980,7 +1980,7 @@ not be able to legitimately consider systems with $U_{0}>J$.
 
 \section{Two-dimensional systems\label{2Dsystems}}
 
-\subsection{Single particle case}
+\subsection{Single particle case\label{2DNoninteractingsection}}
 
 In the single particle case (which is identical to the many-particle
 non-interacting case, up to normalisation), the Hamiltonian is given by
@@ -2052,10 +2052,9 @@ unsurprising that the two-dimensional one (almost always) does too. The revival
 time for the overall system is simply the lowest common multiple of the revival
 times of the one-dimensional systems. Consequently, the case for which we do
 not see revival in a $3\times3$ noninteracting system is when $J$ and $J'$ are
-mutually irrational, as this renders their revival times mutually irrational
-\todo{Need to finish this argument off here, am too tired to do it atm}.
+mutually irrational, as this renders their revival times mutually irrational.
 
-The separability of these \todo{quasi-two-dimensional}two-dimensional systems
+The separability of these two-dimensional systems
 suggests that if either of the systems that it separates into have mutually
 irrational eigenvalues (and thus do not exhibit revival) then the whole system
 will not revive either. In other words, if we have an $m \times n$ lattice, then
@@ -2079,8 +2078,7 @@ a $3 \times3$ lattice with $J=J'$.
      \label{3by3_equal_hop_U0}
 \end{figure}
 
-The \todo{should I get rid of this text}eigenvalues for this system (with $J =
-J'$) are
+The eigenvalues for this system (with $J =J'$) are
 \begin{equation*}
     \lbrace 0, \pm\sqrt{2} J, \pm 2 \sqrt{2} J \rbrace
     \quad \text{or after scaling} \quad
@@ -2092,10 +2090,45 @@ that we must have degeneracy in the eigenvalues now due to several symmetries of
 geometric origin (e.g., rotation by $\frac{\pi}{2}$), which was not possible in
 the one-dimensional case, as is clear from equation (\ref{1D_eigenvalues}).
 
-Now consider a case identical to the previous one, except with $J=1$ and $J' =
-\tfrac{3}{5}$. Note that equation (\ref{revival_time_formula}) predicts a
-revival time of $t^{\ast}=10\pi$ \todo{should $t^{\ast}$ be over $\sqrt{2}$?}
-here, which is consistent with the simulation.
+The presence of these symmetries has revealed what is almost certainly a bug
+in the many-body code that we developed to evolve these two-dimensional systems. 
+When we run a simulation for a $3\times3$ lattice with a single boson and 
+$J=J'$ and then calculate the long-term averages of the expectation values of 
+the number operators, we find an asymmetry in these averages that we are unable 
+to explain. This asymmetry can be seen from the averages displayed in table 
+\ref{table:longterm3by3U0}, where we expect to have the average particle number
+on the lattice site $(1,3)$ agree with that of the lattice site $(3,1)$, yet
+they differ dramatically. The same is true of $(2,1)$ and $(1,2)$.
+
+\begin{table}[H]
+ \centering
+ \begin{tabular}{c r r r}
+  \hline
+  \multicolumn{4}{c}{Lattice site positions}\\
+  \hline
+  Column number &     Row 1     &     Row 2     &     Row 3\\
+  \hline
+   1            &     0.328     &     0.035     &     0.152\\
+   2            &     0.107     &     0.133     &     0.167\\
+   3            &     0.051     &     0.012     &     0.016\\
+   \hline
+ \end{tabular}
+ \caption{Long term averages for a $3\times3$ noninteracting system}
+ \label{table:longterm3by3U0}
+\end{table}
+We suspect the error may lie in our map between the different orthogonal
+number states that our Hamiltonian is represented in and the number operator
+expectation values. Unfortunately, this asymmetry was discovered at a point
+sufficiently late that we have not been able to debug the code and run the
+simulations again.
+
+However, the behaviour for the site on which the particle was started appears
+to have good agreement with what we predict from the separability argument, so
+it seems possible that whatever is going wrong with symmetry in our code has
+not impacted the behaviour at this lattice site.
+If we consider a case identical to the previous one, except with $J=1$ and $J' =
+\tfrac{3}{5}$ then we note that equation (\ref{revival_time_formula}) predicts a
+revival time of $t^{\ast}=10\pi$ here, which is consistent with the simulation.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
@@ -2126,7 +2159,7 @@ then we see that we do not get full revival, see figure
 \end{figure}
 
 The principles discussed earlier lead us to expect revival to be absent from
-$4\times4$ systems, such as the following one with $J=J'$.
+larger systems, such as the following $4\times4$ and $15\times15$ ones.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
@@ -2139,8 +2172,6 @@ $4\times4$ systems, such as the following one with $J=J'$.
               and $J=J'$.}
 \end{figure}
 
-Is it worth putting in a larger system, like the following one? $15 \times 15$
-with $J=J'$.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
@@ -2171,38 +2202,276 @@ We do this by considering a $3 \times 4$ lattice with a single boson and $J=J'$.
 It is not entirely clear from figure \ref{3by4} that revival does not happen,
 but examination of the source data reveals that there are no times aside from
 the very beginning at which $\langle n_{1} \rangle$ is greater than $0.985$.
-
+Hence, in spite of unresolved issues with symmetry, we still observe much of
+the behaviour that we expect of these systems.
 
 \section{Two-dimensional interacting systems}
 
 We now move on to looking at systems in two dimensions that contain bosons
 with repulsive contact interactions. This is the regime in which the 
 dimensionality of the systems we consider is largest and grows fastest when 
-we take a many-body approach. Hence, we try to apply a Gross-Pitaevskii 
-treatment, which is more dimensionally efficient,\todo{find a better way to 
-describe "dimensionally efficient"} to these systems, with limited success.
+we take a many-body approach. This means that we need to limit either the 
+number of lattice points or the number of particles significantly. Ideally,
+we would like to compare the many-body simulations to those done with the GPE
+approach. We have found that the best compromise we can get between having
+a large number of particles and a large number of lattice sites (which is when
+the many-body method should be most similar to the GPE) is to have $6$ particles
+on a $3\times3$ lattice. 
 
-First, let us look at the results of the analytic many-body simulations
-for bosons on square lattices with weak interactions. When using a square
-lattice with $2$ bosons we can see thermalisation to a uniform particle 
-distribution for a variety of different weak interaction strengths.
+In order to ensure that we are simulating the same physical system in each case
+we need to take into account the normalisation in each case. The GPE 
+wavefunction is normalised to $1$, whereas the many-body state is normalised
+to the number of particles, in this case $6$. To compensate for this, we
+must use a value of $U_0$ in the GPE simulation that is $6$ times as great as
+the one used in the many-body simulation that we want to compare it to.
 
-3by3 U0.1
+With that in mind, we have compared several different weak interaction strengths,
+avoiding strong interactions as the GPE is not an accurate description of our
+system in those cases. The noninteracting case displays close agreement between
+the two methods (see figure \ref{2DnoninteractingcompareGPEMB}), with some 
+differences in the troughs \todo{is troughs the correct word?}. The GPE method
+is more approximate, but this doesn't necessarily mean it is missing physical
+behaviour that the many-body simulation is showing, as the two-dimensional many-body
+code has an as-yet unresolved problem that could be causing this. It is 
+particularly plausible that the many-body code is going awry in two dimensions 
+as the one-dimensional $3\times1$ many body case looks more like the GPE code
+does here.
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set xrange[0:50]
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/Final_week_comparing/U0_RKF_3by3_T1e3.dat" u 1:2 w l lc 1 title "GPE", \
+        "./Data/Final_week_comparing/3by3_U0_analytic_T1e3.dat" u 1:10 w l title "Many-body"
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \label{2DnoninteractingcompareGPEMB}
+     \caption{Comparing GPE and many-body noninteracting case}
+\end{figure}
 
 
-3by3 U0.5
+When we introduce weak interactions, the many-body simulations suggest that
+the system thermalises. However, the GPE code does not noticeably show this.
+One possible reason for this is that given the small system size and reflective 
+boundary conditions, the GPE wavefunction may be interfering with itself. This
+leads to behaviour that is qualitatively very different.
 
-3by3 U1
 
-5by5 U0.1
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{i} \\rangle$"
+        f(x)=0.67
+	plot "./Data/Final_week_comparing/P6_U0.1_3by3_T1e3dt0.1.dat" u 1:10 w l title "(1,1)", \
+	"" u 1:9 w l title "(1,2)", \
+	"" u 1:8 w l title "(1,3)", \
+	"" u 1:7 w l title "(2,1)", \
+	"" u 1:6 w l title "(2,2)", \
+	"" u 1:5 w l title "(2,3)", \
+	"" u 1:4 w l title "(3,1)", \
+	"" u 1:3 w l title "(3,2)", \
+	"" u 1:2 w l title "(3,3)", \
+	f(x) w l lc "black" lw 3 title "P/N=0.67"
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Many-body system evolution with $U_0=\frac{1}{60}$.}
+\end{figure}
 
-10by10 U0.1
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/Final_week_comparing/U0.1_RKF_3by3_T1e3.dat" u 1:2 w l lc 1 notitle, 
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{GPE system evolution with $U_0=\frac{1}{10}$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{i} \\rangle$"
+        f(x)=0.67
+	plot "./Data/Final_week_comparing/P6_U1ov12_3by3_T1e3dt0.01.dat" u 1:10 w l title "(1,1)", \
+	"" u 1:9 w l title "(1,2)", \
+	"" u 1:8 w l title "(1,3)", \
+	"" u 1:7 w l title "(2,1)", \
+	"" u 1:6 w l title "(2,2)", \
+	"" u 1:5 w l title "(2,3)", \
+	"" u 1:4 w l title "(3,1)", \
+	"" u 1:3 w l title "(3,2)", \
+	"" u 1:2 w l title "(3,3)", \
+	f(x) w l lc "black" lw 3 title "P/N=0.67"
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Many-body system evolution with $U_0=\frac{1}{12}$.}
+\end{figure}
+
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/Final_week_comparing/U0.5_RKF_3by3_T1e3.dat" u 1:2 w l lc 1 notitle, 
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{GPE system evolution with $U_0=\frac{1}{2}$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{i} \\rangle$"
+        f(x)=0.67
+	plot "./Data/Final_week_comparing/P6_U1ov6_3by3_T1e3dt0.01.dat" u 1:10 w l title "(1,1)", \
+	"" u 1:9 w l title "(1,2)", \
+	"" u 1:8 w l title "(1,3)", \
+	"" u 1:7 w l title "(2,1)", \
+	"" u 1:6 w l title "(2,2)", \
+	"" u 1:5 w l title "(2,3)", \
+	"" u 1:4 w l title "(3,1)", \
+	"" u 1:3 w l title "(3,2)", \
+	"" u 1:2 w l title "(3,3)", \
+	f(x) w l lc "black" lw 3 title "P/N=0.67"
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{Many-body system evolution with $U_0=\frac{1}{6}$.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+        set xlabel "$\\displaystyle \\frac{t}{J}$"
+        set ylabel "$\\langle n_{1} \\rangle$"
+        plot "./Data/Final_week_comparing/U1_RKF_3by3_T1e3.dat" u 1:2 w l lc 1 notitle, 
+     \end{gnuplot}
+     \vspace*{-5mm}
+     \caption{GPE system evolution with $U_0=1$.}
+\end{figure}
+
+For larger systems, we cannot use as many particles in the many-body simulations
+due to the computational costs of doing so. The largest interacting system
+that we can simulate with the many-body code is a system of $2$ bosons on 
+a $10\times10$ lattice (see figure \ref{10by10_analyticU0.1}), 
+which requires diagonalising a $5050\times5050$ Hamiltonian. This appears to 
+thermalise.
+
+
+!!! Turns out I ran 10x1, not 10x10. This image is coming once I run the 
+simulation.!!!
+% 
+% \begin{figure}[H]
+%     \centering
+%     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+%         set xlabel "$\\displaystyle \\frac{t}{J}$"
+%         set ylabel "$\\langle n_{1} \\rangle$"
+%         plot "./Data/Final_week_comparing/10by1_U0.1_T2e4.dat" u 1:101 w l lc 1 notitle, 
+%      \end{gnuplot}
+%      \vspace*{-5mm}
+%      \label{10by10_analyticU0}
+%      \caption{Many-body system evolution for a $10\times10$ lattice with $2$ 
+%      bosons and $U_0=0.1$.}
+% \end{figure}
+
+
+
+
+
+
+
+
+% The asymmetry problems that we observed in
+% section \ref{2DNoninteractingsection} are still present here. They seem
+% less prominent in the weakly-interacting case then the noninteracting case,
+% and are most clear in the strongly interacting regime. This can be seen from
+% the long term averages for $3\times3$ systems differing interaction strengths 
+%  $U_0$ presented in table [making table now].% \ref{table:longterm3by3Uvarying}.
+% 
+% \begin{table}[H]
+%  \centering
+%  \begin{tabular}{c r r r r r r r r r r r r}
+%   \hline
+%   \multicolumn{4}{c}{$U_0=0.1$} & & \multicolumn{3}{c}{$U_0=0.5$} & & \multicolumn{3}{c}{$U_0=30$}\\
+%   \hline
+%   Column number &     Row 1     &     Row 2     &     Row 3     & &     Row 1     &     Row 2     &     Row 3   & &     Row 1     &     Row 2     &     Row 3\\
+%   \hline
+%    1            &     0.328     &     0.035     &     0.152\\   & &
+%    2            &     0.107     &     0.133     &     0.167\\   & &
+%    3            &     0.051     &     0.012     &     0.016\\   & &
+%    \hline
+%  \end{tabular}
+%  \caption{Long term averages for a $3\times3$ interacting systems with $2$ bosons}
+%  \label{table:longterm3by3Uvarying}
+% \end{table}
+% 
+% 
+% ./get_average.cmd 3by3_U0.1_T1e6.dat 
+% #==================================================================================
+% #                               Statistics
+% #==================================================================================
+% #   Dimension     Count    Minimum            Mean          Maximum           Stdev
+% #----------------------------------------------------------------------------------
+%             1   1000000   0.000000   500000.000003   1000000.000000   288675.423269
+%             2   1000000   0.000000        0.109023         0.348093        0.043309
+%             3   1000000   0.000000        0.138730         0.406153        0.044468
+%             4   1000000   0.000000        0.168181         0.442474        0.055352
+%             5   1000000   0.000000        0.201547         0.498620        0.064356
+%             6   1000000   0.000000        0.259367         0.677490        0.083743
+%             7   1000000   0.000000        0.229457         0.627041        0.069088
+%             8   1000000   0.000000        0.268172         0.634991        0.082037
+%             9   1000000   0.000000        0.262793         0.729925        0.078254
+%            10   1000000   0.026511        0.362729         2.000000        0.173320
+% 
+% 
+%            
+% ./get_average.cmd 3by3_U0.5_T1e6.dat
+% #==================================================================================
+% #                               Statistics
+% #==================================================================================
+% #   Dimension     Count    Minimum            Mean          Maximum           Stdev
+% #----------------------------------------------------------------------------------
+%             1   1000000   0.000000   500000.000003   1000000.000000   288675.423269
+%             2   1000000   0.000000        0.106663         0.342708        0.042346
+%             3   1000000   0.000000        0.144353         0.389804        0.047078
+%             4   1000000   0.000000        0.158927         0.419959        0.052215
+%             5   1000000   0.000000        0.206456         0.583910        0.066411
+%             6   1000000   0.000000        0.222061         0.575795        0.073973
+%             7   1000000   0.000000        0.263596         0.822926        0.089012
+%             8   1000000   0.000000        0.254608         0.599000        0.070860
+%             9   1000000   0.000000        0.283409         0.702366        0.079568
+%            10   1000000   0.031518        0.359978         2.000000        0.176883
+% 
+% ./get_average.cmd 3by3_U30_T1e5dt1.dat 
+% #===============================================================================
+% #                             Statistics
+% #===============================================================================
+% #   Dimension     Count    Minimum           Mean         Maximum          Stdev
+% #-------------------------------------------------------------------------------
+%             1   1000000   0.000000   50000.000000   100000.000000   28867.542327
+%             2   1000000   0.000000       0.015624        0.062502       0.017470
+%             3   1000000   0.000000       0.011744        0.036389       0.013130
+%             4   1000000   0.000000       0.050755        0.157255       0.056746
+%             5   1000000   0.000000       0.167044        0.501444       0.179416
+%             6   1000000   0.000000       0.132662        0.357493       0.130045
+%             7   1000000   0.000000       0.106525        0.299558       0.108704
+%             8   1000000   0.000000       0.152420        0.376920       0.136550
+%             9   1000000   0.000000       0.035081        0.105815       0.038712
+%            10   1000000   0.054913       0.328102        1.000000       0.330429
+%            
+%            
+% 10by10 U0.1
 
 As discussed at the end of section \ref{changing_interaction_strength}, the 
 GPE does not accurately describe our system in the strongly interacting regime.
 
 
-3by3 U-1
 
 \subsection{Comparing GPE and many-body approaches}
 One of the key requirements of using the Gross-Pitaevskii approach is that
