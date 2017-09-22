@@ -1893,7 +1893,7 @@ drops dramatically.
 \begin{figure}[H]
     \centering
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
-        set yrange [0:1]
+        set yrange [0:1.5]
         set xlabel "$U_{0}$"
         set ylabel "Long term averages"
         plot "./Data/Long_term_averages_for_3by1_systems" u 1:2 w lp title "$\\overline{\\langle n_{1} \\rangle}$", \
@@ -1905,7 +1905,6 @@ drops dramatically.
      \caption{Long term averages for $3\times1$ systems with varying
               interparticle interaction strengths}
 \end{figure}
-\todo{move key in above figure so not obscured.}
 We have run simulations for higher values of $U_{0}$ in which we see that
 $\overline{\langle n_{1} \rangle}$ and $\overline{\langle n_{2} \rangle}$
 asymptotically approach unity, and $\overline{\langle n_{3} \rangle}$ approaches
@@ -2241,6 +2240,7 @@ does here.
     \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         set xlabel "$\\displaystyle \\frac{t}{J}$"
         set xrange[0:50]
+        set yrange[0:1.5]
         set ylabel "$\\langle n_{1} \\rangle$"
         plot "./Data/Final_week_comparing/U0_RKF_3by3_T1e3.dat" u 1:2 w l lc 1 title "GPE", \
         "./Data/Final_week_comparing/3by3_U0_analytic_T1e3.dat" u 1:10 w l title "Many-body"
