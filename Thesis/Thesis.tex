@@ -5,7 +5,6 @@
 % \documentclass[a4paper, 10pt, draft]{article}
 \usepackage{float}
 \usepackage{listings}
-\usepackage{todonotes}
 \usepackage{braket}
 \usepackage{mathtools}
 \usepackage[mathscr]{euscript}
@@ -111,7 +110,7 @@ the degree of Bachelor of Science with Honours in Physics}
 \thispagestyle{plain}
 I would first like to thank my supervisor, David Hutchinson, for providing 
 guidance and clear direction throughout the project, as well as unremitting
-interest and encouragement. I would also like to thank John Helm, for 
+interest and encouragement. I would also like to thank John Helm for 
 his patient explanations of coding for the Gross-Pitaevskii approach taken 
 in part of this dissertation. Thank you to my fellow inmates in the Honours 
 room - your banter and camaraderie have brought enjoyment to many a long and 
@@ -222,7 +221,7 @@ reduced to its two-body form, $U(x,x')$, the form of the interatomic scattering
 potential has short range terms that can be difficult to deal with. We can
 replace this object with a mathematically more convenient effective potential,
 corresponding to contact interaction, with the same scattering cross-section at
-low-energy. Because the ultracold bosons have such low energy, $s$-wave
+low energy. Because the ultracold bosons have such low energy, $s$-wave
 scattering dominates, and the interparticle interaction potential can be
 expressed simply in terms of the $s$-wave scattering length, $a_{s}$, as
 \begin{equation}
@@ -288,7 +287,9 @@ Whilst all functions satisfying the above constraints can be legitimately
 defined mathematically, only a small subset are found to occur in nature --
 those which are either entirely symmetric or anti-symmetric under particle
 exchange. The set of indistinguishable particles which are entirely symmetric
-under particle exchange are called bosons. This project will not investigate
+under particle exchange are called bosons. 
+
+This project will not investigate
 scenarios involving the particles that display exchange anti-symmetry
 (fermions), so we will be working within the space $S_{N}\mathcal{H}^{N}$. Here
 $S_{N}$ projects onto the subspace of square-integrable functions that are
@@ -305,8 +306,7 @@ one may construct the two-particle space, $S_{2}\mathcal{H}^{2}$ for bosons as
 It is apparent that $S_{2} \mathcal{H}^{2} \ne \mathcal{H} \otimes \mathcal{H}$
 since in this case we would be able to distinguish particles or states.
 We can formally extend this notion of exchange symmetry for larger systems and
-express the requirement of exchange symmetry for bosonic systems as
-\cite{Negele1988}
+express the requirement of exchange symmetry for bosonic systems \cite{Negele1988} as
 \begin{equation*}
     \psi({\mathbf{r}_{\mathcal{P}_1}, \mathbf{r}_{\mathcal{P}_2}, \dots,
           \mathbf{r}_{\mathcal{P}_N}})
@@ -387,7 +387,7 @@ a general state can be written as a linear superposition
 In the scenario which this project will be working with, the occupation numbers
 refer to the number of bosons on a particular site of the lattice. Having
 established this, we can define creation and annihilation operators that create
-and annihilate particles from number eigenstates, that is
+and annihilate particles from number eigenstates, that is,
 \begin{equation}
     \hat{a}_{j}^{\dagger} \ket{n_{1}, n_{2}, \dots, n_{j}, \dots}
     =
@@ -458,7 +458,7 @@ contributions, and can be transformed to
     \int{\hat{\psi}^{\dagger}(x) \hat{h}_{1} \hat{\psi}(x) \,dx}.
 \end{equation}
 
-The one-dimensional Bloch's theorem states \cite{Bloch1929, Kittel1987} that the
+Bloch's theorem in one dimension states \cite{Bloch1929, Kittel1987} that the
 eigenstates of a particle in a periodic potential have the form
 \begin{equation}
     \phi_{q}(x) = e^{iqx} u_{q}(x),
@@ -497,7 +497,7 @@ Here we have introduced a shorthand notation
 for the numerical values of these integrals. Notice that the integration --at
 least numerically-- can indeed be carried out and characterises the strength of
 the hopping between sites $j$ and $l$. It is typically described
-\cite{Kittel1987, Altland2010} as characterising the overlap of the
+\cite{Altland2010,Kittel1987} as characterising the overlap of the
 single-particle spatial wave functions (see figure below).
 \begin{figure}[h!]
     \begin{center}
@@ -508,7 +508,7 @@ single-particle spatial wave functions (see figure below).
              localised Wannier functions centred at neighbouring lattice sites.}
 \end{figure}
 This is not entirely accurate, as the Wannier states are orthonormal and so the
-integral over their inner product is zero. More precisely, $J_{j,l}$ takes the
+integral over their overlap is zero. More precisely, $J_{j,l}$ takes the
 inner product between a Wannier state $\psi(R_{j} - x)$ and the state produced
 by the action of $\hat{h}_1$ on the Wannier state $\psi(R_{l} - x)$, which does
 not have to be zero. However, the depiction in figure \ref{fig:J_overlap_drawing}
@@ -657,7 +657,7 @@ systems that they display an extreme sensitivity to the initial conditions, such
 that the uncertainties or errors in the initial conditions can grow
 exponentially as the system evolves in time, not merely as a result of numerical
 approximations made but as an intrinsic property of the system. Our inability to
-know the initial conditions of a real system presents an notoriously
+know the initial conditions of a real system with infinite precision presents an notoriously
 challenging obstacle to long term predictions of these nonlinear systems, such
 as the weather.
 
@@ -683,18 +683,16 @@ thermalise, or what statistical ensemble we could use to characterise the
 relaxed states. One possible source of theoretical predictions is the
 Eigenstate Thermalisation Hypothesis, (ETH) proposed independently by Deutsch
 \cite{Deutsch1991} and Srednicki \cite{Srednicki1994}. If the necessary
-conditions hold for the ETH to be applied, then it implies that the [eigenstates
-of generic quantum Hamiltonians are “typical” in the sense that the statistical
-properties of physical observables are the same as those predicted by the
-microcanonical ensemble. The ETH implies that the expectation values
-of such observables as well as their fluctuations in isolated quantum systems
+conditions hold for the ETH to be applied (it does not hold for particular 
+classes of Hamiltonians with ``atypical'' eigenstates, such as those of 
+integrable systems), then ity implies that the expectation values
+of observables as well as their fluctuations in isolated quantum systems
 far from equilibrium relax to (nearly) time-independent results that can be
-described using traditional statistical mechanics ensembles.]\todo{part in
-square brackets is copy pasted from \cite{DAlessio2016}}. Making predictions
-about our system using the ETH would require considerable use of Random Matrix
-Theory, which is beyond the scope of this dissertation but could form the basis
-of future work.
-
+described using traditional statistical mechanics ensembles \cite{DAlessio2016}. 
+Making predictions about our system using the ETH would require considerable 
+use of Random Matrix Theory, which is beyond the scope of this dissertation but 
+could form the basis of future work.
+\newpage
 \section{Integrable systems}
 
 There are a number of classical, isolated systems that do not display
@@ -703,10 +701,9 @@ approach thermal equilibrium is the extent to which they are constrained
 relative to the number of degrees of freedom that they possess. This observation
 is formalised in the notion of integrability. A system is said to be integrable
 if it has half as many independent integrals of motion (which are conserved)
-as it has degrees of freedom. An integral of motion for a Hamiltonian is a
+as it has degrees of freedom \cite{deLeeuw2013}. An integral of motion for a Hamiltonian is a
 smooth function $I$ defined on an open subset of the phase space such that
-$\dot{I}=0$ on solutions. \todo{reference handout Danny gave me, I can't see
-anywhere where its from}So $I(x(t))=\text{constant}$, where $x(t)$ is the
+$\dot{I}=0$ on solutions. So $I(x(t))=\text{constant}$, where $x(t)$ is the
 solution of the equations of motion for a particular initial condition. If
 $x_1(t)$ and $x_2(t)$ are solutions for different initial conditions, then in
 most cases $I(x_1(t))\ne I(x_2(t))$. Integrability is a useful property, though
@@ -718,13 +715,13 @@ idea of integrability is well-understood and neatly defined. The situation in
 quantum mechanics is much more challenging. One reason for this is that
 the Heisenberg uncertainty principle prevents us from applying the idea of
 points in phase space with particular trajectories. However, a commonly 
-used definition requires the presence of a large number of local operators (more
-precisely, linear combinations of these operators) that commute with the 
-Hamiltonian and each other and thus provide a set of conserved quantities. With 
-respect to the systems that we are dealing with, it has been shown that a 
-one-dimensional lattice chain of non-interacting bosons is an integrable 
-system (with integrability given by the previously mentioned 
-definition) \cite{Rigol2007}.
+used definition of quantum integrability requires the presence of a large 
+number of local operators (more precisely, linear combinations of these 
+operators) that commute with the Hamiltonian and each other and thus provide a 
+set of conserved quantities. With respect to the systems that we are dealing 
+with, it has been shown that a one-dimensional lattice chain of non-interacting 
+bosons is an integrable system (according to the previously 
+mentioned definition of quantum integrability) \cite{Rigol2007}.
 
 This is particularly interesting in light of the fact that the ETH is not 
 satisfied for integrable systems. This may lead us to expect that we will 
@@ -740,8 +737,8 @@ still explore the reduced phase space ergodically. This idea has inspired
 the use of a generalised Gibbs ensemble (GGE), which includes a linear 
 combination of the conserved quantities in the partition function, to predict 
 the mean values of physical observables in whatever sort of equilibrium 
-state that the integrable system relaxes into.
-
+state that the integrable system relaxes into \cite{Rigol2007}.
+\newpage
 \section{Experimental studies}
 
 \subsection{A quantum Newton's cradle}
@@ -1241,6 +1238,7 @@ initial state the first time after $t=0$.
     \includegraphics[width=1.0\textwidth]{recurrence_times}
     \centering
     \label{1Drecurrencetimes}
+    \caption{Recurrence times for varying values of $\epsilon$.}
 \end{figure}
 While we see that the system does appear to get arbitrarily close to revival,
 but it can take arbitrarily long to do so. This result can be explained in terms
@@ -1527,7 +1525,8 @@ To see why the systems that exhibited revival in the noninteracting case
 thermalise once interactions are added, we consider the specific case of
 two bosons on a $3\times1$ lattice. In the absence of interactions, this
 is identical to a single boson on a $3\times1$ lattice, up to normalisation.
-We can see from figure \ref{fig:3by1_noninteract_revival} that we have exact revival
+We can see from figure $8$%\ref{fig:3by1_noninteract_revival} 
+that we have exact revival
 in this system. Once we have multiple particles with interactions in the system,
 we need a larger dimensional basis to represent all of the distinct number
 states, and thus we need a larger Hamiltonian. We need to pick a labelling
@@ -1843,7 +1842,7 @@ data is not skewing the result.
 
 \begin{figure}[H]
     \centering
-    \begin{gnuplot}[terminal=cairolatex, terminaloptiointeracting ns={lw 2}, scale=0.95]
+    \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
         P(x)=2
         set yrange [0:2.5]
         g(x)=0.77936
@@ -1967,10 +1966,7 @@ state is
     \ket{0}.
 \end{equation}
 This state has very little phase coherence, but perfect correlations in particle
-number exist between lattice sites\todo{see square brackets}. [does this mean
-that when $P<N$ each lattice site has either one particle on it or zero? If so,
-then point out that this is consistent with the data in figure
-\ref{3by1_comparisons}]. The most important observation that we make about this
+number exist between lattice sites. The most important observation that we make about this
 Mott insulator state is that it cannot be described by a macroscopic
 wavefunction, and so when we later use the Gross-Pitaevskii equation we will
 not be able to legitimately consider systems with $U_{0} \gg J$.
@@ -2138,8 +2134,8 @@ revival time of $t^{\ast}=10\pi$ here, which is consistent with the simulation.
               $\lbrace J,J'\rbrace$ mutually rational.}
 \end{figure}
 If we now consider the case where $J$ and $J'$ are not mutually rational,
-then we see that we do not get full revival, see figure
-\ref{3by1JJdashmutuallyirrational}.
+then we see that we do not get full revival, see figure $24$.
+% \ref{3by1JJdashmutuallyirrational}.
 
 \begin{figure}[H]
     \centering
@@ -2227,8 +2223,8 @@ interaction strengths. We avoid strong interactions as the GPE is not an
 accurate description of our system in those cases for reasons outlined in
 section \ref{changing_interaction_strength}. The noninteracting case displays
 close agreement between the two methods (see figure
-\ref{2DnoninteractingcompareGPEMB}), with some differences in the troughs \todo{is troughs the correct word?}. The GPE method
-is more approximate, but this doesn't necessarily mean it is missing physical
+\ref{2DnoninteractingcompareGPEMB}), with some differences in the troughs. The 
+GPE method is more approximate, but this doesn't necessarily mean it is missing physical
 behaviour that the many-body simulation is showing, as the two-dimensional many-body
 code has an as-yet unresolved problem that could be causing this. It is
 particularly plausible that the many-body code is going awry in two dimensions
@@ -2254,8 +2250,7 @@ does here.
 When we introduce weak interactions, the many-body simulations suggest that
 the system thermalises. However, the GPE code does not noticeably show this.
 One possible reason for this is that given the small system size and reflective
-boundary conditions, the GPE wavefunction may be interfering with itself\todo{
-can I get a stronger explanation than this?}. This
+boundary conditions, the GPE wavefunction may be interfering with itself. This
 leads to behaviour that is qualitatively very different.
 
 
@@ -2355,7 +2350,7 @@ leads to behaviour that is qualitatively very different.
      \vspace*{-5mm}
      \caption{GPE system evolution with $U_0=1$.}
 \end{figure}
-
+\newpage
 We can more closely analyse the thermalisation of the many-body states by
 running longer simulations and taking averages of the expectation values that
 exclude the transitional early behaviour. For a $3\times3$ system with
@@ -2381,7 +2376,7 @@ decrease for longer simulations.
      \caption{Long term many-body averages for a $3\times3$ lattice with $6$ bosons
      and  $U_0=0.1$. The bosons start on lattice site $9$.}
 \end{figure}
-
+\newpage
 \subsection{Strong interactions and large systems}
 
 Although the GPE method is unsuitable for modelling systems with strong
