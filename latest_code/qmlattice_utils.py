@@ -409,12 +409,14 @@ def calculate_spectrum(hamiltonian, method="dense"):
 def E2s(spectrum):
     '''Overlap of the two sets of eigenstates: <energy state|number state>.'''
     n = len(spectrum)
-
     ckl = np.zeros((n, n))
     for (k, (_, state)) in enumerate(spectrum):
-        ckl[k, :] = np.conjugate(state)
-
+        """THIS IS WHERE THE PROBLEM WAS. COMMENTED VERSION IS OLD VERSION."""
+#        ckl[k, :] = np.conjugate(state)
+        ckl[ :,k] = np.conjugate(state)
+#    print(ckl)
     return(ckl)
+    
 
 
 def s2E(energy_states):
@@ -517,50 +519,62 @@ def evolve(d0, spectrum, parameters):
 
     # Calculating the time-dependent exponential term
     energy = np.array([energy for (energy, _) in spectrum])
-    e = np.exp(1j * energy * dt)
-
-    # The matrix ce is independent of d and time, thus can be pre-calculated.
-    ce = np.multiply(np.conj(c), e)
-
-    # Time evolution and export in blocks
+    e=np.zeros((len(energy),tn),dtype=np.complex128)
+    for k in range(tn):
+        e[:,k]=np.exp(1j * energy * dt* k)
+    
+    e=np.asmatrix(e)
+#    Time evolution and export in blocks
 #    fname_d = export_header("evolution_d", parameters)
     fname_n = export_header("evolution_n", parameters)
 
-    block_length = parameters["Maximal block length in export"]
-    block = np.zeros((block_length+1, len(d0)), dtype=np.complex128)
-    d = block[0, :] = update_d(d0, spectrum, tmin)
+#    block_length = parameters["Maximal block length in export"]
+#    block = np.zeros((block_length+1, len(d0)), dtype=np.complex128)
+#    d = block[0, :] = update_d(d0, spectrum, tmin)
+#
+#    t = np.zeros(block_length+1, dtype=np.float64)
+#    t[0] = tmin
+    
+    d0c = np.dot(d0, c)
+    dcc=np.multiply(d0c,np.conj(c))
+    
+    all_states=dcc*e
+#    print(all_states)
+    return(all_states)
+#    print(current_state)
 
-    t = np.zeros(block_length+1, dtype=np.float64)
-    t[0] = tmin
+#    counter = 1
+#    for k in range(1, tn):
+#        
+#        # d = np.dot(ce, np.transpose(dc))
+#        d = np.dot(dc, ce)
+#        
+#        block[counter, :] = d
+#        t[counter] = tmin + k * dt
+#
+#        if (counter > 0) and (counter % block_length == 0):
+#            d2 = np.square(np.abs(block))
+#            n_exp = occupation(d2, parameters)
+##            fname_d = export_block(fname_d, t, d2, parameters)
+#            fname_n = export_block(fname_n, t, n_exp, parameters)
+#            counter = 0
+#
+#            # Due to the iterative nature of this algorithm from time to time,
+#            # the expansion coefficients are updated in an "exact" manner.
+#            d = update_d(d0, spectrum, tmin + k*dt)
+#        else:
+#            counter = counter + 1
+#
+#    # Saving the last block
+#    block = block[0:counter, :]
+#    block = np.square(np.abs(block))
+#    n_exp = occupation(block, parameters)
+##    fname_d = export_block(fname_d, t, block, parameters)
+#    fname_n = export_block(fname_n, t, n_exp, parameters)
+#
+#    return
 
-    counter = 1
-    for k in range(1, tn):
-        dc = np.dot(d, c)
-        d = np.dot(ce, np.transpose(dc))
-        block[counter, :] = d
-        t[counter] = tmin + k * dt
 
-        if (counter > 0) and (counter % block_length == 0):
-            d2 = np.square(np.abs(block))
-            n_exp = occupation(d2, parameters)
-#            fname_d = export_block(fname_d, t, d2, parameters)
-            fname_n = export_block(fname_n, t, n_exp, parameters)
-            counter = 0
-
-            # Due to the iterative nature of this algorithm from time to time,
-            # the expansion coefficients are updated in an "exact" manner.
-            d = update_d(d0, spectrum, tmin + k*dt)
-        else:
-            counter = counter + 1
-
-    # Saving the last block
-    block = block[0:counter, :]
-    block = np.square(np.abs(block))
-    n_exp = occupation(block, parameters)
-#    fname_d = export_block(fname_d, t, block, parameters)
-    fname_n = export_block(fname_n, t, n_exp, parameters)
-
-    return
 
 
 def occupation(d2, parameters):

@@ -26,11 +26,11 @@ import qmlattice_utils as qm
 # == PHYSICAL PARAMETERS =======================================================
 nx = 3
 ny = nx
-P  = 6
+P  = 1
 
 J  = -1
 JP = -1
-U  =  1.0/6.0
+U  =  0
 
 LATTICE_TYPE = "full"    # Options are: "full", "random_one", "manual"
 
@@ -84,9 +84,7 @@ if __name__ == "__main__":
     H_onsite = qm.onsite_hamiltonian(parameters)
     H_hopping = qm.hopping_hamiltonian(parameters)
     H_full = H_hopping + H_onsite
-    print(H_full.todense())
     a=H_full.todense()
-
     # Energy eigenvalues and eigenvectors (for time evolution)
     spectrum = qm.calculate_spectrum(H_full, method="dense")
     qm.export_spectrum(parameters, spectrum)
@@ -95,10 +93,10 @@ if __name__ == "__main__":
     initial_state = np.zeros(len(number_states), dtype=np.complex64)
     initial_state[0] = 1
     print("Setting up calculation required: ", time.time() - tic, " seconds.")
-
     tic = time.time()
-    qm.evolve(initial_state, spectrum, parameters)
+    data=qm.evolve(initial_state, spectrum, parameters)
+    print(np.abs(data[:,0:5]))
     print("Time evolution required:         ", time.time() - tic, " seconds.")
 
-    qm.plot_lattice(parameters)
+#6    qm.plot_lattice(parameters)
 
