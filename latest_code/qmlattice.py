@@ -49,10 +49,10 @@ MANUAL_LINKS = [((0,0), (1,0)),
 np.set_printoptions(linewidth=250)
 
 TMIN = 0
-TMAX = int(1e3)
-TN   = int(1e4)
+TMAX = int(1e4)
+TN   = int(1e5)
 
-BLOCK_LENGTH = 3000
+BLOCK_LENGTH = 500
 
 parameters = {"Number of sites per chain":       nx,
               "Number of chains":                ny,
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     H_onsite = qm.onsite_hamiltonian(parameters)
     H_hopping = qm.hopping_hamiltonian(parameters)
     H_full = H_hopping + H_onsite
-    a=H_full.todense()
+
     # Energy eigenvalues and eigenvectors (for time evolution)
     spectrum = qm.calculate_spectrum(H_full, method="dense")
     qm.export_spectrum(parameters, spectrum)
@@ -92,11 +92,12 @@ if __name__ == "__main__":
     # Initial state of the time evolution
     initial_state = np.zeros(len(number_states), dtype=np.complex64)
     initial_state[0] = 1
+
     print("Setting up calculation required: ", time.time() - tic, " seconds.")
     tic = time.time()
     data=qm.evolve(initial_state, spectrum, parameters)
-    print(np.abs(data[:,0:5]))
+
     print("Time evolution required:         ", time.time() - tic, " seconds.")
 
-#6    qm.plot_lattice(parameters)
+    # qm.plot_lattice(parameters)
 

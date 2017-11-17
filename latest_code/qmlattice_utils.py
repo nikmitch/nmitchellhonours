@@ -510,6 +510,11 @@ def evolve(d0, spectrum, parameters):
     tmin = parameters["Time starts"]
     tmax = parameters["Time ends"]
     tn = parameters["Number of time steps"]
+    block_length = parameters["Maximal block length in export"]
+
+    # Setting up the data files
+    # fname_d = export_header("evolution_d", parameters)
+    fname_n = export_header("evolution_n", parameters)
 
     # Time-step
     dt = (tmax - tmin)/(tn-1)
@@ -519,60 +524,43 @@ def evolve(d0, spectrum, parameters):
 
     # Calculating the time-dependent exponential term
     energy = np.array([energy for (energy, _) in spectrum])
-    e=np.zeros((len(energy),tn),dtype=np.complex128)
-    for k in range(tn):
-        e[:,k]=np.exp(1j * energy * dt* k)
-    
-    e=np.asmatrix(e)
-#    Time evolution and export in blocks
-#    fname_d = export_header("evolution_d", parameters)
-    fname_n = export_header("evolution_n", parameters)
 
-#    block_length = parameters["Maximal block length in export"]
-#    block = np.zeros((block_length+1, len(d0)), dtype=np.complex128)
-#    d = block[0, :] = update_d(d0, spectrum, tmin)
-#
-#    t = np.zeros(block_length+1, dtype=np.float64)
-#    t[0] = tmin
-    
+    # Auxiliary, constant matrices
     d0c = np.dot(d0, c)
-    dcc=np.multiply(d0c,np.conj(c))
-    
-    all_states=dcc*e
-#    print(all_states)
-    return(all_states)
-#    print(current_state)
+    dcc = np.multiply(d0c, np.conj(c))
 
-#    counter = 1
-#    for k in range(1, tn):
-#        
-#        # d = np.dot(ce, np.transpose(dc))
-#        d = np.dot(dc, ce)
-#        
-#        block[counter, :] = d
-#        t[counter] = tmin + k * dt
-#
-#        if (counter > 0) and (counter % block_length == 0):
-#            d2 = np.square(np.abs(block))
-#            n_exp = occupation(d2, parameters)
-##            fname_d = export_block(fname_d, t, d2, parameters)
-#            fname_n = export_block(fname_n, t, n_exp, parameters)
-#            counter = 0
-#
-#            # Due to the iterative nature of this algorithm from time to time,
-#            # the expansion coefficients are updated in an "exact" manner.
-#            d = update_d(d0, spectrum, tmin + k*dt)
-#        else:
-#            counter = counter + 1
-#
-#    # Saving the last block
-#    block = block[0:counter, :]
-#    block = np.square(np.abs(block))
-#    n_exp = occupation(block, parameters)
-##    fname_d = export_block(fname_d, t, block, parameters)
-#    fname_n = export_block(fname_n, t, n_exp, parameters)
-#
-#    return
+    t = tmin
+    for cycle in range(tn // block_length):
+        t = tmin + np.arange(block_length) * dt
+        e = np.exp(1j * np.outer(energy, t))
+        e = np.asmatrix(e)
+
+        d = np.transpose(dcc * e)
+        d2 = np.square(np.abs(d))
+        n = occupation(d2, parameters)
+
+        # fname_d = export_block(fname_d, t, d2, parameters)
+        fname_n = export_block(fname_n, t, n, parameters)
+
+        tmin = t[-1] + dt
+
+    # If the block_length is not an exact divisor of tn then we have to create
+    # the last block manually.
+    missing = tn - (tn//block_length) * block_length
+    if missing:
+        t = tmin + np.arange(missing) * dt
+
+        e = np.exp(1j * np.outer(energy, t))
+        e = np.asmatrix(e)
+
+        d = np.transpose(dcc * e)
+        d2 = np.square(np.abs(d))
+        n = occupation(d2, parameters)
+
+        fname_d = export_block(fname_d, t, d2, parameters)
+        fname_n = export_block(fname_n, t, n, parameters)
+
+    return()
 
 
 
