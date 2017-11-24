@@ -1,0 +1,130 @@
+\documentclass[doublecol]{epl2}
+\usepackage{todonotes}
+% or \documentclass[page-classic]{epl2} for one column style
+
+\title{Thermalisation of interacting bosons on a lattice}
+\shorttitle{Title} %Insert here a short version of the title if it exceeds 70 characters
+
+\author{N. Mitchell\inst{1} \and 
+D. Hutchinson\inst{1} \and 
+D. Schumayer\inst{1}}
+
+\institute{                    
+  \inst{1} University of Otago - Address\\
+  
+}
+\pacs{nn.mm.xx}{First pacs description}
+\pacs{nn.mm.xx}{Second pacs description}
+\pacs{nn.mm.xx}{Third pacs description}
+%what are pacs?
+
+\abstract{This paper is inspired by work done by Marcos Rigol 
+et al. \ref{Rigol2007}, who showed numerically that a one-dimensional gas of 
+hard-core bosons on an optical lattice (an integrable system) relaxes to an
+equilibrium state that is characterised by the Generalised Gibbs Ensemble (GGE).
+The GGE is a thermodynamic ensemble that has been extended to take into account
+all of the conserved quantities of a system. We explore the question of whether
+similar behaviour can be seen in smaller systems, which we can solve more 
+exactly, where the strength of the interactions is increased to approach the 
+hard-core limit.
+}
+
+
+\begin{document}
+
+\maketitle
+
+
+\section{Section title}
+\todo{should the institute be the DWC or the uni?}
+We consider a gas of $P$ bosons initially in the ground state of a box with 
+$N_{in}=P$ lattice sites, and allow it to expand into a box with $N$ lattice sites.
+This is similar to the setup in \ref{Rigol2007}, though we shall be using 
+smaller system sizes.
+We consider only repulsive interactions, so the ground state of the initial 
+system corresponds to single \todo{singular?}occupation of each lattice site. 
+
+
+The Hamiltonian that describes our system is 
+\begin{equation*}
+    \hat{H}
+    =
+    J \sum_{i}{(\hat{a}^\dagger_{i}\hat{a}_{i+1} + \text{h.c.})} +
+    U\sum_{i}{\hat{a}^\dagger_{i} \hat{a}^\dagger_{i} \hat{a}_{i}\hat{a}_{i}}.
+\end{equation*},
+where [explain meaning of operators etc]
+
+Our Hamiltonian is different from the one used by Rigol et al. in that we 
+explicitly include the interaction strength. We tune this variable to 
+investigate whether our system behaves like the one that they used
+in the strongly interacting (hard-core) limit.\todo{can I say this, or is it
+wrong because hard-core is technically infinitely repulsive, not just strong?}
+
+The main observable of interest is the quasimomentum $\langle\hat{f}(k)\rangle$,
+given by (insert equation here).
+
+We consider the height of the distrubtion at $k=0$ over time and how this 
+changes as we tune the interaction strength $U$. We also consider the shape of
+the entire quasimomentum distribution for varying interaction strengths in 
+the long-time limit.
+
+
+
+See fig.~\ref{fig.1}, table~\ref{tab.1} and eq.~(\ref{eq.1}).
+See also~\cite{b.a,b.b}.
+\begin{equation}
+\label{eq.1}
+0\neq1
+\end{equation}
+
+
+\begin{figure}
+\onefigure{epl-template.eps}
+\caption{Figure caption.}
+\label{fig.1}
+\end{figure}
+
+
+\begin{table}
+\caption{Table caption.}
+\label{tab.1}
+\begin{center}
+\begin{tabular}{lcr}
+first  & table & row\\
+second & table & row
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+\acknowledgments
+Insert here the text.
+
+\begin{thebibliography}{0}
+
+\bibitem{b.a}
+  \Name{Author F., Author S. \and Author T.}
+  \REVIEW{Some Rev. A}{69}{1969}{9691}.
+
+\bibitem{b.b}
+  \Name{Author F. \and Author S.}
+  \Book{Some Book of Interest}
+  \Editor{A. Editor}
+  \Vol{9}
+  \Publ{Publishing house, City}
+  \Year{1939}
+  \Page{666}.
+
+\bibitem{b.c}
+  \Editor{Editor A.}
+  \Book{Some Book of Interest}
+  \Vol{9}
+  \Publ{Publishing house, City}
+  \Year{1939}
+  \Section{A}.
+
+\end{thebibliography}
+
+\end{document}
+
