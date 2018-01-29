@@ -1,0 +1,178 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{gnuplottex}
+\usepackage{gnuplot-lua-tikz}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{braket}
+\usepackage{mathtools}
+\usepackage[mathscr]{euscript}
+\usepackage{amsmath, amsfonts, amssymb, amsbsy, amsthm}
+
+
+\begin{document}
+\begin{abstract}
+This document will summarise what my results are now that I have altered the 
+code in an attempt to fix symmetry issues.
+\end{abstract}
+
+\section{Noninteracting cases}
+The noninteracting cases now appear to be identical for the GPE code and the 
+many-body code. 
+
+
+\begin{figure}[H]
+   \centering
+   \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+       set yrange [0:1];
+       set xrange [0:50];
+       set xlabel "$\\displaystyle \\frac{t}{J}$"
+       set ylabel "$\\langle n_{1} \\rangle$"
+
+       plot "./Data_for_comparisons/3by1_U0_T50_MB.dat"  u 1:4 w l lc 1 t "", \
+            "./Data_for_comparisons/U0_RKF_3by1_T50.dat" u 1:2 w l lc 2 t ""        
+    \end{gnuplot}
+    \vspace*{-5mm}
+    \caption{Similarity of output of many-body and GPE code for a $3\times1$
+    lattice with no interactions.}
+\end{figure}
+Note that the many-body graph no longer has ``bumps'' near its minima.
+
+
+\begin{figure}[H]
+   \centering
+   \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+       set yrange [0:1];
+       set xrange [0:50];
+       set xlabel "$\\displaystyle \\frac{t}{J}$"
+       set ylabel "$\\langle n_{1} \\rangle$"
+
+       plot "./Data_for_comparisons/4by1_U0_T50_MB.dat"  u 1:5 w l lc 1 t "", \
+            "./Data_for_comparisons/U0_RKF_4by1_T50.dat" u 1:2 w l lc 2 t ""        
+    \end{gnuplot}
+    \vspace*{-5mm}
+    \caption{Similarity of output of many-body and GPE code for a $4\times1$
+    lattice with no interactions.}
+\end{figure}
+
+The similarity continues when we look at $2$ dimensional noninteracting systems
+
+\begin{figure}[H]
+   \centering
+   \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+       set yrange [0:1];
+       set xrange [0:50];
+       set xlabel "$\\displaystyle \\frac{t}{J}$"
+       set ylabel "$\\langle n_{1} \\rangle$"
+
+       plot "./Data_for_comparisons/3by3_U0_T500_MB.dat"  u 1:10 w l lc 1 t "", \
+            "./Data_for_comparisons/U0_RKF_3by3_T500.dat" u 1:2 w l lc 2 t ""        
+    \end{gnuplot}
+    \vspace*{-5mm}
+    \caption{Similarity of output of many-body and GPE code for a $3\times3$
+    lattice with no interactions.}
+\end{figure}
+
+
+We also appear to have gotten rid of the problems with symmetry that we
+faced before (which were present even in the noninteracting case).
+
+\begin{table}[H]
+ \centering
+ \begin{tabular}{c r r r}
+  \multicolumn{4}{c}{Lattice site positions}\\
+  \hline
+  Column number &     Row 1     &     Row 2     &     Row 3\\
+  \hline
+   1            &     0.273     &     0.078     &   0.023  \\
+   2            &     0.078     &     0.094     &   0.078  \\
+   3            &     0.023     &     0.078     &   0.274  \\
+   \hline
+ \end{tabular}
+ \caption{Symmetry in long term averages for a $3\times3$ system with $1$ 
+ particle and $U_0=0$ with many-body code.}
+\end{table}
+
+The symmetry is also there in the GPE case.
+
+\section{Interacting cases}
+
+Initially, just looking at $3\times3$ lattices. More can be added as simulations 
+finish.
+
+For GPE, U=20 seems to agree with MB U=4 pretty well (they both keep the 
+particles localised on the initial site). 
+
+\begin{figure}[H]
+   \centering
+   \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+       set yrange [0:1];
+       set xrange [0:500];
+       set xlabel "$\\displaystyle \\frac{t}{J}$"
+       set ylabel "$\\langle n_{1} \\rangle$"
+       plot  "./Data_for_comparisons/U20_RKF_3by3_T500.dat" u 1:2 w l lc 2 t ""        
+    \end{gnuplot}
+    \vspace*{-5mm}
+    \caption{GPE simulation with U=20.}
+\end{figure}
+
+\begin{figure}[H]
+   \centering
+   \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+       set yrange [0:5];
+       set xrange [0:500];
+       set xlabel "$\\displaystyle \\frac{t}{J}$"
+       set ylabel "$\\langle n_{1} \\rangle$"
+       plot  "./Data_for_comparisons/3by3_U4_T500_MB.dat" u 1:10 w l lc 1 t ""        
+    \end{gnuplot}
+    \vspace*{-5mm}
+    \caption{Many-body simulation with U=4.}
+\end{figure}
+
+
+
+GPE U=0.1 disagrees quite dramatically with MB U=0.02, with the many body
+version converging to a uniform spread but the GPE one staying very localised,
+as it was previously.
+
+\begin{figure}[H]
+   \centering
+   \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+       set yrange [0:1];
+       set xrange [0:500];
+       set xlabel "$\\displaystyle \\frac{t}{J}$"
+       set ylabel "$\\langle n_{1} \\rangle$"
+       plot  "./Data_for_comparisons/U0.1_RKF_3by3_T500.dat" u 1:2 w l lc 2 t ""        
+    \end{gnuplot}
+    \vspace*{-5mm}
+    \caption{GPE simulation with U=0.1.}
+\end{figure}
+
+\begin{figure}[H]
+   \centering
+   \begin{gnuplot}[terminal=cairolatex, terminaloptions={lw 2}, scale=0.95]
+       set yrange [0:5];
+       set xrange [0:500];
+       set xlabel "$\\displaystyle \\frac{t}{J}$"
+       set ylabel "$\\langle n_{1} \\rangle$"
+       plot  "./Data_for_comparisons/3by3_U0.02_T500_MB.dat" u 1:10 w l lc 1 t ""        
+    \end{gnuplot}
+    \vspace*{-5mm}
+    \caption{Many-body simulation with U=0.02.}
+\end{figure}
+
+Symmetry is also not a problem with these simulations (averages not shown here,
+but they're always perfectly or almost-perfectly symmetric).
+
+\section{Next steps}
+- See what the properties we find for systems larger than 3x3 (especially 
+for the weakly interacting GPE). 
+\\
+- Investigate the transition values of U again with the new code.
+\\
+- Once fixed Fourier Transform code is completed, look at comparing momentum 
+distributions.
+
+
+\end{document}

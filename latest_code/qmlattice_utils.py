@@ -296,6 +296,15 @@ def create(index, state, maxparticle):
     return(prefactor, state)
 
 
+def inner_product(s1, s2):
+    '''Inner product of two number states'''
+    if s1 == s2:
+        result = 1
+    else:
+        result = 0
+    return(result)
+
+
 def onsite_hamiltonian(parameters):
     '''Calculate H = Sum(U_{i}/2 n_{i} (n_{i}-1)'''
     nx = parameters["Number of sites per chain"]
@@ -411,12 +420,8 @@ def E2s(spectrum):
     n = len(spectrum)
     ckl = np.zeros((n, n))
     for (k, (_, state)) in enumerate(spectrum):
-        """THIS IS WHERE THE PROBLEM WAS. COMMENTED VERSION IS OLD VERSION."""
-#        ckl[k, :] = np.conjugate(state)
         ckl[ :,k] = np.conjugate(state)
-#    print(ckl)
     return(ckl)
-    
 
 
 def s2E(energy_states):
@@ -425,6 +430,93 @@ def s2E(energy_states):
     clk = np.conjugate(np.transpose(ckl))
     return(clk)
 
+"""This is the old version of bb that calculated the off-diagonal terms"""
+#def bb(parameters):
+#    '''Expectation value of a_{i}^{+} * a_{i'} between two number states'''
+#    # The construction of matrix B_{pq} is very similar to that of the hopping
+#    # Hamiltonian, however, indices i and i' can correspond to arbitrary sites,
+#    # and not necessarily neighbouring sites.
+#    P = parameters["Total number of particles"]
+#    nx = parameters["Number of sites per chain"]
+#    ny = parameters["Number of chains"]
+#    states = parameters["List of number states"]
+#
+#    site_indices = range(nx*ny)
+#
+#    # Empty Hamiltonian matrix with the correct size
+#    L = len(states)
+#    B = sp.dok_matrix((L, L), dtype=np.complex)
+#
+#    # For fast lookup-table store states and their index in a dictionary
+#    tmp = dict(zip(states, range(L)))
+#
+#    def _double_sum(state_p, state_q, k):
+#        '''The double sum on i and iprime'''
+#        double_sum = 0
+#        for site_i in site_indices:
+#            for site_ip in site_indices:
+#                (norm1, tmp_state) = destroy(site_ip, state_q)
+#                (norm2, tmp_state) = create(site_i, tmp_state, P)
+#
+#                if tmp_state is not None:
+#                    bracket = norm1 * norm2 * inner_product(state_p, tmp_state)
+#                    exponent = -1j * 2 * np.pi * k * (site_i - site_ip) / L
+#                    double_sum = double_sum  + np.exp(exponent) * bracket
+#
+#        return(double_sum)
+#
+#    # Assemble matrix B_{pq} for all pairs of states (p, q)
+#    momentum = 0
+#    for (p, state_p) in enumerate(states):
+#        for (q, state_q) in enumerate(states):
+#            B[p, q] = _double_sum(state_p, state_q, momentum)
+# 
+#    return(B)
+
+"""Just calculating diagonal terms here"""
+def bb(parameters):
+    '''Expectation value of a_{i}^{+} * a_{i} between two identical number 
+    states'''
+    # The construction of matrix B_{pq} is very similar to that of the hopping
+    # Hamiltonian, however, indices i and i' can correspond to arbitrary sites,
+    # and not necessarily neighbouring sites.
+    P = parameters["Total number of particles"]
+    nx = parameters["Number of sites per chain"]
+    ny = parameters["Number of chains"]
+    states = parameters["List of number states"]
+
+    site_indices = range(nx*ny)
+
+    # Empty Hamiltonian matrix with the correct size
+    L = len(states)
+    B = sp.dok_matrix((L, L), dtype=np.complex)
+
+    # For fast lookup-table store states and their index in a dictionary
+    tmp = dict(zip(states, range(L)))
+
+    def _single_sum(state_p, state_q, k):
+        '''The single sum (since i = iprime)'''
+        single_sum = 0
+        for site_i in site_indices:
+            for site_ip in site_indices:
+                if site_i == site_ip:
+                    (norm1, tmp_state) = destroy(site_ip, state_q)
+                    (norm2, tmp_state) = create(site_i, tmp_state, P)
+
+                    if tmp_state is not None:
+                        bracket = norm1 * norm2 * inner_product(state_p, tmp_state)
+                        exponent = -1j * 2 * np.pi * k * (site_i - site_ip) / L
+                        single_sum = single_sum + np.exp(exponent) * bracket
+
+        return(single_sum)
+
+    # Assemble matrix B_{pq} for all pairs of states (p, q)
+    momentum = 0
+    for (p, state_p) in enumerate(states):
+        for (q, state_q) in enumerate(states):
+            B[p, q] = _single_sum(state_p, state_q, momentum)
+
+    return(B)
 
 def export_header(fname, parameters):
     '''Create data file and export simulation parameters as header.'''
@@ -505,11 +597,14 @@ def update_d(d, spectrum, t):
     return(d)
 
 
+
+
 def evolve(d0, spectrum, parameters):
     '''Evolve the initial_state according to the entire spectrum'''
     tmin = parameters["Time starts"]
     tmax = parameters["Time ends"]
     tn = parameters["Number of time steps"]
+    N = len(parameters["List of number states"])
     block_length = parameters["Maximal block length in export"]
 
     # Setting up the data files
@@ -518,6 +613,12 @@ def evolve(d0, spectrum, parameters):
 
     # Time-step
     dt = (tmax - tmin)/(tn-1)
+    
+    #time vector for plotting
+    times=np.linspace(tmin,tmax,tn)
+
+    # zero-momentum-vector creation
+    zm = np.zeros((1, tn))
 
     # Auxiliary variables
     c = E2s(spectrum)
@@ -528,6 +629,7 @@ def evolve(d0, spectrum, parameters):
     # Auxiliary, constant matrices
     d0c = np.dot(d0, c)
     dcc = np.multiply(d0c, np.conj(c))
+    BB = bb(parameters)
 
     t = tmin
     for cycle in range(tn // block_length):
@@ -535,7 +637,15 @@ def evolve(d0, spectrum, parameters):
         e = np.exp(1j * np.outer(energy, t))
         e = np.asmatrix(e)
 
+        # Evolve the expansion coefficients d_k(t)
         d = np.transpose(dcc * e)
+
+        # Calculating zero momenta at different times using a loop
+        for i in range(np.shape(d)[0]):
+            tmp = np.conj(d[i,:]) * BB * np.transpose(d[i,:])
+            zm[0, cycle*block_length + i] = np.real(tmp[0,0])
+
+        # Measurement: calculating the site occupations
         d2 = np.square(np.abs(d))
         n = occupation(d2, parameters)
 
@@ -546,22 +656,33 @@ def evolve(d0, spectrum, parameters):
 
     # If the block_length is not an exact divisor of tn then we have to create
     # the last block manually.
-    missing = tn - (tn//block_length) * block_length
-    if missing:
-        t = tmin + np.arange(missing) * dt
+#    missing = tn - (tn//block_length) * block_length
+#    if missing:
+#        t = tmin + np.arange(missing) * dt
+#
+#        e = np.exp(1j * np.outer(energy, t))
+#        e = np.asmatrix(e)
+#
+#        d = np.transpose(dcc * e)
+#
+#        # Calculating zero momenta at different times using a loop
+#        cycle = cycle + 1
+#        for i in range(np.shape(d)[0]):
+#            tmp = np.conj(d[i,:]) * BB * np.transpose(d[i,:])
+#            zm[0, cycle*block_length + i] = np.real(tmp[0,0])
+#
+#        d2 = np.square(np.abs(d))
+#        n = occupation(d2, parameters)
+#
+#        #fname_d = export_block(fname_d, t, d2, parameters)
+#        fname_n = export_block(fname_n, t, n, parameters)
+#
 
-        e = np.exp(1j * np.outer(energy, t))
-        e = np.asmatrix(e)
-
-        d = np.transpose(dcc * e)
-        d2 = np.square(np.abs(d))
-        n = occupation(d2, parameters)
-
-        fname_d = export_block(fname_d, t, d2, parameters)
-        fname_n = export_block(fname_n, t, n, parameters)
-
+#    zm=np.asarray(zm)
+    plt.plot(times, np.transpose(zm[0,:]))
+    plt.title("zero-momentum as time evolves, U=0")
+    plt.show()
     return()
-
 
 
 

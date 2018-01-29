@@ -24,9 +24,9 @@ import matplotlib as mpl
 import qmlattice_utils as qm
 
 # == PHYSICAL PARAMETERS =======================================================
-nx = 16
+nx = 10
 ny = 1
-P  = 4
+P  = 1
 
 J  = -1
 JP = -1
@@ -49,10 +49,10 @@ MANUAL_LINKS = [((0,0), (1,0)),
 np.set_printoptions(linewidth=250)
 
 TMIN = 0
-TMAX = int(1e4)
-TN   = int(1e5)
+TMAX = int(1.5e2)
+TN   = int(1.5e3)
 
-BLOCK_LENGTH = 500
+BLOCK_LENGTH = 100
 
 parameters = {"Number of sites per chain":       nx,
               "Number of chains":                ny,
@@ -76,28 +76,33 @@ if __name__ == "__main__":
     number_states = qm.states_generator(parameters, report=False)
     number_states = sorted(number_states, reverse=False)
     parameters["List of number states"] = number_states
+    B = qm.bb(parameters)
 
-    # The pairs of site indices between which hopping is allowed
+#    plt.matshow(np.abs(B.todense()))
+#    plt.show()
+    # Generate the pairs of site indices between which hopping is allowed
     qm.index_pairs(parameters)
 
-    # Hamiltonian operator in number state representation
+    # Construct the Hamiltonian operator in number state representation
     H_onsite = qm.onsite_hamiltonian(parameters)
     H_hopping = qm.hopping_hamiltonian(parameters)
     H_full = H_hopping + H_onsite
 
-    # Energy eigenvalues and eigenvectors (for time evolution)
+    # Calculate the energy eigenvalues and eigenvectors (for time evolution)
     spectrum = qm.calculate_spectrum(H_full, method="dense")
     qm.export_spectrum(parameters, spectrum)
 
-    # Initial state of the time evolution
+    # Prepare the initial state of the time evolution
     initial_state = np.zeros(len(number_states), dtype=np.complex64)
     initial_state[0] = 1
 
+    # Start evolution
     print("Setting up calculation required: ", time.time() - tic, " seconds.")
     tic = time.time()
     data=qm.evolve(initial_state, spectrum, parameters)
 
     print("Time evolution required:         ", time.time() - tic, " seconds.")
 
+    # Post-processing
     # qm.plot_lattice(parameters)
 
