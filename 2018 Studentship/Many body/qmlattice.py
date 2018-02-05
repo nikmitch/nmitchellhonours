@@ -49,8 +49,8 @@ MANUAL_LINKS = [((0,0), (1,0)),
 np.set_printoptions(linewidth=250)
 
 TMIN = 0
-TMAX = int(5e2)
-TN   = int(5e3)
+TMAX = int(5e3)
+TN   = int(2e4)
 
 BLOCK_LENGTH = 100
 

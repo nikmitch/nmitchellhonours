@@ -29,13 +29,13 @@ import qmlattice_measurements as qmmeas
 np.set_printoptions(linewidth=250)
 
 # == PHYSICAL PARAMETERS =======================================================
-nx = 4
-ny = 4
+nx = 10
+ny = 10
 P  = 2
 
 J  = -1
 JP = -1
-U  = 0.01
+U  = 0.001
 
 LATTICE_TYPE = "full"    # Options are: "full", "random_one", "manual"
 
@@ -55,7 +55,7 @@ np.set_printoptions(linewidth=250)
 
 TMIN = 0
 TMAX = 500
-TN   = 10000
+TN   = 20000
 
 BLOCK_LENGTH = 500
 

@@ -12,28 +12,28 @@ from numpy.linalg import solve
 import qmlattice_utils_GPE as qm
 
 # Defining simulatino parameters
-nx=10
-ny=10
+nx=3
+ny=3
 N=nx*ny
 hop=np.zeros((3,N),dtype=np.complex128)
 
 jAmp=-1.0
-U=U  = 0.00002
-block_length = 100
+U= 0
+block_length = 1000
 
-T=5000
-dt=1e-2
-nStep=20000
+T=500
+dt=1e-3
+nStep=2000 
 
-EXACT_TIMESTEPS="NO"
+EXACT_TIMESTEPS="YES"
 
 # For data export
-fname_probs = "U0.00002_RKF_10by10_T5000.dat"
-fname_ft = "ftU0.00002_RKF_10by10_T5000.dat"
+fname_probs = "U0_RKF_3by3_T500.dat"
+fname_ft = "ftU0_RKF_3by3_T500.dat"
 block = np.zeros((block_length, N))
 block_ft=np.zeros((block_length, N))
 simtime = np.zeros(block_length)
-counter = 1
+
 
 
 def hamSparse(psi):
@@ -110,6 +110,8 @@ plt.ioff()
 # Just for "fun"
 # freq = np.fft.fftfreq(N)
 
+counter = 0
+
 while (kay<nStep):
 
 #  fig = plt.figure(figsize=(3.375,3.375))
@@ -119,25 +121,32 @@ while (kay<nStep):
 #  plt.close()
 #  plt.clf()
   current_probs=np.diagflat(np.abs(psiSP))*np.abs(psiSP)
+#  print(current_probs)
   #current_ft=np.fft.fft(psiSP)
   current_ft = np.fft.fftshift(np.fft.fft(current_probs))
-  kay+=1
+  
   print("t=%.3f, " %t + "dt: %f, " %dt + "dN:%7.3e" %(1.0-np.sum(current_probs)))
-
-  Tloc=float(kay)*float(T)/float(nStep)
+  
+  Tloc=float(kay+1)*float(T)/float(nStep)
   print("stepping up to time %f" % Tloc)
-
+  
   while (t<Tloc):
     while (True):
       delt=-1.0j*dt
       k1=delt*hamSparse(psiSP)
       k2=delt*hamSparse(psiSP+(1.0/4.0)*k1)
       k3=delt*hamSparse(psiSP+(3.0/32.0)*k1+(9.0/32.0)*k2)
-      k4=delt*hamSparse(psiSP+(1932.0/2197.0)*k1-(7200.0/2197.0)*k2+(7296.0/2197.0)*k3)
-      k5=delt*hamSparse(psiSP+(439.0/216.0)*k1-(8.0)*k2+(3680.0/513.0)*k3-(845.0/4104.0)*k4)
-      k6=delt*hamSparse(psiSP-(8.0/27.0)*k1+(2.0)*k2-(3544.0/2565.0)*k3+(1859.0/4104.0)*k4-(11.0/40.0)*k5)
+      k4=delt*hamSparse(psiSP+(1932.0/2197.0)*k1-(7200.0/2197.0)*k2+\
+      (7296.0/2197.0)*k3)
 
-      residual_error=(1.0/dt)*abs(1.0/360.0*k1-128.0/4275.0*k3-2197.0/75240.0*k4+1.0/50.0*k5+2.0/55.0*k6).max()
+      k5=delt*hamSparse(psiSP+(439.0/216.0)*k1-(8.0)*k2+\
+      (3680.0/513.0)*k3-(845.0/4104.0)*k4)
+
+      k6=delt*hamSparse(psiSP-(8.0/27.0)*k1+(2.0)*k2-(3544.0/2565.0)*k3+\
+      (1859.0/4104.0)*k4-(11.0/40.0)*k5)
+
+      residual_error=(1.0/dt)*abs(1.0/360.0*k1-128.0/4275.0*k3-\
+      2197.0/75240.0*k4+1.0/50.0*k5+2.0/55.0*k6).max()
 
       #rescale timestep and retry.
       scale=0.84*(tolerance/residual_error)**(0.25)
@@ -158,18 +167,17 @@ while (kay<nStep):
           break
 
 
-      #print("err=%.3e " %residual_error + "dt=%.3f, " %dt + "rescale:%7.3e" %(scale))
+#print("err=%.3e "%residual_error+ "dt=%.3f," %dt +"rescale:%7.3e" %(scale))
 
     psiSP+=25.0/216.0*k1+1408.0/2565.0*k3+2197.0/4104.0*k4-1.0/5.0*k5    
     t+=dt
 
-  simtime[counter-1] = t
-  block[counter-1, :] = np.transpose(current_probs)
+  
 #Do I need the current_ft to be transposed?  
-  block_ft[counter-1, :] = np.reshape(current_ft,newshape=([N]))
+  block_ft[counter, :] = np.reshape(current_ft,newshape=([N]))
   print(counter)  
   
-  if (counter > 0) and (counter % block_length == 0):
+  if (counter > 0) and ((counter+1)% block_length == 0):
 #    print("We are in, Houston!", counter)  
     fname_probs = qm.export_block(fname_probs, simtime, block, None)
     fname_ft = qm.export_block(fname_ft, simtime, block_ft, None)
@@ -178,16 +186,20 @@ while (kay<nStep):
     block_ft = np.zeros((block_length, N))    
     simtime = np.zeros(block_length)
   else:
+    simtime[counter+1] = t
+    block[counter, :] = np.transpose(current_probs)
     counter = counter + 1
+  
+  kay+=1  
   
   #current_first_site=current_probs[0]
   #current_first_site=np.asarray(current_first_site)[0][0]
   #outputs.append([t,current_first_site])
 
 # Saving the last block
-block = block[0:counter-1, :]
-block_ft = block_ft[0:counter-1, :]
-simtime = simtime[0:counter-1]
+block = block[0:counter, :]
+block_ft = block_ft[0:counter, :]
+simtime = simtime[0:counter]
 fname_probs = qm.export_block(fname_probs, simtime, block, None)
 with open(fname_probs, "a+") as fid:
     fid.write("\n\n")
